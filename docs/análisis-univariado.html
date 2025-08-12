@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Análisis univariado | A Minimal Book Example</title>
+  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 Análisis univariado | A Minimal Book Example" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 Análisis univariado | A Minimal Book Example" />
+  
+  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Nátaly Cárdenas, Roger Daza y Daniel Gómez" />
+
+
+<meta name="date" content="2025-08-11" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="method.html"/>
+<link rel="next" href="final-words.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Sobre este libro</a></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#objetivo-del-eda"><i class="fa fa-check"></i><b>2.1</b> Objetivo del EDA</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="literature.html"><a href="literature.html"><i class="fa fa-check"></i><b>3</b> Base de datos</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="04-application.html"><a href="#descripci%C3%B3n-de-los-datos"><i class="fa fa-check"></i><b>3.1</b> Descripción de los datos</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="method.html"><a href="method.html"><i class="fa fa-check"></i><b>4</b> Extracción, Transformación y Carga (ETL)</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="method.html"><a href="method.html#instalar-librerias"><i class="fa fa-check"></i><b>4.1</b> Instalar librerias</a></li>
+<li class="chapter" data-level="4.2" data-path="method.html"><a href="method.html#cargar-base-de-datos"><i class="fa fa-check"></i><b>4.2</b> Cargar base de datos</a></li>
+<li class="chapter" data-level="4.3" data-path="04-application.html"><a href="#verificaci%C3%B3n"><i class="fa fa-check"></i><b>4.3</b> Verificación</a></li>
+<li class="chapter" data-level="4.4" data-path="method.html"><a href="method.html#limpieza-de-datos"><i class="fa fa-check"></i><b>4.4</b> Limpieza de datos</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="04-application.html"><a href="#an%C3%A1lisis-univariado"><i class="fa fa-check"></i><b>5</b> Análisis univariado</a></li>
+<li class="chapter" data-level="6" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>6</b> Final Words</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Minimal Book Example</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="análisis-univariado" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Análisis univariado<a href="#an%C3%A1lisis-univariado" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>##Análisis de la variable NObesyedad (Target)</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="análisis-univariado.html#cb1-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+## ✔ dplyr     1.1.4     ✔ readr     2.1.5
+## ✔ forcats   1.0.0     ✔ stringr   1.5.1
+## ✔ ggplot2   3.5.2     ✔ tibble    3.3.0
+## ✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+## ✔ purrr     1.1.0     
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="análisis-univariado.html#cb3-1" tabindex="-1"></a><span class="fu">library</span>(Amelia) </span></code></pre></div>
+<pre><code>## Cargando paquete requerido: Rcpp
+## ## 
+## ## Amelia II: Multiple Imputation
+## ## (Version 1.8.3, built: 2024-11-07)
+## ## Copyright (C) 2005-2025 James Honaker, Gary King and Matthew Blackwell
+## ## Refer to http://gking.harvard.edu/amelia/ for more information
+## ##</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="análisis-univariado.html#cb5-1" tabindex="-1"></a><span class="fu">library</span>(GGally)</span>
+<span id="cb5-2"><a href="análisis-univariado.html#cb5-2" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb5-3"><a href="análisis-univariado.html#cb5-3" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb5-4"><a href="análisis-univariado.html#cb5-4" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span></code></pre></div>
+<pre><code>## 
+## Adjuntando el paquete: &#39;gridExtra&#39;
+## 
+## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     combine</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="análisis-univariado.html#cb7-1" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;C:/Users/natal/Downloads/estimation+of+obesity+levels+based+on+eating+habits+and+physical+condition/ObesityDataSet_raw_and_data_sinthetic.csv&quot;</span>)</span></code></pre></div>
+<pre><code>## Rows: 2111 Columns: 17
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (9): Gender, family_history_with_overweight, FAVC, CAEC, SMOKE, SCC, CAL...
+## dbl (8): Age, Height, Weight, FCVC, NCP, CH2O, FAF, TUE
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="análisis-univariado.html#cb9-1" tabindex="-1"></a><span class="fu">View</span>(datos)</span>
+<span id="cb9-2"><a href="análisis-univariado.html#cb9-2" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="análisis-univariado.html#cb9-3" tabindex="-1"></a><span class="fu">dim</span>(datos)</span></code></pre></div>
+<pre><code>## [1] 2111   17</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="análisis-univariado.html#cb11-1" tabindex="-1"></a><span class="fu">colnames</span>(datos)</span></code></pre></div>
+<pre><code>##  [1] &quot;Gender&quot;                         &quot;Age&quot;                           
+##  [3] &quot;Height&quot;                         &quot;Weight&quot;                        
+##  [5] &quot;family_history_with_overweight&quot; &quot;FAVC&quot;                          
+##  [7] &quot;FCVC&quot;                           &quot;NCP&quot;                           
+##  [9] &quot;CAEC&quot;                           &quot;SMOKE&quot;                         
+## [11] &quot;CH2O&quot;                           &quot;SCC&quot;                           
+## [13] &quot;FAF&quot;                            &quot;TUE&quot;                           
+## [15] &quot;CALC&quot;                           &quot;MTRANS&quot;                        
+## [17] &quot;NObeyesdad&quot;</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="análisis-univariado.html#cb13-1" tabindex="-1"></a><span class="fu">str</span>(datos)</span></code></pre></div>
+<pre><code>## spc_tbl_ [2,111 × 17] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+##  $ Gender                        : chr [1:2111] &quot;Female&quot; &quot;Female&quot; &quot;Male&quot; &quot;Male&quot; ...
+##  $ Age                           : num [1:2111] 21 21 23 27 22 29 23 22 24 22 ...
+##  $ Height                        : num [1:2111] 1.62 1.52 1.8 1.8 1.78 1.62 1.5 1.64 1.78 1.72 ...
+##  $ Weight                        : num [1:2111] 64 56 77 87 89.8 53 55 53 64 68 ...
+##  $ family_history_with_overweight: chr [1:2111] &quot;yes&quot; &quot;yes&quot; &quot;yes&quot; &quot;no&quot; ...
+##  $ FAVC                          : chr [1:2111] &quot;no&quot; &quot;no&quot; &quot;no&quot; &quot;no&quot; ...
+##  $ FCVC                          : num [1:2111] 2 3 2 3 2 2 3 2 3 2 ...
+##  $ NCP                           : num [1:2111] 3 3 3 3 1 3 3 3 3 3 ...
+##  $ CAEC                          : chr [1:2111] &quot;Sometimes&quot; &quot;Sometimes&quot; &quot;Sometimes&quot; &quot;Sometimes&quot; ...
+##  $ SMOKE                         : chr [1:2111] &quot;no&quot; &quot;yes&quot; &quot;no&quot; &quot;no&quot; ...
+##  $ CH2O                          : num [1:2111] 2 3 2 2 2 2 2 2 2 2 ...
+##  $ SCC                           : chr [1:2111] &quot;no&quot; &quot;yes&quot; &quot;no&quot; &quot;no&quot; ...
+##  $ FAF                           : num [1:2111] 0 3 2 2 0 0 1 3 1 1 ...
+##  $ TUE                           : num [1:2111] 1 0 1 0 0 0 0 0 1 1 ...
+##  $ CALC                          : chr [1:2111] &quot;no&quot; &quot;Sometimes&quot; &quot;Frequently&quot; &quot;Frequently&quot; ...
+##  $ MTRANS                        : chr [1:2111] &quot;Public_Transportation&quot; &quot;Public_Transportation&quot; &quot;Public_Transportation&quot; &quot;Walking&quot; ...
+##  $ NObeyesdad                    : chr [1:2111] &quot;Normal_Weight&quot; &quot;Normal_Weight&quot; &quot;Normal_Weight&quot; &quot;Overweight_Level_I&quot; ...
+##  - attr(*, &quot;spec&quot;)=
+##   .. cols(
+##   ..   Gender = col_character(),
+##   ..   Age = col_double(),
+##   ..   Height = col_double(),
+##   ..   Weight = col_double(),
+##   ..   family_history_with_overweight = col_character(),
+##   ..   FAVC = col_character(),
+##   ..   FCVC = col_double(),
+##   ..   NCP = col_double(),
+##   ..   CAEC = col_character(),
+##   ..   SMOKE = col_character(),
+##   ..   CH2O = col_double(),
+##   ..   SCC = col_character(),
+##   ..   FAF = col_double(),
+##   ..   TUE = col_double(),
+##   ..   CALC = col_character(),
+##   ..   MTRANS = col_character(),
+##   ..   NObeyesdad = col_character()
+##   .. )
+##  - attr(*, &quot;problems&quot;)=&lt;externalptr&gt;</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="análisis-univariado.html#cb15-1" tabindex="-1"></a><span class="co">#ver las primeras 5 filas del df  </span></span>
+<span id="cb15-2"><a href="análisis-univariado.html#cb15-2" tabindex="-1"></a><span class="fu">head</span>(datos, <span class="at">n=</span><span class="dv">5</span>) </span></code></pre></div>
+<pre><code>## # A tibble: 5 × 17
+##   Gender   Age Height Weight family_history_with_overw…¹ FAVC   FCVC   NCP CAEC 
+##   &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;                       &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;
+## 1 Female    21   1.62   64   yes                         no        2     3 Some…
+## 2 Female    21   1.52   56   yes                         no        3     3 Some…
+## 3 Male      23   1.8    77   yes                         no        2     3 Some…
+## 4 Male      27   1.8    87   no                          no        3     3 Some…
+## 5 Male      22   1.78   89.8 no                          no        2     1 Some…
+## # ℹ abbreviated name: ¹​family_history_with_overweight
+## # ℹ 8 more variables: SMOKE &lt;chr&gt;, CH2O &lt;dbl&gt;, SCC &lt;chr&gt;, FAF &lt;dbl&gt;, TUE &lt;dbl&gt;,
+## #   CALC &lt;chr&gt;, MTRANS &lt;chr&gt;, NObeyesdad &lt;chr&gt;</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="análisis-univariado.html#cb17-1" tabindex="-1"></a><span class="co">#analisis variable objetivo----</span></span>
+<span id="cb17-2"><a href="análisis-univariado.html#cb17-2" tabindex="-1"></a>datos <span class="sc">%&gt;%</span> </span>
+<span id="cb17-3"><a href="análisis-univariado.html#cb17-3" tabindex="-1"></a>  <span class="fu">count</span>(NObeyesdad) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-4"><a href="análisis-univariado.html#cb17-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Porcentaje =</span> (n<span class="sc">/</span><span class="fu">sum</span>(n))<span class="sc">*</span><span class="dv">100</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 7 × 3
+##   NObeyesdad              n Porcentaje
+##   &lt;chr&gt;               &lt;int&gt;      &lt;dbl&gt;
+## 1 Insufficient_Weight   272       12.9
+## 2 Normal_Weight         287       13.6
+## 3 Obesity_Type_I        351       16.6
+## 4 Obesity_Type_II       297       14.1
+## 5 Obesity_Type_III      324       15.3
+## 6 Overweight_Level_I    290       13.7
+## 7 Overweight_Level_II   290       13.7</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="análisis-univariado.html#cb19-1" tabindex="-1"></a><span class="co"># Crear tabla de frecuencias para la variable</span></span>
+<span id="cb19-2"><a href="análisis-univariado.html#cb19-2" tabindex="-1"></a>tabla_NObeyesdad <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
+<span id="cb19-3"><a href="análisis-univariado.html#cb19-3" tabindex="-1"></a>  <span class="fu">count</span>(NObeyesdad, <span class="at">name =</span> <span class="st">&quot;Tipo_de_obesidad&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb19-4"><a href="análisis-univariado.html#cb19-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Porcentaje =</span> <span class="fu">round</span>(Tipo_de_obesidad <span class="sc">/</span> <span class="fu">sum</span>(Tipo_de_obesidad) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>),</span>
+<span id="cb19-5"><a href="análisis-univariado.html#cb19-5" tabindex="-1"></a>         <span class="at">Etiqueta =</span> <span class="fu">paste0</span>(Tipo_de_obesidad, <span class="st">&quot; (&quot;</span>, Porcentaje, <span class="st">&quot;%)&quot;</span>))</span>
+<span id="cb19-6"><a href="análisis-univariado.html#cb19-6" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="análisis-univariado.html#cb19-7" tabindex="-1"></a><span class="co"># Gráfico</span></span>
+<span id="cb19-8"><a href="análisis-univariado.html#cb19-8" tabindex="-1"></a>tabla_NObeyesdad <span class="sc">%&gt;%</span> </span>
+<span id="cb19-9"><a href="análisis-univariado.html#cb19-9" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(NObeyesdad), <span class="at">y =</span> Tipo_de_obesidad)) <span class="sc">+</span></span>
+<span id="cb19-10"><a href="análisis-univariado.html#cb19-10" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">&quot;#008B8B&quot;</span>, <span class="at">width =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb19-11"><a href="análisis-univariado.html#cb19-11" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> Etiqueta), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb19-12"><a href="análisis-univariado.html#cb19-12" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="sc">~</span> <span class="st">&quot;Tipo de sobrepeso de los encuestados&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb19-13"><a href="análisis-univariado.html#cb19-13" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.15</span>))) <span class="sc">+</span></span>
+<span id="cb19-14"><a href="análisis-univariado.html#cb19-14" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Tipo de Sobrepeso&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Tipo de Sobrepeso (Porcentaje)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb19-15"><a href="análisis-univariado.html#cb19-15" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span></span>
+<span id="cb19-16"><a href="análisis-univariado.html#cb19-16" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb19-17"><a href="análisis-univariado.html#cb19-17" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb19-18"><a href="análisis-univariado.html#cb19-18" tabindex="-1"></a>    <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;gray80&quot;</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
+<span id="cb19-19"><a href="análisis-univariado.html#cb19-19" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
+<span id="cb19-20"><a href="análisis-univariado.html#cb19-20" tabindex="-1"></a>    <span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb19-21"><a href="análisis-univariado.html#cb19-21" tabindex="-1"></a>    <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>)  </span>
+<span id="cb19-22"><a href="análisis-univariado.html#cb19-22" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="análisis-univariado.html#cb20-1" tabindex="-1"></a><span class="co">#variables independientes numéricas----</span></span>
+<span id="cb20-2"><a href="análisis-univariado.html#cb20-2" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="análisis-univariado.html#cb20-3" tabindex="-1"></a>datos <span class="sc">%&gt;%</span> </span>
+<span id="cb20-4"><a href="análisis-univariado.html#cb20-4" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb20-5"><a href="análisis-univariado.html#cb20-5" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">length</span>(Age),</span>
+<span id="cb20-6"><a href="análisis-univariado.html#cb20-6" tabindex="-1"></a>    <span class="at">media =</span> <span class="fu">mean</span>(Age),</span>
+<span id="cb20-7"><a href="análisis-univariado.html#cb20-7" tabindex="-1"></a>    <span class="at">ds =</span> <span class="fu">sd</span>(Age),</span>
+<span id="cb20-8"><a href="análisis-univariado.html#cb20-8" tabindex="-1"></a>    <span class="at">mediana =</span> <span class="fu">median</span>(Age),</span>
+<span id="cb20-9"><a href="análisis-univariado.html#cb20-9" tabindex="-1"></a>    <span class="at">minimo =</span> <span class="fu">min</span>(Age),</span>
+<span id="cb20-10"><a href="análisis-univariado.html#cb20-10" tabindex="-1"></a>    <span class="at">maximo =</span> <span class="fu">max</span>(Age),</span>
+<span id="cb20-11"><a href="análisis-univariado.html#cb20-11" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(Age, <span class="fl">0.25</span>),</span>
+<span id="cb20-12"><a href="análisis-univariado.html#cb20-12" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(Age, <span class="fl">0.75</span>),</span>
+<span id="cb20-13"><a href="análisis-univariado.html#cb20-13" tabindex="-1"></a>    <span class="at">IQR =</span> <span class="fu">IQR</span>(Age)) <span class="sc">%&gt;%</span></span>
+<span id="cb20-14"><a href="análisis-univariado.html#cb20-14" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">variable =</span> <span class="st">&quot;Age&quot;</span>) <span class="ot">-&gt;</span> var_num_edad</span>
+<span id="cb20-15"><a href="análisis-univariado.html#cb20-15" tabindex="-1"></a></span>
+<span id="cb20-16"><a href="análisis-univariado.html#cb20-16" tabindex="-1"></a>datos <span class="sc">%&gt;%</span> </span>
+<span id="cb20-17"><a href="análisis-univariado.html#cb20-17" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb20-18"><a href="análisis-univariado.html#cb20-18" tabindex="-1"></a>   <span class="at">n =</span> <span class="fu">length</span>(Height),</span>
+<span id="cb20-19"><a href="análisis-univariado.html#cb20-19" tabindex="-1"></a>   <span class="at">media =</span> <span class="fu">mean</span>(Height),</span>
+<span id="cb20-20"><a href="análisis-univariado.html#cb20-20" tabindex="-1"></a>   <span class="at">ds =</span> <span class="fu">sd</span>(Height),</span>
+<span id="cb20-21"><a href="análisis-univariado.html#cb20-21" tabindex="-1"></a>   <span class="at">mediana =</span> <span class="fu">median</span>(Height),</span>
+<span id="cb20-22"><a href="análisis-univariado.html#cb20-22" tabindex="-1"></a>   <span class="at">minimo =</span> <span class="fu">min</span>(Height),</span>
+<span id="cb20-23"><a href="análisis-univariado.html#cb20-23" tabindex="-1"></a>   <span class="at">maximo =</span> <span class="fu">max</span>(Height),</span>
+<span id="cb20-24"><a href="análisis-univariado.html#cb20-24" tabindex="-1"></a>   <span class="at">Q1 =</span> <span class="fu">quantile</span>(Height, <span class="fl">0.25</span>),</span>
+<span id="cb20-25"><a href="análisis-univariado.html#cb20-25" tabindex="-1"></a>   <span class="at">Q3 =</span> <span class="fu">quantile</span>(Height, <span class="fl">0.75</span>),</span>
+<span id="cb20-26"><a href="análisis-univariado.html#cb20-26" tabindex="-1"></a>   <span class="at">IQR =</span> <span class="fu">IQR</span>(Height)) <span class="sc">%&gt;%</span></span>
+<span id="cb20-27"><a href="análisis-univariado.html#cb20-27" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">variable =</span> <span class="st">&quot;Height&quot;</span>) <span class="ot">-&gt;</span> var_num_est</span>
+<span id="cb20-28"><a href="análisis-univariado.html#cb20-28" tabindex="-1"></a></span>
+<span id="cb20-29"><a href="análisis-univariado.html#cb20-29" tabindex="-1"></a>datos <span class="sc">%&gt;%</span> </span>
+<span id="cb20-30"><a href="análisis-univariado.html#cb20-30" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb20-31"><a href="análisis-univariado.html#cb20-31" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">length</span>(Weight),</span>
+<span id="cb20-32"><a href="análisis-univariado.html#cb20-32" tabindex="-1"></a>    <span class="at">media =</span> <span class="fu">mean</span>(Weight),</span>
+<span id="cb20-33"><a href="análisis-univariado.html#cb20-33" tabindex="-1"></a>    <span class="at">ds =</span> <span class="fu">sd</span>(Weight),</span>
+<span id="cb20-34"><a href="análisis-univariado.html#cb20-34" tabindex="-1"></a>    <span class="at">mediana =</span> <span class="fu">median</span>(Weight),</span>
+<span id="cb20-35"><a href="análisis-univariado.html#cb20-35" tabindex="-1"></a>    <span class="at">minimo =</span> <span class="fu">min</span>(Weight),</span>
+<span id="cb20-36"><a href="análisis-univariado.html#cb20-36" tabindex="-1"></a>    <span class="at">maximo =</span> <span class="fu">max</span>(Weight),</span>
+<span id="cb20-37"><a href="análisis-univariado.html#cb20-37" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(Weight, <span class="fl">0.25</span>),</span>
+<span id="cb20-38"><a href="análisis-univariado.html#cb20-38" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(Weight, <span class="fl">0.75</span>),</span>
+<span id="cb20-39"><a href="análisis-univariado.html#cb20-39" tabindex="-1"></a>    <span class="at">IQR =</span> <span class="fu">IQR</span>(Weight)) <span class="sc">%&gt;%</span></span>
+<span id="cb20-40"><a href="análisis-univariado.html#cb20-40" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">variable =</span> <span class="st">&quot;Weight&quot;</span>) <span class="ot">-&gt;</span> var_num_peso</span>
+<span id="cb20-41"><a href="análisis-univariado.html#cb20-41" tabindex="-1"></a></span>
+<span id="cb20-42"><a href="análisis-univariado.html#cb20-42" tabindex="-1"></a>datos <span class="sc">%&gt;%</span> </span>
+<span id="cb20-43"><a href="análisis-univariado.html#cb20-43" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb20-44"><a href="análisis-univariado.html#cb20-44" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">length</span>(FCVC),</span>
+<span id="cb20-45"><a href="análisis-univariado.html#cb20-45" tabindex="-1"></a>    <span class="at">media =</span> <span class="fu">mean</span>(FCVC),</span>
+<span id="cb20-46"><a href="análisis-univariado.html#cb20-46" tabindex="-1"></a>    <span class="at">ds =</span> <span class="fu">sd</span>(FCVC),</span>
+<span id="cb20-47"><a href="análisis-univariado.html#cb20-47" tabindex="-1"></a>    <span class="at">mediana =</span> <span class="fu">median</span>(FCVC),</span>
+<span id="cb20-48"><a href="análisis-univariado.html#cb20-48" tabindex="-1"></a>    <span class="at">minimo =</span> <span class="fu">min</span>(FCVC),</span>
+<span id="cb20-49"><a href="análisis-univariado.html#cb20-49" tabindex="-1"></a>    <span class="at">maximo =</span> <span class="fu">max</span>(FCVC),</span>
+<span id="cb20-50"><a href="análisis-univariado.html#cb20-50" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(FCVC, <span class="fl">0.25</span>),</span>
+<span id="cb20-51"><a href="análisis-univariado.html#cb20-51" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(FCVC, <span class="fl">0.75</span>),</span>
+<span id="cb20-52"><a href="análisis-univariado.html#cb20-52" tabindex="-1"></a>    <span class="at">IQR =</span> <span class="fu">IQR</span>(FCVC)) <span class="sc">%&gt;%</span></span>
+<span id="cb20-53"><a href="análisis-univariado.html#cb20-53" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">variable =</span> <span class="st">&quot;FCVC&quot;</span>) <span class="ot">-&gt;</span> var_num_evm</span>
+<span id="cb20-54"><a href="análisis-univariado.html#cb20-54" tabindex="-1"></a></span>
+<span id="cb20-55"><a href="análisis-univariado.html#cb20-55" tabindex="-1"></a>datos <span class="sc">%&gt;%</span> </span>
+<span id="cb20-56"><a href="análisis-univariado.html#cb20-56" tabindex="-1"></a>  </span>
+<span id="cb20-57"><a href="análisis-univariado.html#cb20-57" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb20-58"><a href="análisis-univariado.html#cb20-58" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">length</span>(NCP),</span>
+<span id="cb20-59"><a href="análisis-univariado.html#cb20-59" tabindex="-1"></a>    <span class="at">media =</span> <span class="fu">mean</span>(NCP),</span>
+<span id="cb20-60"><a href="análisis-univariado.html#cb20-60" tabindex="-1"></a>    <span class="at">ds =</span> <span class="fu">sd</span>(NCP),</span>
+<span id="cb20-61"><a href="análisis-univariado.html#cb20-61" tabindex="-1"></a>    <span class="at">mediana =</span> <span class="fu">median</span>(NCP),</span>
+<span id="cb20-62"><a href="análisis-univariado.html#cb20-62" tabindex="-1"></a>    <span class="at">minimo =</span> <span class="fu">min</span>(NCP),</span>
+<span id="cb20-63"><a href="análisis-univariado.html#cb20-63" tabindex="-1"></a>    <span class="at">maximo =</span> <span class="fu">max</span>(NCP),</span>
+<span id="cb20-64"><a href="análisis-univariado.html#cb20-64" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(NCP, <span class="fl">0.25</span>),</span>
+<span id="cb20-65"><a href="análisis-univariado.html#cb20-65" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(NCP, <span class="fl">0.75</span>),</span>
+<span id="cb20-66"><a href="análisis-univariado.html#cb20-66" tabindex="-1"></a>    <span class="at">IQR =</span> <span class="fu">IQR</span>(NCP)) <span class="sc">%&gt;%</span></span>
+<span id="cb20-67"><a href="análisis-univariado.html#cb20-67" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">variable =</span> <span class="st">&quot;NCP&quot;</span>) <span class="ot">-&gt;</span> var_num_meal</span>
+<span id="cb20-68"><a href="análisis-univariado.html#cb20-68" tabindex="-1"></a></span>
+<span id="cb20-69"><a href="análisis-univariado.html#cb20-69" tabindex="-1"></a>datos <span class="sc">%&gt;%</span> </span>
+<span id="cb20-70"><a href="análisis-univariado.html#cb20-70" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb20-71"><a href="análisis-univariado.html#cb20-71" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">length</span>(CH2O),</span>
+<span id="cb20-72"><a href="análisis-univariado.html#cb20-72" tabindex="-1"></a>    <span class="at">media =</span> <span class="fu">mean</span>(CH2O),</span>
+<span id="cb20-73"><a href="análisis-univariado.html#cb20-73" tabindex="-1"></a>    <span class="at">ds =</span> <span class="fu">sd</span>(CH2O),</span>
+<span id="cb20-74"><a href="análisis-univariado.html#cb20-74" tabindex="-1"></a>    <span class="at">mediana =</span> <span class="fu">median</span>(CH2O),</span>
+<span id="cb20-75"><a href="análisis-univariado.html#cb20-75" tabindex="-1"></a>    <span class="at">minimo =</span> <span class="fu">min</span>(CH2O),</span>
+<span id="cb20-76"><a href="análisis-univariado.html#cb20-76" tabindex="-1"></a>    <span class="at">maximo =</span> <span class="fu">max</span>(CH2O),</span>
+<span id="cb20-77"><a href="análisis-univariado.html#cb20-77" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(CH2O, <span class="fl">0.25</span>),</span>
+<span id="cb20-78"><a href="análisis-univariado.html#cb20-78" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(CH2O, <span class="fl">0.75</span>),</span>
+<span id="cb20-79"><a href="análisis-univariado.html#cb20-79" tabindex="-1"></a>    <span class="at">IQR =</span> <span class="fu">IQR</span>(CH2O)) <span class="sc">%&gt;%</span></span>
+<span id="cb20-80"><a href="análisis-univariado.html#cb20-80" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">variable =</span> <span class="st">&quot;CH2O&quot;</span>) <span class="ot">-&gt;</span> var_num_agu</span>
+<span id="cb20-81"><a href="análisis-univariado.html#cb20-81" tabindex="-1"></a></span>
+<span id="cb20-82"><a href="análisis-univariado.html#cb20-82" tabindex="-1"></a>datos <span class="sc">%&gt;%</span> </span>
+<span id="cb20-83"><a href="análisis-univariado.html#cb20-83" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb20-84"><a href="análisis-univariado.html#cb20-84" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">length</span>(FAF),</span>
+<span id="cb20-85"><a href="análisis-univariado.html#cb20-85" tabindex="-1"></a>    <span class="at">media =</span> <span class="fu">mean</span>(FAF),</span>
+<span id="cb20-86"><a href="análisis-univariado.html#cb20-86" tabindex="-1"></a>    <span class="at">ds =</span> <span class="fu">sd</span>(FAF),</span>
+<span id="cb20-87"><a href="análisis-univariado.html#cb20-87" tabindex="-1"></a>    <span class="at">mediana =</span> <span class="fu">median</span>(FAF),</span>
+<span id="cb20-88"><a href="análisis-univariado.html#cb20-88" tabindex="-1"></a>    <span class="at">minimo =</span> <span class="fu">min</span>(FAF),</span>
+<span id="cb20-89"><a href="análisis-univariado.html#cb20-89" tabindex="-1"></a>    <span class="at">maximo =</span> <span class="fu">max</span>(FAF),</span>
+<span id="cb20-90"><a href="análisis-univariado.html#cb20-90" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(FAF, <span class="fl">0.25</span>),</span>
+<span id="cb20-91"><a href="análisis-univariado.html#cb20-91" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(FAF, <span class="fl">0.75</span>),</span>
+<span id="cb20-92"><a href="análisis-univariado.html#cb20-92" tabindex="-1"></a>    <span class="at">IQR =</span> <span class="fu">IQR</span>(FAF)) <span class="sc">%&gt;%</span></span>
+<span id="cb20-93"><a href="análisis-univariado.html#cb20-93" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">variable =</span> <span class="st">&quot;FAF&quot;</span>) <span class="ot">-&gt;</span> var_num_phy</span>
+<span id="cb20-94"><a href="análisis-univariado.html#cb20-94" tabindex="-1"></a></span>
+<span id="cb20-95"><a href="análisis-univariado.html#cb20-95" tabindex="-1"></a>datos <span class="sc">%&gt;%</span> </span>
+<span id="cb20-96"><a href="análisis-univariado.html#cb20-96" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb20-97"><a href="análisis-univariado.html#cb20-97" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">length</span>(TUE),</span>
+<span id="cb20-98"><a href="análisis-univariado.html#cb20-98" tabindex="-1"></a>    <span class="at">media =</span> <span class="fu">mean</span>(TUE),</span>
+<span id="cb20-99"><a href="análisis-univariado.html#cb20-99" tabindex="-1"></a>    <span class="at">ds =</span> <span class="fu">sd</span>(TUE),</span>
+<span id="cb20-100"><a href="análisis-univariado.html#cb20-100" tabindex="-1"></a>    <span class="at">mediana =</span> <span class="fu">median</span>(TUE),</span>
+<span id="cb20-101"><a href="análisis-univariado.html#cb20-101" tabindex="-1"></a>    <span class="at">minimo =</span> <span class="fu">min</span>(TUE),</span>
+<span id="cb20-102"><a href="análisis-univariado.html#cb20-102" tabindex="-1"></a>    <span class="at">maximo =</span> <span class="fu">max</span>(TUE),</span>
+<span id="cb20-103"><a href="análisis-univariado.html#cb20-103" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(TUE, <span class="fl">0.25</span>),</span>
+<span id="cb20-104"><a href="análisis-univariado.html#cb20-104" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(TUE, <span class="fl">0.75</span>),</span>
+<span id="cb20-105"><a href="análisis-univariado.html#cb20-105" tabindex="-1"></a>    <span class="at">IQR =</span> <span class="fu">IQR</span>(TUE)) <span class="sc">%&gt;%</span></span>
+<span id="cb20-106"><a href="análisis-univariado.html#cb20-106" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">variable =</span> <span class="st">&quot;TUE&quot;</span>) <span class="ot">-&gt;</span> var_num_tec</span>
+<span id="cb20-107"><a href="análisis-univariado.html#cb20-107" tabindex="-1"></a></span>
+<span id="cb20-108"><a href="análisis-univariado.html#cb20-108" tabindex="-1"></a><span class="fu">bind_rows</span>(var_num_edad, var_num_est, var_num_peso, var_num_evm, var_num_meal, var_num_agu, var_num_phy, var_num_tec) <span class="sc">%&gt;%</span></span>
+<span id="cb20-109"><a href="análisis-univariado.html#cb20-109" tabindex="-1"></a>  <span class="fu">select</span>(variable, <span class="fu">everything</span>())</span></code></pre></div>
+<pre><code>## # A tibble: 8 × 10
+##   variable     n  media      ds mediana minimo maximo     Q1     Q3    IQR
+##   &lt;chr&gt;    &lt;int&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+## 1 Age       2111 24.3    6.35    22.8    14     61    19.9    26     6.05 
+## 2 Height    2111  1.70   0.0933   1.70    1.45   1.98  1.63    1.77  0.138
+## 3 Weight    2111 86.6   26.2     83      39    173    65.5   107.   42.0  
+## 4 FCVC      2111  2.42   0.534    2.39    1      3     2       3     1    
+## 5 NCP       2111  2.69   0.778    3       1      4     2.66    3     0.341
+## 6 CH2O      2111  2.01   0.613    2       1      3     1.58    2.48  0.893
+## 7 FAF       2111  1.01   0.851    1       0      3     0.125   1.67  1.54 
+## 8 TUE       2111  0.658  0.609    0.625   0      2     0       1     1</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="análisis-univariado.html#cb22-1" tabindex="-1"></a><span class="co"># Boxplot de Age</span></span>
+<span id="cb22-2"><a href="análisis-univariado.html#cb22-2" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
+<span id="cb22-3"><a href="análisis-univariado.html#cb22-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="st">&quot;&quot;</span>, <span class="at">y =</span> Age)) <span class="sc">+</span></span>
+<span id="cb22-4"><a href="análisis-univariado.html#cb22-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;#2f77b9&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb22-5"><a href="análisis-univariado.html#cb22-5" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb22-6"><a href="análisis-univariado.html#cb22-6" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot; Edad de los encuestados&quot;</span>,</span>
+<span id="cb22-7"><a href="análisis-univariado.html#cb22-7" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Edad (años)&quot;</span>,</span>
+<span id="cb22-8"><a href="análisis-univariado.html#cb22-8" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb22-9"><a href="análisis-univariado.html#cb22-9" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb22-10"><a href="análisis-univariado.html#cb22-10" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb22-11"><a href="análisis-univariado.html#cb22-11" tabindex="-1"></a></span>
+<span id="cb22-12"><a href="análisis-univariado.html#cb22-12" tabindex="-1"></a><span class="co"># Boxplot de Height</span></span>
+<span id="cb22-13"><a href="análisis-univariado.html#cb22-13" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
+<span id="cb22-14"><a href="análisis-univariado.html#cb22-14" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="st">&quot;&quot;</span>, <span class="at">y =</span> Height)) <span class="sc">+</span></span>
+<span id="cb22-15"><a href="análisis-univariado.html#cb22-15" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;#2c99d1&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb22-16"><a href="análisis-univariado.html#cb22-16" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb22-17"><a href="análisis-univariado.html#cb22-17" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot; Estatura de los encuestados&quot;</span>,</span>
+<span id="cb22-18"><a href="análisis-univariado.html#cb22-18" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Altura (m)&quot;</span>,</span>
+<span id="cb22-19"><a href="análisis-univariado.html#cb22-19" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb22-20"><a href="análisis-univariado.html#cb22-20" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb22-21"><a href="análisis-univariado.html#cb22-21" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb22-22"><a href="análisis-univariado.html#cb22-22" tabindex="-1"></a></span>
+<span id="cb22-23"><a href="análisis-univariado.html#cb22-23" tabindex="-1"></a><span class="co"># Boxplot de Weight</span></span>
+<span id="cb22-24"><a href="análisis-univariado.html#cb22-24" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
+<span id="cb22-25"><a href="análisis-univariado.html#cb22-25" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="st">&quot;&quot;</span>, <span class="at">y =</span> Weight)) <span class="sc">+</span></span>
+<span id="cb22-26"><a href="análisis-univariado.html#cb22-26" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;red&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb22-27"><a href="análisis-univariado.html#cb22-27" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb22-28"><a href="análisis-univariado.html#cb22-28" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot; Peso de los encuestados&quot;</span>,</span>
+<span id="cb22-29"><a href="análisis-univariado.html#cb22-29" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Peso (kg)&quot;</span>,</span>
+<span id="cb22-30"><a href="análisis-univariado.html#cb22-30" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb22-31"><a href="análisis-univariado.html#cb22-31" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb22-32"><a href="análisis-univariado.html#cb22-32" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb22-33"><a href="análisis-univariado.html#cb22-33" tabindex="-1"></a></span>
+<span id="cb22-34"><a href="análisis-univariado.html#cb22-34" tabindex="-1"></a><span class="co"># Boxplot de FCVC</span></span>
+<span id="cb22-35"><a href="análisis-univariado.html#cb22-35" tabindex="-1"></a>p4 <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
+<span id="cb22-36"><a href="análisis-univariado.html#cb22-36" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="st">&quot;&quot;</span>, <span class="at">y =</span> FCVC)) <span class="sc">+</span></span>
+<span id="cb22-37"><a href="análisis-univariado.html#cb22-37" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;green&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb22-38"><a href="análisis-univariado.html#cb22-38" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb22-39"><a href="análisis-univariado.html#cb22-39" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot; Consumo de vegetales&quot;</span>,</span>
+<span id="cb22-40"><a href="análisis-univariado.html#cb22-40" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Cant. Vegetales&quot;</span>,</span>
+<span id="cb22-41"><a href="análisis-univariado.html#cb22-41" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb22-42"><a href="análisis-univariado.html#cb22-42" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb22-43"><a href="análisis-univariado.html#cb22-43" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb22-44"><a href="análisis-univariado.html#cb22-44" tabindex="-1"></a></span>
+<span id="cb22-45"><a href="análisis-univariado.html#cb22-45" tabindex="-1"></a><span class="co"># Boxplot de NCP</span></span>
+<span id="cb22-46"><a href="análisis-univariado.html#cb22-46" tabindex="-1"></a>p5 <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
+<span id="cb22-47"><a href="análisis-univariado.html#cb22-47" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="st">&quot;&quot;</span>, <span class="at">y =</span> NCP)) <span class="sc">+</span></span>
+<span id="cb22-48"><a href="análisis-univariado.html#cb22-48" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;yellow&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb22-49"><a href="análisis-univariado.html#cb22-49" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb22-50"><a href="análisis-univariado.html#cb22-50" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot; Cantidad de comidas al día&quot;</span>,</span>
+<span id="cb22-51"><a href="análisis-univariado.html#cb22-51" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Comidas diarias&quot;</span>,</span>
+<span id="cb22-52"><a href="análisis-univariado.html#cb22-52" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb22-53"><a href="análisis-univariado.html#cb22-53" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb22-54"><a href="análisis-univariado.html#cb22-54" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb22-55"><a href="análisis-univariado.html#cb22-55" tabindex="-1"></a></span>
+<span id="cb22-56"><a href="análisis-univariado.html#cb22-56" tabindex="-1"></a><span class="co"># Boxplot de CH2O</span></span>
+<span id="cb22-57"><a href="análisis-univariado.html#cb22-57" tabindex="-1"></a>p6 <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
+<span id="cb22-58"><a href="análisis-univariado.html#cb22-58" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="st">&quot;&quot;</span>, <span class="at">y =</span> CH2O)) <span class="sc">+</span></span>
+<span id="cb22-59"><a href="análisis-univariado.html#cb22-59" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;darkblue&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb22-60"><a href="análisis-univariado.html#cb22-60" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb22-61"><a href="análisis-univariado.html#cb22-61" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot; Consumo de agua&quot;</span>,</span>
+<span id="cb22-62"><a href="análisis-univariado.html#cb22-62" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Agua (l)&quot;</span>,</span>
+<span id="cb22-63"><a href="análisis-univariado.html#cb22-63" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb22-64"><a href="análisis-univariado.html#cb22-64" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb22-65"><a href="análisis-univariado.html#cb22-65" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb22-66"><a href="análisis-univariado.html#cb22-66" tabindex="-1"></a></span>
+<span id="cb22-67"><a href="análisis-univariado.html#cb22-67" tabindex="-1"></a><span class="co"># Boxplot de FAF</span></span>
+<span id="cb22-68"><a href="análisis-univariado.html#cb22-68" tabindex="-1"></a>p7 <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
+<span id="cb22-69"><a href="análisis-univariado.html#cb22-69" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="st">&quot;&quot;</span>, <span class="at">y =</span> FAF)) <span class="sc">+</span></span>
+<span id="cb22-70"><a href="análisis-univariado.html#cb22-70" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;#8d42b1&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb22-71"><a href="análisis-univariado.html#cb22-71" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb22-72"><a href="análisis-univariado.html#cb22-72" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot; Implementación de actividad fisica &quot;</span>,</span>
+<span id="cb22-73"><a href="análisis-univariado.html#cb22-73" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Cantidad de actividad fisica&quot;</span>,</span>
+<span id="cb22-74"><a href="análisis-univariado.html#cb22-74" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb22-75"><a href="análisis-univariado.html#cb22-75" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb22-76"><a href="análisis-univariado.html#cb22-76" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb22-77"><a href="análisis-univariado.html#cb22-77" tabindex="-1"></a></span>
+<span id="cb22-78"><a href="análisis-univariado.html#cb22-78" tabindex="-1"></a><span class="co"># Boxplot de TUE</span></span>
+<span id="cb22-79"><a href="análisis-univariado.html#cb22-79" tabindex="-1"></a>p8 <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
+<span id="cb22-80"><a href="análisis-univariado.html#cb22-80" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="st">&quot;&quot;</span>, <span class="at">y =</span> TUE)) <span class="sc">+</span></span>
+<span id="cb22-81"><a href="análisis-univariado.html#cb22-81" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;purple&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb22-82"><a href="análisis-univariado.html#cb22-82" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb22-83"><a href="análisis-univariado.html#cb22-83" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot; Utilizacion de aparatos electronicos &quot;</span>,</span>
+<span id="cb22-84"><a href="análisis-univariado.html#cb22-84" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Cantidad de dispositivos tecnologicos&quot;</span>,</span>
+<span id="cb22-85"><a href="análisis-univariado.html#cb22-85" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb22-86"><a href="análisis-univariado.html#cb22-86" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb22-87"><a href="análisis-univariado.html#cb22-87" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb22-88"><a href="análisis-univariado.html#cb22-88" tabindex="-1"></a></span>
+<span id="cb22-89"><a href="análisis-univariado.html#cb22-89" tabindex="-1"></a><span class="co">#unión de los gráficos</span></span>
+<span id="cb22-90"><a href="análisis-univariado.html#cb22-90" tabindex="-1"></a></span>
+<span id="cb22-91"><a href="análisis-univariado.html#cb22-91" tabindex="-1"></a><span class="fu">grid.arrange</span>(p1, p2, p3, p4, p5, p6, p7, p8, <span class="at">ncol =</span><span class="dv">3</span> ,<span class="at">newpage =</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-1-2.png" width="672" /></p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="análisis-univariado.html#cb23-1" tabindex="-1"></a><span class="co">#variables independientes categoricas----</span></span>
+<span id="cb23-2"><a href="análisis-univariado.html#cb23-2" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="análisis-univariado.html#cb23-3" tabindex="-1"></a><span class="co">#tabla de frecuencia para Gender</span></span>
+<span id="cb23-4"><a href="análisis-univariado.html#cb23-4" tabindex="-1"></a>tabla_Gender <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
+<span id="cb23-5"><a href="análisis-univariado.html#cb23-5" tabindex="-1"></a>  <span class="fu">count</span>(Gender, <span class="at">name =</span> <span class="st">&quot;Frecuencia&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb23-6"><a href="análisis-univariado.html#cb23-6" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb23-7"><a href="análisis-univariado.html#cb23-7" tabindex="-1"></a>    <span class="at">Porcentaje =</span> <span class="fu">round</span>(Frecuencia <span class="sc">/</span> <span class="fu">sum</span>(Frecuencia) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>),</span>
+<span id="cb23-8"><a href="análisis-univariado.html#cb23-8" tabindex="-1"></a>    <span class="at">Variable =</span> <span class="st">&quot;Gender&quot;</span>,</span>
+<span id="cb23-9"><a href="análisis-univariado.html#cb23-9" tabindex="-1"></a>    <span class="at">Categoria =</span> Gender) <span class="sc">%&gt;%</span></span>
+<span id="cb23-10"><a href="análisis-univariado.html#cb23-10" tabindex="-1"></a>  <span class="fu">select</span>(Variable, Categoria, Frecuencia, Porcentaje)</span>
+<span id="cb23-11"><a href="análisis-univariado.html#cb23-11" tabindex="-1"></a></span>
+<span id="cb23-12"><a href="análisis-univariado.html#cb23-12" tabindex="-1"></a><span class="co">#tabla de frecuencia para family_history_with_overweight</span></span>
+<span id="cb23-13"><a href="análisis-univariado.html#cb23-13" tabindex="-1"></a>tabla_family_history_with_overweight <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
+<span id="cb23-14"><a href="análisis-univariado.html#cb23-14" tabindex="-1"></a>  <span class="fu">count</span>(family_history_with_overweight, <span class="at">name =</span> <span class="st">&quot;Frecuencia&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb23-15"><a href="análisis-univariado.html#cb23-15" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb23-16"><a href="análisis-univariado.html#cb23-16" tabindex="-1"></a>    <span class="at">Porcentaje =</span> <span class="fu">round</span>(Frecuencia <span class="sc">/</span> <span class="fu">sum</span>(Frecuencia) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>),</span>
+<span id="cb23-17"><a href="análisis-univariado.html#cb23-17" tabindex="-1"></a>    <span class="at">Variable =</span> <span class="st">&quot;family_history_with_overweight&quot;</span>,</span>
+<span id="cb23-18"><a href="análisis-univariado.html#cb23-18" tabindex="-1"></a>    <span class="at">Categoria =</span> family_history_with_overweight) <span class="sc">%&gt;%</span></span>
+<span id="cb23-19"><a href="análisis-univariado.html#cb23-19" tabindex="-1"></a>  <span class="fu">select</span>(Variable, Categoria, Frecuencia, Porcentaje)</span>
+<span id="cb23-20"><a href="análisis-univariado.html#cb23-20" tabindex="-1"></a></span>
+<span id="cb23-21"><a href="análisis-univariado.html#cb23-21" tabindex="-1"></a><span class="co">#tabla de frecuencia para FAVC</span></span>
+<span id="cb23-22"><a href="análisis-univariado.html#cb23-22" tabindex="-1"></a>tabla_FAVC <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
+<span id="cb23-23"><a href="análisis-univariado.html#cb23-23" tabindex="-1"></a>  <span class="fu">count</span>(FAVC, <span class="at">name =</span> <span class="st">&quot;Frecuencia&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb23-24"><a href="análisis-univariado.html#cb23-24" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb23-25"><a href="análisis-univariado.html#cb23-25" tabindex="-1"></a>    <span class="at">Porcentaje =</span> <span class="fu">round</span>(Frecuencia <span class="sc">/</span> <span class="fu">sum</span>(Frecuencia) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>),</span>
+<span id="cb23-26"><a href="análisis-univariado.html#cb23-26" tabindex="-1"></a>    <span class="at">Variable =</span> <span class="st">&quot;FAVC&quot;</span>,</span>
+<span id="cb23-27"><a href="análisis-univariado.html#cb23-27" tabindex="-1"></a>    <span class="at">Categoria =</span> FAVC ) <span class="sc">%&gt;%</span></span>
+<span id="cb23-28"><a href="análisis-univariado.html#cb23-28" tabindex="-1"></a>  <span class="fu">select</span>(Variable, Categoria, Frecuencia, Porcentaje)</span>
+<span id="cb23-29"><a href="análisis-univariado.html#cb23-29" tabindex="-1"></a></span>
+<span id="cb23-30"><a href="análisis-univariado.html#cb23-30" tabindex="-1"></a><span class="co">#tabla de frecuencia para CAEC</span></span>
+<span id="cb23-31"><a href="análisis-univariado.html#cb23-31" tabindex="-1"></a>tabla_CAEC <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
+<span id="cb23-32"><a href="análisis-univariado.html#cb23-32" tabindex="-1"></a>  <span class="fu">count</span>(CAEC, <span class="at">name =</span> <span class="st">&quot;Frecuencia&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb23-33"><a href="análisis-univariado.html#cb23-33" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb23-34"><a href="análisis-univariado.html#cb23-34" tabindex="-1"></a>    <span class="at">Porcentaje =</span> <span class="fu">round</span>(Frecuencia <span class="sc">/</span> <span class="fu">sum</span>(Frecuencia) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>),</span>
+<span id="cb23-35"><a href="análisis-univariado.html#cb23-35" tabindex="-1"></a>    <span class="at">Variable =</span> <span class="st">&quot;CAEC&quot;</span>,</span>
+<span id="cb23-36"><a href="análisis-univariado.html#cb23-36" tabindex="-1"></a>    <span class="at">Categoria =</span> CAEC ) <span class="sc">%&gt;%</span></span>
+<span id="cb23-37"><a href="análisis-univariado.html#cb23-37" tabindex="-1"></a>  <span class="fu">select</span>(Variable, Categoria, Frecuencia, Porcentaje)</span>
+<span id="cb23-38"><a href="análisis-univariado.html#cb23-38" tabindex="-1"></a></span>
+<span id="cb23-39"><a href="análisis-univariado.html#cb23-39" tabindex="-1"></a><span class="co">#tabla de frecuencia para SMOKE</span></span>
+<span id="cb23-40"><a href="análisis-univariado.html#cb23-40" tabindex="-1"></a>tabla_SMOKE <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
+<span id="cb23-41"><a href="análisis-univariado.html#cb23-41" tabindex="-1"></a>  <span class="fu">count</span>(SMOKE, <span class="at">name =</span> <span class="st">&quot;Frecuencia&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb23-42"><a href="análisis-univariado.html#cb23-42" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb23-43"><a href="análisis-univariado.html#cb23-43" tabindex="-1"></a>    <span class="at">Porcentaje =</span> <span class="fu">round</span>(Frecuencia <span class="sc">/</span> <span class="fu">sum</span>(Frecuencia) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>),</span>
+<span id="cb23-44"><a href="análisis-univariado.html#cb23-44" tabindex="-1"></a>    <span class="at">Variable =</span> <span class="st">&quot;SMOKE&quot;</span>,</span>
+<span id="cb23-45"><a href="análisis-univariado.html#cb23-45" tabindex="-1"></a>    <span class="at">Categoria =</span> SMOKE ) <span class="sc">%&gt;%</span></span>
+<span id="cb23-46"><a href="análisis-univariado.html#cb23-46" tabindex="-1"></a>  <span class="fu">select</span>(Variable, Categoria, Frecuencia, Porcentaje)</span>
+<span id="cb23-47"><a href="análisis-univariado.html#cb23-47" tabindex="-1"></a></span>
+<span id="cb23-48"><a href="análisis-univariado.html#cb23-48" tabindex="-1"></a><span class="co">#tabla de frecuencia para SCC</span></span>
+<span id="cb23-49"><a href="análisis-univariado.html#cb23-49" tabindex="-1"></a>tabla_SCC <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
+<span id="cb23-50"><a href="análisis-univariado.html#cb23-50" tabindex="-1"></a>  <span class="fu">count</span>(SCC, <span class="at">name =</span> <span class="st">&quot;Frecuencia&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb23-51"><a href="análisis-univariado.html#cb23-51" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb23-52"><a href="análisis-univariado.html#cb23-52" tabindex="-1"></a>    <span class="at">Porcentaje =</span> <span class="fu">round</span>(Frecuencia <span class="sc">/</span> <span class="fu">sum</span>(Frecuencia) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>),</span>
+<span id="cb23-53"><a href="análisis-univariado.html#cb23-53" tabindex="-1"></a>    <span class="at">Variable =</span> <span class="st">&quot;SCC&quot;</span>,</span>
+<span id="cb23-54"><a href="análisis-univariado.html#cb23-54" tabindex="-1"></a>    <span class="at">Categoria =</span> SCC ) <span class="sc">%&gt;%</span></span>
+<span id="cb23-55"><a href="análisis-univariado.html#cb23-55" tabindex="-1"></a>  <span class="fu">select</span>(Variable, Categoria, Frecuencia, Porcentaje)</span>
+<span id="cb23-56"><a href="análisis-univariado.html#cb23-56" tabindex="-1"></a></span>
+<span id="cb23-57"><a href="análisis-univariado.html#cb23-57" tabindex="-1"></a><span class="co">#tabla de frecuencia para CALC</span></span>
+<span id="cb23-58"><a href="análisis-univariado.html#cb23-58" tabindex="-1"></a>tabla_CALC <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
+<span id="cb23-59"><a href="análisis-univariado.html#cb23-59" tabindex="-1"></a>  <span class="fu">count</span>(CALC, <span class="at">name =</span> <span class="st">&quot;Frecuencia&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb23-60"><a href="análisis-univariado.html#cb23-60" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb23-61"><a href="análisis-univariado.html#cb23-61" tabindex="-1"></a>    <span class="at">Porcentaje =</span> <span class="fu">round</span>(Frecuencia <span class="sc">/</span> <span class="fu">sum</span>(Frecuencia) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>),</span>
+<span id="cb23-62"><a href="análisis-univariado.html#cb23-62" tabindex="-1"></a>    <span class="at">Variable =</span> <span class="st">&quot;CALC&quot;</span>,</span>
+<span id="cb23-63"><a href="análisis-univariado.html#cb23-63" tabindex="-1"></a>    <span class="at">Categoria =</span> CALC ) <span class="sc">%&gt;%</span></span>
+<span id="cb23-64"><a href="análisis-univariado.html#cb23-64" tabindex="-1"></a>  <span class="fu">select</span>(Variable, Categoria, Frecuencia, Porcentaje)</span>
+<span id="cb23-65"><a href="análisis-univariado.html#cb23-65" tabindex="-1"></a></span>
+<span id="cb23-66"><a href="análisis-univariado.html#cb23-66" tabindex="-1"></a><span class="co">#tabla de frecuencia para MTRANS</span></span>
+<span id="cb23-67"><a href="análisis-univariado.html#cb23-67" tabindex="-1"></a>tabla_MTRANS <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
+<span id="cb23-68"><a href="análisis-univariado.html#cb23-68" tabindex="-1"></a>  <span class="fu">count</span>(MTRANS, <span class="at">name =</span> <span class="st">&quot;Frecuencia&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb23-69"><a href="análisis-univariado.html#cb23-69" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb23-70"><a href="análisis-univariado.html#cb23-70" tabindex="-1"></a>    <span class="at">Porcentaje =</span> <span class="fu">round</span>(Frecuencia <span class="sc">/</span> <span class="fu">sum</span>(Frecuencia) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>),</span>
+<span id="cb23-71"><a href="análisis-univariado.html#cb23-71" tabindex="-1"></a>    <span class="at">Variable =</span> <span class="st">&quot;MTRANS&quot;</span>,</span>
+<span id="cb23-72"><a href="análisis-univariado.html#cb23-72" tabindex="-1"></a>    <span class="at">Categoria =</span> MTRANS ) <span class="sc">%&gt;%</span></span>
+<span id="cb23-73"><a href="análisis-univariado.html#cb23-73" tabindex="-1"></a>  <span class="fu">select</span>(Variable, Categoria, Frecuencia, Porcentaje)</span>
+<span id="cb23-74"><a href="análisis-univariado.html#cb23-74" tabindex="-1"></a></span>
+<span id="cb23-75"><a href="análisis-univariado.html#cb23-75" tabindex="-1"></a><span class="co"># Unir todas las tablas</span></span>
+<span id="cb23-76"><a href="análisis-univariado.html#cb23-76" tabindex="-1"></a><span class="fu">bind_rows</span>(tabla_Gender, tabla_family_history_with_overweight, tabla_FAVC,tabla_CAEC,</span>
+<span id="cb23-77"><a href="análisis-univariado.html#cb23-77" tabindex="-1"></a>          tabla_SMOKE, tabla_SCC,tabla_CALC, tabla_MTRANS)</span></code></pre></div>
+<pre><code>## # A tibble: 23 × 4
+##    Variable                       Categoria  Frecuencia Porcentaje
+##    &lt;chr&gt;                          &lt;chr&gt;           &lt;int&gt;      &lt;dbl&gt;
+##  1 Gender                         Female           1043      49.4 
+##  2 Gender                         Male             1068      50.6 
+##  3 family_history_with_overweight no                385      18.2 
+##  4 family_history_with_overweight yes              1726      81.8 
+##  5 FAVC                           no                245      11.6 
+##  6 FAVC                           yes              1866      88.4 
+##  7 CAEC                           Always             53       2.51
+##  8 CAEC                           Frequently        242      11.5 
+##  9 CAEC                           Sometimes        1765      83.6 
+## 10 CAEC                           no                 51       2.42
+## # ℹ 13 more rows</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="análisis-univariado.html#cb25-1" tabindex="-1"></a><span class="co">#análisis bivariado</span></span>
+<span id="cb25-2"><a href="análisis-univariado.html#cb25-2" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="análisis-univariado.html#cb25-3" tabindex="-1"></a><span class="co"># Diagrama boxplot: NObeyesdad vs Age</span></span>
+<span id="cb25-4"><a href="análisis-univariado.html#cb25-4" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
+<span id="cb25-5"><a href="análisis-univariado.html#cb25-5" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(NObeyesdad), <span class="at">y =</span> Age)) <span class="sc">+</span></span>
+<span id="cb25-6"><a href="análisis-univariado.html#cb25-6" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;#1E90FF&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb25-7"><a href="análisis-univariado.html#cb25-7" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="at">shape =</span> <span class="dv">20</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb25-8"><a href="análisis-univariado.html#cb25-8" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb25-9"><a href="análisis-univariado.html#cb25-9" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribución de la edad según el tipo de obesidad&quot;</span>,</span>
+<span id="cb25-10"><a href="análisis-univariado.html#cb25-10" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;¿Qué tipo de obesidad presenta? (NObeyesdad)&quot;</span>,</span>
+<span id="cb25-11"><a href="análisis-univariado.html#cb25-11" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Edad del encuestado&quot;</span></span>
+<span id="cb25-12"><a href="análisis-univariado.html#cb25-12" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb25-13"><a href="análisis-univariado.html#cb25-13" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb25-14"><a href="análisis-univariado.html#cb25-14" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb25-15"><a href="análisis-univariado.html#cb25-15" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb25-16"><a href="análisis-univariado.html#cb25-16" tabindex="-1"></a>    <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;gray90&quot;</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
+<span id="cb25-17"><a href="análisis-univariado.html#cb25-17" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
+<span id="cb25-18"><a href="análisis-univariado.html#cb25-18" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-1-3.png" width="672" /></p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="análisis-univariado.html#cb26-1" tabindex="-1"></a><span class="co"># Diagrama boxplot: NObeyesdad vs Height</span></span>
+<span id="cb26-2"><a href="análisis-univariado.html#cb26-2" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
+<span id="cb26-3"><a href="análisis-univariado.html#cb26-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(NObeyesdad), <span class="at">y =</span> Height)) <span class="sc">+</span></span>
+<span id="cb26-4"><a href="análisis-univariado.html#cb26-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;#1E90FF&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb26-5"><a href="análisis-univariado.html#cb26-5" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="at">shape =</span> <span class="dv">20</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb26-6"><a href="análisis-univariado.html#cb26-6" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb26-7"><a href="análisis-univariado.html#cb26-7" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribución de la altura según la respuesta del encuestado&quot;</span>,</span>
+<span id="cb26-8"><a href="análisis-univariado.html#cb26-8" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;¿Qué tipo de obesidad presenta? (NObeyesdad)&quot;</span>,</span>
+<span id="cb26-9"><a href="análisis-univariado.html#cb26-9" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Estatura del encuestado&quot;</span></span>
+<span id="cb26-10"><a href="análisis-univariado.html#cb26-10" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb26-11"><a href="análisis-univariado.html#cb26-11" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb26-12"><a href="análisis-univariado.html#cb26-12" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb26-13"><a href="análisis-univariado.html#cb26-13" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb26-14"><a href="análisis-univariado.html#cb26-14" tabindex="-1"></a>    <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;gray90&quot;</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
+<span id="cb26-15"><a href="análisis-univariado.html#cb26-15" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
+<span id="cb26-16"><a href="análisis-univariado.html#cb26-16" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-1-4.png" width="672" /></p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="análisis-univariado.html#cb27-1" tabindex="-1"></a><span class="co"># Diagrama boxplot: NObeyesdad vs Weight</span></span>
+<span id="cb27-2"><a href="análisis-univariado.html#cb27-2" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
+<span id="cb27-3"><a href="análisis-univariado.html#cb27-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(NObeyesdad), <span class="at">y =</span> Weight)) <span class="sc">+</span></span>
+<span id="cb27-4"><a href="análisis-univariado.html#cb27-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;#1E90FF&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb27-5"><a href="análisis-univariado.html#cb27-5" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="at">shape =</span> <span class="dv">20</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb27-6"><a href="análisis-univariado.html#cb27-6" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb27-7"><a href="análisis-univariado.html#cb27-7" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribución de la altura según la respuesta del encuestado&quot;</span>,</span>
+<span id="cb27-8"><a href="análisis-univariado.html#cb27-8" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;¿Qué tipo de obesidad presenta? (NObeyesdad)&quot;</span>,</span>
+<span id="cb27-9"><a href="análisis-univariado.html#cb27-9" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Peso del encuestado&quot;</span></span>
+<span id="cb27-10"><a href="análisis-univariado.html#cb27-10" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb27-11"><a href="análisis-univariado.html#cb27-11" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb27-12"><a href="análisis-univariado.html#cb27-12" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb27-13"><a href="análisis-univariado.html#cb27-13" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb27-14"><a href="análisis-univariado.html#cb27-14" tabindex="-1"></a>    <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;gray90&quot;</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
+<span id="cb27-15"><a href="análisis-univariado.html#cb27-15" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
+<span id="cb27-16"><a href="análisis-univariado.html#cb27-16" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-1-5.png" width="672" /></p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="análisis-univariado.html#cb28-1" tabindex="-1"></a><span class="co"># Diagrama boxplot: NObeyesdad vs FCVC</span></span>
+<span id="cb28-2"><a href="análisis-univariado.html#cb28-2" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
+<span id="cb28-3"><a href="análisis-univariado.html#cb28-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(NObeyesdad), <span class="at">y =</span> FCVC)) <span class="sc">+</span></span>
+<span id="cb28-4"><a href="análisis-univariado.html#cb28-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;#1E90FF&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb28-5"><a href="análisis-univariado.html#cb28-5" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="at">shape =</span> <span class="dv">20</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb28-6"><a href="análisis-univariado.html#cb28-6" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb28-7"><a href="análisis-univariado.html#cb28-7" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribución del consumo de vegetales según la respuesta del encuestado&quot;</span>,</span>
+<span id="cb28-8"><a href="análisis-univariado.html#cb28-8" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;¿Qué tipo de obesidad presenta? (NObeyesdad)&quot;</span>,</span>
+<span id="cb28-9"><a href="análisis-univariado.html#cb28-9" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Consumo de vegetales del encuestado&quot;</span></span>
+<span id="cb28-10"><a href="análisis-univariado.html#cb28-10" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb28-11"><a href="análisis-univariado.html#cb28-11" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb28-12"><a href="análisis-univariado.html#cb28-12" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb28-13"><a href="análisis-univariado.html#cb28-13" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb28-14"><a href="análisis-univariado.html#cb28-14" tabindex="-1"></a>    <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;gray90&quot;</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
+<span id="cb28-15"><a href="análisis-univariado.html#cb28-15" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
+<span id="cb28-16"><a href="análisis-univariado.html#cb28-16" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-1-6.png" width="672" /></p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="análisis-univariado.html#cb29-1" tabindex="-1"></a><span class="co"># Diagrama boxplot: NObeyesdad vs NCP</span></span>
+<span id="cb29-2"><a href="análisis-univariado.html#cb29-2" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
+<span id="cb29-3"><a href="análisis-univariado.html#cb29-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(NObeyesdad), <span class="at">y =</span> NCP)) <span class="sc">+</span></span>
+<span id="cb29-4"><a href="análisis-univariado.html#cb29-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;#1E90FF&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb29-5"><a href="análisis-univariado.html#cb29-5" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="at">shape =</span> <span class="dv">20</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb29-6"><a href="análisis-univariado.html#cb29-6" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb29-7"><a href="análisis-univariado.html#cb29-7" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribución de laS Comidas consumidas según la respuesta del encuestado&quot;</span>,</span>
+<span id="cb29-8"><a href="análisis-univariado.html#cb29-8" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;¿Qué tipo de obesidad presenta? (NObeyesdad)&quot;</span>,</span>
+<span id="cb29-9"><a href="análisis-univariado.html#cb29-9" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Número de comidas que consume el encuestado&quot;</span></span>
+<span id="cb29-10"><a href="análisis-univariado.html#cb29-10" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb29-11"><a href="análisis-univariado.html#cb29-11" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb29-12"><a href="análisis-univariado.html#cb29-12" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb29-13"><a href="análisis-univariado.html#cb29-13" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb29-14"><a href="análisis-univariado.html#cb29-14" tabindex="-1"></a>    <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;gray90&quot;</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
+<span id="cb29-15"><a href="análisis-univariado.html#cb29-15" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
+<span id="cb29-16"><a href="análisis-univariado.html#cb29-16" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-1-7.png" width="672" /></p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="análisis-univariado.html#cb30-1" tabindex="-1"></a><span class="co"># Diagrama boxplot: NObeyesdad vs CH2O</span></span>
+<span id="cb30-2"><a href="análisis-univariado.html#cb30-2" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
+<span id="cb30-3"><a href="análisis-univariado.html#cb30-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(NObeyesdad), <span class="at">y =</span> CH2O)) <span class="sc">+</span></span>
+<span id="cb30-4"><a href="análisis-univariado.html#cb30-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;#1E90FF&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb30-5"><a href="análisis-univariado.html#cb30-5" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="at">shape =</span> <span class="dv">20</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb30-6"><a href="análisis-univariado.html#cb30-6" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb30-7"><a href="análisis-univariado.html#cb30-7" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribución del consumo de agua según la respuesta del encuestado&quot;</span>,</span>
+<span id="cb30-8"><a href="análisis-univariado.html#cb30-8" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;¿Qué tipo de obesidad presenta? (NObeyesdad)&quot;</span>,</span>
+<span id="cb30-9"><a href="análisis-univariado.html#cb30-9" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Litros de agua que consume el encuestado&quot;</span></span>
+<span id="cb30-10"><a href="análisis-univariado.html#cb30-10" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb30-11"><a href="análisis-univariado.html#cb30-11" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb30-12"><a href="análisis-univariado.html#cb30-12" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb30-13"><a href="análisis-univariado.html#cb30-13" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb30-14"><a href="análisis-univariado.html#cb30-14" tabindex="-1"></a>    <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;gray90&quot;</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
+<span id="cb30-15"><a href="análisis-univariado.html#cb30-15" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
+<span id="cb30-16"><a href="análisis-univariado.html#cb30-16" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-1-8.png" width="672" /></p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="análisis-univariado.html#cb31-1" tabindex="-1"></a><span class="co"># Diagrama boxplot: NObeyesdad vs FAF</span></span>
+<span id="cb31-2"><a href="análisis-univariado.html#cb31-2" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
+<span id="cb31-3"><a href="análisis-univariado.html#cb31-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(NObeyesdad), <span class="at">y =</span> FAF)) <span class="sc">+</span></span>
+<span id="cb31-4"><a href="análisis-univariado.html#cb31-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;#1E90FF&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb31-5"><a href="análisis-univariado.html#cb31-5" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="at">shape =</span> <span class="dv">20</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb31-6"><a href="análisis-univariado.html#cb31-6" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb31-7"><a href="análisis-univariado.html#cb31-7" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribución de la actividad física según la respuesta del encuestado&quot;</span>,</span>
+<span id="cb31-8"><a href="análisis-univariado.html#cb31-8" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;¿Qué tipo de obesidad presenta? (NObeyesdad)&quot;</span>,</span>
+<span id="cb31-9"><a href="análisis-univariado.html#cb31-9" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Cuantas veces hace actividad física el encuestado&quot;</span></span>
+<span id="cb31-10"><a href="análisis-univariado.html#cb31-10" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb31-11"><a href="análisis-univariado.html#cb31-11" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb31-12"><a href="análisis-univariado.html#cb31-12" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb31-13"><a href="análisis-univariado.html#cb31-13" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb31-14"><a href="análisis-univariado.html#cb31-14" tabindex="-1"></a>    <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;gray90&quot;</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
+<span id="cb31-15"><a href="análisis-univariado.html#cb31-15" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
+<span id="cb31-16"><a href="análisis-univariado.html#cb31-16" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-1-9.png" width="672" /></p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="análisis-univariado.html#cb32-1" tabindex="-1"></a><span class="co"># Diagrama boxplot: NObeyesdad vs TUE</span></span>
+<span id="cb32-2"><a href="análisis-univariado.html#cb32-2" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
+<span id="cb32-3"><a href="análisis-univariado.html#cb32-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(NObeyesdad), <span class="at">y =</span> TUE)) <span class="sc">+</span></span>
+<span id="cb32-4"><a href="análisis-univariado.html#cb32-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;#1E90FF&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb32-5"><a href="análisis-univariado.html#cb32-5" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="at">shape =</span> <span class="dv">20</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb32-6"><a href="análisis-univariado.html#cb32-6" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb32-7"><a href="análisis-univariado.html#cb32-7" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribución del uso de aparatos electrónicos según la respuesta del encuestado&quot;</span>,</span>
+<span id="cb32-8"><a href="análisis-univariado.html#cb32-8" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;¿Qué tipo de obesidad presenta? (NObeyesdad)&quot;</span>,</span>
+<span id="cb32-9"><a href="análisis-univariado.html#cb32-9" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Tiempo de utilización de dispositivos tecnológicos&quot;</span></span>
+<span id="cb32-10"><a href="análisis-univariado.html#cb32-10" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb32-11"><a href="análisis-univariado.html#cb32-11" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb32-12"><a href="análisis-univariado.html#cb32-12" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb32-13"><a href="análisis-univariado.html#cb32-13" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb32-14"><a href="análisis-univariado.html#cb32-14" tabindex="-1"></a>    <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;gray90&quot;</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
+<span id="cb32-15"><a href="análisis-univariado.html#cb32-15" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>))</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-1-10.png" width="672" /></p>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="method.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="final-words.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/rstudio/bookdown-demo/edit/master/04-application.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+</body>
+
+</html>
