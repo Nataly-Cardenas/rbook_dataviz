@@ -198,9 +198,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="EDA.html#cb2-1" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;C:/Users/natal/Downloads/estimation+of+obesity+levels+based+on+eating+habits+and+physical+condition/ObesityDataSet_raw_and_data_sinthetic.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## Rows: 2111 Columns: 17
-## ── Column specification ────────────────────────────────────────
+## ── Column specification ─────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
-## chr (9): Gender, family_history_with_overweight, FAVC, CAEC,...
+## chr (9): Gender, family_history_with_overweight, FAVC, CAEC, SMOKE, SCC, ...
 ## dbl (8): Age, Height, Weight, FCVC, NCP, CH2O, FAF, TUE
 ## 
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
@@ -211,22 +211,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="EDA.html#cb4-1" tabindex="-1"></a><span class="fu">dim</span>(datos) <span class="co"># Dimensiones del dataset</span></span></code></pre></div>
 <pre><code>## [1] 2111   17</code></pre>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="EDA.html#cb6-1" tabindex="-1"></a><span class="fu">colnames</span>(datos) <span class="co"># Nombres de las columnas</span></span></code></pre></div>
-<pre><code>##  [1] &quot;Gender&quot;                        
-##  [2] &quot;Age&quot;                           
-##  [3] &quot;Height&quot;                        
-##  [4] &quot;Weight&quot;                        
-##  [5] &quot;family_history_with_overweight&quot;
-##  [6] &quot;FAVC&quot;                          
-##  [7] &quot;FCVC&quot;                          
-##  [8] &quot;NCP&quot;                           
-##  [9] &quot;CAEC&quot;                          
-## [10] &quot;SMOKE&quot;                         
-## [11] &quot;CH2O&quot;                          
-## [12] &quot;SCC&quot;                           
-## [13] &quot;FAF&quot;                           
-## [14] &quot;TUE&quot;                           
-## [15] &quot;CALC&quot;                          
-## [16] &quot;MTRANS&quot;                        
+<pre><code>##  [1] &quot;Gender&quot;                         &quot;Age&quot;                           
+##  [3] &quot;Height&quot;                         &quot;Weight&quot;                        
+##  [5] &quot;family_history_with_overweight&quot; &quot;FAVC&quot;                          
+##  [7] &quot;FCVC&quot;                           &quot;NCP&quot;                           
+##  [9] &quot;CAEC&quot;                           &quot;SMOKE&quot;                         
+## [11] &quot;CH2O&quot;                           &quot;SCC&quot;                           
+## [13] &quot;FAF&quot;                            &quot;TUE&quot;                           
+## [15] &quot;CALC&quot;                           &quot;MTRANS&quot;                        
 ## [17] &quot;NObeyesdad&quot;</code></pre>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="EDA.html#cb8-1" tabindex="-1"></a><span class="fu">str</span>(datos) <span class="co"># Estructura del dataset</span></span></code></pre></div>
 <pre><code>## spc_tbl_ [2,111 × 17] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
@@ -270,17 +262,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  - attr(*, &quot;problems&quot;)=&lt;externalptr&gt;</code></pre>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="EDA.html#cb10-1" tabindex="-1"></a><span class="fu">head</span>(datos,<span class="at">n=</span><span class="dv">5</span>) <span class="co"># Verificamos que se leyeron los datos correctamente viendo el encabezado y la cola </span></span></code></pre></div>
 <pre><code>## # A tibble: 5 × 17
-##   Gender   Age Height Weight family_history_with_o…¹ FAVC   FCVC
-##   &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;                   &lt;chr&gt; &lt;dbl&gt;
-## 1 Female    21   1.62   64   yes                     no        2
-## 2 Female    21   1.52   56   yes                     no        3
-## 3 Male      23   1.8    77   yes                     no        2
-## 4 Male      27   1.8    87   no                      no        3
-## 5 Male      22   1.78   89.8 no                      no        2
+##   Gender   Age Height Weight family_history_with_ov…¹ FAVC   FCVC   NCP CAEC 
+##   &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;                    &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;
+## 1 Female    21   1.62   64   yes                      no        2     3 Some…
+## 2 Female    21   1.52   56   yes                      no        3     3 Some…
+## 3 Male      23   1.8    77   yes                      no        2     3 Some…
+## 4 Male      27   1.8    87   no                       no        3     3 Some…
+## 5 Male      22   1.78   89.8 no                       no        2     1 Some…
 ## # ℹ abbreviated name: ¹​family_history_with_overweight
-## # ℹ 10 more variables: NCP &lt;dbl&gt;, CAEC &lt;chr&gt;, SMOKE &lt;chr&gt;,
-## #   CH2O &lt;dbl&gt;, SCC &lt;chr&gt;, FAF &lt;dbl&gt;, TUE &lt;dbl&gt;, CALC &lt;chr&gt;,
-## #   MTRANS &lt;chr&gt;, NObeyesdad &lt;chr&gt;</code></pre>
+## # ℹ 8 more variables: SMOKE &lt;chr&gt;, CH2O &lt;dbl&gt;, SCC &lt;chr&gt;, FAF &lt;dbl&gt;,
+## #   TUE &lt;dbl&gt;, CALC &lt;chr&gt;, MTRANS &lt;chr&gt;, NObeyesdad &lt;chr&gt;</code></pre>
 <ul>
 <li>verificamos que no existan valores faltantes en el dataset.</li>
 </ul>
@@ -443,17 +434,16 @@ INTERPRETACIÓN…</p>
 <span id="cb18-98"><a href="EDA.html#cb18-98" tabindex="-1"></a><span class="fu">bind_rows</span>(var_num_edad, var_num_est, var_num_peso, var_num_evm, var_num_meal, var_num_agu, var_num_phy, var_num_tec) <span class="sc">%&gt;%</span></span>
 <span id="cb18-99"><a href="EDA.html#cb18-99" tabindex="-1"></a>  <span class="fu">select</span>(variable, <span class="fu">everything</span>())</span></code></pre></div>
 <pre><code>## # A tibble: 8 × 10
-##   variable     n  media      ds mediana minimo maximo     Q1
-##   &lt;chr&gt;    &lt;int&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-## 1 Age       2111 24.3    6.35    22.8    14     61    19.9  
-## 2 Height    2111  1.70   0.0933   1.70    1.45   1.98  1.63 
-## 3 Weight    2111 86.6   26.2     83      39    173    65.5  
-## 4 FCVC      2111  2.42   0.534    2.39    1      3     2    
-## 5 NCP       2111  2.69   0.778    3       1      4     2.66 
-## 6 CH2O      2111  2.01   0.613    2       1      3     1.58 
-## 7 FAF       2111  1.01   0.851    1       0      3     0.125
-## 8 TUE       2111  0.658  0.609    0.625   0      2     0    
-## # ℹ 2 more variables: Q3 &lt;dbl&gt;, IQR &lt;dbl&gt;</code></pre>
+##   variable     n  media      ds mediana minimo maximo     Q1     Q3    IQR
+##   &lt;chr&gt;    &lt;int&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+## 1 Age       2111 24.3    6.35    22.8    14     61    19.9    26     6.05 
+## 2 Height    2111  1.70   0.0933   1.70    1.45   1.98  1.63    1.77  0.138
+## 3 Weight    2111 86.6   26.2     83      39    173    65.5   107.   42.0  
+## 4 FCVC      2111  2.42   0.534    2.39    1      3     2       3     1    
+## 5 NCP       2111  2.69   0.778    3       1      4     2.66    3     0.341
+## 6 CH2O      2111  2.01   0.613    2       1      3     1.58    2.48  0.893
+## 7 FAF       2111  1.01   0.851    1       0      3     0.125   1.67  1.54 
+## 8 TUE       2111  0.658  0.609    0.625   0      2     0       1     1</code></pre>
 <p>INTERPRETACIÓN…</p>
 <ul>
 <li>Gráficos de cada variable independiente numérica:</li>
@@ -636,180 +626,885 @@ INTERPRETACIÓN…</p>
 <span id="cb21-74"><a href="EDA.html#cb21-74" tabindex="-1"></a><span class="fu">bind_rows</span>(tabla_Gender, tabla_family_history_with_overweight, tabla_FAVC,tabla_CAEC,</span>
 <span id="cb21-75"><a href="EDA.html#cb21-75" tabindex="-1"></a>          tabla_SMOKE, tabla_SCC,tabla_CALC, tabla_MTRANS)</span></code></pre></div>
 <pre><code>## # A tibble: 23 × 4
-##    Variable                      Categoria Frecuencia Porcentaje
-##    &lt;chr&gt;                         &lt;chr&gt;          &lt;int&gt;      &lt;dbl&gt;
-##  1 Gender                        Female          1043      49.4 
-##  2 Gender                        Male            1068      50.6 
-##  3 family_history_with_overweig… no               385      18.2 
-##  4 family_history_with_overweig… yes             1726      81.8 
-##  5 FAVC                          no               245      11.6 
-##  6 FAVC                          yes             1866      88.4 
-##  7 CAEC                          Always            53       2.51
-##  8 CAEC                          Frequent…        242      11.5 
-##  9 CAEC                          Sometimes       1765      83.6 
-## 10 CAEC                          no                51       2.42
+##    Variable                       Categoria  Frecuencia Porcentaje
+##    &lt;chr&gt;                          &lt;chr&gt;           &lt;int&gt;      &lt;dbl&gt;
+##  1 Gender                         Female           1043      49.4 
+##  2 Gender                         Male             1068      50.6 
+##  3 family_history_with_overweight no                385      18.2 
+##  4 family_history_with_overweight yes              1726      81.8 
+##  5 FAVC                           no                245      11.6 
+##  6 FAVC                           yes              1866      88.4 
+##  7 CAEC                           Always             53       2.51
+##  8 CAEC                           Frequently        242      11.5 
+##  9 CAEC                           Sometimes        1765      83.6 
+## 10 CAEC                           no                 51       2.42
 ## # ℹ 13 more rows</code></pre>
 <p>INTERPRETACIÓN…</p>
 <ul>
 <li>Veamos los gráficos de las variables independientes categóricas</li>
 </ul>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="EDA.html#cb23-1" tabindex="-1"></a><span class="co">#falta agregar el código de los gráficos de todas las variables independientes categóricas</span></span></code></pre></div>
-<p>INTERPRETACIÓN…</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="EDA.html#cb23-1" tabindex="-1"></a><span class="co">#grafico para Gender</span></span>
+<span id="cb23-2"><a href="EDA.html#cb23-2" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="EDA.html#cb23-3" tabindex="-1"></a>tabla_Gender_b <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
+<span id="cb23-4"><a href="EDA.html#cb23-4" tabindex="-1"></a>  <span class="fu">count</span>(Gender, <span class="at">name =</span> <span class="st">&quot;Frecuencia&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb23-5"><a href="EDA.html#cb23-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Porcentaje =</span> <span class="fu">round</span>(Frecuencia <span class="sc">/</span> <span class="fu">sum</span>(Frecuencia) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>),</span>
+<span id="cb23-6"><a href="EDA.html#cb23-6" tabindex="-1"></a>         <span class="at">Etiqueta =</span> <span class="fu">paste0</span>(Frecuencia, <span class="st">&quot; (&quot;</span>, Porcentaje, <span class="st">&quot;%)&quot;</span>))</span>
+<span id="cb23-7"><a href="EDA.html#cb23-7" tabindex="-1"></a></span>
+<span id="cb23-8"><a href="EDA.html#cb23-8" tabindex="-1"></a>tabla_Gender_b <span class="sc">%&gt;%</span> </span>
+<span id="cb23-9"><a href="EDA.html#cb23-9" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Gender, <span class="at">y =</span> Frecuencia)) <span class="sc">+</span></span>
+<span id="cb23-10"><a href="EDA.html#cb23-10" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">&quot;#008B8B&quot;</span>, <span class="at">width =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb23-11"><a href="EDA.html#cb23-11" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> Etiqueta), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb23-12"><a href="EDA.html#cb23-12" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> <span class="st">&quot;Distribución de la variable Gender&quot;</span>) <span class="sc">+</span></span>
+<span id="cb23-13"><a href="EDA.html#cb23-13" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.15</span>))) <span class="sc">+</span></span>
+<span id="cb23-14"><a href="EDA.html#cb23-14" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Género del encuestado&quot;</span>, </span>
+<span id="cb23-15"><a href="EDA.html#cb23-15" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Frecuencia (Porcentaje)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb23-16"><a href="EDA.html#cb23-16" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span></span>
+<span id="cb23-17"><a href="EDA.html#cb23-17" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb23-18"><a href="EDA.html#cb23-18" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb23-19"><a href="EDA.html#cb23-19" tabindex="-1"></a>    <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;gray80&quot;</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
+<span id="cb23-20"><a href="EDA.html#cb23-20" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
+<span id="cb23-21"><a href="EDA.html#cb23-21" tabindex="-1"></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb23-22"><a href="EDA.html#cb23-22" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+INTERPRETACIÓN…</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="EDA.html#cb24-1" tabindex="-1"></a><span class="co">#grafico para family_history_with_overweight</span></span>
+<span id="cb24-2"><a href="EDA.html#cb24-2" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="EDA.html#cb24-3" tabindex="-1"></a>tabla_family_history_with_overweight_b <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
+<span id="cb24-4"><a href="EDA.html#cb24-4" tabindex="-1"></a>  <span class="fu">count</span>(family_history_with_overweight, <span class="at">name =</span> <span class="st">&quot;Frecuencia&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb24-5"><a href="EDA.html#cb24-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Porcentaje =</span> <span class="fu">round</span>(Frecuencia <span class="sc">/</span> <span class="fu">sum</span>(Frecuencia) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>),</span>
+<span id="cb24-6"><a href="EDA.html#cb24-6" tabindex="-1"></a>         <span class="at">Etiqueta =</span> <span class="fu">paste0</span>(Frecuencia, <span class="st">&quot; (&quot;</span>, Porcentaje, <span class="st">&quot;%)&quot;</span>))</span>
+<span id="cb24-7"><a href="EDA.html#cb24-7" tabindex="-1"></a></span>
+<span id="cb24-8"><a href="EDA.html#cb24-8" tabindex="-1"></a>tabla_family_history_with_overweight_b <span class="sc">%&gt;%</span> </span>
+<span id="cb24-9"><a href="EDA.html#cb24-9" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> family_history_with_overweight, <span class="at">y =</span> Frecuencia)) <span class="sc">+</span></span>
+<span id="cb24-10"><a href="EDA.html#cb24-10" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">&quot;#008B8B&quot;</span>, <span class="at">width =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb24-11"><a href="EDA.html#cb24-11" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> Etiqueta), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb24-12"><a href="EDA.html#cb24-12" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> <span class="st">&quot;Distribución del historial de sobrepeso familiar&quot;</span>) <span class="sc">+</span></span>
+<span id="cb24-13"><a href="EDA.html#cb24-13" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.15</span>))) <span class="sc">+</span></span>
+<span id="cb24-14"><a href="EDA.html#cb24-14" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;¿Tiene su familia antecedentes de sobrepeso?&quot;</span>, </span>
+<span id="cb24-15"><a href="EDA.html#cb24-15" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Frecuencia (Porcentaje)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb24-16"><a href="EDA.html#cb24-16" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span></span>
+<span id="cb24-17"><a href="EDA.html#cb24-17" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb24-18"><a href="EDA.html#cb24-18" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb24-19"><a href="EDA.html#cb24-19" tabindex="-1"></a>    <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;gray80&quot;</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
+<span id="cb24-20"><a href="EDA.html#cb24-20" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
+<span id="cb24-21"><a href="EDA.html#cb24-21" tabindex="-1"></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb24-22"><a href="EDA.html#cb24-22" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-11-1.png" width="672" />
+INTERPRETACIÓN…</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="EDA.html#cb25-1" tabindex="-1"></a><span class="co">#grafico para FAVC</span></span>
+<span id="cb25-2"><a href="EDA.html#cb25-2" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="EDA.html#cb25-3" tabindex="-1"></a>tabla_FAVC_b <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
+<span id="cb25-4"><a href="EDA.html#cb25-4" tabindex="-1"></a>  <span class="fu">count</span>(FAVC, <span class="at">name =</span> <span class="st">&quot;Frecuencia&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb25-5"><a href="EDA.html#cb25-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Porcentaje =</span> <span class="fu">round</span>(Frecuencia <span class="sc">/</span> <span class="fu">sum</span>(Frecuencia) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>),</span>
+<span id="cb25-6"><a href="EDA.html#cb25-6" tabindex="-1"></a>         <span class="at">Etiqueta =</span> <span class="fu">paste0</span>(Frecuencia, <span class="st">&quot; (&quot;</span>, Porcentaje, <span class="st">&quot;%)&quot;</span>))</span>
+<span id="cb25-7"><a href="EDA.html#cb25-7" tabindex="-1"></a></span>
+<span id="cb25-8"><a href="EDA.html#cb25-8" tabindex="-1"></a>tabla_FAVC_b <span class="sc">%&gt;%</span> </span>
+<span id="cb25-9"><a href="EDA.html#cb25-9" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> FAVC, <span class="at">y =</span> Frecuencia)) <span class="sc">+</span></span>
+<span id="cb25-10"><a href="EDA.html#cb25-10" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">&quot;#008B8B&quot;</span>, <span class="at">width =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb25-11"><a href="EDA.html#cb25-11" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> Etiqueta), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb25-12"><a href="EDA.html#cb25-12" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> <span class="st">&quot;Consumo frecuente de alimentos con alto nivel calórico&quot;</span>) <span class="sc">+</span></span>
+<span id="cb25-13"><a href="EDA.html#cb25-13" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.15</span>))) <span class="sc">+</span></span>
+<span id="cb25-14"><a href="EDA.html#cb25-14" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Comer alimentos con altos niveles de calorías&quot;</span>, </span>
+<span id="cb25-15"><a href="EDA.html#cb25-15" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Frecuencia (Porcentaje)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb25-16"><a href="EDA.html#cb25-16" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span></span>
+<span id="cb25-17"><a href="EDA.html#cb25-17" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb25-18"><a href="EDA.html#cb25-18" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb25-19"><a href="EDA.html#cb25-19" tabindex="-1"></a>    <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;gray80&quot;</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
+<span id="cb25-20"><a href="EDA.html#cb25-20" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
+<span id="cb25-21"><a href="EDA.html#cb25-21" tabindex="-1"></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb25-22"><a href="EDA.html#cb25-22" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-12-1.png" width="672" />
+INTERPRETACIÓN…</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="EDA.html#cb26-1" tabindex="-1"></a><span class="co">#grafico para CAEC</span></span>
+<span id="cb26-2"><a href="EDA.html#cb26-2" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="EDA.html#cb26-3" tabindex="-1"></a>tabla_CAEC_b <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
+<span id="cb26-4"><a href="EDA.html#cb26-4" tabindex="-1"></a>  <span class="fu">count</span>(CAEC, <span class="at">name =</span> <span class="st">&quot;Frecuencia&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb26-5"><a href="EDA.html#cb26-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Porcentaje =</span> <span class="fu">round</span>(Frecuencia <span class="sc">/</span> <span class="fu">sum</span>(Frecuencia) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>),</span>
+<span id="cb26-6"><a href="EDA.html#cb26-6" tabindex="-1"></a>         <span class="at">Etiqueta =</span> <span class="fu">paste0</span>(Frecuencia, <span class="st">&quot; (&quot;</span>, Porcentaje, <span class="st">&quot;%)&quot;</span>))</span>
+<span id="cb26-7"><a href="EDA.html#cb26-7" tabindex="-1"></a></span>
+<span id="cb26-8"><a href="EDA.html#cb26-8" tabindex="-1"></a>tabla_CAEC_b <span class="sc">%&gt;%</span> </span>
+<span id="cb26-9"><a href="EDA.html#cb26-9" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> CAEC, <span class="at">y =</span> Frecuencia)) <span class="sc">+</span></span>
+<span id="cb26-10"><a href="EDA.html#cb26-10" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">&quot;#008B8B&quot;</span>, <span class="at">width =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb26-11"><a href="EDA.html#cb26-11" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> Etiqueta), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb26-12"><a href="EDA.html#cb26-12" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> <span class="st">&quot;¿Con qué frecuencia se alimentan entre comidas&quot;</span>) <span class="sc">+</span></span>
+<span id="cb26-13"><a href="EDA.html#cb26-13" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.15</span>))) <span class="sc">+</span></span>
+<span id="cb26-14"><a href="EDA.html#cb26-14" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Alimentación entre comidas&quot;</span>, </span>
+<span id="cb26-15"><a href="EDA.html#cb26-15" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Frecuencia (Porcentaje)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb26-16"><a href="EDA.html#cb26-16" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span></span>
+<span id="cb26-17"><a href="EDA.html#cb26-17" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb26-18"><a href="EDA.html#cb26-18" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb26-19"><a href="EDA.html#cb26-19" tabindex="-1"></a>    <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;gray80&quot;</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
+<span id="cb26-20"><a href="EDA.html#cb26-20" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
+<span id="cb26-21"><a href="EDA.html#cb26-21" tabindex="-1"></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb26-22"><a href="EDA.html#cb26-22" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-13-1.png" width="672" />
+INTERPRETACIÓN…</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="EDA.html#cb27-1" tabindex="-1"></a><span class="co">#grafico para SMOKE</span></span>
+<span id="cb27-2"><a href="EDA.html#cb27-2" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="EDA.html#cb27-3" tabindex="-1"></a>tabla_SMOKE_b <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
+<span id="cb27-4"><a href="EDA.html#cb27-4" tabindex="-1"></a>  <span class="fu">count</span>(SMOKE, <span class="at">name =</span> <span class="st">&quot;Frecuencia&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb27-5"><a href="EDA.html#cb27-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Porcentaje =</span> <span class="fu">round</span>(Frecuencia <span class="sc">/</span> <span class="fu">sum</span>(Frecuencia) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>),</span>
+<span id="cb27-6"><a href="EDA.html#cb27-6" tabindex="-1"></a>         <span class="at">Etiqueta =</span> <span class="fu">paste0</span>(Frecuencia, <span class="st">&quot; (&quot;</span>, Porcentaje, <span class="st">&quot;%)&quot;</span>))</span>
+<span id="cb27-7"><a href="EDA.html#cb27-7" tabindex="-1"></a></span>
+<span id="cb27-8"><a href="EDA.html#cb27-8" tabindex="-1"></a>tabla_SMOKE_b <span class="sc">%&gt;%</span> </span>
+<span id="cb27-9"><a href="EDA.html#cb27-9" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> SMOKE, <span class="at">y =</span> Frecuencia)) <span class="sc">+</span></span>
+<span id="cb27-10"><a href="EDA.html#cb27-10" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">&quot;#008B8B&quot;</span>, <span class="at">width =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb27-11"><a href="EDA.html#cb27-11" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> Etiqueta), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb27-12"><a href="EDA.html#cb27-12" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> <span class="st">&quot;¿FUMAS?&quot;</span>) <span class="sc">+</span></span>
+<span id="cb27-13"><a href="EDA.html#cb27-13" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.15</span>))) <span class="sc">+</span></span>
+<span id="cb27-14"><a href="EDA.html#cb27-14" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;¿Fumas?&quot;</span>, </span>
+<span id="cb27-15"><a href="EDA.html#cb27-15" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Frecuencia (Porcentaje)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb27-16"><a href="EDA.html#cb27-16" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span></span>
+<span id="cb27-17"><a href="EDA.html#cb27-17" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb27-18"><a href="EDA.html#cb27-18" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb27-19"><a href="EDA.html#cb27-19" tabindex="-1"></a>    <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;gray80&quot;</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
+<span id="cb27-20"><a href="EDA.html#cb27-20" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
+<span id="cb27-21"><a href="EDA.html#cb27-21" tabindex="-1"></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb27-22"><a href="EDA.html#cb27-22" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-14-1.png" width="672" />
+INTERPRETACIÓN…</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="EDA.html#cb28-1" tabindex="-1"></a><span class="co">#grafico para SCC</span></span>
+<span id="cb28-2"><a href="EDA.html#cb28-2" tabindex="-1"></a>tabla_SCC_b <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
+<span id="cb28-3"><a href="EDA.html#cb28-3" tabindex="-1"></a>  <span class="fu">count</span>(SCC, <span class="at">name =</span> <span class="st">&quot;Frecuencia&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb28-4"><a href="EDA.html#cb28-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Porcentaje =</span> <span class="fu">round</span>(Frecuencia <span class="sc">/</span> <span class="fu">sum</span>(Frecuencia) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>),</span>
+<span id="cb28-5"><a href="EDA.html#cb28-5" tabindex="-1"></a>         <span class="at">Etiqueta =</span> <span class="fu">paste0</span>(Frecuencia, <span class="st">&quot; (&quot;</span>, Porcentaje, <span class="st">&quot;%)&quot;</span>))</span>
+<span id="cb28-6"><a href="EDA.html#cb28-6" tabindex="-1"></a></span>
+<span id="cb28-7"><a href="EDA.html#cb28-7" tabindex="-1"></a>tabla_SCC_b <span class="sc">%&gt;%</span> </span>
+<span id="cb28-8"><a href="EDA.html#cb28-8" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> SCC, <span class="at">y =</span> Frecuencia)) <span class="sc">+</span></span>
+<span id="cb28-9"><a href="EDA.html#cb28-9" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">&quot;#008B8B&quot;</span>, <span class="at">width =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb28-10"><a href="EDA.html#cb28-10" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> Etiqueta), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb28-11"><a href="EDA.html#cb28-11" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> <span class="st">&quot;¿Monitoreas la cantidad de calorías que consumes al día?&quot;</span>) <span class="sc">+</span></span>
+<span id="cb28-12"><a href="EDA.html#cb28-12" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.15</span>))) <span class="sc">+</span></span>
+<span id="cb28-13"><a href="EDA.html#cb28-13" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;¿Monitoreas Calorías?&quot;</span>, </span>
+<span id="cb28-14"><a href="EDA.html#cb28-14" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Frecuencia (Porcentaje)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb28-15"><a href="EDA.html#cb28-15" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span></span>
+<span id="cb28-16"><a href="EDA.html#cb28-16" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb28-17"><a href="EDA.html#cb28-17" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb28-18"><a href="EDA.html#cb28-18" tabindex="-1"></a>    <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;gray80&quot;</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
+<span id="cb28-19"><a href="EDA.html#cb28-19" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
+<span id="cb28-20"><a href="EDA.html#cb28-20" tabindex="-1"></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb28-21"><a href="EDA.html#cb28-21" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-15-1.png" width="672" />
+INTERPRETACIÓN…</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="EDA.html#cb29-1" tabindex="-1"></a><span class="co">#grafico para CALC</span></span>
+<span id="cb29-2"><a href="EDA.html#cb29-2" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="EDA.html#cb29-3" tabindex="-1"></a>tabla_CALC_b <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
+<span id="cb29-4"><a href="EDA.html#cb29-4" tabindex="-1"></a>  <span class="fu">count</span>(CALC, <span class="at">name =</span> <span class="st">&quot;Frecuencia&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb29-5"><a href="EDA.html#cb29-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Porcentaje =</span> <span class="fu">round</span>(Frecuencia <span class="sc">/</span> <span class="fu">sum</span>(Frecuencia) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>),</span>
+<span id="cb29-6"><a href="EDA.html#cb29-6" tabindex="-1"></a>         <span class="at">Etiqueta =</span> <span class="fu">paste0</span>(Frecuencia, <span class="st">&quot; (&quot;</span>, Porcentaje, <span class="st">&quot;%)&quot;</span>))</span>
+<span id="cb29-7"><a href="EDA.html#cb29-7" tabindex="-1"></a></span>
+<span id="cb29-8"><a href="EDA.html#cb29-8" tabindex="-1"></a>tabla_CALC_b <span class="sc">%&gt;%</span> </span>
+<span id="cb29-9"><a href="EDA.html#cb29-9" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> CALC, <span class="at">y =</span> Frecuencia)) <span class="sc">+</span></span>
+<span id="cb29-10"><a href="EDA.html#cb29-10" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">&quot;#008B8B&quot;</span>, <span class="at">width =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb29-11"><a href="EDA.html#cb29-11" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> Etiqueta), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb29-12"><a href="EDA.html#cb29-12" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> <span class="st">&quot;¿Con qué frecuencia consumes alcohol?&quot;</span>) <span class="sc">+</span></span>
+<span id="cb29-13"><a href="EDA.html#cb29-13" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.15</span>))) <span class="sc">+</span></span>
+<span id="cb29-14"><a href="EDA.html#cb29-14" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Frecuencia consumo de alcohol&quot;</span>, </span>
+<span id="cb29-15"><a href="EDA.html#cb29-15" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Frecuencia (Porcentaje)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb29-16"><a href="EDA.html#cb29-16" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span></span>
+<span id="cb29-17"><a href="EDA.html#cb29-17" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb29-18"><a href="EDA.html#cb29-18" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb29-19"><a href="EDA.html#cb29-19" tabindex="-1"></a>    <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;gray80&quot;</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
+<span id="cb29-20"><a href="EDA.html#cb29-20" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
+<span id="cb29-21"><a href="EDA.html#cb29-21" tabindex="-1"></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb29-22"><a href="EDA.html#cb29-22" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-16-1.png" width="672" />
+INTERPRETACIÓN…</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="EDA.html#cb30-1" tabindex="-1"></a><span class="co">#grafico para MTRANS</span></span>
+<span id="cb30-2"><a href="EDA.html#cb30-2" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="EDA.html#cb30-3" tabindex="-1"></a>tabla_MTRANS_b <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
+<span id="cb30-4"><a href="EDA.html#cb30-4" tabindex="-1"></a>  <span class="fu">count</span>(MTRANS, <span class="at">name =</span> <span class="st">&quot;Frecuencia&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb30-5"><a href="EDA.html#cb30-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Porcentaje =</span> <span class="fu">round</span>(Frecuencia <span class="sc">/</span> <span class="fu">sum</span>(Frecuencia) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>),</span>
+<span id="cb30-6"><a href="EDA.html#cb30-6" tabindex="-1"></a>         <span class="at">Etiqueta =</span> <span class="fu">paste0</span>(Frecuencia, <span class="st">&quot; (&quot;</span>, Porcentaje, <span class="st">&quot;%)&quot;</span>))</span>
+<span id="cb30-7"><a href="EDA.html#cb30-7" tabindex="-1"></a></span>
+<span id="cb30-8"><a href="EDA.html#cb30-8" tabindex="-1"></a>tabla_MTRANS_b <span class="sc">%&gt;%</span> </span>
+<span id="cb30-9"><a href="EDA.html#cb30-9" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> MTRANS, <span class="at">y =</span> Frecuencia)) <span class="sc">+</span></span>
+<span id="cb30-10"><a href="EDA.html#cb30-10" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">&quot;#008B8B&quot;</span>, <span class="at">width =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb30-11"><a href="EDA.html#cb30-11" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> Etiqueta), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb30-12"><a href="EDA.html#cb30-12" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> <span class="st">&quot;¿Qué medio de transporte utilizas?&quot;</span>) <span class="sc">+</span></span>
+<span id="cb30-13"><a href="EDA.html#cb30-13" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.15</span>))) <span class="sc">+</span></span>
+<span id="cb30-14"><a href="EDA.html#cb30-14" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Medio de transporte&quot;</span>, </span>
+<span id="cb30-15"><a href="EDA.html#cb30-15" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Frecuencia (Porcentaje)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb30-16"><a href="EDA.html#cb30-16" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span></span>
+<span id="cb30-17"><a href="EDA.html#cb30-17" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb30-18"><a href="EDA.html#cb30-18" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb30-19"><a href="EDA.html#cb30-19" tabindex="-1"></a>    <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;gray80&quot;</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
+<span id="cb30-20"><a href="EDA.html#cb30-20" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
+<span id="cb30-21"><a href="EDA.html#cb30-21" tabindex="-1"></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb30-22"><a href="EDA.html#cb30-22" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-17-1.png" width="672" />
+INTERPRETACIÓN…</p>
 </div>
 <div id="análisis-exploratorio-bivariado-nobeyesdad-vs-var.numérica" class="section level2 hasAnchor" number="3.5">
 <h2><span class="header-section-number">3.5</span> Análisis exploratorio bivariado (NObeyesdad vs var.numérica)<a href="#an%C3%A1lisis-exploratorio-bivariado-nobeyesdad-vs-var.num%C3%A9rica" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Realizaremos la comparacion de la variable NObeyesdad con respecto a cada una de las variables numéricas independientes.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="EDA.html#cb24-1" tabindex="-1"></a><span class="co"># Diagrama boxplot: NObeyesdad vs Age</span></span>
-<span id="cb24-2"><a href="EDA.html#cb24-2" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
-<span id="cb24-3"><a href="EDA.html#cb24-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(NObeyesdad), <span class="at">y =</span> Age)) <span class="sc">+</span></span>
-<span id="cb24-4"><a href="EDA.html#cb24-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;#1E90FF&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
-<span id="cb24-5"><a href="EDA.html#cb24-5" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="at">shape =</span> <span class="dv">20</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
-<span id="cb24-6"><a href="EDA.html#cb24-6" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb24-7"><a href="EDA.html#cb24-7" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribución de la edad según el tipo de obesidad&quot;</span>,</span>
-<span id="cb24-8"><a href="EDA.html#cb24-8" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;¿Qué tipo de obesidad presenta? (NObeyesdad)&quot;</span>,</span>
-<span id="cb24-9"><a href="EDA.html#cb24-9" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Edad del encuestado&quot;</span></span>
-<span id="cb24-10"><a href="EDA.html#cb24-10" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb24-11"><a href="EDA.html#cb24-11" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb24-12"><a href="EDA.html#cb24-12" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb24-13"><a href="EDA.html#cb24-13" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
-<span id="cb24-14"><a href="EDA.html#cb24-14" tabindex="-1"></a>    <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;gray90&quot;</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
-<span id="cb24-15"><a href="EDA.html#cb24-15" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
-<span id="cb24-16"><a href="EDA.html#cb24-16" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="EDA.html#cb25-1" tabindex="-1"></a><span class="co"># Diagrama boxplot: NObeyesdad vs Height</span></span>
-<span id="cb25-2"><a href="EDA.html#cb25-2" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
-<span id="cb25-3"><a href="EDA.html#cb25-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(NObeyesdad), <span class="at">y =</span> Height)) <span class="sc">+</span></span>
-<span id="cb25-4"><a href="EDA.html#cb25-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;#1E90FF&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
-<span id="cb25-5"><a href="EDA.html#cb25-5" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="at">shape =</span> <span class="dv">20</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
-<span id="cb25-6"><a href="EDA.html#cb25-6" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb25-7"><a href="EDA.html#cb25-7" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribución de la altura según la respuesta del encuestado&quot;</span>,</span>
-<span id="cb25-8"><a href="EDA.html#cb25-8" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;¿Qué tipo de obesidad presenta? (NObeyesdad)&quot;</span>,</span>
-<span id="cb25-9"><a href="EDA.html#cb25-9" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Estatura del encuestado&quot;</span></span>
-<span id="cb25-10"><a href="EDA.html#cb25-10" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb25-11"><a href="EDA.html#cb25-11" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb25-12"><a href="EDA.html#cb25-12" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb25-13"><a href="EDA.html#cb25-13" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
-<span id="cb25-14"><a href="EDA.html#cb25-14" tabindex="-1"></a>    <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;gray90&quot;</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
-<span id="cb25-15"><a href="EDA.html#cb25-15" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
-<span id="cb25-16"><a href="EDA.html#cb25-16" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-11-2.png" width="672" /></p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="EDA.html#cb26-1" tabindex="-1"></a><span class="co"># Diagrama boxplot: NObeyesdad vs Weight</span></span>
-<span id="cb26-2"><a href="EDA.html#cb26-2" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
-<span id="cb26-3"><a href="EDA.html#cb26-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(NObeyesdad), <span class="at">y =</span> Weight)) <span class="sc">+</span></span>
-<span id="cb26-4"><a href="EDA.html#cb26-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;#1E90FF&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
-<span id="cb26-5"><a href="EDA.html#cb26-5" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="at">shape =</span> <span class="dv">20</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
-<span id="cb26-6"><a href="EDA.html#cb26-6" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb26-7"><a href="EDA.html#cb26-7" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribución de la altura según la respuesta del encuestado&quot;</span>,</span>
-<span id="cb26-8"><a href="EDA.html#cb26-8" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;¿Qué tipo de obesidad presenta? (NObeyesdad)&quot;</span>,</span>
-<span id="cb26-9"><a href="EDA.html#cb26-9" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Peso del encuestado&quot;</span></span>
-<span id="cb26-10"><a href="EDA.html#cb26-10" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb26-11"><a href="EDA.html#cb26-11" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb26-12"><a href="EDA.html#cb26-12" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb26-13"><a href="EDA.html#cb26-13" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
-<span id="cb26-14"><a href="EDA.html#cb26-14" tabindex="-1"></a>    <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;gray90&quot;</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
-<span id="cb26-15"><a href="EDA.html#cb26-15" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
-<span id="cb26-16"><a href="EDA.html#cb26-16" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-11-3.png" width="672" /></p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="EDA.html#cb27-1" tabindex="-1"></a><span class="co"># Diagrama boxplot: NObeyesdad vs FCVC</span></span>
-<span id="cb27-2"><a href="EDA.html#cb27-2" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
-<span id="cb27-3"><a href="EDA.html#cb27-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(NObeyesdad), <span class="at">y =</span> FCVC)) <span class="sc">+</span></span>
-<span id="cb27-4"><a href="EDA.html#cb27-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;#1E90FF&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
-<span id="cb27-5"><a href="EDA.html#cb27-5" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="at">shape =</span> <span class="dv">20</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
-<span id="cb27-6"><a href="EDA.html#cb27-6" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb27-7"><a href="EDA.html#cb27-7" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribución del consumo de vegetales según la respuesta del encuestado&quot;</span>,</span>
-<span id="cb27-8"><a href="EDA.html#cb27-8" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;¿Qué tipo de obesidad presenta? (NObeyesdad)&quot;</span>,</span>
-<span id="cb27-9"><a href="EDA.html#cb27-9" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Consumo de vegetales del encuestado&quot;</span></span>
-<span id="cb27-10"><a href="EDA.html#cb27-10" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb27-11"><a href="EDA.html#cb27-11" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb27-12"><a href="EDA.html#cb27-12" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb27-13"><a href="EDA.html#cb27-13" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
-<span id="cb27-14"><a href="EDA.html#cb27-14" tabindex="-1"></a>    <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;gray90&quot;</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
-<span id="cb27-15"><a href="EDA.html#cb27-15" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
-<span id="cb27-16"><a href="EDA.html#cb27-16" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-11-4.png" width="672" /></p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="EDA.html#cb28-1" tabindex="-1"></a><span class="co"># Diagrama boxplot: NObeyesdad vs NCP</span></span>
-<span id="cb28-2"><a href="EDA.html#cb28-2" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
-<span id="cb28-3"><a href="EDA.html#cb28-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(NObeyesdad), <span class="at">y =</span> NCP)) <span class="sc">+</span></span>
-<span id="cb28-4"><a href="EDA.html#cb28-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;#1E90FF&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
-<span id="cb28-5"><a href="EDA.html#cb28-5" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="at">shape =</span> <span class="dv">20</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
-<span id="cb28-6"><a href="EDA.html#cb28-6" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb28-7"><a href="EDA.html#cb28-7" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribución de laS Comidas consumidas según la respuesta del encuestado&quot;</span>,</span>
-<span id="cb28-8"><a href="EDA.html#cb28-8" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;¿Qué tipo de obesidad presenta? (NObeyesdad)&quot;</span>,</span>
-<span id="cb28-9"><a href="EDA.html#cb28-9" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Número de comidas que consume el encuestado&quot;</span></span>
-<span id="cb28-10"><a href="EDA.html#cb28-10" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb28-11"><a href="EDA.html#cb28-11" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb28-12"><a href="EDA.html#cb28-12" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb28-13"><a href="EDA.html#cb28-13" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
-<span id="cb28-14"><a href="EDA.html#cb28-14" tabindex="-1"></a>    <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;gray90&quot;</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
-<span id="cb28-15"><a href="EDA.html#cb28-15" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
-<span id="cb28-16"><a href="EDA.html#cb28-16" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-11-5.png" width="672" /></p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="EDA.html#cb29-1" tabindex="-1"></a><span class="co"># Diagrama boxplot: NObeyesdad vs CH2O</span></span>
-<span id="cb29-2"><a href="EDA.html#cb29-2" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
-<span id="cb29-3"><a href="EDA.html#cb29-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(NObeyesdad), <span class="at">y =</span> CH2O)) <span class="sc">+</span></span>
-<span id="cb29-4"><a href="EDA.html#cb29-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;#1E90FF&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
-<span id="cb29-5"><a href="EDA.html#cb29-5" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="at">shape =</span> <span class="dv">20</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
-<span id="cb29-6"><a href="EDA.html#cb29-6" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb29-7"><a href="EDA.html#cb29-7" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribución del consumo de agua según la respuesta del encuestado&quot;</span>,</span>
-<span id="cb29-8"><a href="EDA.html#cb29-8" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;¿Qué tipo de obesidad presenta? (NObeyesdad)&quot;</span>,</span>
-<span id="cb29-9"><a href="EDA.html#cb29-9" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Litros de agua que consume el encuestado&quot;</span></span>
-<span id="cb29-10"><a href="EDA.html#cb29-10" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb29-11"><a href="EDA.html#cb29-11" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb29-12"><a href="EDA.html#cb29-12" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb29-13"><a href="EDA.html#cb29-13" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
-<span id="cb29-14"><a href="EDA.html#cb29-14" tabindex="-1"></a>    <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;gray90&quot;</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
-<span id="cb29-15"><a href="EDA.html#cb29-15" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
-<span id="cb29-16"><a href="EDA.html#cb29-16" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-11-6.png" width="672" /></p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="EDA.html#cb30-1" tabindex="-1"></a><span class="co"># Diagrama boxplot: NObeyesdad vs FAF</span></span>
-<span id="cb30-2"><a href="EDA.html#cb30-2" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
-<span id="cb30-3"><a href="EDA.html#cb30-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(NObeyesdad), <span class="at">y =</span> FAF)) <span class="sc">+</span></span>
-<span id="cb30-4"><a href="EDA.html#cb30-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;#1E90FF&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
-<span id="cb30-5"><a href="EDA.html#cb30-5" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="at">shape =</span> <span class="dv">20</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
-<span id="cb30-6"><a href="EDA.html#cb30-6" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb30-7"><a href="EDA.html#cb30-7" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribución de la actividad física según la respuesta del encuestado&quot;</span>,</span>
-<span id="cb30-8"><a href="EDA.html#cb30-8" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;¿Qué tipo de obesidad presenta? (NObeyesdad)&quot;</span>,</span>
-<span id="cb30-9"><a href="EDA.html#cb30-9" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Cuantas veces hace actividad física el encuestado&quot;</span></span>
-<span id="cb30-10"><a href="EDA.html#cb30-10" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb30-11"><a href="EDA.html#cb30-11" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb30-12"><a href="EDA.html#cb30-12" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb30-13"><a href="EDA.html#cb30-13" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
-<span id="cb30-14"><a href="EDA.html#cb30-14" tabindex="-1"></a>    <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;gray90&quot;</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
-<span id="cb30-15"><a href="EDA.html#cb30-15" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
-<span id="cb30-16"><a href="EDA.html#cb30-16" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-11-7.png" width="672" /></p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="EDA.html#cb31-1" tabindex="-1"></a><span class="co"># Diagrama boxplot: NObeyesdad vs TUE</span></span>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="EDA.html#cb31-1" tabindex="-1"></a><span class="co"># Diagrama boxplot: NObeyesdad vs Age</span></span>
 <span id="cb31-2"><a href="EDA.html#cb31-2" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
-<span id="cb31-3"><a href="EDA.html#cb31-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(NObeyesdad), <span class="at">y =</span> TUE)) <span class="sc">+</span></span>
+<span id="cb31-3"><a href="EDA.html#cb31-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(NObeyesdad), <span class="at">y =</span> Age)) <span class="sc">+</span></span>
 <span id="cb31-4"><a href="EDA.html#cb31-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;#1E90FF&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
 <span id="cb31-5"><a href="EDA.html#cb31-5" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="at">shape =</span> <span class="dv">20</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
 <span id="cb31-6"><a href="EDA.html#cb31-6" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb31-7"><a href="EDA.html#cb31-7" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribución del uso de aparatos electrónicos según la respuesta del encuestado&quot;</span>,</span>
+<span id="cb31-7"><a href="EDA.html#cb31-7" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribución de la edad según el tipo de obesidad&quot;</span>,</span>
 <span id="cb31-8"><a href="EDA.html#cb31-8" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;¿Qué tipo de obesidad presenta? (NObeyesdad)&quot;</span>,</span>
-<span id="cb31-9"><a href="EDA.html#cb31-9" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Tiempo de utilización de dispositivos tecnológicos&quot;</span></span>
+<span id="cb31-9"><a href="EDA.html#cb31-9" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Edad del encuestado&quot;</span></span>
 <span id="cb31-10"><a href="EDA.html#cb31-10" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb31-11"><a href="EDA.html#cb31-11" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb31-12"><a href="EDA.html#cb31-12" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
 <span id="cb31-13"><a href="EDA.html#cb31-13" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
 <span id="cb31-14"><a href="EDA.html#cb31-14" tabindex="-1"></a>    <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;gray90&quot;</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
-<span id="cb31-15"><a href="EDA.html#cb31-15" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>))</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-11-8.png" width="672" />
+<span id="cb31-15"><a href="EDA.html#cb31-15" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
+<span id="cb31-16"><a href="EDA.html#cb31-16" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-18-1.png" width="672" />
+INTERPRETACIÓN…</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="EDA.html#cb32-1" tabindex="-1"></a><span class="co"># Diagrama boxplot: NObeyesdad vs Height</span></span>
+<span id="cb32-2"><a href="EDA.html#cb32-2" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
+<span id="cb32-3"><a href="EDA.html#cb32-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(NObeyesdad), <span class="at">y =</span> Height)) <span class="sc">+</span></span>
+<span id="cb32-4"><a href="EDA.html#cb32-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;#1E90FF&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb32-5"><a href="EDA.html#cb32-5" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="at">shape =</span> <span class="dv">20</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb32-6"><a href="EDA.html#cb32-6" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb32-7"><a href="EDA.html#cb32-7" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribución de la altura según la respuesta del encuestado&quot;</span>,</span>
+<span id="cb32-8"><a href="EDA.html#cb32-8" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;¿Qué tipo de obesidad presenta? (NObeyesdad)&quot;</span>,</span>
+<span id="cb32-9"><a href="EDA.html#cb32-9" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Estatura del encuestado&quot;</span></span>
+<span id="cb32-10"><a href="EDA.html#cb32-10" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb32-11"><a href="EDA.html#cb32-11" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb32-12"><a href="EDA.html#cb32-12" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb32-13"><a href="EDA.html#cb32-13" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb32-14"><a href="EDA.html#cb32-14" tabindex="-1"></a>    <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;gray90&quot;</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
+<span id="cb32-15"><a href="EDA.html#cb32-15" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
+<span id="cb32-16"><a href="EDA.html#cb32-16" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-19-1.png" width="672" />
+INTERPRETACIÓN…</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="EDA.html#cb33-1" tabindex="-1"></a><span class="co"># Diagrama boxplot: NObeyesdad vs Weight</span></span>
+<span id="cb33-2"><a href="EDA.html#cb33-2" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
+<span id="cb33-3"><a href="EDA.html#cb33-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(NObeyesdad), <span class="at">y =</span> Weight)) <span class="sc">+</span></span>
+<span id="cb33-4"><a href="EDA.html#cb33-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;#1E90FF&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb33-5"><a href="EDA.html#cb33-5" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="at">shape =</span> <span class="dv">20</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb33-6"><a href="EDA.html#cb33-6" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb33-7"><a href="EDA.html#cb33-7" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribución de la altura según la respuesta del encuestado&quot;</span>,</span>
+<span id="cb33-8"><a href="EDA.html#cb33-8" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;¿Qué tipo de obesidad presenta? (NObeyesdad)&quot;</span>,</span>
+<span id="cb33-9"><a href="EDA.html#cb33-9" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Peso del encuestado&quot;</span></span>
+<span id="cb33-10"><a href="EDA.html#cb33-10" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb33-11"><a href="EDA.html#cb33-11" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb33-12"><a href="EDA.html#cb33-12" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb33-13"><a href="EDA.html#cb33-13" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb33-14"><a href="EDA.html#cb33-14" tabindex="-1"></a>    <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;gray90&quot;</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
+<span id="cb33-15"><a href="EDA.html#cb33-15" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
+<span id="cb33-16"><a href="EDA.html#cb33-16" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-20-1.png" width="672" />
+INTERPRETACIÓN…</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="EDA.html#cb34-1" tabindex="-1"></a><span class="co"># Diagrama boxplot: NObeyesdad vs FCVC</span></span>
+<span id="cb34-2"><a href="EDA.html#cb34-2" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
+<span id="cb34-3"><a href="EDA.html#cb34-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(NObeyesdad), <span class="at">y =</span> FCVC)) <span class="sc">+</span></span>
+<span id="cb34-4"><a href="EDA.html#cb34-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;#1E90FF&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb34-5"><a href="EDA.html#cb34-5" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="at">shape =</span> <span class="dv">20</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb34-6"><a href="EDA.html#cb34-6" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb34-7"><a href="EDA.html#cb34-7" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribución del consumo de vegetales según la respuesta del encuestado&quot;</span>,</span>
+<span id="cb34-8"><a href="EDA.html#cb34-8" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;¿Qué tipo de obesidad presenta? (NObeyesdad)&quot;</span>,</span>
+<span id="cb34-9"><a href="EDA.html#cb34-9" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Consumo de vegetales del encuestado&quot;</span></span>
+<span id="cb34-10"><a href="EDA.html#cb34-10" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb34-11"><a href="EDA.html#cb34-11" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb34-12"><a href="EDA.html#cb34-12" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb34-13"><a href="EDA.html#cb34-13" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb34-14"><a href="EDA.html#cb34-14" tabindex="-1"></a>    <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;gray90&quot;</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
+<span id="cb34-15"><a href="EDA.html#cb34-15" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
+<span id="cb34-16"><a href="EDA.html#cb34-16" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-21-1.png" width="672" />
+INTERPRETACIÓN…</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="EDA.html#cb35-1" tabindex="-1"></a><span class="co"># Diagrama boxplot: NObeyesdad vs NCP</span></span>
+<span id="cb35-2"><a href="EDA.html#cb35-2" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
+<span id="cb35-3"><a href="EDA.html#cb35-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(NObeyesdad), <span class="at">y =</span> NCP)) <span class="sc">+</span></span>
+<span id="cb35-4"><a href="EDA.html#cb35-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;#1E90FF&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb35-5"><a href="EDA.html#cb35-5" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="at">shape =</span> <span class="dv">20</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb35-6"><a href="EDA.html#cb35-6" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb35-7"><a href="EDA.html#cb35-7" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribución de laS Comidas consumidas según la respuesta del encuestado&quot;</span>,</span>
+<span id="cb35-8"><a href="EDA.html#cb35-8" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;¿Qué tipo de obesidad presenta? (NObeyesdad)&quot;</span>,</span>
+<span id="cb35-9"><a href="EDA.html#cb35-9" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Número de comidas que consume el encuestado&quot;</span></span>
+<span id="cb35-10"><a href="EDA.html#cb35-10" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb35-11"><a href="EDA.html#cb35-11" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb35-12"><a href="EDA.html#cb35-12" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb35-13"><a href="EDA.html#cb35-13" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb35-14"><a href="EDA.html#cb35-14" tabindex="-1"></a>    <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;gray90&quot;</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
+<span id="cb35-15"><a href="EDA.html#cb35-15" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
+<span id="cb35-16"><a href="EDA.html#cb35-16" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-22-1.png" width="672" />
+INTERPRETACIÓN…</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="EDA.html#cb36-1" tabindex="-1"></a><span class="co"># Diagrama boxplot: NObeyesdad vs CH2O</span></span>
+<span id="cb36-2"><a href="EDA.html#cb36-2" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
+<span id="cb36-3"><a href="EDA.html#cb36-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(NObeyesdad), <span class="at">y =</span> CH2O)) <span class="sc">+</span></span>
+<span id="cb36-4"><a href="EDA.html#cb36-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;#1E90FF&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb36-5"><a href="EDA.html#cb36-5" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="at">shape =</span> <span class="dv">20</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb36-6"><a href="EDA.html#cb36-6" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb36-7"><a href="EDA.html#cb36-7" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribución del consumo de agua según la respuesta del encuestado&quot;</span>,</span>
+<span id="cb36-8"><a href="EDA.html#cb36-8" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;¿Qué tipo de obesidad presenta? (NObeyesdad)&quot;</span>,</span>
+<span id="cb36-9"><a href="EDA.html#cb36-9" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Litros de agua que consume el encuestado&quot;</span></span>
+<span id="cb36-10"><a href="EDA.html#cb36-10" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb36-11"><a href="EDA.html#cb36-11" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb36-12"><a href="EDA.html#cb36-12" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb36-13"><a href="EDA.html#cb36-13" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb36-14"><a href="EDA.html#cb36-14" tabindex="-1"></a>    <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;gray90&quot;</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
+<span id="cb36-15"><a href="EDA.html#cb36-15" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
+<span id="cb36-16"><a href="EDA.html#cb36-16" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-23-1.png" width="672" />
+INTERPRETACIÓN…</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="EDA.html#cb37-1" tabindex="-1"></a><span class="co"># Diagrama boxplot: NObeyesdad vs FAF</span></span>
+<span id="cb37-2"><a href="EDA.html#cb37-2" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
+<span id="cb37-3"><a href="EDA.html#cb37-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(NObeyesdad), <span class="at">y =</span> FAF)) <span class="sc">+</span></span>
+<span id="cb37-4"><a href="EDA.html#cb37-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;#1E90FF&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb37-5"><a href="EDA.html#cb37-5" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="at">shape =</span> <span class="dv">20</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb37-6"><a href="EDA.html#cb37-6" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb37-7"><a href="EDA.html#cb37-7" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribución de la actividad física según la respuesta del encuestado&quot;</span>,</span>
+<span id="cb37-8"><a href="EDA.html#cb37-8" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;¿Qué tipo de obesidad presenta? (NObeyesdad)&quot;</span>,</span>
+<span id="cb37-9"><a href="EDA.html#cb37-9" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Cuantas veces hace actividad física el encuestado&quot;</span></span>
+<span id="cb37-10"><a href="EDA.html#cb37-10" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb37-11"><a href="EDA.html#cb37-11" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb37-12"><a href="EDA.html#cb37-12" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb37-13"><a href="EDA.html#cb37-13" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb37-14"><a href="EDA.html#cb37-14" tabindex="-1"></a>    <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;gray90&quot;</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
+<span id="cb37-15"><a href="EDA.html#cb37-15" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
+<span id="cb37-16"><a href="EDA.html#cb37-16" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-24-1.png" width="672" />
+INTERPRETACIÓN…</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="EDA.html#cb38-1" tabindex="-1"></a><span class="co"># Diagrama boxplot: NObeyesdad vs TUE</span></span>
+<span id="cb38-2"><a href="EDA.html#cb38-2" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
+<span id="cb38-3"><a href="EDA.html#cb38-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(NObeyesdad), <span class="at">y =</span> TUE)) <span class="sc">+</span></span>
+<span id="cb38-4"><a href="EDA.html#cb38-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;#1E90FF&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb38-5"><a href="EDA.html#cb38-5" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="at">shape =</span> <span class="dv">20</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb38-6"><a href="EDA.html#cb38-6" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb38-7"><a href="EDA.html#cb38-7" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribución del uso de aparatos electrónicos según la respuesta del encuestado&quot;</span>,</span>
+<span id="cb38-8"><a href="EDA.html#cb38-8" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;¿Qué tipo de obesidad presenta? (NObeyesdad)&quot;</span>,</span>
+<span id="cb38-9"><a href="EDA.html#cb38-9" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Tiempo de utilización de dispositivos tecnológicos&quot;</span></span>
+<span id="cb38-10"><a href="EDA.html#cb38-10" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb38-11"><a href="EDA.html#cb38-11" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb38-12"><a href="EDA.html#cb38-12" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb38-13"><a href="EDA.html#cb38-13" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb38-14"><a href="EDA.html#cb38-14" tabindex="-1"></a>    <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;gray90&quot;</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
+<span id="cb38-15"><a href="EDA.html#cb38-15" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>))</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-25-1.png" width="672" />
 INTERPRETACIÓN…</p>
 <ul>
-<li>Comparación de las variables numéricas independientes con respecto a la variable y</li>
+<li>Comparación de las variables numéricas independientes con respecto a la variable NObeyesdad</li>
 </ul>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="EDA.html#cb32-1" tabindex="-1"></a><span class="co">#Aquí es donde el profesor dice &quot;Realizaremos la comparacion de las variables numéricas independientes con respecto a la variable y&quot; que hace las tablas de agrupación por y. que son iguales a las que se hicieron en el analisis exploratorio de variables independiente numéricas; con la diferencia que al final de cada summarise de cada var numerica pone:</span></span>
-<span id="cb32-2"><a href="EDA.html#cb32-2" tabindex="-1"></a></span>
-<span id="cb32-3"><a href="EDA.html#cb32-3" tabindex="-1"></a><span class="co"># mutate(variable = &quot;age&quot;, niveles = as.character(y)) %&gt;%</span></span>
-<span id="cb32-4"><a href="EDA.html#cb32-4" tabindex="-1"></a><span class="co">#  select(variable, niveles, everything(), -y)</span></span>
-<span id="cb32-5"><a href="EDA.html#cb32-5" tabindex="-1"></a></span>
-<span id="cb32-6"><a href="EDA.html#cb32-6" tabindex="-1"></a><span class="co"># y hace una INTERPRETACIÓN  para las variables independientes según y.</span></span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="EDA.html#cb39-1" tabindex="-1"></a><span class="co"># Agrupación por &#39;NObeyesdad&#39;</span></span>
+<span id="cb39-2"><a href="EDA.html#cb39-2" tabindex="-1"></a>Age_NObeyesdad <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
+<span id="cb39-3"><a href="EDA.html#cb39-3" tabindex="-1"></a>  <span class="fu">group_by</span>(NObeyesdad) <span class="sc">%&gt;%</span></span>
+<span id="cb39-4"><a href="EDA.html#cb39-4" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">length</span>(Age),</span>
+<span id="cb39-5"><a href="EDA.html#cb39-5" tabindex="-1"></a>            <span class="at">media =</span> <span class="fu">mean</span>(Age),</span>
+<span id="cb39-6"><a href="EDA.html#cb39-6" tabindex="-1"></a>            <span class="at">ds =</span> <span class="fu">sd</span>(Age),</span>
+<span id="cb39-7"><a href="EDA.html#cb39-7" tabindex="-1"></a>            <span class="at">mediana =</span> <span class="fu">median</span>(Age),</span>
+<span id="cb39-8"><a href="EDA.html#cb39-8" tabindex="-1"></a>            <span class="at">minimo =</span> <span class="fu">min</span>(Age),</span>
+<span id="cb39-9"><a href="EDA.html#cb39-9" tabindex="-1"></a>            <span class="at">maximo =</span> <span class="fu">max</span>(Age),</span>
+<span id="cb39-10"><a href="EDA.html#cb39-10" tabindex="-1"></a>            <span class="at">Q1 =</span> <span class="fu">quantile</span>(Age, <span class="fl">0.25</span>),</span>
+<span id="cb39-11"><a href="EDA.html#cb39-11" tabindex="-1"></a>            <span class="at">Q3 =</span> <span class="fu">quantile</span>(Age, <span class="fl">0.75</span>),</span>
+<span id="cb39-12"><a href="EDA.html#cb39-12" tabindex="-1"></a>            <span class="at">IQR =</span> <span class="fu">IQR</span>(Age)) <span class="sc">%&gt;%</span></span>
+<span id="cb39-13"><a href="EDA.html#cb39-13" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">variable =</span> <span class="st">&quot;Age&quot;</span>, <span class="at">niveles =</span> <span class="fu">as.character</span>(NObeyesdad)) <span class="sc">%&gt;%</span></span>
+<span id="cb39-14"><a href="EDA.html#cb39-14" tabindex="-1"></a>  <span class="fu">select</span>(variable, niveles, <span class="fu">everything</span>(), <span class="sc">-</span>NObeyesdad)</span>
+<span id="cb39-15"><a href="EDA.html#cb39-15" tabindex="-1"></a></span>
+<span id="cb39-16"><a href="EDA.html#cb39-16" tabindex="-1"></a>Height_NObeyesdad <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
+<span id="cb39-17"><a href="EDA.html#cb39-17" tabindex="-1"></a>  <span class="fu">group_by</span>(NObeyesdad) <span class="sc">%&gt;%</span></span>
+<span id="cb39-18"><a href="EDA.html#cb39-18" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">length</span>(Height),</span>
+<span id="cb39-19"><a href="EDA.html#cb39-19" tabindex="-1"></a>            <span class="at">media =</span> <span class="fu">mean</span>(Height),</span>
+<span id="cb39-20"><a href="EDA.html#cb39-20" tabindex="-1"></a>            <span class="at">ds =</span> <span class="fu">sd</span>(Height),</span>
+<span id="cb39-21"><a href="EDA.html#cb39-21" tabindex="-1"></a>            <span class="at">mediana =</span> <span class="fu">median</span>(Height),</span>
+<span id="cb39-22"><a href="EDA.html#cb39-22" tabindex="-1"></a>            <span class="at">minimo =</span> <span class="fu">min</span>(Height),</span>
+<span id="cb39-23"><a href="EDA.html#cb39-23" tabindex="-1"></a>            <span class="at">maximo =</span> <span class="fu">max</span>(Height),</span>
+<span id="cb39-24"><a href="EDA.html#cb39-24" tabindex="-1"></a>            <span class="at">Q1 =</span> <span class="fu">quantile</span>(Height, <span class="fl">0.25</span>),</span>
+<span id="cb39-25"><a href="EDA.html#cb39-25" tabindex="-1"></a>            <span class="at">Q3 =</span> <span class="fu">quantile</span>(Height, <span class="fl">0.75</span>),</span>
+<span id="cb39-26"><a href="EDA.html#cb39-26" tabindex="-1"></a>            <span class="at">IQR =</span> <span class="fu">IQR</span>(Height)) <span class="sc">%&gt;%</span></span>
+<span id="cb39-27"><a href="EDA.html#cb39-27" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">variable =</span> <span class="st">&quot;Height&quot;</span>, <span class="at">niveles =</span> <span class="fu">as.character</span>(NObeyesdad)) <span class="sc">%&gt;%</span></span>
+<span id="cb39-28"><a href="EDA.html#cb39-28" tabindex="-1"></a>  <span class="fu">select</span>(variable, niveles, <span class="fu">everything</span>(), <span class="sc">-</span>NObeyesdad)</span>
+<span id="cb39-29"><a href="EDA.html#cb39-29" tabindex="-1"></a></span>
+<span id="cb39-30"><a href="EDA.html#cb39-30" tabindex="-1"></a>Weight_NObeyesdad <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
+<span id="cb39-31"><a href="EDA.html#cb39-31" tabindex="-1"></a>  <span class="fu">group_by</span>(NObeyesdad) <span class="sc">%&gt;%</span></span>
+<span id="cb39-32"><a href="EDA.html#cb39-32" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">length</span>(Weight),</span>
+<span id="cb39-33"><a href="EDA.html#cb39-33" tabindex="-1"></a>            <span class="at">media =</span> <span class="fu">mean</span>(Weight),</span>
+<span id="cb39-34"><a href="EDA.html#cb39-34" tabindex="-1"></a>            <span class="at">ds =</span> <span class="fu">sd</span>(Weight),</span>
+<span id="cb39-35"><a href="EDA.html#cb39-35" tabindex="-1"></a>            <span class="at">mediana =</span> <span class="fu">median</span>(Weight),</span>
+<span id="cb39-36"><a href="EDA.html#cb39-36" tabindex="-1"></a>            <span class="at">minimo =</span> <span class="fu">min</span>(Weight),</span>
+<span id="cb39-37"><a href="EDA.html#cb39-37" tabindex="-1"></a>            <span class="at">maximo =</span> <span class="fu">max</span>(Weight),</span>
+<span id="cb39-38"><a href="EDA.html#cb39-38" tabindex="-1"></a>            <span class="at">Q1 =</span> <span class="fu">quantile</span>(Weight, <span class="fl">0.25</span>),</span>
+<span id="cb39-39"><a href="EDA.html#cb39-39" tabindex="-1"></a>            <span class="at">Q3 =</span> <span class="fu">quantile</span>(Weight, <span class="fl">0.75</span>),</span>
+<span id="cb39-40"><a href="EDA.html#cb39-40" tabindex="-1"></a>            <span class="at">IQR =</span> <span class="fu">IQR</span>(Weight)) <span class="sc">%&gt;%</span></span>
+<span id="cb39-41"><a href="EDA.html#cb39-41" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">variable =</span> <span class="st">&quot;Weight&quot;</span>, <span class="at">niveles =</span> <span class="fu">as.character</span>(NObeyesdad)) <span class="sc">%&gt;%</span></span>
+<span id="cb39-42"><a href="EDA.html#cb39-42" tabindex="-1"></a>  <span class="fu">select</span>(variable, niveles, <span class="fu">everything</span>(), <span class="sc">-</span>NObeyesdad)                                                            </span>
+<span id="cb39-43"><a href="EDA.html#cb39-43" tabindex="-1"></a>FCVC_NObeyesdad <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
+<span id="cb39-44"><a href="EDA.html#cb39-44" tabindex="-1"></a>  <span class="fu">group_by</span>(NObeyesdad) <span class="sc">%&gt;%</span></span>
+<span id="cb39-45"><a href="EDA.html#cb39-45" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">length</span>(FCVC),</span>
+<span id="cb39-46"><a href="EDA.html#cb39-46" tabindex="-1"></a>            <span class="at">media =</span> <span class="fu">mean</span>(FCVC),</span>
+<span id="cb39-47"><a href="EDA.html#cb39-47" tabindex="-1"></a>            <span class="at">ds =</span> <span class="fu">sd</span>(FCVC),</span>
+<span id="cb39-48"><a href="EDA.html#cb39-48" tabindex="-1"></a>            <span class="at">mediana =</span> <span class="fu">median</span>(FCVC),</span>
+<span id="cb39-49"><a href="EDA.html#cb39-49" tabindex="-1"></a>            <span class="at">minimo =</span> <span class="fu">min</span>(FCVC),</span>
+<span id="cb39-50"><a href="EDA.html#cb39-50" tabindex="-1"></a>            <span class="at">maximo =</span> <span class="fu">max</span>(FCVC),</span>
+<span id="cb39-51"><a href="EDA.html#cb39-51" tabindex="-1"></a>            <span class="at">Q1 =</span> <span class="fu">quantile</span>(FCVC, <span class="fl">0.25</span>),</span>
+<span id="cb39-52"><a href="EDA.html#cb39-52" tabindex="-1"></a>            <span class="at">Q3 =</span> <span class="fu">quantile</span>(FCVC, <span class="fl">0.75</span>),</span>
+<span id="cb39-53"><a href="EDA.html#cb39-53" tabindex="-1"></a>            <span class="at">IQR =</span> <span class="fu">IQR</span>(FCVC)) <span class="sc">%&gt;%</span></span>
+<span id="cb39-54"><a href="EDA.html#cb39-54" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">variable =</span> <span class="st">&quot;FCVC&quot;</span>, <span class="at">niveles =</span> <span class="fu">as.character</span>(NObeyesdad)) <span class="sc">%&gt;%</span></span>
+<span id="cb39-55"><a href="EDA.html#cb39-55" tabindex="-1"></a>  <span class="fu">select</span>(variable, niveles, <span class="fu">everything</span>(), <span class="sc">-</span>NObeyesdad)</span>
+<span id="cb39-56"><a href="EDA.html#cb39-56" tabindex="-1"></a></span>
+<span id="cb39-57"><a href="EDA.html#cb39-57" tabindex="-1"></a>NCP_NObeyesdad <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
+<span id="cb39-58"><a href="EDA.html#cb39-58" tabindex="-1"></a>  <span class="fu">group_by</span>(NObeyesdad) <span class="sc">%&gt;%</span></span>
+<span id="cb39-59"><a href="EDA.html#cb39-59" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">length</span>(NCP),</span>
+<span id="cb39-60"><a href="EDA.html#cb39-60" tabindex="-1"></a>            <span class="at">media =</span> <span class="fu">mean</span>(NCP),</span>
+<span id="cb39-61"><a href="EDA.html#cb39-61" tabindex="-1"></a>            <span class="at">ds =</span> <span class="fu">sd</span>(NCP),</span>
+<span id="cb39-62"><a href="EDA.html#cb39-62" tabindex="-1"></a>            <span class="at">mediana =</span> <span class="fu">median</span>(NCP),</span>
+<span id="cb39-63"><a href="EDA.html#cb39-63" tabindex="-1"></a>            <span class="at">minimo =</span> <span class="fu">min</span>(NCP),</span>
+<span id="cb39-64"><a href="EDA.html#cb39-64" tabindex="-1"></a>            <span class="at">maximo =</span> <span class="fu">max</span>(NCP),</span>
+<span id="cb39-65"><a href="EDA.html#cb39-65" tabindex="-1"></a>            <span class="at">Q1 =</span> <span class="fu">quantile</span>(NCP, <span class="fl">0.25</span>),</span>
+<span id="cb39-66"><a href="EDA.html#cb39-66" tabindex="-1"></a>            <span class="at">Q3 =</span> <span class="fu">quantile</span>(NCP, <span class="fl">0.75</span>),</span>
+<span id="cb39-67"><a href="EDA.html#cb39-67" tabindex="-1"></a>            <span class="at">IQR =</span> <span class="fu">IQR</span>(NCP)) <span class="sc">%&gt;%</span></span>
+<span id="cb39-68"><a href="EDA.html#cb39-68" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">variable =</span> <span class="st">&quot;NCP&quot;</span>, <span class="at">niveles =</span> <span class="fu">as.character</span>(NObeyesdad)) <span class="sc">%&gt;%</span></span>
+<span id="cb39-69"><a href="EDA.html#cb39-69" tabindex="-1"></a>  <span class="fu">select</span>(variable, niveles, <span class="fu">everything</span>(), <span class="sc">-</span>NObeyesdad)</span>
+<span id="cb39-70"><a href="EDA.html#cb39-70" tabindex="-1"></a></span>
+<span id="cb39-71"><a href="EDA.html#cb39-71" tabindex="-1"></a>CH2O_NObeyesdad <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
+<span id="cb39-72"><a href="EDA.html#cb39-72" tabindex="-1"></a>  <span class="fu">group_by</span>(NObeyesdad) <span class="sc">%&gt;%</span></span>
+<span id="cb39-73"><a href="EDA.html#cb39-73" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">length</span>(CH2O),</span>
+<span id="cb39-74"><a href="EDA.html#cb39-74" tabindex="-1"></a>            <span class="at">media =</span> <span class="fu">mean</span>(CH2O),</span>
+<span id="cb39-75"><a href="EDA.html#cb39-75" tabindex="-1"></a>            <span class="at">ds =</span> <span class="fu">sd</span>(CH2O),</span>
+<span id="cb39-76"><a href="EDA.html#cb39-76" tabindex="-1"></a>            <span class="at">mediana =</span> <span class="fu">median</span>(CH2O),</span>
+<span id="cb39-77"><a href="EDA.html#cb39-77" tabindex="-1"></a>            <span class="at">minimo =</span> <span class="fu">min</span>(CH2O),</span>
+<span id="cb39-78"><a href="EDA.html#cb39-78" tabindex="-1"></a>            <span class="at">maximo =</span> <span class="fu">max</span>(CH2O),</span>
+<span id="cb39-79"><a href="EDA.html#cb39-79" tabindex="-1"></a>            <span class="at">Q1 =</span> <span class="fu">quantile</span>(CH2O, <span class="fl">0.25</span>),</span>
+<span id="cb39-80"><a href="EDA.html#cb39-80" tabindex="-1"></a>            <span class="at">Q3 =</span> <span class="fu">quantile</span>(CH2O, <span class="fl">0.75</span>),</span>
+<span id="cb39-81"><a href="EDA.html#cb39-81" tabindex="-1"></a>            <span class="at">IQR =</span> <span class="fu">IQR</span>(CH2O)) <span class="sc">%&gt;%</span></span>
+<span id="cb39-82"><a href="EDA.html#cb39-82" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">variable =</span> <span class="st">&quot;CH2O&quot;</span>, <span class="at">niveles =</span> <span class="fu">as.character</span>(NObeyesdad)) <span class="sc">%&gt;%</span></span>
+<span id="cb39-83"><a href="EDA.html#cb39-83" tabindex="-1"></a>  <span class="fu">select</span>(variable, niveles, <span class="fu">everything</span>(), <span class="sc">-</span>NObeyesdad)</span>
+<span id="cb39-84"><a href="EDA.html#cb39-84" tabindex="-1"></a></span>
+<span id="cb39-85"><a href="EDA.html#cb39-85" tabindex="-1"></a>FAF_NObeyesdad <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
+<span id="cb39-86"><a href="EDA.html#cb39-86" tabindex="-1"></a>  <span class="fu">group_by</span>(NObeyesdad) <span class="sc">%&gt;%</span></span>
+<span id="cb39-87"><a href="EDA.html#cb39-87" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">length</span>(FAF),</span>
+<span id="cb39-88"><a href="EDA.html#cb39-88" tabindex="-1"></a>            <span class="at">media =</span> <span class="fu">mean</span>(FAF),</span>
+<span id="cb39-89"><a href="EDA.html#cb39-89" tabindex="-1"></a>            <span class="at">ds =</span> <span class="fu">sd</span>(FAF),</span>
+<span id="cb39-90"><a href="EDA.html#cb39-90" tabindex="-1"></a>            <span class="at">mediana =</span> <span class="fu">median</span>(FAF),</span>
+<span id="cb39-91"><a href="EDA.html#cb39-91" tabindex="-1"></a>            <span class="at">minimo =</span> <span class="fu">min</span>(FAF),</span>
+<span id="cb39-92"><a href="EDA.html#cb39-92" tabindex="-1"></a>            <span class="at">maximo =</span> <span class="fu">max</span>(FAF),</span>
+<span id="cb39-93"><a href="EDA.html#cb39-93" tabindex="-1"></a>            <span class="at">Q1 =</span> <span class="fu">quantile</span>(FAF, <span class="fl">0.25</span>),</span>
+<span id="cb39-94"><a href="EDA.html#cb39-94" tabindex="-1"></a>            <span class="at">Q3 =</span> <span class="fu">quantile</span>(FAF, <span class="fl">0.75</span>),</span>
+<span id="cb39-95"><a href="EDA.html#cb39-95" tabindex="-1"></a>            <span class="at">IQR =</span> <span class="fu">IQR</span>(FAF)) <span class="sc">%&gt;%</span></span>
+<span id="cb39-96"><a href="EDA.html#cb39-96" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">variable =</span> <span class="st">&quot;FAF&quot;</span>, <span class="at">niveles =</span> <span class="fu">as.character</span>(NObeyesdad)) <span class="sc">%&gt;%</span></span>
+<span id="cb39-97"><a href="EDA.html#cb39-97" tabindex="-1"></a>  <span class="fu">select</span>(variable, niveles, <span class="fu">everything</span>(), <span class="sc">-</span>NObeyesdad)</span>
+<span id="cb39-98"><a href="EDA.html#cb39-98" tabindex="-1"></a></span>
+<span id="cb39-99"><a href="EDA.html#cb39-99" tabindex="-1"></a>TUE_NObeyesdad <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
+<span id="cb39-100"><a href="EDA.html#cb39-100" tabindex="-1"></a>  <span class="fu">group_by</span>(NObeyesdad) <span class="sc">%&gt;%</span></span>
+<span id="cb39-101"><a href="EDA.html#cb39-101" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">length</span>(TUE),</span>
+<span id="cb39-102"><a href="EDA.html#cb39-102" tabindex="-1"></a>            <span class="at">media =</span> <span class="fu">mean</span>(TUE),</span>
+<span id="cb39-103"><a href="EDA.html#cb39-103" tabindex="-1"></a>            <span class="at">ds =</span> <span class="fu">sd</span>(TUE),</span>
+<span id="cb39-104"><a href="EDA.html#cb39-104" tabindex="-1"></a>            <span class="at">mediana =</span> <span class="fu">median</span>(TUE),</span>
+<span id="cb39-105"><a href="EDA.html#cb39-105" tabindex="-1"></a>            <span class="at">minimo =</span> <span class="fu">min</span>(TUE),</span>
+<span id="cb39-106"><a href="EDA.html#cb39-106" tabindex="-1"></a>            <span class="at">maximo =</span> <span class="fu">max</span>(TUE),</span>
+<span id="cb39-107"><a href="EDA.html#cb39-107" tabindex="-1"></a>            <span class="at">Q1 =</span> <span class="fu">quantile</span>(TUE, <span class="fl">0.25</span>),</span>
+<span id="cb39-108"><a href="EDA.html#cb39-108" tabindex="-1"></a>            <span class="at">Q3 =</span> <span class="fu">quantile</span>(TUE, <span class="fl">0.75</span>),</span>
+<span id="cb39-109"><a href="EDA.html#cb39-109" tabindex="-1"></a>            <span class="at">IQR =</span> <span class="fu">IQR</span>(TUE)) <span class="sc">%&gt;%</span></span>
+<span id="cb39-110"><a href="EDA.html#cb39-110" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">variable =</span> <span class="st">&quot;TUE&quot;</span>, <span class="at">niveles =</span> <span class="fu">as.character</span>(NObeyesdad)) <span class="sc">%&gt;%</span></span>
+<span id="cb39-111"><a href="EDA.html#cb39-111" tabindex="-1"></a>  <span class="fu">select</span>(variable, niveles, <span class="fu">everything</span>(), <span class="sc">-</span>NObeyesdad)</span>
+<span id="cb39-112"><a href="EDA.html#cb39-112" tabindex="-1"></a></span>
+<span id="cb39-113"><a href="EDA.html#cb39-113" tabindex="-1"></a><span class="co">#Unión de las tablas</span></span>
+<span id="cb39-114"><a href="EDA.html#cb39-114" tabindex="-1"></a><span class="fu">bind_rows</span>(Age_NObeyesdad, Height_NObeyesdad, Weight_NObeyesdad, FCVC_NObeyesdad, NCP_NObeyesdad, CH2O_NObeyesdad, FAF_NObeyesdad, TUE_NObeyesdad)</span></code></pre></div>
+<pre><code>## # A tibble: 56 × 11
+##    variable niveles          n media     ds mediana minimo maximo    Q1    Q3
+##    &lt;chr&gt;    &lt;chr&gt;        &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 Age      Insufficien…   272 19.8  2.67     19.2   16     39    18    21   
+##  2 Age      Normal_Weig…   287 21.7  5.10     21     14     61    19    23   
+##  3 Age      Obesity_Typ…   351 25.9  7.76     23.0   15     52    20.9  29.8 
+##  4 Age      Obesity_Typ…   297 28.2  4.87     27.2   20     41    24.6  30.7 
+##  5 Age      Obesity_Typ…   324 23.5  2.76     25.4   18     26    21.0  26   
+##  6 Age      Overweight_…   290 23.4  6.13     21.0   16     55    19.6  24.2 
+##  7 Age      Overweight_…   290 27.0  8.06     24     17     56    21.0  33   
+##  8 Height   Insufficien…   272  1.69 0.0997    1.70   1.52   1.9   1.60  1.76
+##  9 Height   Normal_Weig…   287  1.68 0.0945    1.66   1.5    1.93  1.6   1.75
+## 10 Height   Obesity_Typ…   351  1.69 0.0984    1.68   1.5    1.98  1.62  1.78
+## # ℹ 46 more rows
+## # ℹ 1 more variable: IQR &lt;dbl&gt;</code></pre>
 <p>INTERPRETACIÓN…</p>
 </div>
 <div id="análisis-exploratorio-bivariado-nobeyesdad-vs-var.categórica" class="section level2 hasAnchor" number="3.6">
 <h2><span class="header-section-number">3.6</span> Análisis exploratorio bivariado (NObeyesdad vs var.categórica)<a href="#an%C3%A1lisis-exploratorio-bivariado-nobeyesdad-vs-var.categ%C3%B3rica" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Realizaremos la comparacion de la variable NObeyesdad con respecto a cada una de las variables categóricas independientes.</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="EDA.html#cb33-1" tabindex="-1"></a><span class="co">#falta código</span></span></code></pre></div>
+<ul>
+<li>Gráficas bivariadas (NObeyesdad vs var.cat.)</li>
+</ul>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="EDA.html#cb41-1" tabindex="-1"></a>datos_plot_gender <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
+<span id="cb41-2"><a href="EDA.html#cb41-2" tabindex="-1"></a>  <span class="fu">group_by</span>(NObeyesdad) <span class="sc">%&gt;%</span></span>
+<span id="cb41-3"><a href="EDA.html#cb41-3" tabindex="-1"></a>  <span class="fu">count</span>(Gender, <span class="at">name =</span> <span class="st">&quot;n&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb41-4"><a href="EDA.html#cb41-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">categoria =</span> Gender,</span>
+<span id="cb41-5"><a href="EDA.html#cb41-5" tabindex="-1"></a>         <span class="at">variable =</span> <span class="st">&quot;Gender&quot;</span>,</span>
+<span id="cb41-6"><a href="EDA.html#cb41-6" tabindex="-1"></a>         <span class="at">porcentaje =</span> (n <span class="sc">/</span> <span class="fu">sum</span>(n)) <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb41-7"><a href="EDA.html#cb41-7" tabindex="-1"></a>  <span class="fu">select</span>(NObeyesdad, categoria, n, porcentaje)</span>
+<span id="cb41-8"><a href="EDA.html#cb41-8" tabindex="-1"></a></span>
+<span id="cb41-9"><a href="EDA.html#cb41-9" tabindex="-1"></a>datos_plot_gender <span class="sc">%&gt;%</span> </span>
+<span id="cb41-10"><a href="EDA.html#cb41-10" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> categoria, <span class="at">y =</span> n, <span class="at">fill =</span> NObeyesdad)) <span class="sc">+</span></span>
+<span id="cb41-11"><a href="EDA.html#cb41-11" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.9</span>)) <span class="sc">+</span></span>
+<span id="cb41-12"><a href="EDA.html#cb41-12" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste0</span>(n, <span class="st">&quot; (&quot;</span>, <span class="fu">round</span>(porcentaje, <span class="dv">1</span>), <span class="st">&quot;%)&quot;</span>)),</span>
+<span id="cb41-13"><a href="EDA.html#cb41-13" tabindex="-1"></a>            <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.9</span>),</span>
+<span id="cb41-14"><a href="EDA.html#cb41-14" tabindex="-1"></a>            <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.3</span>,</span>
+<span id="cb41-15"><a href="EDA.html#cb41-15" tabindex="-1"></a>            <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb41-16"><a href="EDA.html#cb41-16" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Género del encuestado (Gender)&quot;</span>,</span>
+<span id="cb41-17"><a href="EDA.html#cb41-17" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Género del encuestado (Gender)&quot;</span>,</span>
+<span id="cb41-18"><a href="EDA.html#cb41-18" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Tipo de obesidad del encuestado&quot;</span></span>
+<span id="cb41-19"><a href="EDA.html#cb41-19" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb41-20"><a href="EDA.html#cb41-20" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb41-21"><a href="EDA.html#cb41-21" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set1&quot;</span>)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-27-1.png" width="672" />
+INTERPRETACIÓN…</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="EDA.html#cb42-1" tabindex="-1"></a>datos_plot_fhwo <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
+<span id="cb42-2"><a href="EDA.html#cb42-2" tabindex="-1"></a>  <span class="fu">group_by</span>(NObeyesdad) <span class="sc">%&gt;%</span></span>
+<span id="cb42-3"><a href="EDA.html#cb42-3" tabindex="-1"></a>  <span class="fu">count</span>(family_history_with_overweight, <span class="at">name =</span> <span class="st">&quot;n&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb42-4"><a href="EDA.html#cb42-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">categoria =</span> family_history_with_overweight,</span>
+<span id="cb42-5"><a href="EDA.html#cb42-5" tabindex="-1"></a>         <span class="at">variable =</span> <span class="st">&quot;family_history_with_overweight&quot;</span>,</span>
+<span id="cb42-6"><a href="EDA.html#cb42-6" tabindex="-1"></a>         <span class="at">porcentaje =</span> (n <span class="sc">/</span> <span class="fu">sum</span>(n)) <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb42-7"><a href="EDA.html#cb42-7" tabindex="-1"></a>  <span class="fu">select</span>(NObeyesdad, categoria, n, porcentaje)</span>
+<span id="cb42-8"><a href="EDA.html#cb42-8" tabindex="-1"></a></span>
+<span id="cb42-9"><a href="EDA.html#cb42-9" tabindex="-1"></a>datos_plot_fhwo <span class="sc">%&gt;%</span> </span>
+<span id="cb42-10"><a href="EDA.html#cb42-10" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> categoria, <span class="at">y =</span> n, <span class="at">fill =</span> NObeyesdad)) <span class="sc">+</span></span>
+<span id="cb42-11"><a href="EDA.html#cb42-11" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.9</span>)) <span class="sc">+</span></span>
+<span id="cb42-12"><a href="EDA.html#cb42-12" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste0</span>(n, <span class="st">&quot; (&quot;</span>, <span class="fu">round</span>(porcentaje, <span class="dv">1</span>), <span class="st">&quot;%)&quot;</span>)),</span>
+<span id="cb42-13"><a href="EDA.html#cb42-13" tabindex="-1"></a>            <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.9</span>),</span>
+<span id="cb42-14"><a href="EDA.html#cb42-14" tabindex="-1"></a>            <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.3</span>,</span>
+<span id="cb42-15"><a href="EDA.html#cb42-15" tabindex="-1"></a>            <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb42-16"><a href="EDA.html#cb42-16" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Antecedentes de sobrepeso en la familia (family_history_with_overweight)&quot;</span>,</span>
+<span id="cb42-17"><a href="EDA.html#cb42-17" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Antecedentes familirias en sobrepeso (family_history_with_overweight)&quot;</span>,</span>
+<span id="cb42-18"><a href="EDA.html#cb42-18" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Tipo de obesidad del encuestado&quot;</span></span>
+<span id="cb42-19"><a href="EDA.html#cb42-19" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb42-20"><a href="EDA.html#cb42-20" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb42-21"><a href="EDA.html#cb42-21" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set1&quot;</span>) </span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-28-1.png" width="672" />
+INTERPRETACIÓN…</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="EDA.html#cb43-1" tabindex="-1"></a>datos_plot_FAVC <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
+<span id="cb43-2"><a href="EDA.html#cb43-2" tabindex="-1"></a>  <span class="fu">group_by</span>(NObeyesdad) <span class="sc">%&gt;%</span></span>
+<span id="cb43-3"><a href="EDA.html#cb43-3" tabindex="-1"></a>  <span class="fu">count</span>(FAVC, <span class="at">name =</span> <span class="st">&quot;n&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb43-4"><a href="EDA.html#cb43-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">categoria =</span> FAVC,</span>
+<span id="cb43-5"><a href="EDA.html#cb43-5" tabindex="-1"></a>         <span class="at">variable =</span> <span class="st">&quot;FAVC&quot;</span>,</span>
+<span id="cb43-6"><a href="EDA.html#cb43-6" tabindex="-1"></a>         <span class="at">porcentaje =</span> (n <span class="sc">/</span> <span class="fu">sum</span>(n)) <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb43-7"><a href="EDA.html#cb43-7" tabindex="-1"></a>  <span class="fu">select</span>(NObeyesdad, categoria, n, porcentaje)</span>
+<span id="cb43-8"><a href="EDA.html#cb43-8" tabindex="-1"></a></span>
+<span id="cb43-9"><a href="EDA.html#cb43-9" tabindex="-1"></a>datos_plot_FAVC <span class="sc">%&gt;%</span> </span>
+<span id="cb43-10"><a href="EDA.html#cb43-10" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> categoria, <span class="at">y =</span> n, <span class="at">fill =</span> NObeyesdad)) <span class="sc">+</span></span>
+<span id="cb43-11"><a href="EDA.html#cb43-11" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.9</span>)) <span class="sc">+</span></span>
+<span id="cb43-12"><a href="EDA.html#cb43-12" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste0</span>(n, <span class="st">&quot; (&quot;</span>, <span class="fu">round</span>(porcentaje, <span class="dv">1</span>), <span class="st">&quot;%)&quot;</span>)),</span>
+<span id="cb43-13"><a href="EDA.html#cb43-13" tabindex="-1"></a>            <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.9</span>),</span>
+<span id="cb43-14"><a href="EDA.html#cb43-14" tabindex="-1"></a>            <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.3</span>,</span>
+<span id="cb43-15"><a href="EDA.html#cb43-15" tabindex="-1"></a>            <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb43-16"><a href="EDA.html#cb43-16" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Consumo de alimentos con alto nivel de calorias (FAVC)&quot;</span>,</span>
+<span id="cb43-17"><a href="EDA.html#cb43-17" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Alimentos con altas calorías (FAVC)&quot;</span>,</span>
+<span id="cb43-18"><a href="EDA.html#cb43-18" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Tipo de obesidad del encuestado&quot;</span></span>
+<span id="cb43-19"><a href="EDA.html#cb43-19" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb43-20"><a href="EDA.html#cb43-20" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb43-21"><a href="EDA.html#cb43-21" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set1&quot;</span>) </span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-29-1.png" width="672" />
+INTERPRETACIÓN…</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="EDA.html#cb44-1" tabindex="-1"></a>datos_plot_CAEC <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
+<span id="cb44-2"><a href="EDA.html#cb44-2" tabindex="-1"></a>  <span class="fu">group_by</span>(NObeyesdad) <span class="sc">%&gt;%</span></span>
+<span id="cb44-3"><a href="EDA.html#cb44-3" tabindex="-1"></a>  <span class="fu">count</span>(CAEC, <span class="at">name =</span> <span class="st">&quot;n&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb44-4"><a href="EDA.html#cb44-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">categoria =</span> CAEC,</span>
+<span id="cb44-5"><a href="EDA.html#cb44-5" tabindex="-1"></a>         <span class="at">variable =</span> <span class="st">&quot;CAEC&quot;</span>,</span>
+<span id="cb44-6"><a href="EDA.html#cb44-6" tabindex="-1"></a>         <span class="at">porcentaje =</span> (n <span class="sc">/</span> <span class="fu">sum</span>(n)) <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb44-7"><a href="EDA.html#cb44-7" tabindex="-1"></a>  <span class="fu">select</span>(NObeyesdad, categoria, n, porcentaje)</span>
+<span id="cb44-8"><a href="EDA.html#cb44-8" tabindex="-1"></a></span>
+<span id="cb44-9"><a href="EDA.html#cb44-9" tabindex="-1"></a>datos_plot_CAEC <span class="sc">%&gt;%</span> </span>
+<span id="cb44-10"><a href="EDA.html#cb44-10" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> categoria, <span class="at">y =</span> n, <span class="at">fill =</span> NObeyesdad)) <span class="sc">+</span></span>
+<span id="cb44-11"><a href="EDA.html#cb44-11" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.9</span>)) <span class="sc">+</span></span>
+<span id="cb44-12"><a href="EDA.html#cb44-12" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste0</span>(n, <span class="st">&quot; (&quot;</span>, <span class="fu">round</span>(porcentaje, <span class="dv">1</span>), <span class="st">&quot;%)&quot;</span>)),</span>
+<span id="cb44-13"><a href="EDA.html#cb44-13" tabindex="-1"></a>            <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.9</span>),</span>
+<span id="cb44-14"><a href="EDA.html#cb44-14" tabindex="-1"></a>            <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.3</span>,</span>
+<span id="cb44-15"><a href="EDA.html#cb44-15" tabindex="-1"></a>            <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb44-16"><a href="EDA.html#cb44-16" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Consumo de alimento entre comidas (CAEC)&quot;</span>,</span>
+<span id="cb44-17"><a href="EDA.html#cb44-17" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;ALimentos entre comidas (CAEC)&quot;</span>,</span>
+<span id="cb44-18"><a href="EDA.html#cb44-18" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Tipo de obesidad del encuestado&quot;</span></span>
+<span id="cb44-19"><a href="EDA.html#cb44-19" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb44-20"><a href="EDA.html#cb44-20" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb44-21"><a href="EDA.html#cb44-21" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set1&quot;</span>) </span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-30-1.png" width="672" />
+INTERPRETACIÓN…</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="EDA.html#cb45-1" tabindex="-1"></a>datos_plot_SMOKE <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
+<span id="cb45-2"><a href="EDA.html#cb45-2" tabindex="-1"></a>  <span class="fu">group_by</span>(NObeyesdad) <span class="sc">%&gt;%</span></span>
+<span id="cb45-3"><a href="EDA.html#cb45-3" tabindex="-1"></a>  <span class="fu">count</span>(SMOKE, <span class="at">name =</span> <span class="st">&quot;n&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb45-4"><a href="EDA.html#cb45-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">categoria =</span> SMOKE,</span>
+<span id="cb45-5"><a href="EDA.html#cb45-5" tabindex="-1"></a>         <span class="at">variable =</span> <span class="st">&quot;SMOKE&quot;</span>,</span>
+<span id="cb45-6"><a href="EDA.html#cb45-6" tabindex="-1"></a>         <span class="at">porcentaje =</span> (n <span class="sc">/</span> <span class="fu">sum</span>(n)) <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb45-7"><a href="EDA.html#cb45-7" tabindex="-1"></a>  <span class="fu">select</span>(NObeyesdad, categoria, n, porcentaje)</span>
+<span id="cb45-8"><a href="EDA.html#cb45-8" tabindex="-1"></a></span>
+<span id="cb45-9"><a href="EDA.html#cb45-9" tabindex="-1"></a>datos_plot_SMOKE <span class="sc">%&gt;%</span> </span>
+<span id="cb45-10"><a href="EDA.html#cb45-10" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> categoria, <span class="at">y =</span> n, <span class="at">fill =</span> NObeyesdad)) <span class="sc">+</span></span>
+<span id="cb45-11"><a href="EDA.html#cb45-11" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.9</span>)) <span class="sc">+</span></span>
+<span id="cb45-12"><a href="EDA.html#cb45-12" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste0</span>(n, <span class="st">&quot; (&quot;</span>, <span class="fu">round</span>(porcentaje, <span class="dv">1</span>), <span class="st">&quot;%)&quot;</span>)),</span>
+<span id="cb45-13"><a href="EDA.html#cb45-13" tabindex="-1"></a>            <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.9</span>),</span>
+<span id="cb45-14"><a href="EDA.html#cb45-14" tabindex="-1"></a>            <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.3</span>,</span>
+<span id="cb45-15"><a href="EDA.html#cb45-15" tabindex="-1"></a>            <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb45-16"><a href="EDA.html#cb45-16" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;¿FUMAS? (SMOKE)&quot;</span>,</span>
+<span id="cb45-17"><a href="EDA.html#cb45-17" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;¿FUMAS? (SMOKE)&quot;</span>,</span>
+<span id="cb45-18"><a href="EDA.html#cb45-18" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Tipo de obesidad del encuestado&quot;</span></span>
+<span id="cb45-19"><a href="EDA.html#cb45-19" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb45-20"><a href="EDA.html#cb45-20" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb45-21"><a href="EDA.html#cb45-21" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set1&quot;</span>) </span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-31-1.png" width="672" />
+INTERPRETACIÓN…</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="EDA.html#cb46-1" tabindex="-1"></a>datos_plot_SCC <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
+<span id="cb46-2"><a href="EDA.html#cb46-2" tabindex="-1"></a>  <span class="fu">group_by</span>(NObeyesdad) <span class="sc">%&gt;%</span></span>
+<span id="cb46-3"><a href="EDA.html#cb46-3" tabindex="-1"></a>  <span class="fu">count</span>(SCC, <span class="at">name =</span> <span class="st">&quot;n&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb46-4"><a href="EDA.html#cb46-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">categoria =</span> SCC,</span>
+<span id="cb46-5"><a href="EDA.html#cb46-5" tabindex="-1"></a>         <span class="at">variable =</span> <span class="st">&quot;SCC&quot;</span>,</span>
+<span id="cb46-6"><a href="EDA.html#cb46-6" tabindex="-1"></a>         <span class="at">porcentaje =</span> (n <span class="sc">/</span> <span class="fu">sum</span>(n)) <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb46-7"><a href="EDA.html#cb46-7" tabindex="-1"></a>  <span class="fu">select</span>(NObeyesdad, categoria, n, porcentaje)</span>
+<span id="cb46-8"><a href="EDA.html#cb46-8" tabindex="-1"></a></span>
+<span id="cb46-9"><a href="EDA.html#cb46-9" tabindex="-1"></a>datos_plot_SCC <span class="sc">%&gt;%</span> </span>
+<span id="cb46-10"><a href="EDA.html#cb46-10" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> categoria, <span class="at">y =</span> n, <span class="at">fill =</span> NObeyesdad)) <span class="sc">+</span></span>
+<span id="cb46-11"><a href="EDA.html#cb46-11" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.9</span>)) <span class="sc">+</span></span>
+<span id="cb46-12"><a href="EDA.html#cb46-12" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste0</span>(n, <span class="st">&quot; (&quot;</span>, <span class="fu">round</span>(porcentaje, <span class="dv">1</span>), <span class="st">&quot;%)&quot;</span>)),</span>
+<span id="cb46-13"><a href="EDA.html#cb46-13" tabindex="-1"></a>            <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.9</span>),</span>
+<span id="cb46-14"><a href="EDA.html#cb46-14" tabindex="-1"></a>            <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.3</span>,</span>
+<span id="cb46-15"><a href="EDA.html#cb46-15" tabindex="-1"></a>            <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb46-16"><a href="EDA.html#cb46-16" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Monitoreo diario de calorías (SCC)&quot;</span>,</span>
+<span id="cb46-17"><a href="EDA.html#cb46-17" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;¿Monitoreas tus calorías diariamente? (SCC)&quot;</span>,</span>
+<span id="cb46-18"><a href="EDA.html#cb46-18" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Tipo de obesidad del encuestado&quot;</span></span>
+<span id="cb46-19"><a href="EDA.html#cb46-19" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb46-20"><a href="EDA.html#cb46-20" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb46-21"><a href="EDA.html#cb46-21" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set1&quot;</span>) </span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-32-1.png" width="672" />
+INTERPRETACIÓN…</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="EDA.html#cb47-1" tabindex="-1"></a>datos_plot_CALC <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
+<span id="cb47-2"><a href="EDA.html#cb47-2" tabindex="-1"></a>  <span class="fu">group_by</span>(NObeyesdad) <span class="sc">%&gt;%</span></span>
+<span id="cb47-3"><a href="EDA.html#cb47-3" tabindex="-1"></a>  <span class="fu">count</span>(CALC, <span class="at">name =</span> <span class="st">&quot;n&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb47-4"><a href="EDA.html#cb47-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">categoria =</span> CALC,</span>
+<span id="cb47-5"><a href="EDA.html#cb47-5" tabindex="-1"></a>         <span class="at">variable =</span> <span class="st">&quot;CALC&quot;</span>,</span>
+<span id="cb47-6"><a href="EDA.html#cb47-6" tabindex="-1"></a>         <span class="at">porcentaje =</span> (n <span class="sc">/</span> <span class="fu">sum</span>(n)) <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb47-7"><a href="EDA.html#cb47-7" tabindex="-1"></a>  <span class="fu">select</span>(NObeyesdad, categoria, n, porcentaje)</span>
+<span id="cb47-8"><a href="EDA.html#cb47-8" tabindex="-1"></a></span>
+<span id="cb47-9"><a href="EDA.html#cb47-9" tabindex="-1"></a>datos_plot_CALC <span class="sc">%&gt;%</span> </span>
+<span id="cb47-10"><a href="EDA.html#cb47-10" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> categoria, <span class="at">y =</span> n, <span class="at">fill =</span> NObeyesdad)) <span class="sc">+</span></span>
+<span id="cb47-11"><a href="EDA.html#cb47-11" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.9</span>)) <span class="sc">+</span></span>
+<span id="cb47-12"><a href="EDA.html#cb47-12" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste0</span>(n, <span class="st">&quot; (&quot;</span>, <span class="fu">round</span>(porcentaje, <span class="dv">1</span>), <span class="st">&quot;%)&quot;</span>)),</span>
+<span id="cb47-13"><a href="EDA.html#cb47-13" tabindex="-1"></a>            <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.9</span>),</span>
+<span id="cb47-14"><a href="EDA.html#cb47-14" tabindex="-1"></a>            <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.3</span>,</span>
+<span id="cb47-15"><a href="EDA.html#cb47-15" tabindex="-1"></a>            <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb47-16"><a href="EDA.html#cb47-16" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Frecuencia de consumo de alcohol (CALC)&quot;</span>,</span>
+<span id="cb47-17"><a href="EDA.html#cb47-17" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Frecuencia de consumo de alcohol (CALC)&quot;</span>,</span>
+<span id="cb47-18"><a href="EDA.html#cb47-18" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Tipo de obesidad del encuestado&quot;</span></span>
+<span id="cb47-19"><a href="EDA.html#cb47-19" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb47-20"><a href="EDA.html#cb47-20" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb47-21"><a href="EDA.html#cb47-21" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set1&quot;</span>) </span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-33-1.png" width="672" />
+INTERPRETACIÓN…</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="EDA.html#cb48-1" tabindex="-1"></a>datos_plot_MTRANS <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
+<span id="cb48-2"><a href="EDA.html#cb48-2" tabindex="-1"></a>  <span class="fu">group_by</span>(NObeyesdad) <span class="sc">%&gt;%</span></span>
+<span id="cb48-3"><a href="EDA.html#cb48-3" tabindex="-1"></a>  <span class="fu">count</span>(MTRANS, <span class="at">name =</span> <span class="st">&quot;n&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb48-4"><a href="EDA.html#cb48-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">categoria =</span> MTRANS,</span>
+<span id="cb48-5"><a href="EDA.html#cb48-5" tabindex="-1"></a>         <span class="at">variable =</span> <span class="st">&quot;MTRANS&quot;</span>,</span>
+<span id="cb48-6"><a href="EDA.html#cb48-6" tabindex="-1"></a>         <span class="at">porcentaje =</span> (n <span class="sc">/</span> <span class="fu">sum</span>(n)) <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb48-7"><a href="EDA.html#cb48-7" tabindex="-1"></a>  <span class="fu">select</span>(NObeyesdad, categoria, n, porcentaje)</span>
+<span id="cb48-8"><a href="EDA.html#cb48-8" tabindex="-1"></a></span>
+<span id="cb48-9"><a href="EDA.html#cb48-9" tabindex="-1"></a>datos_plot_MTRANS <span class="sc">%&gt;%</span> </span>
+<span id="cb48-10"><a href="EDA.html#cb48-10" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> categoria, <span class="at">y =</span> n, <span class="at">fill =</span> NObeyesdad)) <span class="sc">+</span></span>
+<span id="cb48-11"><a href="EDA.html#cb48-11" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.9</span>)) <span class="sc">+</span></span>
+<span id="cb48-12"><a href="EDA.html#cb48-12" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste0</span>(n, <span class="st">&quot; (&quot;</span>, <span class="fu">round</span>(porcentaje, <span class="dv">1</span>), <span class="st">&quot;%)&quot;</span>)),</span>
+<span id="cb48-13"><a href="EDA.html#cb48-13" tabindex="-1"></a>            <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.9</span>),</span>
+<span id="cb48-14"><a href="EDA.html#cb48-14" tabindex="-1"></a>            <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.3</span>,</span>
+<span id="cb48-15"><a href="EDA.html#cb48-15" tabindex="-1"></a>            <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb48-16"><a href="EDA.html#cb48-16" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot; Medio de transporte utilizado (MTRANS)&quot;</span>,</span>
+<span id="cb48-17"><a href="EDA.html#cb48-17" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot; Medio de transporte utilizado (MTRANS)&quot;</span>,</span>
+<span id="cb48-18"><a href="EDA.html#cb48-18" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Tipo de obesidad del encuestado&quot;</span></span>
+<span id="cb48-19"><a href="EDA.html#cb48-19" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb48-20"><a href="EDA.html#cb48-20" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb48-21"><a href="EDA.html#cb48-21" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set1&quot;</span>)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-34-1.png" width="672" />
+INTERPRETACIÓN…</p>
+<ul>
+<li>Comparación variables categóricas independiente respecto a NObeyesdad</li>
+</ul>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="EDA.html#cb49-1" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
+<span id="cb49-2"><a href="EDA.html#cb49-2" tabindex="-1"></a>  <span class="fu">group_by</span>(NObeyesdad) <span class="sc">%&gt;%</span></span>
+<span id="cb49-3"><a href="EDA.html#cb49-3" tabindex="-1"></a>  <span class="fu">count</span>(Gender, <span class="at">name =</span> <span class="st">&quot;n&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb49-4"><a href="EDA.html#cb49-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">categoria =</span> Gender,</span>
+<span id="cb49-5"><a href="EDA.html#cb49-5" tabindex="-1"></a>         <span class="at">variable =</span> <span class="st">&quot;Gender&quot;</span>,</span>
+<span id="cb49-6"><a href="EDA.html#cb49-6" tabindex="-1"></a>         <span class="at">porcentaje =</span> (n <span class="sc">/</span> <span class="fu">sum</span>(n)) <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb49-7"><a href="EDA.html#cb49-7" tabindex="-1"></a>  <span class="fu">select</span>(NObeyesdad, variable, categoria, n, porcentaje)</span></code></pre></div>
+<pre><code>## # A tibble: 14 × 5
+## # Groups:   NObeyesdad [7]
+##    NObeyesdad          variable categoria     n porcentaje
+##    &lt;chr&gt;               &lt;chr&gt;    &lt;chr&gt;     &lt;int&gt;      &lt;dbl&gt;
+##  1 Insufficient_Weight Gender   Female      173     63.6  
+##  2 Insufficient_Weight Gender   Male         99     36.4  
+##  3 Normal_Weight       Gender   Female      141     49.1  
+##  4 Normal_Weight       Gender   Male        146     50.9  
+##  5 Obesity_Type_I      Gender   Female      156     44.4  
+##  6 Obesity_Type_I      Gender   Male        195     55.6  
+##  7 Obesity_Type_II     Gender   Female        2      0.673
+##  8 Obesity_Type_II     Gender   Male        295     99.3  
+##  9 Obesity_Type_III    Gender   Female      323     99.7  
+## 10 Obesity_Type_III    Gender   Male          1      0.309
+## 11 Overweight_Level_I  Gender   Female      145     50    
+## 12 Overweight_Level_I  Gender   Male        145     50    
+## 13 Overweight_Level_II Gender   Female      103     35.5  
+## 14 Overweight_Level_II Gender   Male        187     64.5</code></pre>
+<p>INTERPRETACIÓN…</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="EDA.html#cb51-1" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
+<span id="cb51-2"><a href="EDA.html#cb51-2" tabindex="-1"></a>  <span class="fu">group_by</span>(NObeyesdad) <span class="sc">%&gt;%</span></span>
+<span id="cb51-3"><a href="EDA.html#cb51-3" tabindex="-1"></a>  <span class="fu">count</span>(family_history_with_overweight, <span class="at">name =</span> <span class="st">&quot;n&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb51-4"><a href="EDA.html#cb51-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">categoria =</span> family_history_with_overweight,</span>
+<span id="cb51-5"><a href="EDA.html#cb51-5" tabindex="-1"></a>         <span class="at">variable =</span> <span class="st">&quot;family_history_with_overweight&quot;</span>,</span>
+<span id="cb51-6"><a href="EDA.html#cb51-6" tabindex="-1"></a>         <span class="at">porcentaje =</span> (n <span class="sc">/</span> <span class="fu">sum</span>(n)) <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb51-7"><a href="EDA.html#cb51-7" tabindex="-1"></a>  <span class="fu">select</span>(NObeyesdad, variable, categoria, n, porcentaje)</span></code></pre></div>
+<pre><code>## # A tibble: 13 × 5
+## # Groups:   NObeyesdad [7]
+##    NObeyesdad          variable                    categoria     n porcentaje
+##    &lt;chr&gt;               &lt;chr&gt;                       &lt;chr&gt;     &lt;int&gt;      &lt;dbl&gt;
+##  1 Insufficient_Weight family_history_with_overwe… no          146     53.7  
+##  2 Insufficient_Weight family_history_with_overwe… yes         126     46.3  
+##  3 Normal_Weight       family_history_with_overwe… no          132     46.0  
+##  4 Normal_Weight       family_history_with_overwe… yes         155     54.0  
+##  5 Obesity_Type_I      family_history_with_overwe… no            7      1.99 
+##  6 Obesity_Type_I      family_history_with_overwe… yes         344     98.0  
+##  7 Obesity_Type_II     family_history_with_overwe… no            1      0.337
+##  8 Obesity_Type_II     family_history_with_overwe… yes         296     99.7  
+##  9 Obesity_Type_III    family_history_with_overwe… yes         324    100    
+## 10 Overweight_Level_I  family_history_with_overwe… no           81     27.9  
+## 11 Overweight_Level_I  family_history_with_overwe… yes         209     72.1  
+## 12 Overweight_Level_II family_history_with_overwe… no           18      6.21 
+## 13 Overweight_Level_II family_history_with_overwe… yes         272     93.8</code></pre>
+<p>INTERPRETACIÓN…</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="EDA.html#cb53-1" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
+<span id="cb53-2"><a href="EDA.html#cb53-2" tabindex="-1"></a>  <span class="fu">group_by</span>(NObeyesdad) <span class="sc">%&gt;%</span></span>
+<span id="cb53-3"><a href="EDA.html#cb53-3" tabindex="-1"></a>  <span class="fu">count</span>(FAVC, <span class="at">name =</span> <span class="st">&quot;n&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb53-4"><a href="EDA.html#cb53-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">categoria =</span> FAVC,</span>
+<span id="cb53-5"><a href="EDA.html#cb53-5" tabindex="-1"></a>         <span class="at">variable =</span> <span class="st">&quot;FAVC&quot;</span>,</span>
+<span id="cb53-6"><a href="EDA.html#cb53-6" tabindex="-1"></a>         <span class="at">porcentaje =</span> (n <span class="sc">/</span> <span class="fu">sum</span>(n)) <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb53-7"><a href="EDA.html#cb53-7" tabindex="-1"></a>  <span class="fu">select</span>(NObeyesdad, variable, categoria, n, porcentaje)</span></code></pre></div>
+<pre><code>## # A tibble: 14 × 5
+## # Groups:   NObeyesdad [7]
+##    NObeyesdad          variable categoria     n porcentaje
+##    &lt;chr&gt;               &lt;chr&gt;    &lt;chr&gt;     &lt;int&gt;      &lt;dbl&gt;
+##  1 Insufficient_Weight FAVC     no           51     18.8  
+##  2 Insufficient_Weight FAVC     yes         221     81.2  
+##  3 Normal_Weight       FAVC     no           79     27.5  
+##  4 Normal_Weight       FAVC     yes         208     72.5  
+##  5 Obesity_Type_I      FAVC     no           11      3.13 
+##  6 Obesity_Type_I      FAVC     yes         340     96.9  
+##  7 Obesity_Type_II     FAVC     no            7      2.36 
+##  8 Obesity_Type_II     FAVC     yes         290     97.6  
+##  9 Obesity_Type_III    FAVC     no            1      0.309
+## 10 Obesity_Type_III    FAVC     yes         323     99.7  
+## 11 Overweight_Level_I  FAVC     no           22      7.59 
+## 12 Overweight_Level_I  FAVC     yes         268     92.4  
+## 13 Overweight_Level_II FAVC     no           74     25.5  
+## 14 Overweight_Level_II FAVC     yes         216     74.5</code></pre>
+<p>INTERPRETACIÓN…</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="EDA.html#cb55-1" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
+<span id="cb55-2"><a href="EDA.html#cb55-2" tabindex="-1"></a>  <span class="fu">group_by</span>(NObeyesdad) <span class="sc">%&gt;%</span></span>
+<span id="cb55-3"><a href="EDA.html#cb55-3" tabindex="-1"></a>  <span class="fu">count</span>(CAEC, <span class="at">name =</span> <span class="st">&quot;n&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb55-4"><a href="EDA.html#cb55-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">categoria =</span> CAEC,</span>
+<span id="cb55-5"><a href="EDA.html#cb55-5" tabindex="-1"></a>         <span class="at">variable =</span> <span class="st">&quot;CAEC&quot;</span>,</span>
+<span id="cb55-6"><a href="EDA.html#cb55-6" tabindex="-1"></a>         <span class="at">porcentaje =</span> (n <span class="sc">/</span> <span class="fu">sum</span>(n)) <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb55-7"><a href="EDA.html#cb55-7" tabindex="-1"></a>  <span class="fu">select</span>(NObeyesdad, variable, categoria, n, porcentaje)</span></code></pre></div>
+<pre><code>## # A tibble: 26 × 5
+## # Groups:   NObeyesdad [7]
+##    NObeyesdad          variable categoria      n porcentaje
+##    &lt;chr&gt;               &lt;chr&gt;    &lt;chr&gt;      &lt;int&gt;      &lt;dbl&gt;
+##  1 Insufficient_Weight CAEC     Always         2      0.735
+##  2 Insufficient_Weight CAEC     Frequently   121     44.5  
+##  3 Insufficient_Weight CAEC     Sometimes    146     53.7  
+##  4 Insufficient_Weight CAEC     no             3      1.10 
+##  5 Normal_Weight       CAEC     Always        35     12.2  
+##  6 Normal_Weight       CAEC     Frequently    83     28.9  
+##  7 Normal_Weight       CAEC     Sometimes    159     55.4  
+##  8 Normal_Weight       CAEC     no            10      3.48 
+##  9 Obesity_Type_I      CAEC     Always         6      1.71 
+## 10 Obesity_Type_I      CAEC     Frequently     6      1.71 
+## # ℹ 16 more rows</code></pre>
+<p>INTERPRETACIÓN…</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="EDA.html#cb57-1" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
+<span id="cb57-2"><a href="EDA.html#cb57-2" tabindex="-1"></a>  <span class="fu">group_by</span>(NObeyesdad) <span class="sc">%&gt;%</span></span>
+<span id="cb57-3"><a href="EDA.html#cb57-3" tabindex="-1"></a>  <span class="fu">count</span>(SMOKE, <span class="at">name =</span> <span class="st">&quot;n&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb57-4"><a href="EDA.html#cb57-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">categoria =</span> SMOKE,</span>
+<span id="cb57-5"><a href="EDA.html#cb57-5" tabindex="-1"></a>         <span class="at">variable =</span> <span class="st">&quot;SMOKE&quot;</span>,</span>
+<span id="cb57-6"><a href="EDA.html#cb57-6" tabindex="-1"></a>         <span class="at">porcentaje =</span> (n <span class="sc">/</span> <span class="fu">sum</span>(n)) <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb57-7"><a href="EDA.html#cb57-7" tabindex="-1"></a>  <span class="fu">select</span>(NObeyesdad, variable, categoria, n, porcentaje)</span></code></pre></div>
+<pre><code>## # A tibble: 14 × 5
+## # Groups:   NObeyesdad [7]
+##    NObeyesdad          variable categoria     n porcentaje
+##    &lt;chr&gt;               &lt;chr&gt;    &lt;chr&gt;     &lt;int&gt;      &lt;dbl&gt;
+##  1 Insufficient_Weight SMOKE    no          271     99.6  
+##  2 Insufficient_Weight SMOKE    yes           1      0.368
+##  3 Normal_Weight       SMOKE    no          274     95.5  
+##  4 Normal_Weight       SMOKE    yes          13      4.53 
+##  5 Obesity_Type_I      SMOKE    no          345     98.3  
+##  6 Obesity_Type_I      SMOKE    yes           6      1.71 
+##  7 Obesity_Type_II     SMOKE    no          282     94.9  
+##  8 Obesity_Type_II     SMOKE    yes          15      5.05 
+##  9 Obesity_Type_III    SMOKE    no          323     99.7  
+## 10 Obesity_Type_III    SMOKE    yes           1      0.309
+## 11 Overweight_Level_I  SMOKE    no          287     99.0  
+## 12 Overweight_Level_I  SMOKE    yes           3      1.03 
+## 13 Overweight_Level_II SMOKE    no          285     98.3  
+## 14 Overweight_Level_II SMOKE    yes           5      1.72</code></pre>
+<p>INTERPRETACIÓN…</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="EDA.html#cb59-1" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
+<span id="cb59-2"><a href="EDA.html#cb59-2" tabindex="-1"></a>  <span class="fu">group_by</span>(NObeyesdad) <span class="sc">%&gt;%</span></span>
+<span id="cb59-3"><a href="EDA.html#cb59-3" tabindex="-1"></a>  <span class="fu">count</span>(SCC, <span class="at">name =</span> <span class="st">&quot;n&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb59-4"><a href="EDA.html#cb59-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">categoria =</span> SCC,</span>
+<span id="cb59-5"><a href="EDA.html#cb59-5" tabindex="-1"></a>         <span class="at">variable =</span> <span class="st">&quot;SCC&quot;</span>,</span>
+<span id="cb59-6"><a href="EDA.html#cb59-6" tabindex="-1"></a>         <span class="at">porcentaje =</span> (n <span class="sc">/</span> <span class="fu">sum</span>(n)) <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb59-7"><a href="EDA.html#cb59-7" tabindex="-1"></a>  <span class="fu">select</span>(NObeyesdad, variable, categoria, n, porcentaje)</span></code></pre></div>
+<pre><code>## # A tibble: 13 × 5
+## # Groups:   NObeyesdad [7]
+##    NObeyesdad          variable categoria     n porcentaje
+##    &lt;chr&gt;               &lt;chr&gt;    &lt;chr&gt;     &lt;int&gt;      &lt;dbl&gt;
+##  1 Insufficient_Weight SCC      no          250     91.9  
+##  2 Insufficient_Weight SCC      yes          22      8.09 
+##  3 Normal_Weight       SCC      no          257     89.5  
+##  4 Normal_Weight       SCC      yes          30     10.5  
+##  5 Obesity_Type_I      SCC      no          349     99.4  
+##  6 Obesity_Type_I      SCC      yes           2      0.570
+##  7 Obesity_Type_II     SCC      no          296     99.7  
+##  8 Obesity_Type_II     SCC      yes           1      0.337
+##  9 Obesity_Type_III    SCC      no          324    100    
+## 10 Overweight_Level_I  SCC      no          253     87.2  
+## 11 Overweight_Level_I  SCC      yes          37     12.8  
+## 12 Overweight_Level_II SCC      no          286     98.6  
+## 13 Overweight_Level_II SCC      yes           4      1.38</code></pre>
+<p>INTERPRETACIÓN…</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="EDA.html#cb61-1" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
+<span id="cb61-2"><a href="EDA.html#cb61-2" tabindex="-1"></a>  <span class="fu">group_by</span>(NObeyesdad) <span class="sc">%&gt;%</span></span>
+<span id="cb61-3"><a href="EDA.html#cb61-3" tabindex="-1"></a>  <span class="fu">count</span>(CALC, <span class="at">name =</span> <span class="st">&quot;n&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb61-4"><a href="EDA.html#cb61-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">categoria =</span> CALC,</span>
+<span id="cb61-5"><a href="EDA.html#cb61-5" tabindex="-1"></a>         <span class="at">variable =</span> <span class="st">&quot;CALC&quot;</span>,</span>
+<span id="cb61-6"><a href="EDA.html#cb61-6" tabindex="-1"></a>         <span class="at">porcentaje =</span> (n <span class="sc">/</span> <span class="fu">sum</span>(n)) <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb61-7"><a href="EDA.html#cb61-7" tabindex="-1"></a>  <span class="fu">select</span>(NObeyesdad, variable, categoria, n, porcentaje)</span></code></pre></div>
+<pre><code>## # A tibble: 21 × 5
+## # Groups:   NObeyesdad [7]
+##    NObeyesdad          variable categoria      n porcentaje
+##    &lt;chr&gt;               &lt;chr&gt;    &lt;chr&gt;      &lt;int&gt;      &lt;dbl&gt;
+##  1 Insufficient_Weight CALC     Frequently     1      0.368
+##  2 Insufficient_Weight CALC     Sometimes    154     56.6  
+##  3 Insufficient_Weight CALC     no           117     43.0  
+##  4 Normal_Weight       CALC     Always         1      0.348
+##  5 Normal_Weight       CALC     Frequently    18      6.27 
+##  6 Normal_Weight       CALC     Sometimes    161     56.1  
+##  7 Normal_Weight       CALC     no           107     37.3  
+##  8 Obesity_Type_I      CALC     Frequently    14      3.99 
+##  9 Obesity_Type_I      CALC     Sometimes    172     49.0  
+## 10 Obesity_Type_I      CALC     no           165     47.0  
+## # ℹ 11 more rows</code></pre>
+<p>INTERPRETACIÓN…</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="EDA.html#cb63-1" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
+<span id="cb63-2"><a href="EDA.html#cb63-2" tabindex="-1"></a>  <span class="fu">group_by</span>(NObeyesdad) <span class="sc">%&gt;%</span></span>
+<span id="cb63-3"><a href="EDA.html#cb63-3" tabindex="-1"></a>  <span class="fu">count</span>(MTRANS, <span class="at">name =</span> <span class="st">&quot;n&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb63-4"><a href="EDA.html#cb63-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">categoria =</span> MTRANS,</span>
+<span id="cb63-5"><a href="EDA.html#cb63-5" tabindex="-1"></a>         <span class="at">variable =</span> <span class="st">&quot;MTRANS&quot;</span>,</span>
+<span id="cb63-6"><a href="EDA.html#cb63-6" tabindex="-1"></a>         <span class="at">porcentaje =</span> (n <span class="sc">/</span> <span class="fu">sum</span>(n)) <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb63-7"><a href="EDA.html#cb63-7" tabindex="-1"></a>  <span class="fu">select</span>(NObeyesdad, variable, categoria, n, porcentaje)</span></code></pre></div>
+<pre><code>## # A tibble: 27 × 5
+## # Groups:   NObeyesdad [7]
+##    NObeyesdad          variable categoria                 n porcentaje
+##    &lt;chr&gt;               &lt;chr&gt;    &lt;chr&gt;                 &lt;int&gt;      &lt;dbl&gt;
+##  1 Insufficient_Weight MTRANS   Automobile               46     16.9  
+##  2 Insufficient_Weight MTRANS   Public_Transportation   220     80.9  
+##  3 Insufficient_Weight MTRANS   Walking                   6      2.21 
+##  4 Normal_Weight       MTRANS   Automobile               45     15.7  
+##  5 Normal_Weight       MTRANS   Bike                      4      1.39 
+##  6 Normal_Weight       MTRANS   Motorbike                 6      2.09 
+##  7 Normal_Weight       MTRANS   Public_Transportation   200     69.7  
+##  8 Normal_Weight       MTRANS   Walking                  32     11.1  
+##  9 Obesity_Type_I      MTRANS   Automobile              110     31.3  
+## 10 Obesity_Type_I      MTRANS   Motorbike                 3      0.855
+## # ℹ 17 more rows</code></pre>
+<p>INTERPRETACIÓN…</p>
 
 </div>
 </div>
