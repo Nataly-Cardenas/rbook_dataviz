@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 Análisis Exploratorio de Datos (EDA) | A Minimal Book Example</title>
+  <title>Chapter 3 Análisis Exploratorio de Datos (EDA) | Análisis Estadístico de Factores Asociados a la Obesidad</title>
   <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 Análisis Exploratorio de Datos (EDA) | A Minimal Book Example" />
+  <meta property="og:title" content="Chapter 3 Análisis Exploratorio de Datos (EDA) | Análisis Estadístico de Factores Asociados a la Obesidad" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 Análisis Exploratorio de Datos (EDA) | A Minimal Book Example" />
+  <meta name="twitter:title" content="Chapter 3 Análisis Exploratorio de Datos (EDA) | Análisis Estadístico de Factores Asociados a la Obesidad" />
   
   <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   
@@ -23,7 +23,7 @@
 <meta name="author" content="Nátaly Cárdenas, Roger Daza y Daniel Gómez" />
 
 
-<meta name="date" content="2025-08-12" />
+<meta name="date" content="2025-08-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="base-de-datos.html"/>
-<link rel="next" href="application.html"/>
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -137,7 +137,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">A Minimal Book Example</a></li>
+<li><a href="./">Análisis Estadístico de Factores Asociados a la Obesidad</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Sobre este libro</a></li>
@@ -158,9 +158,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.5" data-path="03-EDA.html"><a href="#an%C3%A1lisis-exploratorio-bivariado-nobeyesdad-vs-var.num%C3%A9rica"><i class="fa fa-check"></i><b>3.5</b> Análisis exploratorio bivariado (NObeyesdad vs var.numérica)</a></li>
 <li class="chapter" data-level="3.6" data-path="03-EDA.html"><a href="#an%C3%A1lisis-exploratorio-bivariado-nobeyesdad-vs-var.categ%C3%B3rica"><i class="fa fa-check"></i><b>3.6</b> Análisis exploratorio bivariado (NObeyesdad vs var.categórica)</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="application.html"><a href="application.html"><i class="fa fa-check"></i><b>4</b> application</a></li>
-<li class="chapter" data-level="5" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>5</b> Final Words</a></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -173,7 +170,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Minimal Book Example</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Análisis Estadístico de Factores Asociados a la Obesidad</a>
           </h1>
         </div>
 
@@ -198,9 +195,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="EDA.html#cb2-1" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;C:/Users/natal/Downloads/estimation+of+obesity+levels+based+on+eating+habits+and+physical+condition/ObesityDataSet_raw_and_data_sinthetic.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## Rows: 2111 Columns: 17
-## ── Column specification ─────────────────────────────────────────────────────
+## ── Column specification ──────────────────────────────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
-## chr (9): Gender, family_history_with_overweight, FAVC, CAEC, SMOKE, SCC, ...
+## chr (9): Gender, family_history_with_overweight, FAVC, CAEC, SMOKE, SCC, CALC, MTRANS, NObeyesdad
 ## dbl (8): Age, Height, Weight, FCVC, NCP, CH2O, FAF, TUE
 ## 
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
@@ -211,15 +208,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="EDA.html#cb4-1" tabindex="-1"></a><span class="fu">dim</span>(datos) <span class="co"># Dimensiones del dataset</span></span></code></pre></div>
 <pre><code>## [1] 2111   17</code></pre>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="EDA.html#cb6-1" tabindex="-1"></a><span class="fu">colnames</span>(datos) <span class="co"># Nombres de las columnas</span></span></code></pre></div>
-<pre><code>##  [1] &quot;Gender&quot;                         &quot;Age&quot;                           
-##  [3] &quot;Height&quot;                         &quot;Weight&quot;                        
-##  [5] &quot;family_history_with_overweight&quot; &quot;FAVC&quot;                          
-##  [7] &quot;FCVC&quot;                           &quot;NCP&quot;                           
-##  [9] &quot;CAEC&quot;                           &quot;SMOKE&quot;                         
-## [11] &quot;CH2O&quot;                           &quot;SCC&quot;                           
-## [13] &quot;FAF&quot;                            &quot;TUE&quot;                           
-## [15] &quot;CALC&quot;                           &quot;MTRANS&quot;                        
-## [17] &quot;NObeyesdad&quot;</code></pre>
+<pre><code>##  [1] &quot;Gender&quot;                         &quot;Age&quot;                            &quot;Height&quot;                        
+##  [4] &quot;Weight&quot;                         &quot;family_history_with_overweight&quot; &quot;FAVC&quot;                          
+##  [7] &quot;FCVC&quot;                           &quot;NCP&quot;                            &quot;CAEC&quot;                          
+## [10] &quot;SMOKE&quot;                          &quot;CH2O&quot;                           &quot;SCC&quot;                           
+## [13] &quot;FAF&quot;                            &quot;TUE&quot;                            &quot;CALC&quot;                          
+## [16] &quot;MTRANS&quot;                         &quot;NObeyesdad&quot;</code></pre>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="EDA.html#cb8-1" tabindex="-1"></a><span class="fu">str</span>(datos) <span class="co"># Estructura del dataset</span></span></code></pre></div>
 <pre><code>## spc_tbl_ [2,111 × 17] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
 ##  $ Gender                        : chr [1:2111] &quot;Female&quot; &quot;Female&quot; &quot;Male&quot; &quot;Male&quot; ...
@@ -262,16 +256,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  - attr(*, &quot;problems&quot;)=&lt;externalptr&gt;</code></pre>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="EDA.html#cb10-1" tabindex="-1"></a><span class="fu">head</span>(datos,<span class="at">n=</span><span class="dv">5</span>) <span class="co"># Verificamos que se leyeron los datos correctamente viendo el encabezado y la cola </span></span></code></pre></div>
 <pre><code>## # A tibble: 5 × 17
-##   Gender   Age Height Weight family_history_with_ov…¹ FAVC   FCVC   NCP CAEC 
-##   &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;                    &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;
-## 1 Female    21   1.62   64   yes                      no        2     3 Some…
-## 2 Female    21   1.52   56   yes                      no        3     3 Some…
-## 3 Male      23   1.8    77   yes                      no        2     3 Some…
-## 4 Male      27   1.8    87   no                       no        3     3 Some…
-## 5 Male      22   1.78   89.8 no                       no        2     1 Some…
+##   Gender   Age Height Weight family_history_with_o…¹ FAVC   FCVC   NCP CAEC  SMOKE  CH2O SCC     FAF   TUE
+##   &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;                   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 Female    21   1.62   64   yes                     no        2     3 Some… no        2 no        0     1
+## 2 Female    21   1.52   56   yes                     no        3     3 Some… yes       3 yes       3     0
+## 3 Male      23   1.8    77   yes                     no        2     3 Some… no        2 no        2     1
+## 4 Male      27   1.8    87   no                      no        3     3 Some… no        2 no        2     0
+## 5 Male      22   1.78   89.8 no                      no        2     1 Some… no        2 no        0     0
 ## # ℹ abbreviated name: ¹​family_history_with_overweight
-## # ℹ 8 more variables: SMOKE &lt;chr&gt;, CH2O &lt;dbl&gt;, SCC &lt;chr&gt;, FAF &lt;dbl&gt;,
-## #   TUE &lt;dbl&gt;, CALC &lt;chr&gt;, MTRANS &lt;chr&gt;, NObeyesdad &lt;chr&gt;</code></pre>
+## # ℹ 3 more variables: CALC &lt;chr&gt;, MTRANS &lt;chr&gt;, NObeyesdad &lt;chr&gt;</code></pre>
 <ul>
 <li>verificamos que no existan valores faltantes en el dataset.</li>
 </ul>
@@ -300,7 +293,6 @@ Como podemos notar en la gráfica, ninguna de las 17 valiables del dataset tiene
 ## 5 Obesity_Type_III      324       15.3
 ## 6 Overweight_Level_I    290       13.7
 ## 7 Overweight_Level_II   290       13.7</code></pre>
-<p>INTERPRETACIÓN…</p>
 <ul>
 <li>Veamos un diagrama de barras</li>
 </ul>
@@ -326,8 +318,11 @@ Como podemos notar en la gráfica, ninguna de las 17 valiables del dataset tiene
 <span id="cb17-20"><a href="EDA.html#cb17-20" tabindex="-1"></a>    <span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>(),</span>
 <span id="cb17-21"><a href="EDA.html#cb17-21" tabindex="-1"></a>    <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>)</span>
 <span id="cb17-22"><a href="EDA.html#cb17-22" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-6-1.png" width="672" />
-INTERPRETACIÓN…</p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>El gráfico, acompañado de la tabla de frecuencias, muestra que la población estudiada presenta una alta proporción de individuos con algún grado de obesidad.
+La categoría Obesity_Type_I es la más común (16.6%), seguida de Obesity_Type_III (15.3%) y Obesity_Type_II (14.1%), lo que significa que cerca del 45% de la muestra se encuentra en niveles de obesidad moderada a severa.
+Las categorías de sobrepeso (Overweight_Level_I y Overweight_Level_II) representan en conjunto un 27.4%, mientras que el peso normal alcanza solo un 13.6% y el bajo peso un 12.9%.
+Esta distribución evidencia una tendencia preocupante hacia el exceso de peso y una baja representación de individuos con peso saludable, lo que puede reflejar una problemática real de salud pública o un sesgo en la selección de la muestra. Además, la relativa uniformidad en las frecuencias entre clases facilita el posterior modelado predictivo sin problemas severos de desbalance.</p>
 </div>
 <div id="análisis-exploratorio-univariado-de-variables-independientes-numéricas" class="section level2 hasAnchor" number="3.3">
 <h2><span class="header-section-number">3.3</span> Análisis exploratorio univariado de variables independientes numéricas<a href="#an%C3%A1lisis-exploratorio-univariado-de-variables-independientes-num%C3%A9ricas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -444,7 +439,13 @@ INTERPRETACIÓN…</p>
 ## 6 CH2O      2111  2.01   0.613    2       1      3     1.58    2.48  0.893
 ## 7 FAF       2111  1.01   0.851    1       0      3     0.125   1.67  1.54 
 ## 8 TUE       2111  0.658  0.609    0.625   0      2     0       1     1</code></pre>
-<p>INTERPRETACIÓN…</p>
+<p>El gráfico (posiblemente un resumen tabular o de diagramas de barras con medias y desviaciones estándar) revela las siguientes tendencias:</p>
+<ul>
+<li><p><strong>Variables demográficas:</strong> La edad se concentra en adultos jóvenes (media: 24.3 años), con pocos casos mayores a 50 años. La estatura presenta baja variabilidad (media: 1.70 m), mientras que el peso exhibe gran dispersión (39 a 173 kg), reflejando diversidad en los estados nutricionales.</p></li>
+<li><p><strong>Variables alimentarias:</strong> El consumo de vegetales (FCVC) se ubica en un rango medio (media: 2.42 en escala 1–3), y la mayoría consume entre 2 y 3 comidas principales al día (NCP). El consumo promedio de agua (2.01 L/día) se encuentra por debajo de las recomendaciones internacionales.</p></li>
+<li><p><strong>Variables de estilo de vida:</strong> La frecuencia de actividad física (FAF) es muy baja (media: 1.01 en escala relativa), mientras que el uso de dispositivos electrónicos (TUE) refleja hábitos sedentarios moderados.</p></li>
+</ul>
+<p>Estas estadísticas sugieren un estilo de vida con actividad física insuficiente y hábitos de hidratación mejorables, lo que podría estar relacionado con los altos niveles de obesidad observados.</p>
 <ul>
 <li>Gráficos de cada variable independiente numérica:</li>
 </ul>
@@ -543,7 +544,16 @@ INTERPRETACIÓN…</p>
 <span id="cb20-93"><a href="EDA.html#cb20-93" tabindex="-1"></a></span>
 <span id="cb20-94"><a href="EDA.html#cb20-94" tabindex="-1"></a><span class="fu">grid.arrange</span>(p1, p2, p3, p4, p5, p6, p7, p8, <span class="at">ncol =</span><span class="dv">3</span> ,<span class="at">newpage =</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-8-1.png" width="672" />
-INTERPRETACIÓN…</p>
+Los boxplots muestran la forma y dispersión de cada variable, permitiendo identificar asimetrías y valores atípicos:
+- <strong>Edad:</strong> Ligera asimetría positiva y presencia de valores atípicos en edades altas.</p>
+<ul>
+<li><p><strong>Estatura:</strong> Distribución simétrica y concentrada, con pocos casos fuera de lo esperado.</p></li>
+<li><p><strong>Peso:</strong> Asimetría positiva marcada y numerosos valores extremos, asociados a obesidad severa.</p></li>
+<li><p><strong>Consumo de vegetales y comidas diarias:</strong> Distribuciones centradas en valores medios, con pocos outliers.</p></li>
+<li><p><strong>Consumo de agua:</strong> Distribución equilibrada, pero con algunos casos de consumo muy bajo o alto.</p></li>
+<li><p><strong>Actividad física y uso de tecnología:</strong> Mayoría de valores bajos con colas hacia la derecha, indicando que pocos individuos realizan mucha actividad física o usan excesivamente dispositivos electrónicos.</p></li>
+</ul>
+<p>Estos hallazgos destacan variables clave (peso, actividad física, uso de tecnología) con alta variabilidad y valores extremos, que deberán tratarse cuidadosamente en etapas posteriores del análisis para evitar sesgos y mejorar la precisión de modelos predictivos.</p>
 </div>
 <div id="análisis-exploratorio-univariado-de-variables-independientes-categóricas" class="section level2 hasAnchor" number="3.4">
 <h2><span class="header-section-number">3.4</span> Análisis exploratorio univariado de variables independientes categóricas<a href="#an%C3%A1lisis-exploratorio-univariado-de-variables-independientes-categ%C3%B3ricas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -639,7 +649,7 @@ INTERPRETACIÓN…</p>
 ##  9 CAEC                           Sometimes        1765      83.6 
 ## 10 CAEC                           no                 51       2.42
 ## # ℹ 13 more rows</code></pre>
-<p>INTERPRETACIÓN…</p>
+<p>La tabla muestra que la distribución por género es prácticamente equilibrada, con un 50.6% de hombres y un 49.4% de mujeres, lo que favorece comparaciones sin sesgos significativos. La mayoría de los participantes (81.8%) presenta antecedentes familiares de sobrepeso, lo que apunta a una fuerte influencia genética y de hábitos compartidos. Asimismo, un 88.4% declara consumir con frecuencia alimentos altos en calorías, evidenciando un patrón dietético poco saludable generalizado. En cuanto a la alimentación entre comidas, el 83.6% lo hace de forma ocasional, mientras que un 14% (frecuente o siempre) mantiene este hábito de manera más constante, lo que podría incrementar la ingesta calórica diaria.</p>
 <ul>
 <li>Veamos los gráficos de las variables independientes categóricas</li>
 </ul>
@@ -666,7 +676,7 @@ INTERPRETACIÓN…</p>
 <span id="cb23-21"><a href="EDA.html#cb23-21" tabindex="-1"></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>()</span>
 <span id="cb23-22"><a href="EDA.html#cb23-22" tabindex="-1"></a>  )</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-10-1.png" width="672" />
-INTERPRETACIÓN…</p>
+El análisis de la variable género revela una distribución prácticamente equilibrada en la muestra, con 1,068 participantes masculinos (50.6%) y 1,043 participantes femeninos (49.4%). Esta distribución casi paritaria es ideal para el análisis exploratorio, ya que permite realizar comparaciones válidas entre géneros sin sesgos significativos de representación. La diferencia de apenas 25 individuos (1.2%) entre ambos grupos garantiza que los hallazgos relacionados con diferencias de género en patrones de obesidad, hábitos alimenticios y actividad física sean estadísticamente robustos y representativos, ofreciendo una base sólida para explorar posibles variaciones asociadas al género en estudios posteriores.</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="EDA.html#cb24-1" tabindex="-1"></a><span class="co">#grafico para family_history_with_overweight</span></span>
 <span id="cb24-2"><a href="EDA.html#cb24-2" tabindex="-1"></a></span>
 <span id="cb24-3"><a href="EDA.html#cb24-3" tabindex="-1"></a>tabla_family_history_with_overweight_b <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
@@ -690,7 +700,7 @@ INTERPRETACIÓN…</p>
 <span id="cb24-21"><a href="EDA.html#cb24-21" tabindex="-1"></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>()</span>
 <span id="cb24-22"><a href="EDA.html#cb24-22" tabindex="-1"></a>  )</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-11-1.png" width="672" />
-INTERPRETACIÓN…</p>
+La variable correspondiente a antecedentes familiares de sobrepeso muestra un patrón altamente significativo: 1,726 individuos (81.8%) reportan tener antecedentes, mientras que únicamente 385 (18.2%) no los presentan. Esta alta prevalencia de antecedentes familiares —más de cuatro de cada cinco participantes— sugiere una fuerte predisposición hereditaria hacia problemas de peso en la población estudiada. Además, refleja la posible transmisión de hábitos alimenticios y estilos de vida poco saludables entre generaciones, así como la influencia de factores ambientales y culturales compartidos dentro del núcleo familiar. Desde una perspectiva de análisis predictivo, esta variable adquiere gran relevancia, ya que podría actuar como un predictor importante en la clasificación de niveles de obesidad, al integrar tanto componentes genéticos como comportamentales.</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="EDA.html#cb25-1" tabindex="-1"></a><span class="co">#grafico para FAVC</span></span>
 <span id="cb25-2"><a href="EDA.html#cb25-2" tabindex="-1"></a></span>
 <span id="cb25-3"><a href="EDA.html#cb25-3" tabindex="-1"></a>tabla_FAVC_b <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
@@ -714,7 +724,7 @@ INTERPRETACIÓN…</p>
 <span id="cb25-21"><a href="EDA.html#cb25-21" tabindex="-1"></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>()</span>
 <span id="cb25-22"><a href="EDA.html#cb25-22" tabindex="-1"></a>  )</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-12-1.png" width="672" />
-INTERPRETACIÓN…</p>
+La distribución del consumo frecuente de alimentos con alto contenido calórico indica que 1,866 individuos (88.4%) reconocen consumirlos habitualmente, mientras que solo 245 (11.6%) afirman no hacerlo. Este patrón es especialmente preocupante desde una perspectiva de salud pública, ya que casi nueve de cada diez participantes incorporan regularmente a su dieta alimentos hipercalóricos, lo que coincide con los altos niveles de sobrepeso y obesidad observados en la variable objetivo. Además, esta tendencia sugiere que en la población estudiada existen hábitos dietéticos poco saludables muy arraigados, lo que representa una oportunidad clave para la implementación de programas de educación nutricional y estrategias de modificación de conducta alimentaria que permitan reducir el consumo excesivo de calorías y mejorar la calidad de la dieta.</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="EDA.html#cb26-1" tabindex="-1"></a><span class="co">#grafico para CAEC</span></span>
 <span id="cb26-2"><a href="EDA.html#cb26-2" tabindex="-1"></a></span>
 <span id="cb26-3"><a href="EDA.html#cb26-3" tabindex="-1"></a>tabla_CAEC_b <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
@@ -738,7 +748,7 @@ INTERPRETACIÓN…</p>
 <span id="cb26-21"><a href="EDA.html#cb26-21" tabindex="-1"></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>()</span>
 <span id="cb26-22"><a href="EDA.html#cb26-22" tabindex="-1"></a>  )</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-13-1.png" width="672" />
-INTERPRETACIÓN…</p>
+El análisis de la frecuencia con la que los participantes se alimentan fuera de las comidas principales muestra que 1,765 individuos (83.6%) lo hacen ocasionalmente, 242 (11.5%) con frecuencia, 53 (2.5%) siempre y únicamente 51 (2.4%) declaran no hacerlo. Estos resultados revelan que el comportamiento mayoritario consiste en consumir snacks o alimentos adicionales de forma ocasional, lo cual puede considerarse normal si se trata de opciones saludables y controladas. Sin embargo, el 14% de los participantes (frecuente + siempre) mantiene un patrón de alimentación constante entre comidas, lo que puede contribuir a un exceso calórico diario y dificultar el control del peso corporal. El hecho de que solo un 2.4% evite totalmente este hábito evidencia que la gran mayoría de la población estudiada presenta algún grado de ingesta adicional a las comidas principales, lo que podría estar relacionado con dificultades en la regulación del apetito y con un mayor riesgo de incremento de peso a largo plazo.</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="EDA.html#cb27-1" tabindex="-1"></a><span class="co">#grafico para SMOKE</span></span>
 <span id="cb27-2"><a href="EDA.html#cb27-2" tabindex="-1"></a></span>
 <span id="cb27-3"><a href="EDA.html#cb27-3" tabindex="-1"></a>tabla_SMOKE_b <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
@@ -762,7 +772,7 @@ INTERPRETACIÓN…</p>
 <span id="cb27-21"><a href="EDA.html#cb27-21" tabindex="-1"></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>()</span>
 <span id="cb27-22"><a href="EDA.html#cb27-22" tabindex="-1"></a>  )</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-14-1.png" width="672" />
-INTERPRETACIÓN…</p>
+La distribución del hábito tabáquico en la muestra una prevalencia extremadamente baja, con un 97.9% de no fumadores y solo un 2.1% de fumadores. Este patrón es positivo desde la perspectiva de salud pública, ya que sugiere que el tabaquismo no representa un factor de confusión relevante en el análisis de la obesidad. Sin embargo, debido a su baja variabilidad, la variable podría tener un poder predictivo limitado y, en ciertos análisis, podría requerir un tratamiento especial como su agrupación o exclusión.</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="EDA.html#cb28-1" tabindex="-1"></a><span class="co">#grafico para SCC</span></span>
 <span id="cb28-2"><a href="EDA.html#cb28-2" tabindex="-1"></a>tabla_SCC_b <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
 <span id="cb28-3"><a href="EDA.html#cb28-3" tabindex="-1"></a>  <span class="fu">count</span>(SCC, <span class="at">name =</span> <span class="st">&quot;Frecuencia&quot;</span>) <span class="sc">%&gt;%</span></span>
@@ -785,7 +795,7 @@ INTERPRETACIÓN…</p>
 <span id="cb28-20"><a href="EDA.html#cb28-20" tabindex="-1"></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>()</span>
 <span id="cb28-21"><a href="EDA.html#cb28-21" tabindex="-1"></a>  )</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-15-1.png" width="672" />
-INTERPRETACIÓN…</p>
+La gran mayoría de los participantes (95.5%) no realiza un seguimiento de su ingesta calórica diaria, mientras que apenas un 4.5% afirma hacerlo. Este resultado evidencia una falta generalizada de conciencia nutricional y de autocontrol alimentario, lo que es consistente con los altos índices de sobrepeso y obesidad presentes en la muestra. Además, este hallazgo resalta una oportunidad importante para implementar estrategias de educación nutricional que fomenten hábitos de control y monitoreo en la dieta.</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="EDA.html#cb29-1" tabindex="-1"></a><span class="co">#grafico para CALC</span></span>
 <span id="cb29-2"><a href="EDA.html#cb29-2" tabindex="-1"></a></span>
 <span id="cb29-3"><a href="EDA.html#cb29-3" tabindex="-1"></a>tabla_CALC_b <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
@@ -809,7 +819,7 @@ INTERPRETACIÓN…</p>
 <span id="cb29-21"><a href="EDA.html#cb29-21" tabindex="-1"></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>()</span>
 <span id="cb29-22"><a href="EDA.html#cb29-22" tabindex="-1"></a>  )</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-16-1.png" width="672" />
-INTERPRETACIÓN…</p>
+El consumo de alcohol se concentra principalmente en un patrón ocasional, reportado por el 66.4% de los participantes, seguido por un 30.3% que afirma no consumirlo. El consumo frecuente es relativamente bajo (3.3%) y el consumo diario es casi inexistente. Esta distribución sugiere que, aunque el aporte calórico del alcohol podría no ser el factor principal asociado al sobrepeso, su consumo ocasional puede contribuir al balance energético, y su variabilidad podría aportar valor en análisis predictivos.</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="EDA.html#cb30-1" tabindex="-1"></a><span class="co">#grafico para MTRANS</span></span>
 <span id="cb30-2"><a href="EDA.html#cb30-2" tabindex="-1"></a></span>
 <span id="cb30-3"><a href="EDA.html#cb30-3" tabindex="-1"></a>tabla_MTRANS_b <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
@@ -833,7 +843,7 @@ INTERPRETACIÓN…</p>
 <span id="cb30-21"><a href="EDA.html#cb30-21" tabindex="-1"></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>()</span>
 <span id="cb30-22"><a href="EDA.html#cb30-22" tabindex="-1"></a>  )</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-17-1.png" width="672" />
-INTERPRETACIÓN…</p>
+El análisis de los medios de transporte revela que el 96.4% de los participantes utiliza opciones pasivas como el transporte público (74.8%) o el automóvil (21.6%), mientras que solo un 3.5% emplea medios activos como caminar, bicicleta o motocicleta. Este patrón refleja un estilo de vida predominantemente sedentario y pone de manifiesto oportunidades perdidas para incorporar actividad física en la rutina diaria, posiblemente influenciado por un contexto urbano con infraestructuras centradas en el transporte motorizado.</p>
 </div>
 <div id="análisis-exploratorio-bivariado-nobeyesdad-vs-var.numérica" class="section level2 hasAnchor" number="3.5">
 <h2><span class="header-section-number">3.5</span> Análisis exploratorio bivariado (NObeyesdad vs var.numérica)<a href="#an%C3%A1lisis-exploratorio-bivariado-nobeyesdad-vs-var.num%C3%A9rica" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -855,7 +865,7 @@ INTERPRETACIÓN…</p>
 <span id="cb31-15"><a href="EDA.html#cb31-15" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
 <span id="cb31-16"><a href="EDA.html#cb31-16" tabindex="-1"></a>  )</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-18-1.png" width="672" />
-INTERPRETACIÓN…</p>
+Los datos muestran que las edades más bajas corresponden a los grupos de peso insuficiente y peso normal, con medianas cercanas a los 20 años, mientras que los casos de obesidad I, II y III presentan edades medias más elevadas, entre 25 y 30 años. Los grupos de sobrepeso se ubican en un rango intermedio-alto, con medianas de 25 a 27 años. En general, se aprecia una tendencia en la que la edad promedio aumenta junto con la severidad del exceso de peso, y la presencia de valores atípicos es más frecuente en los grupos con obesidad, lo que evidencia mayor variabilidad etaria en estos casos.</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="EDA.html#cb32-1" tabindex="-1"></a><span class="co"># Diagrama boxplot: NObeyesdad vs Height</span></span>
 <span id="cb32-2"><a href="EDA.html#cb32-2" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
 <span id="cb32-3"><a href="EDA.html#cb32-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(NObeyesdad), <span class="at">y =</span> Height)) <span class="sc">+</span></span>
@@ -873,7 +883,7 @@ INTERPRETACIÓN…</p>
 <span id="cb32-15"><a href="EDA.html#cb32-15" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
 <span id="cb32-16"><a href="EDA.html#cb32-16" tabindex="-1"></a>  )</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-19-1.png" width="672" />
-INTERPRETACIÓN…</p>
+La estatura se mantiene relativamente homogénea en todos los grupos de peso, con medianas que oscilan entre 1.67 y 1.77 metros, y rangos intercuartílicos similares. Los casos de obesidad tipo II muestran una ligera inclinación hacia estaturas mayores, aunque la diferencia no es sustancial. En conjunto, no se detecta una relación evidente entre la altura y el tipo de obesidad, lo que sugiere que, en esta muestra, la clasificación del peso no está influida de forma significativa por la estatura.</p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="EDA.html#cb33-1" tabindex="-1"></a><span class="co"># Diagrama boxplot: NObeyesdad vs Weight</span></span>
 <span id="cb33-2"><a href="EDA.html#cb33-2" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
 <span id="cb33-3"><a href="EDA.html#cb33-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(NObeyesdad), <span class="at">y =</span> Weight)) <span class="sc">+</span></span>
@@ -891,7 +901,7 @@ INTERPRETACIÓN…</p>
 <span id="cb33-15"><a href="EDA.html#cb33-15" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
 <span id="cb33-16"><a href="EDA.html#cb33-16" tabindex="-1"></a>  )</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-20-1.png" width="672" />
-INTERPRETACIÓN…</p>
+Se observa un patrón progresivo claro: a mayor severidad de obesidad, mayor es el peso corporal. El grupo con peso insuficiente presenta la mediana más baja, cercana a los 52 kg, seguido del peso normal, centrado en torno a los 60 kg. Los tipos de obesidad I, II y III muestran incrementos marcados, con medianas aproximadas de 90, 115 y 120 kg, respectivamente, mientras que los grupos de sobrepeso ocupan posiciones intermedias. Esta progresión confirma la coherencia y validez de la clasificación utilizada en el estudio.</p>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="EDA.html#cb34-1" tabindex="-1"></a><span class="co"># Diagrama boxplot: NObeyesdad vs FCVC</span></span>
 <span id="cb34-2"><a href="EDA.html#cb34-2" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
 <span id="cb34-3"><a href="EDA.html#cb34-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(NObeyesdad), <span class="at">y =</span> FCVC)) <span class="sc">+</span></span>
@@ -909,7 +919,7 @@ INTERPRETACIÓN…</p>
 <span id="cb34-15"><a href="EDA.html#cb34-15" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
 <span id="cb34-16"><a href="EDA.html#cb34-16" tabindex="-1"></a>  )</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-21-1.png" width="672" />
-INTERPRETACIÓN…</p>
+El consumo de vegetales es mayor en los grupos de peso insuficiente y peso normal, con medianas de 2.5 a 3 porciones diarias, mientras que los grupos con obesidad, en sus tres niveles, reportan consumos menores, de 2.0 a 2.5 porciones. Los casos de sobrepeso se sitúan en un punto intermedio. La tendencia general es inversa: conforme aumenta la severidad del exceso de peso, disminuye la ingesta de vegetales, lo que sugiere una asociación entre hábitos alimentarios más saludables y un mejor control del peso corporal.</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="EDA.html#cb35-1" tabindex="-1"></a><span class="co"># Diagrama boxplot: NObeyesdad vs NCP</span></span>
 <span id="cb35-2"><a href="EDA.html#cb35-2" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
 <span id="cb35-3"><a href="EDA.html#cb35-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(NObeyesdad), <span class="at">y =</span> NCP)) <span class="sc">+</span></span>
@@ -927,7 +937,7 @@ INTERPRETACIÓN…</p>
 <span id="cb35-15"><a href="EDA.html#cb35-15" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
 <span id="cb35-16"><a href="EDA.html#cb35-16" tabindex="-1"></a>  )</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-22-1.png" width="672" />
-INTERPRETACIÓN…</p>
+El número de comidas diarias presenta gran variabilidad en todos los grupos, siendo más amplia en el caso del peso insuficiente. La mayoría de los individuos con peso normal, sobrepeso u obesidad consume entre 2 y 3 comidas principales al día, con medianas que rondan las 2.5-3 comidas. No se observa una relación clara entre el número de comidas y el tipo de obesidad, lo que indica que este factor, de manera aislada, no es determinante en la clasificación del peso.</p>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="EDA.html#cb36-1" tabindex="-1"></a><span class="co"># Diagrama boxplot: NObeyesdad vs CH2O</span></span>
 <span id="cb36-2"><a href="EDA.html#cb36-2" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
 <span id="cb36-3"><a href="EDA.html#cb36-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(NObeyesdad), <span class="at">y =</span> CH2O)) <span class="sc">+</span></span>
@@ -945,7 +955,7 @@ INTERPRETACIÓN…</p>
 <span id="cb36-15"><a href="EDA.html#cb36-15" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
 <span id="cb36-16"><a href="EDA.html#cb36-16" tabindex="-1"></a>  )</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-23-1.png" width="672" />
-INTERPRETACIÓN…</p>
+El consumo de agua es más alto en los grupos con obesidad tipo I y III, con medianas de 2.0 a 2.4 litros diarios, mientras que las personas con peso insuficiente y normal presentan valores ligeramente menores, cercanos a 1.8-2.0 litros. Los casos de sobrepeso se sitúan en un nivel intermedio. Contrario a lo que podría suponerse, no se aprecia una relación inversa entre el grado de obesidad y el consumo de agua; de hecho, algunos grupos con obesidad reportan mayor ingesta, lo que sugiere que esta variable, por sí sola, no discrimina de forma significativa entre los tipos de obesidad.</p>
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="EDA.html#cb37-1" tabindex="-1"></a><span class="co"># Diagrama boxplot: NObeyesdad vs FAF</span></span>
 <span id="cb37-2"><a href="EDA.html#cb37-2" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
 <span id="cb37-3"><a href="EDA.html#cb37-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(NObeyesdad), <span class="at">y =</span> FAF)) <span class="sc">+</span></span>
@@ -963,7 +973,7 @@ INTERPRETACIÓN…</p>
 <span id="cb37-15"><a href="EDA.html#cb37-15" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
 <span id="cb37-16"><a href="EDA.html#cb37-16" tabindex="-1"></a>  )</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-24-1.png" width="672" />
-INTERPRETACIÓN…</p>
+Los niveles más altos de actividad física se observan en individuos con peso insuficiente y normal, con medianas de 1.2-1.3 en la escala medida, mientras que los grupos con obesidad, en sus tres niveles, muestran valores consistentemente más bajos, cercanos a 1.0. Los grupos con sobrepeso ocupan una posición intermedia. Esta tendencia inversa, donde mayor severidad del exceso de peso se asocia con menor actividad física, refuerza la relevancia de este hábito como factor protector frente al desarrollo de obesidad.</p>
 <div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="EDA.html#cb38-1" tabindex="-1"></a><span class="co"># Diagrama boxplot: NObeyesdad vs TUE</span></span>
 <span id="cb38-2"><a href="EDA.html#cb38-2" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
 <span id="cb38-3"><a href="EDA.html#cb38-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(NObeyesdad), <span class="at">y =</span> TUE)) <span class="sc">+</span></span>
@@ -980,7 +990,7 @@ INTERPRETACIÓN…</p>
 <span id="cb38-14"><a href="EDA.html#cb38-14" tabindex="-1"></a>    <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;gray90&quot;</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
 <span id="cb38-15"><a href="EDA.html#cb38-15" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>))</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-25-1.png" width="672" />
-INTERPRETACIÓN…</p>
+El uso de dispositivos electrónicos presenta patrones similares en todos los grupos, con medianas entre 0.5 y 1.0 en la escala registrada. Las personas con peso insuficiente muestran una ligera inclinación hacia un mayor uso, mientras que en obesidad tipo II y III las medianas son algo menores. La variabilidad es alta en todos los casos, lo que indica diversidad en los hábitos tecnológicos, y no se evidencia una relación consistente entre el tiempo de uso de aparatos electrónicos y el tipo de obesidad.</p>
 <ul>
 <li>Comparación de las variables numéricas independientes con respecto a la variable NObeyesdad</li>
 </ul>
@@ -1099,21 +1109,22 @@ INTERPRETACIÓN…</p>
 <span id="cb39-113"><a href="EDA.html#cb39-113" tabindex="-1"></a><span class="co">#Unión de las tablas</span></span>
 <span id="cb39-114"><a href="EDA.html#cb39-114" tabindex="-1"></a><span class="fu">bind_rows</span>(Age_NObeyesdad, Height_NObeyesdad, Weight_NObeyesdad, FCVC_NObeyesdad, NCP_NObeyesdad, CH2O_NObeyesdad, FAF_NObeyesdad, TUE_NObeyesdad)</span></code></pre></div>
 <pre><code>## # A tibble: 56 × 11
-##    variable niveles          n media     ds mediana minimo maximo    Q1    Q3
-##    &lt;chr&gt;    &lt;chr&gt;        &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-##  1 Age      Insufficien…   272 19.8  2.67     19.2   16     39    18    21   
-##  2 Age      Normal_Weig…   287 21.7  5.10     21     14     61    19    23   
-##  3 Age      Obesity_Typ…   351 25.9  7.76     23.0   15     52    20.9  29.8 
-##  4 Age      Obesity_Typ…   297 28.2  4.87     27.2   20     41    24.6  30.7 
-##  5 Age      Obesity_Typ…   324 23.5  2.76     25.4   18     26    21.0  26   
-##  6 Age      Overweight_…   290 23.4  6.13     21.0   16     55    19.6  24.2 
-##  7 Age      Overweight_…   290 27.0  8.06     24     17     56    21.0  33   
-##  8 Height   Insufficien…   272  1.69 0.0997    1.70   1.52   1.9   1.60  1.76
-##  9 Height   Normal_Weig…   287  1.68 0.0945    1.66   1.5    1.93  1.6   1.75
-## 10 Height   Obesity_Typ…   351  1.69 0.0984    1.68   1.5    1.98  1.62  1.78
+##    variable niveles        n media     ds mediana
+##    &lt;chr&gt;    &lt;chr&gt;      &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+##  1 Age      Insuffici…   272 19.8  2.67     19.2 
+##  2 Age      Normal_We…   287 21.7  5.10     21   
+##  3 Age      Obesity_T…   351 25.9  7.76     23.0 
+##  4 Age      Obesity_T…   297 28.2  4.87     27.2 
+##  5 Age      Obesity_T…   324 23.5  2.76     25.4 
+##  6 Age      Overweigh…   290 23.4  6.13     21.0 
+##  7 Age      Overweigh…   290 27.0  8.06     24   
+##  8 Height   Insuffici…   272  1.69 0.0997    1.70
+##  9 Height   Normal_We…   287  1.68 0.0945    1.66
+## 10 Height   Obesity_T…   351  1.69 0.0984    1.68
 ## # ℹ 46 more rows
-## # ℹ 1 more variable: IQR &lt;dbl&gt;</code></pre>
-<p>INTERPRETACIÓN…</p>
+## # ℹ 5 more variables: minimo &lt;dbl&gt;,
+## #   maximo &lt;dbl&gt;, Q1 &lt;dbl&gt;, Q3 &lt;dbl&gt;, IQR &lt;dbl&gt;</code></pre>
+<p>La tabla confirma tendencias ya observadas en las gráficas: la edad media aumenta progresivamente desde peso insuficiente (19.8 años) hasta obesidad tipo II (28.2 años), mientras que la estatura permanece prácticamente constante entre grupos (1.68-1.69 metros), lo que confirma su escasa influencia en la clasificación. En cuanto a los datos de peso, la progresión esperada respalda la coherencia de la categorización. Las desviaciones estándar reflejan mayor variabilidad en edad y peso, lo que indica heterogeneidad dentro de cada grupo.</p>
 </div>
 <div id="análisis-exploratorio-bivariado-nobeyesdad-vs-var.categórica" class="section level2 hasAnchor" number="3.6">
 <h2><span class="header-section-number">3.6</span> Análisis exploratorio bivariado (NObeyesdad vs var.categórica)<a href="#an%C3%A1lisis-exploratorio-bivariado-nobeyesdad-vs-var.categ%C3%B3rica" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -1143,7 +1154,7 @@ INTERPRETACIÓN…</p>
 <span id="cb41-20"><a href="EDA.html#cb41-20" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb41-21"><a href="EDA.html#cb41-21" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set1&quot;</span>)</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-27-1.png" width="672" />
-INTERPRETACIÓN…</p>
+La distribución por género en la muestra un ligero predominio femenino (52% mujeres frente a 48% hombres), con una diferencia marcada en el grupo de peso insuficiente, donde las mujeres representan el 63.6%. En los grupos de peso normal, sobrepeso y obesidad, la proporción entre géneros es más equilibrada, aunque la predominancia femenina en los extremos de la distribución sugiere que el género podría influir en ciertos patrones de peso corporal.</p>
 <div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="EDA.html#cb42-1" tabindex="-1"></a>datos_plot_fhwo <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
 <span id="cb42-2"><a href="EDA.html#cb42-2" tabindex="-1"></a>  <span class="fu">group_by</span>(NObeyesdad) <span class="sc">%&gt;%</span></span>
 <span id="cb42-3"><a href="EDA.html#cb42-3" tabindex="-1"></a>  <span class="fu">count</span>(family_history_with_overweight, <span class="at">name =</span> <span class="st">&quot;n&quot;</span>) <span class="sc">%&gt;%</span></span>
@@ -1166,7 +1177,7 @@ INTERPRETACIÓN…</p>
 <span id="cb42-20"><a href="EDA.html#cb42-20" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb42-21"><a href="EDA.html#cb42-21" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set1&quot;</span>) </span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-28-1.png" width="672" />
-INTERPRETACIÓN…</p>
+Se observa una asociación clara entre antecedentes familiares de sobrepeso y mayor prevalencia de obesidad. Las personas sin antecedentes se concentran principalmente en peso insuficiente y normal, mientras que quienes sí los tienen muestran porcentajes cercanos al 100% en obesidad tipo II y III, y muy altos en obesidad tipo I. Esto sugiere que los factores genéticos y/o ambientales familiares juegan un papel importante en el desarrollo del exceso de peso.</p>
 <div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="EDA.html#cb43-1" tabindex="-1"></a>datos_plot_FAVC <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
 <span id="cb43-2"><a href="EDA.html#cb43-2" tabindex="-1"></a>  <span class="fu">group_by</span>(NObeyesdad) <span class="sc">%&gt;%</span></span>
 <span id="cb43-3"><a href="EDA.html#cb43-3" tabindex="-1"></a>  <span class="fu">count</span>(FAVC, <span class="at">name =</span> <span class="st">&quot;n&quot;</span>) <span class="sc">%&gt;%</span></span>
@@ -1189,7 +1200,7 @@ INTERPRETACIÓN…</p>
 <span id="cb43-20"><a href="EDA.html#cb43-20" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb43-21"><a href="EDA.html#cb43-21" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set1&quot;</span>) </span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-29-1.png" width="672" />
-INTERPRETACIÓN…</p>
+El consumo de alimentos hipercalóricos se asocia fuertemente con las categorías de sobrepeso y obesidad. Quienes no los consumen tienden a encontrarse en peso insuficiente o normal, mientras que entre los consumidores se alcanzan porcentajes cercanos al 100% en obesidad tipo II y muy altos en obesidad tipo I y III. Esto posiciona al consumo frecuente de este tipo de alimentos como un factor de riesgo clave para el aumento de peso.</p>
 <div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="EDA.html#cb44-1" tabindex="-1"></a>datos_plot_CAEC <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
 <span id="cb44-2"><a href="EDA.html#cb44-2" tabindex="-1"></a>  <span class="fu">group_by</span>(NObeyesdad) <span class="sc">%&gt;%</span></span>
 <span id="cb44-3"><a href="EDA.html#cb44-3" tabindex="-1"></a>  <span class="fu">count</span>(CAEC, <span class="at">name =</span> <span class="st">&quot;n&quot;</span>) <span class="sc">%&gt;%</span></span>
@@ -1212,7 +1223,7 @@ INTERPRETACIÓN…</p>
 <span id="cb44-20"><a href="EDA.html#cb44-20" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb44-21"><a href="EDA.html#cb44-21" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set1&quot;</span>) </span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-30-1.png" width="672" />
-INTERPRETACIÓN…</p>
+El hábito de comer entre comidas se relaciona con mayor presencia de sobrepeso y obesidad, especialmente en quienes lo hacen “frecuentemente” o “a veces”. Por el contrario, quienes nunca consumen alimentos entre comidas se concentran en peso insuficiente y normal. Aunque el patrón no es completamente uniforme, los datos respaldan la influencia de los hábitos alimenticios irregulares en la acumulación de peso.</p>
 <div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="EDA.html#cb45-1" tabindex="-1"></a>datos_plot_SMOKE <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
 <span id="cb45-2"><a href="EDA.html#cb45-2" tabindex="-1"></a>  <span class="fu">group_by</span>(NObeyesdad) <span class="sc">%&gt;%</span></span>
 <span id="cb45-3"><a href="EDA.html#cb45-3" tabindex="-1"></a>  <span class="fu">count</span>(SMOKE, <span class="at">name =</span> <span class="st">&quot;n&quot;</span>) <span class="sc">%&gt;%</span></span>
@@ -1235,7 +1246,7 @@ INTERPRETACIÓN…</p>
 <span id="cb45-20"><a href="EDA.html#cb45-20" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb45-21"><a href="EDA.html#cb45-21" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set1&quot;</span>) </span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-31-1.png" width="672" />
-INTERPRETACIÓN…</p>
+El tabaquismo presenta una prevalencia muy baja en la muestra (entre 1% y 7% por grupo), con la mayoría de los participantes no fumadores en todas las categorías de peso. No se detectan diferencias significativas en la distribución del hábito de fumar entre los distintos tipos de obesidad, lo que indica que en esta población el tabaquismo no actúa como un factor diferenciador relevante en la clasificación del peso.</p>
 <div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="EDA.html#cb46-1" tabindex="-1"></a>datos_plot_SCC <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
 <span id="cb46-2"><a href="EDA.html#cb46-2" tabindex="-1"></a>  <span class="fu">group_by</span>(NObeyesdad) <span class="sc">%&gt;%</span></span>
 <span id="cb46-3"><a href="EDA.html#cb46-3" tabindex="-1"></a>  <span class="fu">count</span>(SCC, <span class="at">name =</span> <span class="st">&quot;n&quot;</span>) <span class="sc">%&gt;%</span></span>
@@ -1258,7 +1269,7 @@ INTERPRETACIÓN…</p>
 <span id="cb46-20"><a href="EDA.html#cb46-20" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb46-21"><a href="EDA.html#cb46-21" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set1&quot;</span>) </span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-32-1.png" width="672" />
-INTERPRETACIÓN…</p>
+En todos los grupos, la gran mayoría de personas no realiza un seguimiento diario de su ingesta calórica, con porcentajes que oscilan entre el 87% y el 99%. Solo una fracción pequeña practica este hábito, siendo más frecuente en peso insuficiente (10.5%) y peso normal (12.8%), y prácticamente inexistente en obesidad tipo III (1.4%). La tendencia general indica que, a mayor severidad de la obesidad, menor es la probabilidad de monitorear las calorías, lo que sugiere que la falta de control o conciencia sobre la ingesta energética podría estar asociada con el exceso de peso.</p>
 <div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="EDA.html#cb47-1" tabindex="-1"></a>datos_plot_CALC <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
 <span id="cb47-2"><a href="EDA.html#cb47-2" tabindex="-1"></a>  <span class="fu">group_by</span>(NObeyesdad) <span class="sc">%&gt;%</span></span>
 <span id="cb47-3"><a href="EDA.html#cb47-3" tabindex="-1"></a>  <span class="fu">count</span>(CALC, <span class="at">name =</span> <span class="st">&quot;n&quot;</span>) <span class="sc">%&gt;%</span></span>
@@ -1281,7 +1292,7 @@ INTERPRETACIÓN…</p>
 <span id="cb47-20"><a href="EDA.html#cb47-20" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb47-21"><a href="EDA.html#cb47-21" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set1&quot;</span>) </span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-33-1.png" width="672" />
-INTERPRETACIÓN…</p>
+El patrón predominante en todos los grupos es el consumo de alcohol “a veces”, con proporciones que van del 49% al 97%. Las personas con peso insuficiente y normal presentan mayor diversidad en sus hábitos, incluyendo una proporción considerable de no consumidores (43-47%). En contraste, los grupos con obesidad se concentran casi exclusivamente en la categoría “a veces” y muestran muy pocos abstemios, mientras que el consumo frecuente de alcohol es bajo en todos los grupos, situándose por debajo del 10%. No se evidencia una relación directa entre la frecuencia de consumo de alcohol y el tipo de obesidad, aunque la variabilidad es mayor en quienes tienen peso normal.</p>
 <div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="EDA.html#cb48-1" tabindex="-1"></a>datos_plot_MTRANS <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
 <span id="cb48-2"><a href="EDA.html#cb48-2" tabindex="-1"></a>  <span class="fu">group_by</span>(NObeyesdad) <span class="sc">%&gt;%</span></span>
 <span id="cb48-3"><a href="EDA.html#cb48-3" tabindex="-1"></a>  <span class="fu">count</span>(MTRANS, <span class="at">name =</span> <span class="st">&quot;n&quot;</span>) <span class="sc">%&gt;%</span></span>
@@ -1304,7 +1315,7 @@ INTERPRETACIÓN…</p>
 <span id="cb48-20"><a href="EDA.html#cb48-20" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb48-21"><a href="EDA.html#cb48-21" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set1&quot;</span>)</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-34-1.png" width="672" />
-INTERPRETACIÓN…</p>
+El transporte público se posiciona como el medio más utilizado por la mayoría de los encuestados, con porcentajes entre el 63% y el 99% según el grupo. Las personas con peso insuficiente y normal muestran mayor variedad en sus desplazamientos, incluyendo un uso relevante del automóvil (31.3% y 32.4%) y de la bicicleta (22.8%). Por otro lado, los grupos con obesidad tipo I, II y III dependen casi exclusivamente del transporte público y utilizan en muy baja proporción medios activos como caminar o andar en bicicleta. Estos resultados respaldan la relación entre el predominio de transporte pasivo y el sedentarismo, factores vinculados al exceso de peso.</p>
 <ul>
 <li>Comparación variables categóricas independiente respecto a NObeyesdad</li>
 </ul>
@@ -1317,23 +1328,23 @@ INTERPRETACIÓN…</p>
 <span id="cb49-7"><a href="EDA.html#cb49-7" tabindex="-1"></a>  <span class="fu">select</span>(NObeyesdad, variable, categoria, n, porcentaje)</span></code></pre></div>
 <pre><code>## # A tibble: 14 × 5
 ## # Groups:   NObeyesdad [7]
-##    NObeyesdad          variable categoria     n porcentaje
-##    &lt;chr&gt;               &lt;chr&gt;    &lt;chr&gt;     &lt;int&gt;      &lt;dbl&gt;
-##  1 Insufficient_Weight Gender   Female      173     63.6  
-##  2 Insufficient_Weight Gender   Male         99     36.4  
-##  3 Normal_Weight       Gender   Female      141     49.1  
-##  4 Normal_Weight       Gender   Male        146     50.9  
-##  5 Obesity_Type_I      Gender   Female      156     44.4  
-##  6 Obesity_Type_I      Gender   Male        195     55.6  
-##  7 Obesity_Type_II     Gender   Female        2      0.673
-##  8 Obesity_Type_II     Gender   Male        295     99.3  
-##  9 Obesity_Type_III    Gender   Female      323     99.7  
-## 10 Obesity_Type_III    Gender   Male          1      0.309
-## 11 Overweight_Level_I  Gender   Female      145     50    
-## 12 Overweight_Level_I  Gender   Male        145     50    
-## 13 Overweight_Level_II Gender   Female      103     35.5  
-## 14 Overweight_Level_II Gender   Male        187     64.5</code></pre>
-<p>INTERPRETACIÓN…</p>
+##    NObeyesdad variable categoria     n porcentaje
+##    &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt;     &lt;int&gt;      &lt;dbl&gt;
+##  1 Insuffici… Gender   Female      173     63.6  
+##  2 Insuffici… Gender   Male         99     36.4  
+##  3 Normal_We… Gender   Female      141     49.1  
+##  4 Normal_We… Gender   Male        146     50.9  
+##  5 Obesity_T… Gender   Female      156     44.4  
+##  6 Obesity_T… Gender   Male        195     55.6  
+##  7 Obesity_T… Gender   Female        2      0.673
+##  8 Obesity_T… Gender   Male        295     99.3  
+##  9 Obesity_T… Gender   Female      323     99.7  
+## 10 Obesity_T… Gender   Male          1      0.309
+## 11 Overweigh… Gender   Female      145     50    
+## 12 Overweigh… Gender   Male        145     50    
+## 13 Overweigh… Gender   Female      103     35.5  
+## 14 Overweigh… Gender   Male        187     64.5</code></pre>
+<p>La distribución por género revela diferencias notables según el estado nutricional. En el grupo con peso insuficiente, las mujeres son mayoría (63.6%) frente a los hombres (36.4%), lo que podría indicar una mayor prevalencia de bajo peso en el género femenino. En peso normal, la proporción es prácticamente equilibrada, aunque con una ligera predominancia masculina (50.9% frente a 49.1%). La obesidad tipo I presenta un patrón similar, con leve predominancia masculina (55.6% frente a 44.4%). Sin embargo, en obesidad tipo II y tipo III se registran cifras extremas y probablemente inconsistentes —tipo II con un 99.3% de hombres y tipo III con un 99.7% de mujeres— que podrían requerir verificación. En el caso del sobrepeso, la distribución es equitativa, con un 50% para cada género.</p>
 <div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="EDA.html#cb51-1" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
 <span id="cb51-2"><a href="EDA.html#cb51-2" tabindex="-1"></a>  <span class="fu">group_by</span>(NObeyesdad) <span class="sc">%&gt;%</span></span>
 <span id="cb51-3"><a href="EDA.html#cb51-3" tabindex="-1"></a>  <span class="fu">count</span>(family_history_with_overweight, <span class="at">name =</span> <span class="st">&quot;n&quot;</span>) <span class="sc">%&gt;%</span></span>
@@ -1343,22 +1354,22 @@ INTERPRETACIÓN…</p>
 <span id="cb51-7"><a href="EDA.html#cb51-7" tabindex="-1"></a>  <span class="fu">select</span>(NObeyesdad, variable, categoria, n, porcentaje)</span></code></pre></div>
 <pre><code>## # A tibble: 13 × 5
 ## # Groups:   NObeyesdad [7]
-##    NObeyesdad          variable                    categoria     n porcentaje
-##    &lt;chr&gt;               &lt;chr&gt;                       &lt;chr&gt;     &lt;int&gt;      &lt;dbl&gt;
-##  1 Insufficient_Weight family_history_with_overwe… no          146     53.7  
-##  2 Insufficient_Weight family_history_with_overwe… yes         126     46.3  
-##  3 Normal_Weight       family_history_with_overwe… no          132     46.0  
-##  4 Normal_Weight       family_history_with_overwe… yes         155     54.0  
-##  5 Obesity_Type_I      family_history_with_overwe… no            7      1.99 
-##  6 Obesity_Type_I      family_history_with_overwe… yes         344     98.0  
-##  7 Obesity_Type_II     family_history_with_overwe… no            1      0.337
-##  8 Obesity_Type_II     family_history_with_overwe… yes         296     99.7  
-##  9 Obesity_Type_III    family_history_with_overwe… yes         324    100    
-## 10 Overweight_Level_I  family_history_with_overwe… no           81     27.9  
-## 11 Overweight_Level_I  family_history_with_overwe… yes         209     72.1  
-## 12 Overweight_Level_II family_history_with_overwe… no           18      6.21 
-## 13 Overweight_Level_II family_history_with_overwe… yes         272     93.8</code></pre>
-<p>INTERPRETACIÓN…</p>
+##    NObeyesdad variable categoria     n porcentaje
+##    &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt;     &lt;int&gt;      &lt;dbl&gt;
+##  1 Insuffici… family_… no          146     53.7  
+##  2 Insuffici… family_… yes         126     46.3  
+##  3 Normal_We… family_… no          132     46.0  
+##  4 Normal_We… family_… yes         155     54.0  
+##  5 Obesity_T… family_… no            7      1.99 
+##  6 Obesity_T… family_… yes         344     98.0  
+##  7 Obesity_T… family_… no            1      0.337
+##  8 Obesity_T… family_… yes         296     99.7  
+##  9 Obesity_T… family_… yes         324    100    
+## 10 Overweigh… family_… no           81     27.9  
+## 11 Overweigh… family_… yes         209     72.1  
+## 12 Overweigh… family_… no           18      6.21 
+## 13 Overweigh… family_… yes         272     93.8</code></pre>
+<p>La presencia de antecedentes familiares de sobrepeso muestra una clara asociación con los niveles más altos de obesidad. En los grupos de peso insuficiente y peso normal, la proporción de personas sin historia familiar es considerable (53.7% y 46.0%, respectivamente). No obstante, en todos los tipos de obesidad la gran mayoría presenta antecedentes familiares, superando el 95% y llegando al 100% en obesidad tipo III y al 99.7% en tipo II. Este patrón refuerza la influencia de la predisposición genética y de los factores ambientales compartidos en el desarrollo de la obesidad.</p>
 <div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="EDA.html#cb53-1" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
 <span id="cb53-2"><a href="EDA.html#cb53-2" tabindex="-1"></a>  <span class="fu">group_by</span>(NObeyesdad) <span class="sc">%&gt;%</span></span>
 <span id="cb53-3"><a href="EDA.html#cb53-3" tabindex="-1"></a>  <span class="fu">count</span>(FAVC, <span class="at">name =</span> <span class="st">&quot;n&quot;</span>) <span class="sc">%&gt;%</span></span>
@@ -1368,23 +1379,23 @@ INTERPRETACIÓN…</p>
 <span id="cb53-7"><a href="EDA.html#cb53-7" tabindex="-1"></a>  <span class="fu">select</span>(NObeyesdad, variable, categoria, n, porcentaje)</span></code></pre></div>
 <pre><code>## # A tibble: 14 × 5
 ## # Groups:   NObeyesdad [7]
-##    NObeyesdad          variable categoria     n porcentaje
-##    &lt;chr&gt;               &lt;chr&gt;    &lt;chr&gt;     &lt;int&gt;      &lt;dbl&gt;
-##  1 Insufficient_Weight FAVC     no           51     18.8  
-##  2 Insufficient_Weight FAVC     yes         221     81.2  
-##  3 Normal_Weight       FAVC     no           79     27.5  
-##  4 Normal_Weight       FAVC     yes         208     72.5  
-##  5 Obesity_Type_I      FAVC     no           11      3.13 
-##  6 Obesity_Type_I      FAVC     yes         340     96.9  
-##  7 Obesity_Type_II     FAVC     no            7      2.36 
-##  8 Obesity_Type_II     FAVC     yes         290     97.6  
-##  9 Obesity_Type_III    FAVC     no            1      0.309
-## 10 Obesity_Type_III    FAVC     yes         323     99.7  
-## 11 Overweight_Level_I  FAVC     no           22      7.59 
-## 12 Overweight_Level_I  FAVC     yes         268     92.4  
-## 13 Overweight_Level_II FAVC     no           74     25.5  
-## 14 Overweight_Level_II FAVC     yes         216     74.5</code></pre>
-<p>INTERPRETACIÓN…</p>
+##    NObeyesdad variable categoria     n porcentaje
+##    &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt;     &lt;int&gt;      &lt;dbl&gt;
+##  1 Insuffici… FAVC     no           51     18.8  
+##  2 Insuffici… FAVC     yes         221     81.2  
+##  3 Normal_We… FAVC     no           79     27.5  
+##  4 Normal_We… FAVC     yes         208     72.5  
+##  5 Obesity_T… FAVC     no           11      3.13 
+##  6 Obesity_T… FAVC     yes         340     96.9  
+##  7 Obesity_T… FAVC     no            7      2.36 
+##  8 Obesity_T… FAVC     yes         290     97.6  
+##  9 Obesity_T… FAVC     no            1      0.309
+## 10 Obesity_T… FAVC     yes         323     99.7  
+## 11 Overweigh… FAVC     no           22      7.59 
+## 12 Overweigh… FAVC     yes         268     92.4  
+## 13 Overweigh… FAVC     no           74     25.5  
+## 14 Overweigh… FAVC     yes         216     74.5</code></pre>
+<p>El consumo de alimentos con alta densidad calórica presenta una relación directamente proporcional con el grado de obesidad. En peso insuficiente, solo el 18.8% reporta consumirlos frecuentemente, mientras que en peso normal el 72.5% lo hace. En los grupos con obesidad, el consumo es casi universal, superando el 95% y alcanzando el 99.7% en obesidad tipo III. Este hallazgo resalta el papel del consumo habitual de alimentos hipercalóricos como un factor conductual clave en la aparición y mantenimiento de la obesidad.</p>
 <div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="EDA.html#cb55-1" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
 <span id="cb55-2"><a href="EDA.html#cb55-2" tabindex="-1"></a>  <span class="fu">group_by</span>(NObeyesdad) <span class="sc">%&gt;%</span></span>
 <span id="cb55-3"><a href="EDA.html#cb55-3" tabindex="-1"></a>  <span class="fu">count</span>(CAEC, <span class="at">name =</span> <span class="st">&quot;n&quot;</span>) <span class="sc">%&gt;%</span></span>
@@ -1394,20 +1405,20 @@ INTERPRETACIÓN…</p>
 <span id="cb55-7"><a href="EDA.html#cb55-7" tabindex="-1"></a>  <span class="fu">select</span>(NObeyesdad, variable, categoria, n, porcentaje)</span></code></pre></div>
 <pre><code>## # A tibble: 26 × 5
 ## # Groups:   NObeyesdad [7]
-##    NObeyesdad          variable categoria      n porcentaje
-##    &lt;chr&gt;               &lt;chr&gt;    &lt;chr&gt;      &lt;int&gt;      &lt;dbl&gt;
-##  1 Insufficient_Weight CAEC     Always         2      0.735
-##  2 Insufficient_Weight CAEC     Frequently   121     44.5  
-##  3 Insufficient_Weight CAEC     Sometimes    146     53.7  
-##  4 Insufficient_Weight CAEC     no             3      1.10 
-##  5 Normal_Weight       CAEC     Always        35     12.2  
-##  6 Normal_Weight       CAEC     Frequently    83     28.9  
-##  7 Normal_Weight       CAEC     Sometimes    159     55.4  
-##  8 Normal_Weight       CAEC     no            10      3.48 
-##  9 Obesity_Type_I      CAEC     Always         6      1.71 
-## 10 Obesity_Type_I      CAEC     Frequently     6      1.71 
+##    NObeyesdad variable categoria     n porcentaje
+##    &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt;     &lt;int&gt;      &lt;dbl&gt;
+##  1 Insuffici… CAEC     Always        2      0.735
+##  2 Insuffici… CAEC     Frequent…   121     44.5  
+##  3 Insuffici… CAEC     Sometimes   146     53.7  
+##  4 Insuffici… CAEC     no            3      1.10 
+##  5 Normal_We… CAEC     Always       35     12.2  
+##  6 Normal_We… CAEC     Frequent…    83     28.9  
+##  7 Normal_We… CAEC     Sometimes   159     55.4  
+##  8 Normal_We… CAEC     no           10      3.48 
+##  9 Obesity_T… CAEC     Always        6      1.71 
+## 10 Obesity_T… CAEC     Frequent…     6      1.71 
 ## # ℹ 16 more rows</code></pre>
-<p>INTERPRETACIÓN…</p>
+<p>Los patrones de consumo de alcohol varían según el tipo de peso. En el grupo de peso insuficiente, el consumo “a veces” (53.7%) y “frecuente” (44.5%) son las categorías más representadas. En peso normal, predomina el consumo “a veces” (55.4%), seguido de “frecuente” (28.9%) y “siempre” (12.2%). La obesidad tipo I presenta un patrón similar, con ligeras variaciones en los porcentajes. Estos datos no muestran una relación clara y directa entre la frecuencia de consumo de alcohol y el grado de obesidad, aunque sugieren que el consumo moderado es común en todos los grupos.</p>
 <div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="EDA.html#cb57-1" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
 <span id="cb57-2"><a href="EDA.html#cb57-2" tabindex="-1"></a>  <span class="fu">group_by</span>(NObeyesdad) <span class="sc">%&gt;%</span></span>
 <span id="cb57-3"><a href="EDA.html#cb57-3" tabindex="-1"></a>  <span class="fu">count</span>(SMOKE, <span class="at">name =</span> <span class="st">&quot;n&quot;</span>) <span class="sc">%&gt;%</span></span>
@@ -1417,23 +1428,23 @@ INTERPRETACIÓN…</p>
 <span id="cb57-7"><a href="EDA.html#cb57-7" tabindex="-1"></a>  <span class="fu">select</span>(NObeyesdad, variable, categoria, n, porcentaje)</span></code></pre></div>
 <pre><code>## # A tibble: 14 × 5
 ## # Groups:   NObeyesdad [7]
-##    NObeyesdad          variable categoria     n porcentaje
-##    &lt;chr&gt;               &lt;chr&gt;    &lt;chr&gt;     &lt;int&gt;      &lt;dbl&gt;
-##  1 Insufficient_Weight SMOKE    no          271     99.6  
-##  2 Insufficient_Weight SMOKE    yes           1      0.368
-##  3 Normal_Weight       SMOKE    no          274     95.5  
-##  4 Normal_Weight       SMOKE    yes          13      4.53 
-##  5 Obesity_Type_I      SMOKE    no          345     98.3  
-##  6 Obesity_Type_I      SMOKE    yes           6      1.71 
-##  7 Obesity_Type_II     SMOKE    no          282     94.9  
-##  8 Obesity_Type_II     SMOKE    yes          15      5.05 
-##  9 Obesity_Type_III    SMOKE    no          323     99.7  
-## 10 Obesity_Type_III    SMOKE    yes           1      0.309
-## 11 Overweight_Level_I  SMOKE    no          287     99.0  
-## 12 Overweight_Level_I  SMOKE    yes           3      1.03 
-## 13 Overweight_Level_II SMOKE    no          285     98.3  
-## 14 Overweight_Level_II SMOKE    yes           5      1.72</code></pre>
-<p>INTERPRETACIÓN…</p>
+##    NObeyesdad variable categoria     n porcentaje
+##    &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt;     &lt;int&gt;      &lt;dbl&gt;
+##  1 Insuffici… SMOKE    no          271     99.6  
+##  2 Insuffici… SMOKE    yes           1      0.368
+##  3 Normal_We… SMOKE    no          274     95.5  
+##  4 Normal_We… SMOKE    yes          13      4.53 
+##  5 Obesity_T… SMOKE    no          345     98.3  
+##  6 Obesity_T… SMOKE    yes           6      1.71 
+##  7 Obesity_T… SMOKE    no          282     94.9  
+##  8 Obesity_T… SMOKE    yes          15      5.05 
+##  9 Obesity_T… SMOKE    no          323     99.7  
+## 10 Obesity_T… SMOKE    yes           1      0.309
+## 11 Overweigh… SMOKE    no          287     99.0  
+## 12 Overweigh… SMOKE    yes           3      1.03 
+## 13 Overweigh… SMOKE    no          285     98.3  
+## 14 Overweigh… SMOKE    yes           5      1.72</code></pre>
+<p>El tabaquismo presenta una prevalencia muy baja en toda la muestra, con más del 94% de no fumadores en cada grupo de peso. En peso insuficiente, el 99.6% no fuma, y solo un 0.368% reporta fumar; en peso normal, la proporción de fumadores es ligeramente mayor (4.53%), lo que representa el valor más alto observado. En obesidad tipo I, el 98.3% no fuma, y en tipos II y III prácticamente la totalidad son no fumadores. El sobrepeso también presenta más del 98% de no fumadores. Este patrón sugiere que fumar no es un hábito extendido entre las personas con obesidad, y la mayor proporción relativa en peso normal podría asociarse a los posibles efectos supresores del apetito de la nicotina.</p>
 <div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="EDA.html#cb59-1" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
 <span id="cb59-2"><a href="EDA.html#cb59-2" tabindex="-1"></a>  <span class="fu">group_by</span>(NObeyesdad) <span class="sc">%&gt;%</span></span>
 <span id="cb59-3"><a href="EDA.html#cb59-3" tabindex="-1"></a>  <span class="fu">count</span>(SCC, <span class="at">name =</span> <span class="st">&quot;n&quot;</span>) <span class="sc">%&gt;%</span></span>
@@ -1443,22 +1454,22 @@ INTERPRETACIÓN…</p>
 <span id="cb59-7"><a href="EDA.html#cb59-7" tabindex="-1"></a>  <span class="fu">select</span>(NObeyesdad, variable, categoria, n, porcentaje)</span></code></pre></div>
 <pre><code>## # A tibble: 13 × 5
 ## # Groups:   NObeyesdad [7]
-##    NObeyesdad          variable categoria     n porcentaje
-##    &lt;chr&gt;               &lt;chr&gt;    &lt;chr&gt;     &lt;int&gt;      &lt;dbl&gt;
-##  1 Insufficient_Weight SCC      no          250     91.9  
-##  2 Insufficient_Weight SCC      yes          22      8.09 
-##  3 Normal_Weight       SCC      no          257     89.5  
-##  4 Normal_Weight       SCC      yes          30     10.5  
-##  5 Obesity_Type_I      SCC      no          349     99.4  
-##  6 Obesity_Type_I      SCC      yes           2      0.570
-##  7 Obesity_Type_II     SCC      no          296     99.7  
-##  8 Obesity_Type_II     SCC      yes           1      0.337
-##  9 Obesity_Type_III    SCC      no          324    100    
-## 10 Overweight_Level_I  SCC      no          253     87.2  
-## 11 Overweight_Level_I  SCC      yes          37     12.8  
-## 12 Overweight_Level_II SCC      no          286     98.6  
-## 13 Overweight_Level_II SCC      yes           4      1.38</code></pre>
-<p>INTERPRETACIÓN…</p>
+##    NObeyesdad variable categoria     n porcentaje
+##    &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt;     &lt;int&gt;      &lt;dbl&gt;
+##  1 Insuffici… SCC      no          250     91.9  
+##  2 Insuffici… SCC      yes          22      8.09 
+##  3 Normal_We… SCC      no          257     89.5  
+##  4 Normal_We… SCC      yes          30     10.5  
+##  5 Obesity_T… SCC      no          349     99.4  
+##  6 Obesity_T… SCC      yes           2      0.570
+##  7 Obesity_T… SCC      no          296     99.7  
+##  8 Obesity_T… SCC      yes           1      0.337
+##  9 Obesity_T… SCC      no          324    100    
+## 10 Overweigh… SCC      no          253     87.2  
+## 11 Overweigh… SCC      yes          37     12.8  
+## 12 Overweigh… SCC      no          286     98.6  
+## 13 Overweigh… SCC      yes           4      1.38</code></pre>
+<p>La práctica de monitorear la ingesta calórica es poco común en general, pero decrece drásticamente en los niveles más altos de obesidad. En peso insuficiente y normal, un 8.09% y 10.5% respectivamente sí monitorean, mientras que en obesidad tipo I, II y III más del 99% no lo hace. El sobrepeso muestra el porcentaje más alto de monitoreo (12.8%), aunque sigue siendo bajo. Este hallazgo es paradójico, ya que las personas con mayor obesidad —quienes potencialmente se beneficiarían más del control calórico— son las que menos lo practican. Esto podría deberse a falta de conciencia, abandono de hábitos tras intentos fallidos o escasa educación nutricional.</p>
 <div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="EDA.html#cb61-1" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
 <span id="cb61-2"><a href="EDA.html#cb61-2" tabindex="-1"></a>  <span class="fu">group_by</span>(NObeyesdad) <span class="sc">%&gt;%</span></span>
 <span id="cb61-3"><a href="EDA.html#cb61-3" tabindex="-1"></a>  <span class="fu">count</span>(CALC, <span class="at">name =</span> <span class="st">&quot;n&quot;</span>) <span class="sc">%&gt;%</span></span>
@@ -1468,20 +1479,20 @@ INTERPRETACIÓN…</p>
 <span id="cb61-7"><a href="EDA.html#cb61-7" tabindex="-1"></a>  <span class="fu">select</span>(NObeyesdad, variable, categoria, n, porcentaje)</span></code></pre></div>
 <pre><code>## # A tibble: 21 × 5
 ## # Groups:   NObeyesdad [7]
-##    NObeyesdad          variable categoria      n porcentaje
-##    &lt;chr&gt;               &lt;chr&gt;    &lt;chr&gt;      &lt;int&gt;      &lt;dbl&gt;
-##  1 Insufficient_Weight CALC     Frequently     1      0.368
-##  2 Insufficient_Weight CALC     Sometimes    154     56.6  
-##  3 Insufficient_Weight CALC     no           117     43.0  
-##  4 Normal_Weight       CALC     Always         1      0.348
-##  5 Normal_Weight       CALC     Frequently    18      6.27 
-##  6 Normal_Weight       CALC     Sometimes    161     56.1  
-##  7 Normal_Weight       CALC     no           107     37.3  
-##  8 Obesity_Type_I      CALC     Frequently    14      3.99 
-##  9 Obesity_Type_I      CALC     Sometimes    172     49.0  
-## 10 Obesity_Type_I      CALC     no           165     47.0  
+##    NObeyesdad variable categoria     n porcentaje
+##    &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt;     &lt;int&gt;      &lt;dbl&gt;
+##  1 Insuffici… CALC     Frequent…     1      0.368
+##  2 Insuffici… CALC     Sometimes   154     56.6  
+##  3 Insuffici… CALC     no          117     43.0  
+##  4 Normal_We… CALC     Always        1      0.348
+##  5 Normal_We… CALC     Frequent…    18      6.27 
+##  6 Normal_We… CALC     Sometimes   161     56.1  
+##  7 Normal_We… CALC     no          107     37.3  
+##  8 Obesity_T… CALC     Frequent…    14      3.99 
+##  9 Obesity_T… CALC     Sometimes   172     49.0  
+## 10 Obesity_T… CALC     no          165     47.0  
 ## # ℹ 11 more rows</code></pre>
-<p>INTERPRETACIÓN…</p>
+<p>Los patrones de consumo calórico muestran que la categoría “A veces” es predominante en la mayoría de los grupos: 56.6% en peso insuficiente, 56.1% en peso normal y 49.0% en obesidad tipo I. El consumo frecuente es muy bajo, con 0.368% en peso insuficiente, 6.27% en peso normal y 3.99% en obesidad tipo I. En cambio, la categoría “No” (no consumir regularmente) es más alta en obesidad tipo I (47.0%) que en peso normal (37.3%) o insuficiente (43.0%). Estos datos muestran un patrón heterogéneo y complejo, donde la frecuencia de consumo no se asocia de forma lineal con el grado de obesidad, pero sí revela diferencias en hábitos alimentarios.</p>
 <div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="EDA.html#cb63-1" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
 <span id="cb63-2"><a href="EDA.html#cb63-2" tabindex="-1"></a>  <span class="fu">group_by</span>(NObeyesdad) <span class="sc">%&gt;%</span></span>
 <span id="cb63-3"><a href="EDA.html#cb63-3" tabindex="-1"></a>  <span class="fu">count</span>(MTRANS, <span class="at">name =</span> <span class="st">&quot;n&quot;</span>) <span class="sc">%&gt;%</span></span>
@@ -1491,20 +1502,20 @@ INTERPRETACIÓN…</p>
 <span id="cb63-7"><a href="EDA.html#cb63-7" tabindex="-1"></a>  <span class="fu">select</span>(NObeyesdad, variable, categoria, n, porcentaje)</span></code></pre></div>
 <pre><code>## # A tibble: 27 × 5
 ## # Groups:   NObeyesdad [7]
-##    NObeyesdad          variable categoria                 n porcentaje
-##    &lt;chr&gt;               &lt;chr&gt;    &lt;chr&gt;                 &lt;int&gt;      &lt;dbl&gt;
-##  1 Insufficient_Weight MTRANS   Automobile               46     16.9  
-##  2 Insufficient_Weight MTRANS   Public_Transportation   220     80.9  
-##  3 Insufficient_Weight MTRANS   Walking                   6      2.21 
-##  4 Normal_Weight       MTRANS   Automobile               45     15.7  
-##  5 Normal_Weight       MTRANS   Bike                      4      1.39 
-##  6 Normal_Weight       MTRANS   Motorbike                 6      2.09 
-##  7 Normal_Weight       MTRANS   Public_Transportation   200     69.7  
-##  8 Normal_Weight       MTRANS   Walking                  32     11.1  
-##  9 Obesity_Type_I      MTRANS   Automobile              110     31.3  
-## 10 Obesity_Type_I      MTRANS   Motorbike                 3      0.855
+##    NObeyesdad variable categoria     n porcentaje
+##    &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt;     &lt;int&gt;      &lt;dbl&gt;
+##  1 Insuffici… MTRANS   Automobi…    46     16.9  
+##  2 Insuffici… MTRANS   Public_T…   220     80.9  
+##  3 Insuffici… MTRANS   Walking       6      2.21 
+##  4 Normal_We… MTRANS   Automobi…    45     15.7  
+##  5 Normal_We… MTRANS   Bike          4      1.39 
+##  6 Normal_We… MTRANS   Motorbike     6      2.09 
+##  7 Normal_We… MTRANS   Public_T…   200     69.7  
+##  8 Normal_We… MTRANS   Walking      32     11.1  
+##  9 Obesity_T… MTRANS   Automobi…   110     31.3  
+## 10 Obesity_T… MTRANS   Motorbike     3      0.855
 ## # ℹ 17 more rows</code></pre>
-<p>INTERPRETACIÓN…</p>
+<p>El tipo de transporte utilizado muestra una transición hacia medios más sedentarios a medida que aumenta el nivel de obesidad. En peso insuficiente, el transporte público es predominante (80.9%), seguido del automóvil (16.9%) y un uso mínimo de caminar (2.21%). En peso normal, el transporte público baja a 69.7%, el automóvil se mantiene en 15.7% y caminar aumenta a 11.1%, apareciendo también medios como bicicleta y motocicleta. En obesidad tipo I, el uso del automóvil aumenta hasta 31.3%, el doble que, en peso normal, mientras que el transporte público y caminar disminuyen. Este cambio sugiere un círculo vicioso donde el aumento de peso favorece el transporte sedentario, reduciendo la actividad física incidental, lo que a su vez contribuye al mantenimiento o incremento de peso. También podría reflejar factores socioeconómicos, como mayor acceso a vehículos particulares en algunos grupos.</p>
 
 </div>
 </div>
@@ -1513,8 +1524,8 @@ INTERPRETACIÓN…</p>
           </div>
         </div>
       </div>
-<a href="base-de-datos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="application.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="base-de-datos.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

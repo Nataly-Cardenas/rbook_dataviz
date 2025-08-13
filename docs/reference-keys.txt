@@ -9,5 +9,3 @@ análisis-exploratorio-univariado-de-variables-independientes-numéricas
 análisis-exploratorio-univariado-de-variables-independientes-categóricas
 análisis-exploratorio-bivariado-nobeyesdad-vs-var.numérica
 análisis-exploratorio-bivariado-nobeyesdad-vs-var.categórica
-application
-final-words
