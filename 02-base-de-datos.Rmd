@@ -1,0 +1,30 @@
+# Base de datos{#base-de-datos}
+
+Para el desarrollo de nuesto análisis, trabajaremos con un conjunto de datos que contiene 2111 registros de individuos entre los 14 y 61 años, provenientes de Colombia, Perú y México. Cada registro representa a una persona y describe sus hábitos alimenticios, actividad física y condiciones físicas. El conjunto de datos completo puede consultarlo en el siguiente enlace:[ link Datase](https://archive.ics.uci.edu/dataset/544/estimation+of+obesity+levels+based+on+eating+habits+and+physical+condition).
+El Dataset incluye variables como: edad, género, peso, altura, consumo de alimentos calóricos, frecuencia de consumo de vegetales, número de comidas principales, consumo entre comidas, consumo de alcohol, frecuencia de actividad física, cantidad de agua consumida al día, hábito de fumar, monitoreo de calorías, uso de dispositivos electrónicos y medio de transporte. También considera si el individuo tiene antecedentes familiares de sobrepeso.
+
+## Descripción de los datos
+
+La tabla a continuación muestra la descripción y naturaleza de cada variable del conjunto de datos escogido:
+
+| Variable               | Tipo        | Descripción                                                                 |
+|------------------------|-------------|-----------------------------------------------------------------------------|
+| Gender                 | Categórica  | Género del individuo (Male/Female).                                         |
+| Age                   | Numérica    | Edad del individuo.                                                         |
+| Height                | Numérica    | Estatura en metros.                                                         |
+| Weight                | Numérica    | Peso en kilogramos.                                                         |
+| family_history_with_overweight | Categórica  | Si hay antecedentes familiares de sobrepeso (yes/no).                      |
+| FAVC (Frequent consumption of high caloric food) | Categórica | Si la persona consume frecuentemente comida alta en calorías (yes/no). |
+| FCVC (Frequency of consumption of vegetables) | Ordinal     | Frecuencia de consumo de vegetales (1-3).                                  |
+| NCP (Number of main meals)         | Numérica    | Número de comidas principales al día.                                      |
+| CAEC (Consumption of food between meals) | Categórica | Frecuencia de consumo entre comidas (no/Sometimes/Frequently/Always).     |
+| SMOKE                | Categórica  | Si la persona fuma (yes/no).                                               |
+| CH2O (Daily water intake)         | Ordinal     | Consumo diario de agua (litros aproximados).                              |
+| SCC (Calories consumption monitoring) | Categórica | Si la persona monitorea su consumo de calorías (yes/no).                  |
+| FAF (Physical activity frequency) | Numérica    | Frecuencia de actividad física semanal.                                    |
+| TUE (Time using technology devices) | Numérica  | Tiempo de uso de dispositivos tecnológicos al día (en horas).             |
+| CALC (Alcohol consumption)        | Categórica  | Frecuencia de consumo de alcohol (no/Sometimes/Frequently/Always).        |
+| MTRANS (Transportation used)      | Categórica  | Medio de transporte utilizado (Automobile/Motorbike/Bike/Walking/Public). |
+| NObeyesdad (Target)               | Categórica  | Clasificación del nivel de obesidad: Normal, Overweight, Obesity Type I, etc.|
+
+

@@ -1,0 +1,15 @@
+book_filename: "bookdown-demo"
+language:
+  ui:
+    chapter_name: "Capítulo "
+delete_merged_file: true
+output_dir: "docs"
+
+rmd_files:
+  - index.Rmd
+  - 01-introduccion.Rmd
+  - 02-base-de-datos.Rmd
+  - 03-EDA.Rmd
+  - 04-tablas-contingencia.Rmd
+  - 05-Kruskal-Wallis.Rmd
+

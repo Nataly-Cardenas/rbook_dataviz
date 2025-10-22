@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Análisis Estadístico de Factores Asociados a la Obesidad</title>
+  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Análisis Estadístico de Factores Asociados a la Obesidad" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Análisis Estadístico de Factores Asociados a la Obesidad" />
+  
+  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Nátaly Cárdenas Izáquita y Roger Daza Polo" />
+
+
+<meta name="date" content="2025-10-21" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="introduccion.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Análisis Estadístico de Factores Asociados a la Obesidad</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Sobre este libro</a></li>
+<li class="chapter" data-level="1" data-path="introduccion.html"><a href="introduccion.html"><i class="fa fa-check"></i><b>1</b> Introducción</a></li>
+<li class="chapter" data-level="2" data-path="base-de-datos.html"><a href="base-de-datos.html"><i class="fa fa-check"></i><b>2</b> Base de datos</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="base-de-datos.html"><a href="base-de-datos.html#descripci%C3%B3n-de-los-datos"><i class="fa fa-check"></i><b>2.1</b> Descripción de los datos</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="EDA.html"><a href="EDA.html"><i class="fa fa-check"></i><b>3</b> Análisis Exploratorio de Datos (EDA)</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="EDA.html"><a href="EDA.html#objetivo-del-eda"><i class="fa fa-check"></i><b>3.1</b> Objetivo del EDA</a></li>
+<li class="chapter" data-level="3.2" data-path="EDA.html"><a href="EDA.html#extracci%C3%B3n-transformaci%C3%B3n-y-carga-etl"><i class="fa fa-check"></i><b>3.2</b> Extracción, Transformación y Carga (ETL)</a></li>
+<li class="chapter" data-level="3.3" data-path="EDA.html"><a href="EDA.html#an%C3%A1lisis-variable-objetivo-nobeyesdad"><i class="fa fa-check"></i><b>3.3</b> Análisis variable objetivo (NObeyesdad)</a></li>
+<li class="chapter" data-level="3.4" data-path="EDA.html"><a href="EDA.html#an%C3%A1lisis-exploratorio-univariado-de-variables-independientes-num%C3%A9ricas"><i class="fa fa-check"></i><b>3.4</b> Análisis exploratorio univariado de variables independientes numéricas</a></li>
+<li class="chapter" data-level="3.5" data-path="EDA.html"><a href="EDA.html#an%C3%A1lisis-exploratorio-univariado-de-variables-independientes-categ%C3%B3ricas"><i class="fa fa-check"></i><b>3.5</b> Análisis exploratorio univariado de variables independientes categóricas</a></li>
+<li class="chapter" data-level="3.6" data-path="EDA.html"><a href="EDA.html#an%C3%A1lisis-exploratorio-bivariado-nobeyesdad-vs-var.num%C3%A9rica"><i class="fa fa-check"></i><b>3.6</b> Análisis exploratorio bivariado (NObeyesdad vs var.numérica)</a></li>
+<li class="chapter" data-level="3.7" data-path="EDA.html"><a href="EDA.html#an%C3%A1lisis-exploratorio-bivariado-nobeyesdad-vs-var.categ%C3%B3rica"><i class="fa fa-check"></i><b>3.7</b> Análisis exploratorio bivariado (NObeyesdad vs var.categórica)</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html"><i class="fa fa-check"></i><b>4</b> Tablas de contingencia</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#nobeyesdad-vs-gender"><i class="fa fa-check"></i><b>4.1</b> NObeyesdad VS Gender</a></li>
+<li class="chapter" data-level="4.2" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#nobeyesdad-vs-family_history_with_overweight"><i class="fa fa-check"></i><b>4.2</b> NObeyesdad VS family_history_with_overweight</a></li>
+<li class="chapter" data-level="4.3" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#nobeyesdad-vs-favcfrequent-consumption-of-high-caloric-food"><i class="fa fa-check"></i><b>4.3</b> NObeyesdad VS FAVC(Frequent consumption of high caloric food)</a></li>
+<li class="chapter" data-level="4.4" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#nobeyesdad-vs-caecconsumption-of-food-between-meals"><i class="fa fa-check"></i><b>4.4</b> NObeyesdad VS CAEC(Consumption of food between meals)</a></li>
+<li class="chapter" data-level="4.5" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#nobeyesdad-vs-smoke"><i class="fa fa-check"></i><b>4.5</b> NObeyesdad VS SMOKE</a></li>
+<li class="chapter" data-level="4.6" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#nobeyesdad-vs-scccalories-consumption-monitoring"><i class="fa fa-check"></i><b>4.6</b> NObeyesdad VS SCC(Calories consumption monitoring)</a></li>
+<li class="chapter" data-level="4.7" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#nobeyesdad-vs-calcalcohol-consumption"><i class="fa fa-check"></i><b>4.7</b> NObeyesdad VS CALC(Alcohol consumption)</a></li>
+<li class="chapter" data-level="4.8" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#nobeyesdad-vs-mtrans-transportation-used"><i class="fa fa-check"></i><b>4.8</b> NObeyesdad VS MTRANS (Transportation used)</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="kruskal-wallis.html"><a href="kruskal-wallis.html"><i class="fa fa-check"></i><b>5</b> Kruskal-Wallis</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="kruskal-wallis.html"><a href="kruskal-wallis.html#nobeyesdad-vs-age"><i class="fa fa-check"></i><b>5.1</b> NObeyesdad vs Age</a></li>
+<li class="chapter" data-level="5.2" data-path="kruskal-wallis.html"><a href="kruskal-wallis.html#nobeyesdad-vs-height"><i class="fa fa-check"></i><b>5.2</b> Nobeyesdad vs Height</a></li>
+<li class="chapter" data-level="5.3" data-path="kruskal-wallis.html"><a href="kruskal-wallis.html#nobeyesdad-vs-weight"><i class="fa fa-check"></i><b>5.3</b> NObeyesdad vs Weight</a></li>
+<li class="chapter" data-level="5.4" data-path="kruskal-wallis.html"><a href="kruskal-wallis.html#nobeyesdad-vs-fcvcconsumo-de-vegetales"><i class="fa fa-check"></i><b>5.4</b> NObeyesdad vs FCVC(Consumo de vegetales)</a></li>
+<li class="chapter" data-level="5.5" data-path="kruskal-wallis.html"><a href="kruskal-wallis.html#nobeyesdad-vs-ncpn%C3%BAmero-de-comidas-al-d%C3%ADa"><i class="fa fa-check"></i><b>5.5</b> NObeyesdad vs NCP(Número de comidas al día)</a></li>
+<li class="chapter" data-level="5.6" data-path="kruskal-wallis.html"><a href="kruskal-wallis.html#nobeyesdad-vs-ch2oconsumo-de-agua"><i class="fa fa-check"></i><b>5.6</b> NObeyesdad vs CH2O(Consumo de agua)</a></li>
+<li class="chapter" data-level="5.7" data-path="kruskal-wallis.html"><a href="kruskal-wallis.html#nobeyesdad-vs-fafcantidad-de-actividad-f%C3%ADsica"><i class="fa fa-check"></i><b>5.7</b> NObeyesdad vs FAF(Cantidad de actividad física)</a></li>
+<li class="chapter" data-level="5.8" data-path="kruskal-wallis.html"><a href="kruskal-wallis.html#nobeyesdad-vs-tueutilizaci%C3%B3n-de-dispositivos-electr%C3%B3nicos"><i class="fa fa-check"></i><b>5.8</b> NObeyesdad vs TUE(Utilización de dispositivos electrónicos)</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Análisis Estadístico de Factores Asociados a la Obesidad</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Análisis Estadístico de Factores Asociados a la Obesidad</h1>
+<p class="author"><em>Nátaly Cárdenas Izáquita y Roger Daza Polo</em></p>
+<p class="date"><em>2025-10-21</em></p>
+</div>
+<div id="sobre-este-libro" class="section level1 unnumbered hasAnchor">
+<h1>Sobre este libro<a href="index.html#sobre-este-libro" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>En este libro desarrollamos un análisis exploratorio de datos (EDA) y además usamos técnicas descriptivas e inferenciales a una base de datos sobre niveles de obesidad en individuos. El objetivo es identificar patrones, relaciones y características relevantes entre variables como el índice de masa corporal (IMC), hábitos alimenticios, nivel de actividad física, consumo de agua, entre otros factores.</p>
+<p>Esperamos que este trabajo contribuya a una mejor comprensión de los elementos asociados a la obesidad, y que sirva como ejemplo práctico del uso de herramientas estadísticas para abordar problemáticas reales a partir del análisis de datos.</p>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="introduccion.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/rstudio/bookdown-demo/edit/master/index.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+</body>
+
+</html>

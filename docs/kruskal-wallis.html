@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 5 Kruskal-Wallis | Análisis Estadístico de Factores Asociados a la Obesidad</title>
+  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 5 Kruskal-Wallis | Análisis Estadístico de Factores Asociados a la Obesidad" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 5 Kruskal-Wallis | Análisis Estadístico de Factores Asociados a la Obesidad" />
+  
+  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Nátaly Cárdenas Izáquita y Roger Daza Polo" />
+
+
+<meta name="date" content="2025-10-21" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="tablas-contingencia.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Análisis Estadístico de Factores Asociados a la Obesidad</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Sobre este libro</a></li>
+<li class="chapter" data-level="1" data-path="introduccion.html"><a href="introduccion.html"><i class="fa fa-check"></i><b>1</b> Introducción</a></li>
+<li class="chapter" data-level="2" data-path="base-de-datos.html"><a href="base-de-datos.html"><i class="fa fa-check"></i><b>2</b> Base de datos</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="base-de-datos.html"><a href="base-de-datos.html#descripci%C3%B3n-de-los-datos"><i class="fa fa-check"></i><b>2.1</b> Descripción de los datos</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="EDA.html"><a href="EDA.html"><i class="fa fa-check"></i><b>3</b> Análisis Exploratorio de Datos (EDA)</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="EDA.html"><a href="EDA.html#objetivo-del-eda"><i class="fa fa-check"></i><b>3.1</b> Objetivo del EDA</a></li>
+<li class="chapter" data-level="3.2" data-path="EDA.html"><a href="EDA.html#extracci%C3%B3n-transformaci%C3%B3n-y-carga-etl"><i class="fa fa-check"></i><b>3.2</b> Extracción, Transformación y Carga (ETL)</a></li>
+<li class="chapter" data-level="3.3" data-path="EDA.html"><a href="EDA.html#an%C3%A1lisis-variable-objetivo-nobeyesdad"><i class="fa fa-check"></i><b>3.3</b> Análisis variable objetivo (NObeyesdad)</a></li>
+<li class="chapter" data-level="3.4" data-path="EDA.html"><a href="EDA.html#an%C3%A1lisis-exploratorio-univariado-de-variables-independientes-num%C3%A9ricas"><i class="fa fa-check"></i><b>3.4</b> Análisis exploratorio univariado de variables independientes numéricas</a></li>
+<li class="chapter" data-level="3.5" data-path="EDA.html"><a href="EDA.html#an%C3%A1lisis-exploratorio-univariado-de-variables-independientes-categ%C3%B3ricas"><i class="fa fa-check"></i><b>3.5</b> Análisis exploratorio univariado de variables independientes categóricas</a></li>
+<li class="chapter" data-level="3.6" data-path="EDA.html"><a href="EDA.html#an%C3%A1lisis-exploratorio-bivariado-nobeyesdad-vs-var.num%C3%A9rica"><i class="fa fa-check"></i><b>3.6</b> Análisis exploratorio bivariado (NObeyesdad vs var.numérica)</a></li>
+<li class="chapter" data-level="3.7" data-path="EDA.html"><a href="EDA.html#an%C3%A1lisis-exploratorio-bivariado-nobeyesdad-vs-var.categ%C3%B3rica"><i class="fa fa-check"></i><b>3.7</b> Análisis exploratorio bivariado (NObeyesdad vs var.categórica)</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html"><i class="fa fa-check"></i><b>4</b> Tablas de contingencia</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#nobeyesdad-vs-gender"><i class="fa fa-check"></i><b>4.1</b> NObeyesdad VS Gender</a></li>
+<li class="chapter" data-level="4.2" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#nobeyesdad-vs-family_history_with_overweight"><i class="fa fa-check"></i><b>4.2</b> NObeyesdad VS family_history_with_overweight</a></li>
+<li class="chapter" data-level="4.3" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#nobeyesdad-vs-favcfrequent-consumption-of-high-caloric-food"><i class="fa fa-check"></i><b>4.3</b> NObeyesdad VS FAVC(Frequent consumption of high caloric food)</a></li>
+<li class="chapter" data-level="4.4" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#nobeyesdad-vs-caecconsumption-of-food-between-meals"><i class="fa fa-check"></i><b>4.4</b> NObeyesdad VS CAEC(Consumption of food between meals)</a></li>
+<li class="chapter" data-level="4.5" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#nobeyesdad-vs-smoke"><i class="fa fa-check"></i><b>4.5</b> NObeyesdad VS SMOKE</a></li>
+<li class="chapter" data-level="4.6" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#nobeyesdad-vs-scccalories-consumption-monitoring"><i class="fa fa-check"></i><b>4.6</b> NObeyesdad VS SCC(Calories consumption monitoring)</a></li>
+<li class="chapter" data-level="4.7" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#nobeyesdad-vs-calcalcohol-consumption"><i class="fa fa-check"></i><b>4.7</b> NObeyesdad VS CALC(Alcohol consumption)</a></li>
+<li class="chapter" data-level="4.8" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#nobeyesdad-vs-mtrans-transportation-used"><i class="fa fa-check"></i><b>4.8</b> NObeyesdad VS MTRANS (Transportation used)</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="kruskal-wallis.html"><a href="kruskal-wallis.html"><i class="fa fa-check"></i><b>5</b> Kruskal-Wallis</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="kruskal-wallis.html"><a href="kruskal-wallis.html#nobeyesdad-vs-age"><i class="fa fa-check"></i><b>5.1</b> NObeyesdad vs Age</a></li>
+<li class="chapter" data-level="5.2" data-path="kruskal-wallis.html"><a href="kruskal-wallis.html#nobeyesdad-vs-height"><i class="fa fa-check"></i><b>5.2</b> Nobeyesdad vs Height</a></li>
+<li class="chapter" data-level="5.3" data-path="kruskal-wallis.html"><a href="kruskal-wallis.html#nobeyesdad-vs-weight"><i class="fa fa-check"></i><b>5.3</b> NObeyesdad vs Weight</a></li>
+<li class="chapter" data-level="5.4" data-path="kruskal-wallis.html"><a href="kruskal-wallis.html#nobeyesdad-vs-fcvcconsumo-de-vegetales"><i class="fa fa-check"></i><b>5.4</b> NObeyesdad vs FCVC(Consumo de vegetales)</a></li>
+<li class="chapter" data-level="5.5" data-path="kruskal-wallis.html"><a href="kruskal-wallis.html#nobeyesdad-vs-ncpn%C3%BAmero-de-comidas-al-d%C3%ADa"><i class="fa fa-check"></i><b>5.5</b> NObeyesdad vs NCP(Número de comidas al día)</a></li>
+<li class="chapter" data-level="5.6" data-path="kruskal-wallis.html"><a href="kruskal-wallis.html#nobeyesdad-vs-ch2oconsumo-de-agua"><i class="fa fa-check"></i><b>5.6</b> NObeyesdad vs CH2O(Consumo de agua)</a></li>
+<li class="chapter" data-level="5.7" data-path="kruskal-wallis.html"><a href="kruskal-wallis.html#nobeyesdad-vs-fafcantidad-de-actividad-f%C3%ADsica"><i class="fa fa-check"></i><b>5.7</b> NObeyesdad vs FAF(Cantidad de actividad física)</a></li>
+<li class="chapter" data-level="5.8" data-path="kruskal-wallis.html"><a href="kruskal-wallis.html#nobeyesdad-vs-tueutilizaci%C3%B3n-de-dispositivos-electr%C3%B3nicos"><i class="fa fa-check"></i><b>5.8</b> NObeyesdad vs TUE(Utilización de dispositivos electrónicos)</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Análisis Estadístico de Factores Asociados a la Obesidad</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="kruskal-wallis" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Capítulo 5</span> Kruskal-Wallis<a href="kruskal-wallis.html#kruskal-wallis" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Dado que la variable objetivo NObeyesdad es categórica y se quiere comparar con las variables numéricas del dataset: Age, Weight, NCP, FAF, TUE, FCVC y CH2O, se deben aplicar pruebas estadísticas para evaluar si existen diferencias significativas entre los distintos niveles de obesidad. Para este tipo de análisis, la elección de la prueba depende del cumplimiento de los supuestos de normalidad y homogeneidad de varianzas en los datos, se debe utilizar ANOVA para pruebas <strong>paramétricas</strong> y Kruskal-Wallis para pruebas <strong>no paramétricas</strong>. Este procedimiento proporciona una visión más completa de los factores que podrían influir en la condición de obesidad.</p>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="kruskal-wallis.html#cb259-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb259-2"><a href="kruskal-wallis.html#cb259-2" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb259-3"><a href="kruskal-wallis.html#cb259-3" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb259-4"><a href="kruskal-wallis.html#cb259-4" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb259-5"><a href="kruskal-wallis.html#cb259-5" tabindex="-1"></a>datos<span class="ot">&lt;-</span> datos<span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;C:/Users/natal/Downloads/ObesityDataSet_raw_and_data_sinthetic.csv&quot;</span>)</span></code></pre></div>
+<pre><code>## Rows: 2111 Columns: 17
+## ── Column specification ───────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (9): Gender, family_history_with_overweight, FAVC, CAEC, SMOKE, SCC, CA...
+## dbl (8): Age, Height, Weight, FCVC, NCP, CH2O, FAF, TUE
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="kruskal-wallis.html#cb261-1" tabindex="-1"></a><span class="fu">table</span>(datos<span class="sc">$</span>NObeyesdad)</span></code></pre></div>
+<pre><code>## 
+## Insufficient_Weight       Normal_Weight      Obesity_Type_I 
+##                 272                 287                 351 
+##     Obesity_Type_II    Obesity_Type_III  Overweight_Level_I 
+##                 297                 324                 290 
+## Overweight_Level_II 
+##                 290</code></pre>
+<div id="nobeyesdad-vs-age" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> NObeyesdad vs Age<a href="kruskal-wallis.html#nobeyesdad-vs-age" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="kruskal-wallis.html#cb263-1" tabindex="-1"></a><span class="co"># comprobamos normalidad</span></span>
+<span id="cb263-2"><a href="kruskal-wallis.html#cb263-2" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
+<span id="cb263-3"><a href="kruskal-wallis.html#cb263-3" tabindex="-1"></a>  <span class="fu">group_by</span>(NObeyesdad) <span class="sc">%&gt;%</span></span>
+<span id="cb263-4"><a href="kruskal-wallis.html#cb263-4" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">length</span>(Age),</span>
+<span id="cb263-5"><a href="kruskal-wallis.html#cb263-5" tabindex="-1"></a>            <span class="at">estsw =</span> <span class="fu">shapiro.test</span>(Age)<span class="sc">$</span>statistic,</span>
+<span id="cb263-6"><a href="kruskal-wallis.html#cb263-6" tabindex="-1"></a>            <span class="at">p_sw =</span> <span class="fu">shapiro.test</span>(Age)<span class="sc">$</span>p.value)</span></code></pre></div>
+<pre><code>## # A tibble: 7 × 4
+##   NObeyesdad              n estsw     p_sw
+##   &lt;chr&gt;               &lt;int&gt; &lt;dbl&gt;    &lt;dbl&gt;
+## 1 Insufficient_Weight   272 0.794 2.94e-18
+## 2 Normal_Weight         287 0.737 4.81e-21
+## 3 Obesity_Type_I        351 0.848 5.71e-18
+## 4 Obesity_Type_II       297 0.930 1.33e-10
+## 5 Obesity_Type_III      324 0.801 1.20e-19
+## 6 Overweight_Level_I    290 0.811 4.14e-18
+## 7 Overweight_Level_II   290 0.889 1.01e-13</code></pre>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="kruskal-wallis.html#cb265-1" tabindex="-1"></a><span class="co"># comprobamos homogeneidad de varianzas</span></span>
+<span id="cb265-2"><a href="kruskal-wallis.html#cb265-2" tabindex="-1"></a><span class="fu">leveneTest</span>(Age <span class="sc">~</span> NObeyesdad, <span class="at">data =</span> datos)</span></code></pre></div>
+<pre><code>## Warning in leveneTest.default(y = y, group = group, ...): group coerced to
+## factor.</code></pre>
+<pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
+##         Df F value    Pr(&gt;F)    
+## group    6   38.79 &lt; 2.2e-16 ***
+##       2104                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Tras realizar la prueba de normalidad de Shapiro–Wilk para la variable Age en cada nivel de NObeyesdad, se obtuvieron p-valores muy inferiores a 0.05, indicando que los datos no siguen una distribución normal.
+Además, la prueba de homogeneidad de varianzas de Levene mostró un valor p &lt; 0.05, por lo que se rechaza la igualdad de varianzas entre los grupos.
+En consecuencia, no se cumplen los supuestos necesarios para aplicar un ANOVA, por lo que se debe emplear la prueba no paramétrica de Kruskal–Wallis para analizar las diferencias entre grupos.</p>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="kruskal-wallis.html#cb268-1" tabindex="-1"></a><span class="fu">kruskal.test</span>(Age <span class="sc">~</span> NObeyesdad, <span class="at">data =</span> datos)</span></code></pre></div>
+<pre><code>## 
+##  Kruskal-Wallis rank sum test
+## 
+## data:  Age by NObeyesdad
+## Kruskal-Wallis chi-squared = 541.77, df = 6, p-value &lt; 2.2e-16</code></pre>
+<p>Según la prueba no paramétrica de Kruskal–Wallis aplicada a la variable Age por grupos de NObeyesdad, se obtuvo un estadístico χ² = 541.77 con 6 grados de libertad y un valor p &lt; 2.2e-16.</p>
+<p>Dado que el p-valor es menor que 0.05, se rechaza la hipótesis nula, concluyendo que existen diferencias estadísticamente significativas en la edad entre los distintos niveles de obesidad.
+Esto sugiere que la edad podría estar relacionada con el nivel de obesidad de los individuos en el conjunto de datos.</p>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="kruskal-wallis.html#cb270-1" tabindex="-1"></a><span class="fu">pairwise.wilcox.test</span>(<span class="at">x =</span> datos<span class="sc">$</span>Age,</span>
+<span id="cb270-2"><a href="kruskal-wallis.html#cb270-2" tabindex="-1"></a>                     <span class="at">g =</span> datos<span class="sc">$</span>NObeyesdad,</span>
+<span id="cb270-3"><a href="kruskal-wallis.html#cb270-3" tabindex="-1"></a>                     <span class="at">exact =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb270-4"><a href="kruskal-wallis.html#cb270-4" tabindex="-1"></a>                     <span class="at">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
+## 
+## data:  datos$Age and datos$NObeyesdad 
+## 
+##                     Insufficient_Weight Normal_Weight Obesity_Type_I
+## Normal_Weight       8.6e-07             -             -             
+## Obesity_Type_I      &lt; 2e-16             3.5e-13       -             
+## Obesity_Type_II     &lt; 2e-16             &lt; 2e-16       4.6e-15       
+## Obesity_Type_III    &lt; 2e-16             &lt; 2e-16       1.00000       
+## Overweight_Level_I  &lt; 2e-16             0.01067       7.4e-05       
+## Overweight_Level_II &lt; 2e-16             &lt; 2e-16       0.96811       
+##                     Obesity_Type_II Obesity_Type_III Overweight_Level_I
+## Normal_Weight       -               -                -                 
+## Obesity_Type_I      -               -                -                 
+## Obesity_Type_II     -               -                -                 
+## Obesity_Type_III    &lt; 2e-16         -                -                 
+## Overweight_Level_I  &lt; 2e-16         0.00068          -                 
+## Overweight_Level_II 4.8e-05         0.02841          1.1e-08           
+## 
+## P value adjustment method: bonferroni</code></pre>
+<p>Tras aplicar el test post hoc de Wilcoxon con corrección Bonferroni a la variable Age según los niveles de NObeyesdad, se observa que la mayoría de las comparaciones por pares presentan valores p &lt; 0.05, indicando diferencias estadísticamente significativas en la edad entre la mayoría de los grupos de obesidad.</p>
+<p>Sin embargo, algunas comparaciones —como entre Obesity_Type_I y Obesity_Type_III o entre Overweight_Level_I y Overweight_Level_II— no muestran diferencias significativas (p &gt; 0.05), lo cual sugiere que estos grupos presentan edades similares entre sí.
+En conclusión, estos resultados respaldan la conclusión previa del test de Kruskal–Wallis: la edad está asociada con el nivel de obesidad, mostrando patrones de edad diferentes según el tipo de obesidad, aunque algunos grupos cercanos no difieran entre sí.</p>
+</div>
+<div id="nobeyesdad-vs-height" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Nobeyesdad vs Height<a href="kruskal-wallis.html#nobeyesdad-vs-height" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="kruskal-wallis.html#cb272-1" tabindex="-1"></a><span class="co"># comprobamos normalidad</span></span>
+<span id="cb272-2"><a href="kruskal-wallis.html#cb272-2" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
+<span id="cb272-3"><a href="kruskal-wallis.html#cb272-3" tabindex="-1"></a>  <span class="fu">group_by</span>(NObeyesdad) <span class="sc">%&gt;%</span></span>
+<span id="cb272-4"><a href="kruskal-wallis.html#cb272-4" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">length</span>(Height),</span>
+<span id="cb272-5"><a href="kruskal-wallis.html#cb272-5" tabindex="-1"></a>            <span class="at">estsw =</span> <span class="fu">shapiro.test</span>(Height)<span class="sc">$</span>statistic,</span>
+<span id="cb272-6"><a href="kruskal-wallis.html#cb272-6" tabindex="-1"></a>            <span class="at">p_sw =</span> <span class="fu">shapiro.test</span>(Height)<span class="sc">$</span>p.value)</span></code></pre></div>
+<pre><code>## # A tibble: 7 × 4
+##   NObeyesdad              n estsw     p_sw
+##   &lt;chr&gt;               &lt;int&gt; &lt;dbl&gt;    &lt;dbl&gt;
+## 1 Insufficient_Weight   272 0.962 1.31e- 6
+## 2 Normal_Weight         287 0.977 1.59e- 4
+## 3 Obesity_Type_I        351 0.976 1.69e- 5
+## 4 Obesity_Type_II       297 0.962 5.20e- 7
+## 5 Obesity_Type_III      324 0.940 3.46e-10
+## 6 Overweight_Level_I    290 0.979 2.72e- 4
+## 7 Overweight_Level_II   290 0.962 6.12e- 7</code></pre>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="kruskal-wallis.html#cb274-1" tabindex="-1"></a><span class="co"># comprobamos homogeneidad de varianzas</span></span>
+<span id="cb274-2"><a href="kruskal-wallis.html#cb274-2" tabindex="-1"></a><span class="fu">leveneTest</span>(Height <span class="sc">~</span> NObeyesdad, <span class="at">data =</span> datos)</span></code></pre></div>
+<pre><code>## Warning in leveneTest.default(y = y, group = group, ...): group coerced to
+## factor.</code></pre>
+<pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
+##         Df F value    Pr(&gt;F)    
+## group    6  17.364 &lt; 2.2e-16 ***
+##       2104                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>De acuerdo con los resultados del test de Shapiro–Wilk, todos los grupos de la variable NObeyesdad presentan p-valores menores a 0.05, lo que indica que no se cumple el supuesto de normalidad en ninguno de ellos.</p>
+<p>Asimismo, el test de Levene (F = 17.364, p &lt; 2.2e-16) mostró que no se cumple el supuesto de homogeneidad de varianzas entre los grupos.
+En conjunto, estos resultados sugieren que no se cumplen los supuestos necesarios para aplicar pruebas paramétricas, por lo que se recomienda utilizar pruebas no paramétricas, tales como el test de Kruskal–Wallis para comparar los grupos.</p>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="kruskal-wallis.html#cb277-1" tabindex="-1"></a><span class="fu">kruskal.test</span>(Height <span class="sc">~</span> NObeyesdad, <span class="at">data =</span> datos)</span></code></pre></div>
+<pre><code>## 
+##  Kruskal-Wallis rank sum test
+## 
+## data:  Height by NObeyesdad
+## Kruskal-Wallis chi-squared = 219.29, df = 6, p-value &lt; 2.2e-16</code></pre>
+<p>Se aplicó el test no paramétrico de Kruskal–Wallis, cuyo resultado (χ² = 219.29, gl = 6, p &lt; 2.2e-16) evidencia diferencias estadísticamente significativas en la altura (Height) entre los distintos niveles de obesidad (NObeyesdad).
+En otras palabras, se puede concluir que la estatura varía significativamente según el nivel de obesidad de los individuos del conjunto de datos.</p>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="kruskal-wallis.html#cb279-1" tabindex="-1"></a><span class="fu">pairwise.wilcox.test</span>(<span class="at">x =</span> datos<span class="sc">$</span>Height,</span>
+<span id="cb279-2"><a href="kruskal-wallis.html#cb279-2" tabindex="-1"></a>                     <span class="at">g =</span> datos<span class="sc">$</span>NObeyesdad,</span>
+<span id="cb279-3"><a href="kruskal-wallis.html#cb279-3" tabindex="-1"></a>                     <span class="at">exact =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb279-4"><a href="kruskal-wallis.html#cb279-4" tabindex="-1"></a>                     <span class="at">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
+## 
+## data:  datos$Height and datos$NObeyesdad 
+## 
+##                     Insufficient_Weight Normal_Weight Obesity_Type_I
+## Normal_Weight       0.82254             -             -             
+## Obesity_Type_I      1.00000             0.54205       -             
+## Obesity_Type_II     &lt; 2e-16             &lt; 2e-16       &lt; 2e-16       
+## Obesity_Type_III    1.00000             0.77757       1.00000       
+## Overweight_Level_I  1.00000             1.00000       1.00000       
+## Overweight_Level_II 1.00000             0.00024       0.97160       
+##                     Obesity_Type_II Obesity_Type_III Overweight_Level_I
+## Normal_Weight       -               -                -                 
+## Obesity_Type_I      -               -                -                 
+## Obesity_Type_II     -               -                -                 
+## Obesity_Type_III    &lt; 2e-16         -                -                 
+## Overweight_Level_I  &lt; 2e-16         1.00000          -                 
+## Overweight_Level_II &lt; 2e-16         0.00288          0.39245           
+## 
+## P value adjustment method: bonferroni</code></pre>
+<p>Existen diferencias estadísticamente significativas (p &lt; 0.05) entre el grupo Obesity_Type_II y la mayoría de los demás niveles de obesidad (Insufficient_Weight, Normal_Weight, Obesity_Type_I, Overweight_Level_I, y Overweight_Level_II).
+También se observan diferencias significativas entre Obesity_Type_III y varios grupos, así como entre Overweight_Level_II y Obesity_Type_III.
+En cambio, no se hallaron diferencias significativas (p &gt; 0.05) entre grupos con categorías cercanas, como Normal_Weight y Overweight_Level_I, o entre Obesity_Type_I y Obesity_Type_III, lo que indica que esos grupos presentan alturas similares.</p>
+</div>
+<div id="nobeyesdad-vs-weight" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> NObeyesdad vs Weight<a href="kruskal-wallis.html#nobeyesdad-vs-weight" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="kruskal-wallis.html#cb281-1" tabindex="-1"></a><span class="co"># comprobamos normalidad</span></span>
+<span id="cb281-2"><a href="kruskal-wallis.html#cb281-2" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
+<span id="cb281-3"><a href="kruskal-wallis.html#cb281-3" tabindex="-1"></a>  <span class="fu">group_by</span>(NObeyesdad) <span class="sc">%&gt;%</span></span>
+<span id="cb281-4"><a href="kruskal-wallis.html#cb281-4" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">length</span>(Weight),</span>
+<span id="cb281-5"><a href="kruskal-wallis.html#cb281-5" tabindex="-1"></a>            <span class="at">estsw =</span> <span class="fu">shapiro.test</span>(Weight)<span class="sc">$</span>statistic,</span>
+<span id="cb281-6"><a href="kruskal-wallis.html#cb281-6" tabindex="-1"></a>            <span class="at">p_sw =</span> <span class="fu">shapiro.test</span>(Weight)<span class="sc">$</span>p.value)</span></code></pre></div>
+<pre><code>## # A tibble: 7 × 4
+##   NObeyesdad              n estsw     p_sw
+##   &lt;chr&gt;               &lt;int&gt; &lt;dbl&gt;    &lt;dbl&gt;
+## 1 Insufficient_Weight   272 0.952 7.99e- 8
+## 2 Normal_Weight         287 0.985 4.12e- 3
+## 3 Obesity_Type_I        351 0.943 2.07e-10
+## 4 Obesity_Type_II       297 0.934 3.22e-10
+## 5 Obesity_Type_III      324 0.888 1.08e-14
+## 6 Overweight_Level_I    290 0.977 1.27e- 4
+## 7 Overweight_Level_II   290 0.969 6.08e- 6</code></pre>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="kruskal-wallis.html#cb283-1" tabindex="-1"></a><span class="co"># comprobamos homogeneidad de varianzas</span></span>
+<span id="cb283-2"><a href="kruskal-wallis.html#cb283-2" tabindex="-1"></a><span class="fu">leveneTest</span>(Weight <span class="sc">~</span> NObeyesdad, <span class="at">data =</span> datos)</span></code></pre></div>
+<pre><code>## Warning in leveneTest.default(y = y, group = group, ...): group coerced to
+## factor.</code></pre>
+<pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
+##         Df F value    Pr(&gt;F)    
+## group    6  51.384 &lt; 2.2e-16 ***
+##       2104                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Tras realizar la prueba de normalidad de Shapiro–Wilk para la variable Weight en cada nivel de NObeyesdad, se obtuvieron p-valores muy inferiores a 0.05, indicando que los datos no siguen una distribución normal.
+Además, la prueba de homogeneidad de varianzas de Levene mostró un valor p &lt; 0.05, por lo que se rechaza la igualdad de varianzas entre los grupos.
+Por lo que se realizará la prueba Kruskal-Wallis.</p>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="kruskal-wallis.html#cb286-1" tabindex="-1"></a><span class="fu">kruskal.test</span>(Weight <span class="sc">~</span> NObeyesdad, <span class="at">data =</span> datos)</span></code></pre></div>
+<pre><code>## 
+##  Kruskal-Wallis rank sum test
+## 
+## data:  Weight by NObeyesdad
+## Kruskal-Wallis chi-squared = 1822.2, df = 6, p-value &lt; 2.2e-16</code></pre>
+<p>El test no paramétrico de Kruskal–Wallis aplicado a la variable Weight en función de los distintos niveles de NObeyesdad arrojó un estadístico χ² = 1822.2 con 6 grados de libertad y un p-valor &lt; 2.2e-16.
+Dado que el p-valor es mucho menor que 0.05, se rechaza la hipótesis nula, concluyendo que existen diferencias estadísticamente significativas en el peso entre los diferentes niveles de obesidad.</p>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="kruskal-wallis.html#cb288-1" tabindex="-1"></a><span class="fu">pairwise.wilcox.test</span>(<span class="at">x =</span> datos<span class="sc">$</span>Weight,</span>
+<span id="cb288-2"><a href="kruskal-wallis.html#cb288-2" tabindex="-1"></a>                     <span class="at">g =</span> datos<span class="sc">$</span>NObeyesdad,</span>
+<span id="cb288-3"><a href="kruskal-wallis.html#cb288-3" tabindex="-1"></a>                     <span class="at">exact =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb288-4"><a href="kruskal-wallis.html#cb288-4" tabindex="-1"></a>                     <span class="at">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
+## 
+## data:  datos$Weight and datos$NObeyesdad 
+## 
+##                     Insufficient_Weight Normal_Weight Obesity_Type_I
+## Normal_Weight       &lt;2e-16              -             -             
+## Obesity_Type_I      &lt;2e-16              &lt;2e-16        -             
+## Obesity_Type_II     &lt;2e-16              &lt;2e-16        &lt;2e-16        
+## Obesity_Type_III    &lt;2e-16              &lt;2e-16        &lt;2e-16        
+## Overweight_Level_I  &lt;2e-16              &lt;2e-16        &lt;2e-16        
+## Overweight_Level_II &lt;2e-16              &lt;2e-16        &lt;2e-16        
+##                     Obesity_Type_II Obesity_Type_III Overweight_Level_I
+## Normal_Weight       -               -                -                 
+## Obesity_Type_I      -               -                -                 
+## Obesity_Type_II     -               -                -                 
+## Obesity_Type_III    0.29            -                -                 
+## Overweight_Level_I  &lt;2e-16          &lt;2e-16           -                 
+## Overweight_Level_II &lt;2e-16          &lt;2e-16           &lt;2e-16            
+## 
+## P value adjustment method: bonferroni</code></pre>
+<p>El análisis post-hoc de comparaciones múltiples mediante el test de Wilcoxon con corrección Bonferroni evidenció que la mayoría de las comparaciones entre pares de grupos presentan valores p &lt; 0.05, es decir, diferencias estadísticamente significativas entre casi todos los niveles de obesidad.
+Solo se observó una excepción:
+La comparación entre Obesity_Type_II y Obesity_Type_III (p = 0.29) no resultó significativa, lo que sugiere que estos dos grupos presentan pesos similares.</p>
+</div>
+<div id="nobeyesdad-vs-fcvcconsumo-de-vegetales" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> NObeyesdad vs FCVC(Consumo de vegetales)<a href="kruskal-wallis.html#nobeyesdad-vs-fcvcconsumo-de-vegetales" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="kruskal-wallis.html#cb290-1" tabindex="-1"></a><span class="co"># comprobamos normalidad</span></span>
+<span id="cb290-2"><a href="kruskal-wallis.html#cb290-2" tabindex="-1"></a></span>
+<span id="cb290-3"><a href="kruskal-wallis.html#cb290-3" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
+<span id="cb290-4"><a href="kruskal-wallis.html#cb290-4" tabindex="-1"></a>  <span class="fu">group_by</span>(NObeyesdad) <span class="sc">%&gt;%</span></span>
+<span id="cb290-5"><a href="kruskal-wallis.html#cb290-5" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">sd</span>(FCVC) <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span>  <span class="co"># Solo deja grupos con variación</span></span>
+<span id="cb290-6"><a href="kruskal-wallis.html#cb290-6" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb290-7"><a href="kruskal-wallis.html#cb290-7" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">length</span>(FCVC),</span>
+<span id="cb290-8"><a href="kruskal-wallis.html#cb290-8" tabindex="-1"></a>    <span class="at">estsw =</span> <span class="fu">shapiro.test</span>(FCVC)<span class="sc">$</span>statistic,</span>
+<span id="cb290-9"><a href="kruskal-wallis.html#cb290-9" tabindex="-1"></a>    <span class="at">p_sw =</span> <span class="fu">shapiro.test</span>(FCVC)<span class="sc">$</span>p.value</span>
+<span id="cb290-10"><a href="kruskal-wallis.html#cb290-10" tabindex="-1"></a>  )</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 4
+##   NObeyesdad              n estsw     p_sw
+##   &lt;chr&gt;               &lt;int&gt; &lt;dbl&gt;    &lt;dbl&gt;
+## 1 Insufficient_Weight   272 0.827 9.86e-17
+## 2 Normal_Weight         287 0.744 8.92e-21
+## 3 Obesity_Type_I        351 0.830 5.99e-19
+## 4 Obesity_Type_II       297 0.933 2.50e-10
+## 5 Overweight_Level_I    290 0.867 4.04e-15
+## 6 Overweight_Level_II   290 0.843 1.73e-16</code></pre>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="kruskal-wallis.html#cb292-1" tabindex="-1"></a><span class="co"># comprobamos homogeneidad de varianzas</span></span>
+<span id="cb292-2"><a href="kruskal-wallis.html#cb292-2" tabindex="-1"></a><span class="fu">leveneTest</span>(FCVC <span class="sc">~</span> NObeyesdad, <span class="at">data =</span> datos)</span></code></pre></div>
+<pre><code>## Warning in leveneTest.default(y = y, group = group, ...): group coerced to
+## factor.</code></pre>
+<pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
+##         Df F value    Pr(&gt;F)    
+## group    6  59.771 &lt; 2.2e-16 ***
+##       2104                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Los resultados del test de Shapiro–Wilk en la variable FCVC muestran que en todos los niveles de obesidad (NObeyesdad) los valores de p son menores a 0.05, por lo que se rechaza la hipótesis de normalidad. Esto indica que la variable analizada no se distribuye normalmente en ninguno de los grupos.
+Adicionalmente, el test de Levene para homogeneidad de varianzas (F = 59.771, p &lt; 2.2e-16) demuestra que las varianzas entre los grupos no son iguales, es decir, no se cumple el supuesto de homocedasticidad.</p>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="kruskal-wallis.html#cb295-1" tabindex="-1"></a><span class="fu">kruskal.test</span>(FCVC <span class="sc">~</span> NObeyesdad, <span class="at">data =</span> datos)</span></code></pre></div>
+<pre><code>## 
+##  Kruskal-Wallis rank sum test
+## 
+## data:  FCVC by NObeyesdad
+## Kruskal-Wallis chi-squared = 650.06, df = 6, p-value &lt; 2.2e-16</code></pre>
+<p>El resultado del test de Kruskal–Wallis (χ² = 650.06, gl = 6, p &lt; 2.2e-16) indica que existen diferencias estadísticamente significativas en la frecuencia de consumo de vegetales (FCVC) entre los distintos niveles de obesidad (NObeyesdad).
+Dado que el valor p es menor a 0.05, se rechaza la hipótesis nula de igualdad de medianas, concluyendo que al menos uno de los grupos de obesidad difiere significativamente en su consumo de vegetales respecto a los demás.
+Este resultado sugiere que la frecuencia con la que se consumen vegetales está asociada con el nivel de obesidad, siendo probable que los grupos con mayor obesidad presenten hábitos alimenticios menos saludables o menor consumo de vegetales en comparación con los grupos de peso normal o insuficiente.</p>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="kruskal-wallis.html#cb297-1" tabindex="-1"></a><span class="fu">pairwise.wilcox.test</span>(<span class="at">x =</span> datos<span class="sc">$</span>FCVC,</span>
+<span id="cb297-2"><a href="kruskal-wallis.html#cb297-2" tabindex="-1"></a>                     <span class="at">g =</span> datos<span class="sc">$</span>NObeyesdad,</span>
+<span id="cb297-3"><a href="kruskal-wallis.html#cb297-3" tabindex="-1"></a>                     <span class="at">exact =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb297-4"><a href="kruskal-wallis.html#cb297-4" tabindex="-1"></a>                     <span class="at">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
+## 
+## data:  datos$FCVC and datos$NObeyesdad 
+## 
+##                     Insufficient_Weight Normal_Weight Obesity_Type_I
+## Normal_Weight       0.56636             -             -             
+## Obesity_Type_I      5.2e-14             0.09382       -             
+## Obesity_Type_II     0.00908             1.00000       1.7e-10       
+## Obesity_Type_III    &lt; 2e-16             &lt; 2e-16       &lt; 2e-16       
+## Overweight_Level_I  2.7e-07             1.00000       1.00000       
+## Overweight_Level_II 8.0e-08             1.00000       1.00000       
+##                     Obesity_Type_II Obesity_Type_III Overweight_Level_I
+## Normal_Weight       -               -                -                 
+## Obesity_Type_I      -               -                -                 
+## Obesity_Type_II     -               -                -                 
+## Obesity_Type_III    &lt; 2e-16         -                -                 
+## Overweight_Level_I  0.00181         &lt; 2e-16          -                 
+## Overweight_Level_II 0.00025         &lt; 2e-16          1.00000           
+## 
+## P value adjustment method: bonferroni</code></pre>
+<p>Los resultados del test de Wilcoxon indican diferencias significativas en la frecuencia de consumo de vegetales (FCVC) entre varios niveles de obesidad, especialmente entre los grupos con peso normal y los de obesidad más alta. Esto sugiere que un menor consumo de vegetales se asocia con mayores niveles de obesidad.</p>
+</div>
+<div id="nobeyesdad-vs-ncpnúmero-de-comidas-al-día" class="section level2 hasAnchor" number="5.5">
+<h2><span class="header-section-number">5.5</span> NObeyesdad vs NCP(Número de comidas al día)<a href="kruskal-wallis.html#nobeyesdad-vs-ncpn%C3%BAmero-de-comidas-al-d%C3%ADa" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="kruskal-wallis.html#cb299-1" tabindex="-1"></a><span class="co"># comprobamos normalidad</span></span>
+<span id="cb299-2"><a href="kruskal-wallis.html#cb299-2" tabindex="-1"></a></span>
+<span id="cb299-3"><a href="kruskal-wallis.html#cb299-3" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
+<span id="cb299-4"><a href="kruskal-wallis.html#cb299-4" tabindex="-1"></a>  <span class="fu">group_by</span>(NObeyesdad) <span class="sc">%&gt;%</span></span>
+<span id="cb299-5"><a href="kruskal-wallis.html#cb299-5" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">sd</span>(NCP) <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span>  <span class="co"># Solo deja grupos con variación</span></span>
+<span id="cb299-6"><a href="kruskal-wallis.html#cb299-6" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">length</span>(NCP),</span>
+<span id="cb299-7"><a href="kruskal-wallis.html#cb299-7" tabindex="-1"></a>    <span class="at">estsw =</span> <span class="fu">shapiro.test</span>(NCP)<span class="sc">$</span>statistic,</span>
+<span id="cb299-8"><a href="kruskal-wallis.html#cb299-8" tabindex="-1"></a>    <span class="at">p_sw =</span> <span class="fu">shapiro.test</span>(NCP)<span class="sc">$</span>p.value</span>
+<span id="cb299-9"><a href="kruskal-wallis.html#cb299-9" tabindex="-1"></a>  )</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 4
+##   NObeyesdad              n estsw     p_sw
+##   &lt;chr&gt;               &lt;int&gt; &lt;dbl&gt;    &lt;dbl&gt;
+## 1 Insufficient_Weight   272 0.833 2.05e-16
+## 2 Normal_Weight         287 0.654 9.00e-24
+## 3 Obesity_Type_I        351 0.694 8.80e-25
+## 4 Obesity_Type_II       297 0.692 6.01e-23
+## 5 Overweight_Level_I    290 0.825 1.95e-17
+## 6 Overweight_Level_II   290 0.807 2.85e-18</code></pre>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="kruskal-wallis.html#cb301-1" tabindex="-1"></a><span class="co"># comprobamos homogeneidad de varianzas</span></span>
+<span id="cb301-2"><a href="kruskal-wallis.html#cb301-2" tabindex="-1"></a><span class="fu">leveneTest</span>(NCP <span class="sc">~</span> NObeyesdad, <span class="at">data =</span> datos)</span></code></pre></div>
+<pre><code>## Warning in leveneTest.default(y = y, group = group, ...): group coerced to
+## factor.</code></pre>
+<pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
+##         Df F value    Pr(&gt;F)    
+## group    6  40.288 &lt; 2.2e-16 ***
+##       2104                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Los resultados del test de Shapiro-Wilk muestran que las variables no siguen una distribución normal (p &lt; 0.05 en todos los grupos), y el test de Levene indica que no hay homogeneidad de varianzas (p &lt; 0.05). Por tanto, no se cumplen los supuestos para pruebas paramétricas, siendo necesario usar la prueba de Kruskal-Wallis.</p>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="kruskal-wallis.html#cb304-1" tabindex="-1"></a><span class="fu">kruskal.test</span>(NCP <span class="sc">~</span> NObeyesdad, <span class="at">data =</span> datos)</span></code></pre></div>
+<pre><code>## 
+##  Kruskal-Wallis rank sum test
+## 
+## data:  NCP by NObeyesdad
+## Kruskal-Wallis chi-squared = 230.95, df = 6, p-value &lt; 2.2e-16</code></pre>
+<p>El resultado del test de Kruskal-Wallis (p &lt; 0.05) indica que existen diferencias significativas en el número de comidas principales (NCP) entre los distintos niveles de obesidad (NObeyesdad).</p>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="kruskal-wallis.html#cb306-1" tabindex="-1"></a><span class="fu">pairwise.wilcox.test</span>(<span class="at">x =</span> datos<span class="sc">$</span>NCP,</span>
+<span id="cb306-2"><a href="kruskal-wallis.html#cb306-2" tabindex="-1"></a>                     <span class="at">g =</span> datos<span class="sc">$</span>NObeyesdad,</span>
+<span id="cb306-3"><a href="kruskal-wallis.html#cb306-3" tabindex="-1"></a>                     <span class="at">exact =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb306-4"><a href="kruskal-wallis.html#cb306-4" tabindex="-1"></a>                     <span class="at">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
+## 
+## data:  datos$NCP and datos$NObeyesdad 
+## 
+##                     Insufficient_Weight Normal_Weight Obesity_Type_I
+## Normal_Weight       0.00065             -             -             
+## Obesity_Type_I      &lt; 2e-16             2.6e-11       -             
+## Obesity_Type_II     1.3e-09             0.00156       0.00011       
+## Obesity_Type_III    0.00086             0.07691       &lt; 2e-16       
+## Overweight_Level_I  4.1e-08             0.09033       0.44884       
+## Overweight_Level_II 5.0e-15             3.8e-08       1.00000       
+##                     Obesity_Type_II Obesity_Type_III Overweight_Level_I
+## Normal_Weight       -               -                -                 
+## Obesity_Type_I      -               -                -                 
+## Obesity_Type_II     -               -                -                 
+## Obesity_Type_III    &lt; 2e-16         -                -                 
+## Overweight_Level_I  1.00000         3.2e-09          -                 
+## Overweight_Level_II 0.00244         &lt; 2e-16          1.00000           
+## 
+## P value adjustment method: bonferroni</code></pre>
+<p>El test post hoc de Wilcoxon con corrección de Bonferroni muestra que la mayoría de los grupos difieren significativamente en el número de comidas principales (NCP) según el nivel de obesidad (p &lt; 0.05).
+Sin embargo, no se observaron diferencias significativas entre algunos pares, como Obesity_Type_I y Overweight_Level_I, o Overweight_Level_I y Overweight_Level_II, lo que indica que en esos casos los patrones de comidas son similares entre los grupos.</p>
+</div>
+<div id="nobeyesdad-vs-ch2oconsumo-de-agua" class="section level2 hasAnchor" number="5.6">
+<h2><span class="header-section-number">5.6</span> NObeyesdad vs CH2O(Consumo de agua)<a href="kruskal-wallis.html#nobeyesdad-vs-ch2oconsumo-de-agua" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="kruskal-wallis.html#cb308-1" tabindex="-1"></a><span class="co"># comprobamos normalidad</span></span>
+<span id="cb308-2"><a href="kruskal-wallis.html#cb308-2" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
+<span id="cb308-3"><a href="kruskal-wallis.html#cb308-3" tabindex="-1"></a>  <span class="fu">group_by</span>(NObeyesdad) <span class="sc">%&gt;%</span></span>
+<span id="cb308-4"><a href="kruskal-wallis.html#cb308-4" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">length</span>(CH2O),</span>
+<span id="cb308-5"><a href="kruskal-wallis.html#cb308-5" tabindex="-1"></a>            <span class="at">estsw =</span> <span class="fu">shapiro.test</span>(CH2O)<span class="sc">$</span>statistic,</span>
+<span id="cb308-6"><a href="kruskal-wallis.html#cb308-6" tabindex="-1"></a>            <span class="at">p_sw =</span> <span class="fu">shapiro.test</span>(CH2O)<span class="sc">$</span>p.value)</span></code></pre></div>
+<pre><code>## # A tibble: 7 × 4
+##   NObeyesdad              n estsw     p_sw
+##   &lt;chr&gt;               &lt;int&gt; &lt;dbl&gt;    &lt;dbl&gt;
+## 1 Insufficient_Weight   272 0.931 5.76e-10
+## 2 Normal_Weight         287 0.782 2.90e-19
+## 3 Obesity_Type_I        351 0.933 1.96e-11
+## 4 Obesity_Type_II       297 0.934 3.41e-10
+## 5 Obesity_Type_III      324 0.885 7.41e-15
+## 6 Overweight_Level_I    290 0.930 1.94e-10
+## 7 Overweight_Level_II   290 0.917 1.33e-11</code></pre>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="kruskal-wallis.html#cb310-1" tabindex="-1"></a><span class="co"># comprobamos homogeneidad de varianzas</span></span>
+<span id="cb310-2"><a href="kruskal-wallis.html#cb310-2" tabindex="-1"></a><span class="fu">leveneTest</span>(CH2O <span class="sc">~</span> NObeyesdad, <span class="at">data =</span> datos)</span></code></pre></div>
+<pre><code>## Warning in leveneTest.default(y = y, group = group, ...): group coerced to
+## factor.</code></pre>
+<pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
+##         Df F value   Pr(&gt;F)   
+## group    6  3.4105 0.002366 **
+##       2104                    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Los resultados del test de Shapiro-Wilk muestran que los datos no siguen una distribución normal (p &lt; 0.05 en todos los grupos). Además, el test de Levene (p = 0.002 &lt; 0.05) indica que las varianzas no son homogéneas entre los niveles de obesidad. Por tanto, no se cumplen los supuestos de normalidad ni homogeneidad, lo que sugiere utilizar Kruskal-Wallis para el análisis.</p>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="kruskal-wallis.html#cb313-1" tabindex="-1"></a><span class="fu">kruskal.test</span>(CH2O <span class="sc">~</span> NObeyesdad, <span class="at">data =</span> datos)</span></code></pre></div>
+<pre><code>## 
+##  Kruskal-Wallis rank sum test
+## 
+## data:  CH2O by NObeyesdad
+## Kruskal-Wallis chi-squared = 94.747, df = 6, p-value &lt; 2.2e-16</code></pre>
+<p>El resultado del test de Kruskal-Wallis muestra un valor de chi-cuadrado de <strong>94.75</strong> con un <strong>p-valor &lt; 2.2e-16</strong>, lo que indica diferencias estadísticamente significativas en el consumo de agua (<strong>CH2O</strong>) entre los distintos niveles de obesidad (<strong>NObeyesdad</strong>).
+Esto significa que la cantidad de agua que consumen las personas no es igual en todos los grupos de obesidad, sugiriendo que el hábito de hidratación podría estar relacionado con el nivel de obesidad, siendo un factor potencialmente importante en los patrones de salud y alimentación.</p>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="kruskal-wallis.html#cb315-1" tabindex="-1"></a><span class="fu">pairwise.wilcox.test</span>(<span class="at">x =</span> datos<span class="sc">$</span>CH2O,</span>
+<span id="cb315-2"><a href="kruskal-wallis.html#cb315-2" tabindex="-1"></a>                     <span class="at">g =</span> datos<span class="sc">$</span>NObeyesdad,</span>
+<span id="cb315-3"><a href="kruskal-wallis.html#cb315-3" tabindex="-1"></a>                     <span class="at">exact =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb315-4"><a href="kruskal-wallis.html#cb315-4" tabindex="-1"></a>                     <span class="at">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
+## 
+## data:  datos$CH2O and datos$NObeyesdad 
+## 
+##                     Insufficient_Weight Normal_Weight Obesity_Type_I
+## Normal_Weight       1.00000             -             -             
+## Obesity_Type_I      2.4e-05             8.9e-07       -             
+## Obesity_Type_II     1.00000             0.01570       0.00049       
+## Obesity_Type_III    3.7e-10             1.8e-11       1.00000       
+## Overweight_Level_I  0.00341             9.1e-05       1.00000       
+## Overweight_Level_II 0.14494             0.12922       0.35921       
+##                     Obesity_Type_II Obesity_Type_III Overweight_Level_I
+## Normal_Weight       -               -                -                 
+## Obesity_Type_I      -               -                -                 
+## Obesity_Type_II     -               -                -                 
+## Obesity_Type_III    6.6e-13         -                -                 
+## Overweight_Level_I  0.12817         0.05246          -                 
+## Overweight_Level_II 1.00000         0.00089          1.00000           
+## 
+## P value adjustment method: bonferroni</code></pre>
+<p>El test post hoc de Wilcoxon con corrección de Bonferroni muestra que existen diferencias significativas** (p &lt; 0.05) en el consumo de agua (<strong>CH2O</strong>) entre varios niveles de obesidad (<strong>NObeyesdad</strong>). En particular, los grupos con mayor grado de obesidad difieren significativamente de aquellos con peso normal o insuficiente, lo que sugiere que el hábito de hidratación varía según el nivel de obesidad.</p>
+<p>Sin embargo, algunos pares como Normal_Weight y Overweight_Level_II o Overweight_Level_I y Overweight_Level_II no presentan diferencias significativas, indicando que ciertos grupos mantienen patrones de consumo de agua similares. En conjunto, los resultados sugieren que la hidratación podría estar asociada con el grado de obesidad**, aunque no de manera uniforme entre todos los niveles.</p>
+</div>
+<div id="nobeyesdad-vs-fafcantidad-de-actividad-física" class="section level2 hasAnchor" number="5.7">
+<h2><span class="header-section-number">5.7</span> NObeyesdad vs FAF(Cantidad de actividad física)<a href="kruskal-wallis.html#nobeyesdad-vs-fafcantidad-de-actividad-f%C3%ADsica" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="kruskal-wallis.html#cb317-1" tabindex="-1"></a><span class="co"># comprobamos normalidad</span></span>
+<span id="cb317-2"><a href="kruskal-wallis.html#cb317-2" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
+<span id="cb317-3"><a href="kruskal-wallis.html#cb317-3" tabindex="-1"></a>  <span class="fu">group_by</span>(NObeyesdad) <span class="sc">%&gt;%</span></span>
+<span id="cb317-4"><a href="kruskal-wallis.html#cb317-4" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">length</span>(FAF),</span>
+<span id="cb317-5"><a href="kruskal-wallis.html#cb317-5" tabindex="-1"></a>            <span class="at">estsw =</span> <span class="fu">shapiro.test</span>(FAF)<span class="sc">$</span>statistic,</span>
+<span id="cb317-6"><a href="kruskal-wallis.html#cb317-6" tabindex="-1"></a>            <span class="at">p_sw =</span> <span class="fu">shapiro.test</span>(FAF)<span class="sc">$</span>p.value)</span></code></pre></div>
+<pre><code>## # A tibble: 7 × 4
+##   NObeyesdad              n estsw     p_sw
+##   &lt;chr&gt;               &lt;int&gt; &lt;dbl&gt;    &lt;dbl&gt;
+## 1 Insufficient_Weight   272 0.899 1.70e-12
+## 2 Normal_Weight         287 0.864 3.29e-15
+## 3 Obesity_Type_I        351 0.898 1.40e-14
+## 4 Obesity_Type_II       297 0.960 3.21e- 7
+## 5 Obesity_Type_III      324 0.792 4.72e-20
+## 6 Overweight_Level_I    290 0.914 8.37e-12
+## 7 Overweight_Level_II   290 0.909 3.11e-12</code></pre>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="kruskal-wallis.html#cb319-1" tabindex="-1"></a><span class="co"># comprobamos homogeneidad de varianzas</span></span>
+<span id="cb319-2"><a href="kruskal-wallis.html#cb319-2" tabindex="-1"></a><span class="fu">leveneTest</span>(FAF <span class="sc">~</span> NObeyesdad, <span class="at">data =</span> datos)</span></code></pre></div>
+<pre><code>## Warning in leveneTest.default(y = y, group = group, ...): group coerced to
+## factor.</code></pre>
+<pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
+##         Df F value    Pr(&gt;F)    
+## group    6  13.082 1.394e-14 ***
+##       2104                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Los resultados del test de Shapiro-Wilk indican que los datos no siguen una distribución normal (p &lt; 0.05 en todos los grupos). Además, el test de Levene (p &lt; 0.05) muestra que no hay homogeneidad de varianza entre los niveles de obesidad. Por lo tanto, no se cumplen los supuestos para pruebas paramétricas, siendo más adecuado aplicar métodos no paramétricos.</p>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="kruskal-wallis.html#cb322-1" tabindex="-1"></a><span class="fu">kruskal.test</span>(FAF <span class="sc">~</span> NObeyesdad, <span class="at">data =</span> datos)</span></code></pre></div>
+<pre><code>## 
+##  Kruskal-Wallis rank sum test
+## 
+## data:  FAF by NObeyesdad
+## Kruskal-Wallis chi-squared = 88.42, df = 6, p-value &lt; 2.2e-16</code></pre>
+<p>El resultado del test de Kruskal-Wallis (χ² = 88.42, p &lt; 0.05) muestra que existen diferencias estadísticamente significativas en la frecuencia de actividad física (<strong>FAF</strong>) entre los distintos niveles de obesidad (<strong>NObeyesdad</strong>). Esto sugiere que los patrones de actividad física no son iguales entre los grupos, y que el grado de obesidad podría estar relacionado con la frecuencia con que las personas realizan ejercicio físico, evidenciando una posible influencia del estilo de vida en el estado nutricional.</p>
+<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="kruskal-wallis.html#cb324-1" tabindex="-1"></a><span class="fu">pairwise.wilcox.test</span>(<span class="at">x =</span> datos<span class="sc">$</span>FAF,</span>
+<span id="cb324-2"><a href="kruskal-wallis.html#cb324-2" tabindex="-1"></a>                     <span class="at">g =</span> datos<span class="sc">$</span>NObeyesdad,</span>
+<span id="cb324-3"><a href="kruskal-wallis.html#cb324-3" tabindex="-1"></a>                     <span class="at">exact =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb324-4"><a href="kruskal-wallis.html#cb324-4" tabindex="-1"></a>                     <span class="at">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
+## 
+## data:  datos$FAF and datos$NObeyesdad 
+## 
+##                     Insufficient_Weight Normal_Weight Obesity_Type_I
+## Normal_Weight       1.00000             -             -             
+## Obesity_Type_I      0.00064             0.10867       -             
+## Obesity_Type_II     6.8e-05             0.12900       1.00000       
+## Obesity_Type_III    &lt; 2e-16             7.8e-08       0.00134       
+## Overweight_Level_I  0.09605             0.78413       1.00000       
+## Overweight_Level_II 0.00017             0.01057       1.00000       
+##                     Obesity_Type_II Obesity_Type_III Overweight_Level_I
+## Normal_Weight       -               -                -                 
+## Obesity_Type_I      -               -                -                 
+## Obesity_Type_II     -               -                -                 
+## Obesity_Type_III    4.9e-07         -                -                 
+## Overweight_Level_I  1.00000         3.0e-07          -                 
+## Overweight_Level_II 1.00000         0.00322          1.00000           
+## 
+## P value adjustment method: bonferroni</code></pre>
+<p>Los resultados del test post hoc de Wilcoxon con corrección de Bonferroni muestran que existen diferencias significativas en la frecuencia de actividad física (FAF) entre varios grupos de obesidad (<strong>NObeyesdad</strong>), principalmente entre los grados más altos de obesidad (como <em>Obesity_Type_III</em>) y los demás niveles, con p-valores extremadamente bajos (&lt; 0.001). Sin embargo, entre algunos grupos intermedios (como <em>Overweight_Level_I</em>, <em>Overweight_Level_II</em> y <em>Obesity_Type_I</em>) no se observan diferencias significativas, lo que indica que sus patrones de actividad física son similares. En conjunto, los resultados refuerzan que el nivel de obesidad influye en la frecuencia de actividad física, siendo menor en los niveles más altos de obesidad.</p>
+</div>
+<div id="nobeyesdad-vs-tueutilización-de-dispositivos-electrónicos" class="section level2 hasAnchor" number="5.8">
+<h2><span class="header-section-number">5.8</span> NObeyesdad vs TUE(Utilización de dispositivos electrónicos)<a href="kruskal-wallis.html#nobeyesdad-vs-tueutilizaci%C3%B3n-de-dispositivos-electr%C3%B3nicos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="kruskal-wallis.html#cb326-1" tabindex="-1"></a><span class="co"># comprobamos normalidad</span></span>
+<span id="cb326-2"><a href="kruskal-wallis.html#cb326-2" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
+<span id="cb326-3"><a href="kruskal-wallis.html#cb326-3" tabindex="-1"></a>  <span class="fu">group_by</span>(NObeyesdad) <span class="sc">%&gt;%</span></span>
+<span id="cb326-4"><a href="kruskal-wallis.html#cb326-4" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">length</span>(TUE),</span>
+<span id="cb326-5"><a href="kruskal-wallis.html#cb326-5" tabindex="-1"></a>            <span class="at">estsw =</span> <span class="fu">shapiro.test</span>(TUE)<span class="sc">$</span>statistic,</span>
+<span id="cb326-6"><a href="kruskal-wallis.html#cb326-6" tabindex="-1"></a>            <span class="at">p_sw =</span> <span class="fu">shapiro.test</span>(TUE)<span class="sc">$</span>p.value)</span></code></pre></div>
+<pre><code>## # A tibble: 7 × 4
+##   NObeyesdad              n estsw     p_sw
+##   &lt;chr&gt;               &lt;int&gt; &lt;dbl&gt;    &lt;dbl&gt;
+## 1 Insufficient_Weight   272 0.914 2.30e-11
+## 2 Normal_Weight         287 0.771 1.01e-19
+## 3 Obesity_Type_I        351 0.852 9.70e-18
+## 4 Obesity_Type_II       297 0.848 2.12e-16
+## 5 Obesity_Type_III      324 0.934 9.07e-11
+## 6 Overweight_Level_I    290 0.826 2.31e-17
+## 7 Overweight_Level_II   290 0.902 8.61e-13</code></pre>
+<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="kruskal-wallis.html#cb328-1" tabindex="-1"></a><span class="co"># comprobamos homogeneidad de varianzas</span></span>
+<span id="cb328-2"><a href="kruskal-wallis.html#cb328-2" tabindex="-1"></a><span class="fu">leveneTest</span>(TUE <span class="sc">~</span> NObeyesdad, <span class="at">data =</span> datos)</span></code></pre></div>
+<pre><code>## Warning in leveneTest.default(y = y, group = group, ...): group coerced to
+## factor.</code></pre>
+<pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
+##         Df F value    Pr(&gt;F)    
+## group    6  33.986 &lt; 2.2e-16 ***
+##       2104                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Los resultados del test de Shapiro-Wilk muestran que, para todos los grupos de obesidad (NObeyesdad), los valores de p_sw son menores a 0.05, lo que indica que los datos no siguen una distribución normal en ninguno de los grupos. Además, el test de Levene (F = 33.986, p &lt; 2.2e-16) evidencia que no se cumple la homogeneidad de varianzas entre los grupos.
+Por lo que se aplica la prueba no paramétrica de Kruskal-Wallis.</p>
+<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="kruskal-wallis.html#cb331-1" tabindex="-1"></a><span class="fu">kruskal.test</span>(TUE <span class="sc">~</span> NObeyesdad, <span class="at">data =</span> datos)</span></code></pre></div>
+<pre><code>## 
+##  Kruskal-Wallis rank sum test
+## 
+## data:  TUE by NObeyesdad
+## Kruskal-Wallis chi-squared = 45.037, df = 6, p-value = 4.602e-08</code></pre>
+<p>El resultado del test de Kruskal-Wallis (χ² = 45.04, gl = 6, p = 4.602e-08) indica que existen diferencias estadísticamente significativas en la variable TUE (Tiempo usando dispositivos electrónicos) entre los distintos grupos de NObeyesdad. Esto sugiere que el tiempo de uso de dispositivos electrónicos varía según el nivel de obesidad, por lo que al menos un grupo difiere significativamente de los demás.</p>
+<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="kruskal-wallis.html#cb333-1" tabindex="-1"></a><span class="fu">pairwise.wilcox.test</span>(<span class="at">x =</span> datos<span class="sc">$</span>TUE,</span>
+<span id="cb333-2"><a href="kruskal-wallis.html#cb333-2" tabindex="-1"></a>                     <span class="at">g =</span> datos<span class="sc">$</span>NObeyesdad,</span>
+<span id="cb333-3"><a href="kruskal-wallis.html#cb333-3" tabindex="-1"></a>                     <span class="at">exact =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb333-4"><a href="kruskal-wallis.html#cb333-4" tabindex="-1"></a>                     <span class="at">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
+## 
+## data:  datos$TUE and datos$NObeyesdad 
+## 
+##                     Insufficient_Weight Normal_Weight Obesity_Type_I
+## Normal_Weight       0.0083              -             -             
+## Obesity_Type_I      0.0104              1.0000        -             
+## Obesity_Type_II     1.2e-07             1.0000        1.0000        
+## Obesity_Type_III    6.5e-06             1.0000        1.0000        
+## Overweight_Level_I  9.6e-05             1.0000        1.0000        
+## Overweight_Level_II 0.0723              1.0000        1.0000        
+##                     Obesity_Type_II Obesity_Type_III Overweight_Level_I
+## Normal_Weight       -               -                -                 
+## Obesity_Type_I      -               -                -                 
+## Obesity_Type_II     -               -                -                 
+## Obesity_Type_III    2.9e-06         -                -                 
+## Overweight_Level_I  1.0000          0.0395           -                 
+## Overweight_Level_II 0.0140          1.0000           0.5135            
+## 
+## P value adjustment method: bonferroni</code></pre>
+<p>Los resultados del post hoc de Wilcoxon con corrección de Bonferroni muestran que, aunque el test global de Kruskal-Wallis indicó diferencias significativas en <strong>TUE</strong> entre los grupos de <strong>NObeyesdad</strong>, no todas las comparaciones por pares presentan diferencias significativas.
+Se observan diferencias marcadas principalmente entre el grupo “Insufficient_Weight” y varios grupos con sobrepeso u obesidad (p &lt; 0.05), lo que sugiere que las personas con menor peso tienden a tener un tiempo de uso de dispositivos electrónicos distinto respecto a los grupos con exceso de peso. Sin embargo, entre los distintos niveles de sobrepeso y obesidad no se encontraron diferencias significativas, lo que indica que dentro de esos rangos el comportamiento respecto al uso de dispositivos es relativamente similar.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="tablas-contingencia.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/rstudio/bookdown-demo/edit/master/05-Kruskal-Wallis.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+</body>
+
+</html>

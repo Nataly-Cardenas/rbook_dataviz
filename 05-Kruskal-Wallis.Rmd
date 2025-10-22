@@ -1,0 +1,267 @@
+# Kruskal-Wallis {#kruskal-wallis}
+Dado que la variable objetivo NObeyesdad es categórica y se quiere comparar con las variables numéricas del dataset: Age, Weight, NCP, FAF, TUE, FCVC y CH2O, se deben aplicar pruebas estadísticas para evaluar si existen diferencias significativas entre los distintos niveles de obesidad. Para este tipo de análisis, la elección de la prueba depende del cumplimiento de los supuestos de normalidad y homogeneidad de varianzas en los datos, se debe utilizar ANOVA para pruebas **paramétricas** y Kruskal-Wallis para pruebas **no paramétricas**. Este procedimiento proporciona una visión más completa de los factores que podrían influir en la condición de obesidad.
+
+```{r}
+library(dplyr)
+library(readr)
+library(car)
+library(tidyverse)
+datos<- datos<- read_csv("C:/Users/natal/Downloads/ObesityDataSet_raw_and_data_sinthetic.csv")
+table(datos$NObeyesdad)
+```
+
+## NObeyesdad vs Age
+```{r}
+# comprobamos normalidad
+datos %>%
+  group_by(NObeyesdad) %>%
+  summarise(n = length(Age),
+            estsw = shapiro.test(Age)$statistic,
+            p_sw = shapiro.test(Age)$p.value)
+
+# comprobamos homogeneidad de varianzas
+leveneTest(Age ~ NObeyesdad, data = datos)
+```
+Tras realizar la prueba de normalidad de Shapiro–Wilk para la variable Age en cada nivel de NObeyesdad, se obtuvieron p-valores muy inferiores a 0.05, indicando que los datos no siguen una distribución normal.
+Además, la prueba de homogeneidad de varianzas de Levene mostró un valor p < 0.05, por lo que se rechaza la igualdad de varianzas entre los grupos.
+En consecuencia, no se cumplen los supuestos necesarios para aplicar un ANOVA, por lo que se debe emplear la prueba no paramétrica de Kruskal–Wallis para analizar las diferencias entre grupos.
+
+```{r}
+kruskal.test(Age ~ NObeyesdad, data = datos)
+```
+Según la prueba no paramétrica de Kruskal–Wallis aplicada a la variable Age por grupos de NObeyesdad, se obtuvo un estadístico χ² = 541.77 con 6 grados de libertad y un valor p < 2.2e-16.
+
+Dado que el p-valor es menor que 0.05, se rechaza la hipótesis nula, concluyendo que existen diferencias estadísticamente significativas en la edad entre los distintos niveles de obesidad.
+Esto sugiere que la edad podría estar relacionada con el nivel de obesidad de los individuos en el conjunto de datos.
+
+```{r} 
+pairwise.wilcox.test(x = datos$Age,
+                     g = datos$NObeyesdad,
+                     exact = FALSE,
+                     p.adjust.method = "bonferroni")
+```
+
+Tras aplicar el test post hoc de Wilcoxon con corrección Bonferroni a la variable Age según los niveles de NObeyesdad, se observa que la mayoría de las comparaciones por pares presentan valores p < 0.05, indicando diferencias estadísticamente significativas en la edad entre la mayoría de los grupos de obesidad.
+
+Sin embargo, algunas comparaciones —como entre Obesity_Type_I y Obesity_Type_III o entre Overweight_Level_I y Overweight_Level_II— no muestran diferencias significativas (p > 0.05), lo cual sugiere que estos grupos presentan edades similares entre sí.
+En conclusión, estos resultados respaldan la conclusión previa del test de Kruskal–Wallis: la edad está asociada con el nivel de obesidad, mostrando patrones de edad diferentes según el tipo de obesidad, aunque algunos grupos cercanos no difieran entre sí.
+
+## Nobeyesdad vs Height
+
+```{r}
+# comprobamos normalidad
+datos %>%
+  group_by(NObeyesdad) %>%
+  summarise(n = length(Height),
+            estsw = shapiro.test(Height)$statistic,
+            p_sw = shapiro.test(Height)$p.value)
+
+# comprobamos homogeneidad de varianzas
+leveneTest(Height ~ NObeyesdad, data = datos)
+```
+De acuerdo con los resultados del test de Shapiro–Wilk, todos los grupos de la variable NObeyesdad presentan p-valores menores a 0.05, lo que indica que no se cumple el supuesto de normalidad en ninguno de ellos.
+
+Asimismo, el test de Levene (F = 17.364, p < 2.2e-16) mostró que no se cumple el supuesto de homogeneidad de varianzas entre los grupos.
+En conjunto, estos resultados sugieren que no se cumplen los supuestos necesarios para aplicar pruebas paramétricas, por lo que se recomienda utilizar pruebas no paramétricas, tales como el test de Kruskal–Wallis para comparar los grupos.
+```{r}
+kruskal.test(Height ~ NObeyesdad, data = datos)
+```
+Se aplicó el test no paramétrico de Kruskal–Wallis, cuyo resultado (χ² = 219.29, gl = 6, p < 2.2e-16) evidencia diferencias estadísticamente significativas en la altura (Height) entre los distintos niveles de obesidad (NObeyesdad).
+En otras palabras, se puede concluir que la estatura varía significativamente según el nivel de obesidad de los individuos del conjunto de datos.
+
+```{r}
+pairwise.wilcox.test(x = datos$Height,
+                     g = datos$NObeyesdad,
+                     exact = FALSE,
+                     p.adjust.method = "bonferroni")
+
+```
+Existen diferencias estadísticamente significativas (p < 0.05) entre el grupo Obesity_Type_II y la mayoría de los demás niveles de obesidad (Insufficient_Weight, Normal_Weight, Obesity_Type_I, Overweight_Level_I, y Overweight_Level_II).
+También se observan diferencias significativas entre Obesity_Type_III y varios grupos, así como entre Overweight_Level_II y Obesity_Type_III.
+En cambio, no se hallaron diferencias significativas (p > 0.05) entre grupos con categorías cercanas, como Normal_Weight y Overweight_Level_I, o entre Obesity_Type_I y Obesity_Type_III, lo que indica que esos grupos presentan alturas similares.
+
+## NObeyesdad vs Weight
+```{r}
+# comprobamos normalidad
+datos %>%
+  group_by(NObeyesdad) %>%
+  summarise(n = length(Weight),
+            estsw = shapiro.test(Weight)$statistic,
+            p_sw = shapiro.test(Weight)$p.value)
+
+# comprobamos homogeneidad de varianzas
+leveneTest(Weight ~ NObeyesdad, data = datos)
+```
+Tras realizar la prueba de normalidad de Shapiro–Wilk para la variable Weight en cada nivel de NObeyesdad, se obtuvieron p-valores muy inferiores a 0.05, indicando que los datos no siguen una distribución normal.
+Además, la prueba de homogeneidad de varianzas de Levene mostró un valor p < 0.05, por lo que se rechaza la igualdad de varianzas entre los grupos.
+Por lo que se realizará la prueba Kruskal-Wallis.
+
+```{r}
+kruskal.test(Weight ~ NObeyesdad, data = datos)
+```
+El test no paramétrico de Kruskal–Wallis aplicado a la variable Weight en función de los distintos niveles de NObeyesdad arrojó un estadístico χ² = 1822.2 con 6 grados de libertad y un p-valor < 2.2e-16.
+Dado que el p-valor es mucho menor que 0.05, se rechaza la hipótesis nula, concluyendo que existen diferencias estadísticamente significativas en el peso entre los diferentes niveles de obesidad.
+```{r} 
+pairwise.wilcox.test(x = datos$Weight,
+                     g = datos$NObeyesdad,
+                     exact = FALSE,
+                     p.adjust.method = "bonferroni")
+```
+
+El análisis post-hoc de comparaciones múltiples mediante el test de Wilcoxon con corrección Bonferroni evidenció que la mayoría de las comparaciones entre pares de grupos presentan valores p < 0.05, es decir, diferencias estadísticamente significativas entre casi todos los niveles de obesidad.
+Solo se observó una excepción:
+La comparación entre Obesity_Type_II y Obesity_Type_III (p = 0.29) no resultó significativa, lo que sugiere que estos dos grupos presentan pesos similares.
+
+## NObeyesdad vs FCVC(Consumo de vegetales)
+```{r}
+
+# comprobamos normalidad
+
+datos %>%
+  group_by(NObeyesdad) %>%
+  filter(sd(FCVC) > 0) %>%  # Solo deja grupos con variación
+  summarise(
+    n = length(FCVC),
+    estsw = shapiro.test(FCVC)$statistic,
+    p_sw = shapiro.test(FCVC)$p.value
+  )
+
+# comprobamos homogeneidad de varianzas
+leveneTest(FCVC ~ NObeyesdad, data = datos)
+```
+Los resultados del test de Shapiro–Wilk en la variable FCVC muestran que en todos los niveles de obesidad (NObeyesdad) los valores de p son menores a 0.05, por lo que se rechaza la hipótesis de normalidad. Esto indica que la variable analizada no se distribuye normalmente en ninguno de los grupos.
+Adicionalmente, el test de Levene para homogeneidad de varianzas (F = 59.771, p < 2.2e-16) demuestra que las varianzas entre los grupos no son iguales, es decir, no se cumple el supuesto de homocedasticidad.
+
+```{r}
+kruskal.test(FCVC ~ NObeyesdad, data = datos)
+```
+El resultado del test de Kruskal–Wallis (χ² = 650.06, gl = 6, p < 2.2e-16) indica que existen diferencias estadísticamente significativas en la frecuencia de consumo de vegetales (FCVC) entre los distintos niveles de obesidad (NObeyesdad).
+Dado que el valor p es menor a 0.05, se rechaza la hipótesis nula de igualdad de medianas, concluyendo que al menos uno de los grupos de obesidad difiere significativamente en su consumo de vegetales respecto a los demás.
+Este resultado sugiere que la frecuencia con la que se consumen vegetales está asociada con el nivel de obesidad, siendo probable que los grupos con mayor obesidad presenten hábitos alimenticios menos saludables o menor consumo de vegetales en comparación con los grupos de peso normal o insuficiente.
+```{r} 
+pairwise.wilcox.test(x = datos$FCVC,
+                     g = datos$NObeyesdad,
+                     exact = FALSE,
+                     p.adjust.method = "bonferroni")
+```
+Los resultados del test de Wilcoxon indican diferencias significativas en la frecuencia de consumo de vegetales (FCVC) entre varios niveles de obesidad, especialmente entre los grupos con peso normal y los de obesidad más alta. Esto sugiere que un menor consumo de vegetales se asocia con mayores niveles de obesidad.
+
+## NObeyesdad vs NCP(Número de comidas al día)
+```{r}
+# comprobamos normalidad
+
+datos %>%
+  group_by(NObeyesdad) %>%
+  filter(sd(NCP) > 0) %>%  # Solo deja grupos con variación
+  summarise(n = length(NCP),
+    estsw = shapiro.test(NCP)$statistic,
+    p_sw = shapiro.test(NCP)$p.value
+  )
+
+# comprobamos homogeneidad de varianzas
+leveneTest(NCP ~ NObeyesdad, data = datos)
+```
+Los resultados del test de Shapiro-Wilk muestran que las variables no siguen una distribución normal (p < 0.05 en todos los grupos), y el test de Levene indica que no hay homogeneidad de varianzas (p < 0.05). Por tanto, no se cumplen los supuestos para pruebas paramétricas, siendo necesario usar la prueba de Kruskal-Wallis.
+```{r}
+kruskal.test(NCP ~ NObeyesdad, data = datos)
+```
+El resultado del test de Kruskal-Wallis (p < 0.05) indica que existen diferencias significativas en el número de comidas principales (NCP) entre los distintos niveles de obesidad (NObeyesdad).
+```{r} 
+pairwise.wilcox.test(x = datos$NCP,
+                     g = datos$NObeyesdad,
+                     exact = FALSE,
+                     p.adjust.method = "bonferroni")
+```
+El test post hoc de Wilcoxon con corrección de Bonferroni muestra que la mayoría de los grupos difieren significativamente en el número de comidas principales (NCP) según el nivel de obesidad (p < 0.05).
+Sin embargo, no se observaron diferencias significativas entre algunos pares, como Obesity_Type_I y Overweight_Level_I, o Overweight_Level_I y Overweight_Level_II, lo que indica que en esos casos los patrones de comidas son similares entre los grupos.
+
+## NObeyesdad vs CH2O(Consumo de agua)
+```{r}
+# comprobamos normalidad
+datos %>%
+  group_by(NObeyesdad) %>%
+  summarise(n = length(CH2O),
+            estsw = shapiro.test(CH2O)$statistic,
+            p_sw = shapiro.test(CH2O)$p.value)
+
+# comprobamos homogeneidad de varianzas
+leveneTest(CH2O ~ NObeyesdad, data = datos)
+```
+Los resultados del test de Shapiro-Wilk muestran que los datos no siguen una distribución normal (p < 0.05 en todos los grupos). Además, el test de Levene (p = 0.002 < 0.05) indica que las varianzas no son homogéneas entre los niveles de obesidad. Por tanto, no se cumplen los supuestos de normalidad ni homogeneidad, lo que sugiere utilizar Kruskal-Wallis para el análisis.
+```{r}
+kruskal.test(CH2O ~ NObeyesdad, data = datos)
+```
+
+El resultado del test de Kruskal-Wallis muestra un valor de chi-cuadrado de **94.75** con un **p-valor < 2.2e-16**, lo que indica diferencias estadísticamente significativas en el consumo de agua (**CH2O**) entre los distintos niveles de obesidad (**NObeyesdad**).
+Esto significa que la cantidad de agua que consumen las personas no es igual en todos los grupos de obesidad, sugiriendo que el hábito de hidratación podría estar relacionado con el nivel de obesidad, siendo un factor potencialmente importante en los patrones de salud y alimentación.
+
+```{r} 
+pairwise.wilcox.test(x = datos$CH2O,
+                     g = datos$NObeyesdad,
+                     exact = FALSE,
+                     p.adjust.method = "bonferroni")
+```
+
+El test post hoc de Wilcoxon con corrección de Bonferroni muestra que existen diferencias significativas** (p < 0.05) en el consumo de agua (**CH2O**) entre varios niveles de obesidad (**NObeyesdad**). En particular, los grupos con mayor grado de obesidad difieren significativamente de aquellos con peso normal o insuficiente, lo que sugiere que el hábito de hidratación varía según el nivel de obesidad.
+
+Sin embargo, algunos pares como Normal_Weight y Overweight_Level_II o Overweight_Level_I y Overweight_Level_II no presentan diferencias significativas, indicando que ciertos grupos mantienen patrones de consumo de agua similares. En conjunto, los resultados sugieren que la hidratación podría estar asociada con el grado de obesidad**, aunque no de manera uniforme entre todos los niveles.
+
+## NObeyesdad vs FAF(Cantidad de actividad física)
+```{r}
+# comprobamos normalidad
+datos %>%
+  group_by(NObeyesdad) %>%
+  summarise(n = length(FAF),
+            estsw = shapiro.test(FAF)$statistic,
+            p_sw = shapiro.test(FAF)$p.value)
+
+# comprobamos homogeneidad de varianzas
+leveneTest(FAF ~ NObeyesdad, data = datos)
+```
+
+Los resultados del test de Shapiro-Wilk indican que los datos no siguen una distribución normal (p < 0.05 en todos los grupos). Además, el test de Levene (p < 0.05) muestra que no hay homogeneidad de varianza entre los niveles de obesidad. Por lo tanto, no se cumplen los supuestos para pruebas paramétricas, siendo más adecuado aplicar métodos no paramétricos.
+
+```{r}
+kruskal.test(FAF ~ NObeyesdad, data = datos)
+```
+El resultado del test de Kruskal-Wallis (χ² = 88.42, p < 0.05) muestra que existen diferencias estadísticamente significativas en la frecuencia de actividad física (**FAF**) entre los distintos niveles de obesidad (**NObeyesdad**). Esto sugiere que los patrones de actividad física no son iguales entre los grupos, y que el grado de obesidad podría estar relacionado con la frecuencia con que las personas realizan ejercicio físico, evidenciando una posible influencia del estilo de vida en el estado nutricional.
+
+```{r} 
+pairwise.wilcox.test(x = datos$FAF,
+                     g = datos$NObeyesdad,
+                     exact = FALSE,
+                     p.adjust.method = "bonferroni")
+```
+
+Los resultados del test post hoc de Wilcoxon con corrección de Bonferroni muestran que existen diferencias significativas en la frecuencia de actividad física (FAF) entre varios grupos de obesidad (**NObeyesdad**), principalmente entre los grados más altos de obesidad (como *Obesity_Type_III*) y los demás niveles, con p-valores extremadamente bajos (< 0.001). Sin embargo, entre algunos grupos intermedios (como *Overweight_Level_I*, *Overweight_Level_II* y *Obesity_Type_I*) no se observan diferencias significativas, lo que indica que sus patrones de actividad física son similares. En conjunto, los resultados refuerzan que el nivel de obesidad influye en la frecuencia de actividad física, siendo menor en los niveles más altos de obesidad.
+
+## NObeyesdad vs TUE(Utilización de dispositivos electrónicos)
+```{r}
+# comprobamos normalidad
+datos %>%
+  group_by(NObeyesdad) %>%
+  summarise(n = length(TUE),
+            estsw = shapiro.test(TUE)$statistic,
+            p_sw = shapiro.test(TUE)$p.value)
+
+# comprobamos homogeneidad de varianzas
+leveneTest(TUE ~ NObeyesdad, data = datos)
+```
+Los resultados del test de Shapiro-Wilk muestran que, para todos los grupos de obesidad (NObeyesdad), los valores de p_sw son menores a 0.05, lo que indica que los datos no siguen una distribución normal en ninguno de los grupos. Además, el test de Levene (F = 33.986, p < 2.2e-16) evidencia que no se cumple la homogeneidad de varianzas entre los grupos.
+Por lo que se aplica la prueba no paramétrica de Kruskal-Wallis.
+```{r}
+kruskal.test(TUE ~ NObeyesdad, data = datos)
+```
+El resultado del test de Kruskal-Wallis (χ² = 45.04, gl = 6, p = 4.602e-08) indica que existen diferencias estadísticamente significativas en la variable TUE (Tiempo usando dispositivos electrónicos) entre los distintos grupos de NObeyesdad. Esto sugiere que el tiempo de uso de dispositivos electrónicos varía según el nivel de obesidad, por lo que al menos un grupo difiere significativamente de los demás.
+
+```{r} 
+pairwise.wilcox.test(x = datos$TUE,
+                     g = datos$NObeyesdad,
+                     exact = FALSE,
+                     p.adjust.method = "bonferroni")
+```
+
+Los resultados del post hoc de Wilcoxon con corrección de Bonferroni muestran que, aunque el test global de Kruskal-Wallis indicó diferencias significativas en **TUE** entre los grupos de **NObeyesdad**, no todas las comparaciones por pares presentan diferencias significativas.
+Se observan diferencias marcadas principalmente entre el grupo “Insufficient_Weight” y varios grupos con sobrepeso u obesidad (p < 0.05), lo que sugiere que las personas con menor peso tienden a tener un tiempo de uso de dispositivos electrónicos distinto respecto a los grupos con exceso de peso. Sin embargo, entre los distintos niveles de sobrepeso y obesidad no se encontraron diferencias significativas, lo que indica que dentro de esos rangos el comportamiento respecto al uso de dispositivos es relativamente similar.
+
+

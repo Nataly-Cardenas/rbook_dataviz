@@ -1,0 +1,19 @@
+--- 
+title: "Análisis Estadístico de Factores Asociados a la Obesidad"
+author: "Nátaly Cárdenas Izáquita y Roger Daza Polo"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+github-repo: rstudio/bookdown-demo
+description: "This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook."
+---
+
+# Sobre este libro{-}
+
+En este libro desarrollamos un análisis exploratorio de datos (EDA) y además usamos técnicas descriptivas e inferenciales a una base de datos sobre niveles de obesidad en individuos. El objetivo es identificar patrones, relaciones y características relevantes entre variables como el índice de masa corporal (IMC), hábitos alimenticios, nivel de actividad física, consumo de agua, entre otros factores.
+
+Esperamos que este trabajo contribuya a una mejor comprensión de los elementos asociados a la obesidad, y que sirva como ejemplo práctico del uso de herramientas estadísticas para abordar problemáticas reales a partir del análisis de datos.

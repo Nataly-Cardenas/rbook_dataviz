@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 4 Tablas de contingencia | Análisis Estadístico de Factores Asociados a la Obesidad</title>
+  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 4 Tablas de contingencia | Análisis Estadístico de Factores Asociados a la Obesidad" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 4 Tablas de contingencia | Análisis Estadístico de Factores Asociados a la Obesidad" />
+  
+  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Nátaly Cárdenas Izáquita y Roger Daza Polo" />
+
+
+<meta name="date" content="2025-10-21" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="EDA.html"/>
+<link rel="next" href="kruskal-wallis.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Análisis Estadístico de Factores Asociados a la Obesidad</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Sobre este libro</a></li>
+<li class="chapter" data-level="1" data-path="introduccion.html"><a href="introduccion.html"><i class="fa fa-check"></i><b>1</b> Introducción</a></li>
+<li class="chapter" data-level="2" data-path="base-de-datos.html"><a href="base-de-datos.html"><i class="fa fa-check"></i><b>2</b> Base de datos</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="base-de-datos.html"><a href="base-de-datos.html#descripci%C3%B3n-de-los-datos"><i class="fa fa-check"></i><b>2.1</b> Descripción de los datos</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="EDA.html"><a href="EDA.html"><i class="fa fa-check"></i><b>3</b> Análisis Exploratorio de Datos (EDA)</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="EDA.html"><a href="EDA.html#objetivo-del-eda"><i class="fa fa-check"></i><b>3.1</b> Objetivo del EDA</a></li>
+<li class="chapter" data-level="3.2" data-path="EDA.html"><a href="EDA.html#extracci%C3%B3n-transformaci%C3%B3n-y-carga-etl"><i class="fa fa-check"></i><b>3.2</b> Extracción, Transformación y Carga (ETL)</a></li>
+<li class="chapter" data-level="3.3" data-path="EDA.html"><a href="EDA.html#an%C3%A1lisis-variable-objetivo-nobeyesdad"><i class="fa fa-check"></i><b>3.3</b> Análisis variable objetivo (NObeyesdad)</a></li>
+<li class="chapter" data-level="3.4" data-path="EDA.html"><a href="EDA.html#an%C3%A1lisis-exploratorio-univariado-de-variables-independientes-num%C3%A9ricas"><i class="fa fa-check"></i><b>3.4</b> Análisis exploratorio univariado de variables independientes numéricas</a></li>
+<li class="chapter" data-level="3.5" data-path="EDA.html"><a href="EDA.html#an%C3%A1lisis-exploratorio-univariado-de-variables-independientes-categ%C3%B3ricas"><i class="fa fa-check"></i><b>3.5</b> Análisis exploratorio univariado de variables independientes categóricas</a></li>
+<li class="chapter" data-level="3.6" data-path="EDA.html"><a href="EDA.html#an%C3%A1lisis-exploratorio-bivariado-nobeyesdad-vs-var.num%C3%A9rica"><i class="fa fa-check"></i><b>3.6</b> Análisis exploratorio bivariado (NObeyesdad vs var.numérica)</a></li>
+<li class="chapter" data-level="3.7" data-path="EDA.html"><a href="EDA.html#an%C3%A1lisis-exploratorio-bivariado-nobeyesdad-vs-var.categ%C3%B3rica"><i class="fa fa-check"></i><b>3.7</b> Análisis exploratorio bivariado (NObeyesdad vs var.categórica)</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html"><i class="fa fa-check"></i><b>4</b> Tablas de contingencia</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#nobeyesdad-vs-gender"><i class="fa fa-check"></i><b>4.1</b> NObeyesdad VS Gender</a></li>
+<li class="chapter" data-level="4.2" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#nobeyesdad-vs-family_history_with_overweight"><i class="fa fa-check"></i><b>4.2</b> NObeyesdad VS family_history_with_overweight</a></li>
+<li class="chapter" data-level="4.3" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#nobeyesdad-vs-favcfrequent-consumption-of-high-caloric-food"><i class="fa fa-check"></i><b>4.3</b> NObeyesdad VS FAVC(Frequent consumption of high caloric food)</a></li>
+<li class="chapter" data-level="4.4" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#nobeyesdad-vs-caecconsumption-of-food-between-meals"><i class="fa fa-check"></i><b>4.4</b> NObeyesdad VS CAEC(Consumption of food between meals)</a></li>
+<li class="chapter" data-level="4.5" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#nobeyesdad-vs-smoke"><i class="fa fa-check"></i><b>4.5</b> NObeyesdad VS SMOKE</a></li>
+<li class="chapter" data-level="4.6" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#nobeyesdad-vs-scccalories-consumption-monitoring"><i class="fa fa-check"></i><b>4.6</b> NObeyesdad VS SCC(Calories consumption monitoring)</a></li>
+<li class="chapter" data-level="4.7" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#nobeyesdad-vs-calcalcohol-consumption"><i class="fa fa-check"></i><b>4.7</b> NObeyesdad VS CALC(Alcohol consumption)</a></li>
+<li class="chapter" data-level="4.8" data-path="tablas-contingencia.html"><a href="tablas-contingencia.html#nobeyesdad-vs-mtrans-transportation-used"><i class="fa fa-check"></i><b>4.8</b> NObeyesdad VS MTRANS (Transportation used)</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="kruskal-wallis.html"><a href="kruskal-wallis.html"><i class="fa fa-check"></i><b>5</b> Kruskal-Wallis</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="kruskal-wallis.html"><a href="kruskal-wallis.html#nobeyesdad-vs-age"><i class="fa fa-check"></i><b>5.1</b> NObeyesdad vs Age</a></li>
+<li class="chapter" data-level="5.2" data-path="kruskal-wallis.html"><a href="kruskal-wallis.html#nobeyesdad-vs-height"><i class="fa fa-check"></i><b>5.2</b> Nobeyesdad vs Height</a></li>
+<li class="chapter" data-level="5.3" data-path="kruskal-wallis.html"><a href="kruskal-wallis.html#nobeyesdad-vs-weight"><i class="fa fa-check"></i><b>5.3</b> NObeyesdad vs Weight</a></li>
+<li class="chapter" data-level="5.4" data-path="kruskal-wallis.html"><a href="kruskal-wallis.html#nobeyesdad-vs-fcvcconsumo-de-vegetales"><i class="fa fa-check"></i><b>5.4</b> NObeyesdad vs FCVC(Consumo de vegetales)</a></li>
+<li class="chapter" data-level="5.5" data-path="kruskal-wallis.html"><a href="kruskal-wallis.html#nobeyesdad-vs-ncpn%C3%BAmero-de-comidas-al-d%C3%ADa"><i class="fa fa-check"></i><b>5.5</b> NObeyesdad vs NCP(Número de comidas al día)</a></li>
+<li class="chapter" data-level="5.6" data-path="kruskal-wallis.html"><a href="kruskal-wallis.html#nobeyesdad-vs-ch2oconsumo-de-agua"><i class="fa fa-check"></i><b>5.6</b> NObeyesdad vs CH2O(Consumo de agua)</a></li>
+<li class="chapter" data-level="5.7" data-path="kruskal-wallis.html"><a href="kruskal-wallis.html#nobeyesdad-vs-fafcantidad-de-actividad-f%C3%ADsica"><i class="fa fa-check"></i><b>5.7</b> NObeyesdad vs FAF(Cantidad de actividad física)</a></li>
+<li class="chapter" data-level="5.8" data-path="kruskal-wallis.html"><a href="kruskal-wallis.html#nobeyesdad-vs-tueutilizaci%C3%B3n-de-dispositivos-electr%C3%B3nicos"><i class="fa fa-check"></i><b>5.8</b> NObeyesdad vs TUE(Utilización de dispositivos electrónicos)</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Análisis Estadístico de Factores Asociados a la Obesidad</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="tablas-contingencia" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Capítulo 4</span> Tablas de contingencia<a href="tablas-contingencia.html#tablas-contingencia" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>En este estudio, la variable objetivo es NObeyesdad, la cual representa las diferentes categorías de nivel de obesidad en la población analizada. Dado que se trata de una variable categórica, su comparación con otras variables también categóricas del conjunto de datos como Gender, family_history_with_overweight, FAVC, CAEC, SMOKE, SCC, CALC y MTRANS requiere la aplicación de tablas de contingencia y pruebas de hipótesis de independencia.</p>
+<p>Este tipo de análisis permite examinar si existen asociaciones entre los niveles de obesidad y distintos factores de comportamiento o estilo de vida. Las tablas de contingencia permiten representar las frecuencias observadas en cada combinación de categorías en una tabla, mientras que las pruebas de independencia, como la prueba Chi-cuadrado, permiten determinar si las relaciones observadas son estadísticamente significativas. De esta forma, se logra identificar qué variables podrían tener una influencia relevante en la condición de obesidad y cuáles no presentan evidencia de asociación con la variable objetivo.</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="tablas-contingencia.html#cb65-1" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb65-2"><a href="tablas-contingencia.html#cb65-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb65-3"><a href="tablas-contingencia.html#cb65-3" tabindex="-1"></a>datos<span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;C:/Users/natal/Downloads/ObesityDataSet_raw_and_data_sinthetic.csv&quot;</span>)</span></code></pre></div>
+<pre><code>## Rows: 2111 Columns: 17
+## ── Column specification ───────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (9): Gender, family_history_with_overweight, FAVC, CAEC, SMOKE, SCC, CA...
+## dbl (8): Age, Height, Weight, FCVC, NCP, CH2O, FAF, TUE
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<div id="nobeyesdad-vs-gender" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> NObeyesdad VS Gender<a href="tablas-contingencia.html#nobeyesdad-vs-gender" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="tablas-contingencia.html#cb67-1" tabindex="-1"></a><span class="co">#Tabla de contingencia</span></span>
+<span id="cb67-2"><a href="tablas-contingencia.html#cb67-2" tabindex="-1"></a>observados <span class="ot">&lt;-</span> <span class="fu">table</span>(datos<span class="sc">$</span>NObeyesdad, datos<span class="sc">$</span>Gender)</span>
+<span id="cb67-3"><a href="tablas-contingencia.html#cb67-3" tabindex="-1"></a>observados</span></code></pre></div>
+<pre><code>##                      
+##                       Female Male
+##   Insufficient_Weight    173   99
+##   Normal_Weight          141  146
+##   Obesity_Type_I         156  195
+##   Obesity_Type_II          2  295
+##   Obesity_Type_III       323    1
+##   Overweight_Level_I     145  145
+##   Overweight_Level_II    103  187</code></pre>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="tablas-contingencia.html#cb69-1" tabindex="-1"></a><span class="co">#Prueba de independencia </span></span>
+<span id="cb69-2"><a href="tablas-contingencia.html#cb69-2" tabindex="-1"></a></span>
+<span id="cb69-3"><a href="tablas-contingencia.html#cb69-3" tabindex="-1"></a><span class="do">## A mano----</span></span>
+<span id="cb69-4"><a href="tablas-contingencia.html#cb69-4" tabindex="-1"></a><span class="do">###Hallemos los totales</span></span>
+<span id="cb69-5"><a href="tablas-contingencia.html#cb69-5" tabindex="-1"></a>fila_totales <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(observados)</span>
+<span id="cb69-6"><a href="tablas-contingencia.html#cb69-6" tabindex="-1"></a>col_totales  <span class="ot">&lt;-</span> <span class="fu">colSums</span>(observados)</span>
+<span id="cb69-7"><a href="tablas-contingencia.html#cb69-7" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">sum</span>(observados)</span>
+<span id="cb69-8"><a href="tablas-contingencia.html#cb69-8" tabindex="-1"></a>fila_totales; col_totales; n</span></code></pre></div>
+<pre><code>## Insufficient_Weight       Normal_Weight      Obesity_Type_I 
+##                 272                 287                 351 
+##     Obesity_Type_II    Obesity_Type_III  Overweight_Level_I 
+##                 297                 324                 290 
+## Overweight_Level_II 
+##                 290</code></pre>
+<pre><code>## Female   Male 
+##   1043   1068</code></pre>
+<pre><code>## [1] 2111</code></pre>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="tablas-contingencia.html#cb73-1" tabindex="-1"></a><span class="do">###Hallemos las frecuencias esperadas----</span></span>
+<span id="cb73-2"><a href="tablas-contingencia.html#cb73-2" tabindex="-1"></a>esperados <span class="ot">&lt;-</span> <span class="fu">outer</span>(fila_totales, col_totales) <span class="sc">/</span> n</span>
+<span id="cb73-3"><a href="tablas-contingencia.html#cb73-3" tabindex="-1"></a>esperados <span class="co">#Como todos los esperados son &gt;=5 podemos usar el estadístico Chi-cuadrado</span></span></code></pre></div>
+<pre><code>##                       Female     Male
+## Insufficient_Weight 134.3894 137.6106
+## Normal_Weight       141.8006 145.1994
+## Obesity_Type_I      173.4216 177.5784
+## Obesity_Type_II     146.7414 150.2586
+## Obesity_Type_III    160.0815 163.9185
+## Overweight_Level_I  143.2828 146.7172
+## Overweight_Level_II 143.2828 146.7172</code></pre>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="tablas-contingencia.html#cb75-1" tabindex="-1"></a><span class="do">###Calculemos el estadístico Chi-cuadrado----</span></span>
+<span id="cb75-2"><a href="tablas-contingencia.html#cb75-2" tabindex="-1"></a>chi_cuadrado <span class="ot">&lt;-</span> <span class="fu">sum</span>((observados <span class="sc">-</span> esperados)<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> esperados)</span>
+<span id="cb75-3"><a href="tablas-contingencia.html#cb75-3" tabindex="-1"></a>chi_cuadrado</span></code></pre></div>
+<pre><code>## [1] 657.7462</code></pre>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="tablas-contingencia.html#cb77-1" tabindex="-1"></a><span class="do">###Determinemos los grados de libertad----</span></span>
+<span id="cb77-2"><a href="tablas-contingencia.html#cb77-2" tabindex="-1"></a>gl <span class="ot">&lt;-</span> (<span class="fu">nrow</span>(observados) <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> (<span class="fu">ncol</span>(observados) <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb77-3"><a href="tablas-contingencia.html#cb77-3" tabindex="-1"></a>gl</span></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="tablas-contingencia.html#cb79-1" tabindex="-1"></a><span class="do">###Determinemos el valor crítico----</span></span>
+<span id="cb79-2"><a href="tablas-contingencia.html#cb79-2" tabindex="-1"></a>alfa <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb79-3"><a href="tablas-contingencia.html#cb79-3" tabindex="-1"></a>valor_critico <span class="ot">&lt;-</span> <span class="fu">qchisq</span>(<span class="dv">1</span> <span class="sc">-</span> alfa, gl)</span>
+<span id="cb79-4"><a href="tablas-contingencia.html#cb79-4" tabindex="-1"></a>valor_critico</span></code></pre></div>
+<pre><code>## [1] 12.59159</code></pre>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="tablas-contingencia.html#cb81-1" tabindex="-1"></a><span class="do">###Desición al 5%----</span></span>
+<span id="cb81-2"><a href="tablas-contingencia.html#cb81-2" tabindex="-1"></a>rechaza_H0 <span class="ot">&lt;-</span> chi_cuadrado <span class="sc">&gt;</span> valor_critico</span>
+<span id="cb81-3"><a href="tablas-contingencia.html#cb81-3" tabindex="-1"></a>rechaza_H0</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="tablas-contingencia.html#cb83-1" tabindex="-1"></a><span class="do">###Conclusión----</span></span>
+<span id="cb83-2"><a href="tablas-contingencia.html#cb83-2" tabindex="-1"></a><span class="cf">if</span> (rechaza_H0) {</span>
+<span id="cb83-3"><a href="tablas-contingencia.html#cb83-3" tabindex="-1"></a>  conclusion <span class="ot">&lt;-</span> <span class="st">&quot;Se rechaza H0: existe evidencia estadísticamente significativa de que las dos variables analizadas no son independientes (hay asociación entre ellas).&quot;</span></span>
+<span id="cb83-4"><a href="tablas-contingencia.html#cb83-4" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb83-5"><a href="tablas-contingencia.html#cb83-5" tabindex="-1"></a>  conclusion <span class="ot">&lt;-</span> <span class="st">&quot;No se rechaza H0: no hay evidencia suficiente para afirmar que las dos variables estén asociadas; se asume independencia entre ellas.&quot;</span></span>
+<span id="cb83-6"><a href="tablas-contingencia.html#cb83-6" tabindex="-1"></a>}</span>
+<span id="cb83-7"><a href="tablas-contingencia.html#cb83-7" tabindex="-1"></a>conclusion</span></code></pre></div>
+<pre><code>## [1] &quot;Se rechaza H0: existe evidencia estadísticamente significativa de que las dos variables analizadas no son independientes (hay asociación entre ellas).&quot;</code></pre>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="tablas-contingencia.html#cb85-1" tabindex="-1"></a><span class="do">##Con P-valor</span></span>
+<span id="cb85-2"><a href="tablas-contingencia.html#cb85-2" tabindex="-1"></a>valor_p <span class="ot">&lt;-</span> <span class="fu">pchisq</span>(chi_cuadrado, gl, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb85-3"><a href="tablas-contingencia.html#cb85-3" tabindex="-1"></a>valor_p</span></code></pre></div>
+<pre><code>## [1] 8.088897e-139</code></pre>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="tablas-contingencia.html#cb87-1" tabindex="-1"></a><span class="do">##Con Función</span></span>
+<span id="cb87-2"><a href="tablas-contingencia.html#cb87-2" tabindex="-1"></a><span class="fu">chisq.test</span>(observados)</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  observados
+## X-squared = 657.75, df = 6, p-value &lt; 2.2e-16</code></pre>
+<p>En la prueba Chi-Cuadrado de independencia realizada manualmente se obtuvo un estadístico de X² = [657.7462] con [6] grados de libertad, un valor crítico al [5]% de significancia de [12.59159] y un p-valor de [ 8.088897e-139].Como el estadístico supera el valor crítico y el p-valor es menor que 0.05, se <strong>rechaza la hipótesis nula</strong>, lo que implica que existe una asociación estadísticamente significativa entre las variables Nobeyesdad y [Gender].De forma complementaria, al aplicar la función <code>chisq.test()</code> en R se obtuvieron los mismos resultados (estadístico, grados de libertad y p-valor), confirmando la decisión adoptada. En conclusión, tanto el cálculo manual como el realizado con R conducen a la misma interpretación estadística, lo que respalda la validez del procedimiento.</p>
+</div>
+<div id="nobeyesdad-vs-family_history_with_overweight" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> NObeyesdad VS family_history_with_overweight<a href="tablas-contingencia.html#nobeyesdad-vs-family_history_with_overweight" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="tablas-contingencia.html#cb89-1" tabindex="-1"></a><span class="co">#Tabla de contingencia</span></span>
+<span id="cb89-2"><a href="tablas-contingencia.html#cb89-2" tabindex="-1"></a>observados1 <span class="ot">&lt;-</span> <span class="fu">table</span>(datos<span class="sc">$</span>NObeyesdad, datos<span class="sc">$</span>family_history_with_overweight)</span>
+<span id="cb89-3"><a href="tablas-contingencia.html#cb89-3" tabindex="-1"></a>observados1</span></code></pre></div>
+<pre><code>##                      
+##                        no yes
+##   Insufficient_Weight 146 126
+##   Normal_Weight       132 155
+##   Obesity_Type_I        7 344
+##   Obesity_Type_II       1 296
+##   Obesity_Type_III      0 324
+##   Overweight_Level_I   81 209
+##   Overweight_Level_II  18 272</code></pre>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="tablas-contingencia.html#cb91-1" tabindex="-1"></a><span class="co">#Prueba de independencia </span></span>
+<span id="cb91-2"><a href="tablas-contingencia.html#cb91-2" tabindex="-1"></a></span>
+<span id="cb91-3"><a href="tablas-contingencia.html#cb91-3" tabindex="-1"></a><span class="do">## A mano</span></span>
+<span id="cb91-4"><a href="tablas-contingencia.html#cb91-4" tabindex="-1"></a><span class="do">###Hallemos los totales----</span></span>
+<span id="cb91-5"><a href="tablas-contingencia.html#cb91-5" tabindex="-1"></a>fila_totales1 <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(observados1)</span>
+<span id="cb91-6"><a href="tablas-contingencia.html#cb91-6" tabindex="-1"></a>col_totales1  <span class="ot">&lt;-</span> <span class="fu">colSums</span>(observados1)</span>
+<span id="cb91-7"><a href="tablas-contingencia.html#cb91-7" tabindex="-1"></a>n1 <span class="ot">&lt;-</span> <span class="fu">sum</span>(observados1)</span>
+<span id="cb91-8"><a href="tablas-contingencia.html#cb91-8" tabindex="-1"></a>fila_totales1; col_totales1; n1</span></code></pre></div>
+<pre><code>## Insufficient_Weight       Normal_Weight      Obesity_Type_I 
+##                 272                 287                 351 
+##     Obesity_Type_II    Obesity_Type_III  Overweight_Level_I 
+##                 297                 324                 290 
+## Overweight_Level_II 
+##                 290</code></pre>
+<pre><code>##   no  yes 
+##  385 1726</code></pre>
+<pre><code>## [1] 2111</code></pre>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="tablas-contingencia.html#cb95-1" tabindex="-1"></a><span class="do">###Hallemos las frecuencias esperadas----</span></span>
+<span id="cb95-2"><a href="tablas-contingencia.html#cb95-2" tabindex="-1"></a>esperados1 <span class="ot">&lt;-</span> <span class="fu">outer</span>(fila_totales1, col_totales1) <span class="sc">/</span> n1</span>
+<span id="cb95-3"><a href="tablas-contingencia.html#cb95-3" tabindex="-1"></a>esperados1 <span class="co">#Como todos los esperados son &gt;=5 podemos usar el estadístico Chi-cuadrado</span></span></code></pre></div>
+<pre><code>##                           no      yes
+## Insufficient_Weight 49.60682 222.3932
+## Normal_Weight       52.34249 234.6575
+## Obesity_Type_I      64.01468 286.9853
+## Obesity_Type_II     54.16627 242.8337
+## Obesity_Type_III    59.09048 264.9095
+## Overweight_Level_I  52.88963 237.1104
+## Overweight_Level_II 52.88963 237.1104</code></pre>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="tablas-contingencia.html#cb97-1" tabindex="-1"></a><span class="do">###Calculemos el estadístico Chi-cuadrado----</span></span>
+<span id="cb97-2"><a href="tablas-contingencia.html#cb97-2" tabindex="-1"></a>chi_cuadrado1 <span class="ot">&lt;-</span> <span class="fu">sum</span>((observados1 <span class="sc">-</span> esperados1)<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> esperados1)</span>
+<span id="cb97-3"><a href="tablas-contingencia.html#cb97-3" tabindex="-1"></a>chi_cuadrado1</span></code></pre></div>
+<pre><code>## [1] 621.9794</code></pre>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="tablas-contingencia.html#cb99-1" tabindex="-1"></a><span class="do">###Determinemos los grados de libertad----</span></span>
+<span id="cb99-2"><a href="tablas-contingencia.html#cb99-2" tabindex="-1"></a>gl1 <span class="ot">&lt;-</span> (<span class="fu">nrow</span>(observados1) <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> (<span class="fu">ncol</span>(observados1) <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb99-3"><a href="tablas-contingencia.html#cb99-3" tabindex="-1"></a>gl1</span></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="tablas-contingencia.html#cb101-1" tabindex="-1"></a><span class="do">###Determinemos el valor crítico----</span></span>
+<span id="cb101-2"><a href="tablas-contingencia.html#cb101-2" tabindex="-1"></a>alfa <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb101-3"><a href="tablas-contingencia.html#cb101-3" tabindex="-1"></a>valor_critico1 <span class="ot">&lt;-</span> <span class="fu">qchisq</span>(<span class="dv">1</span> <span class="sc">-</span> alfa, gl1)</span>
+<span id="cb101-4"><a href="tablas-contingencia.html#cb101-4" tabindex="-1"></a>valor_critico1</span></code></pre></div>
+<pre><code>## [1] 12.59159</code></pre>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="tablas-contingencia.html#cb103-1" tabindex="-1"></a><span class="do">###Desición al 5%----</span></span>
+<span id="cb103-2"><a href="tablas-contingencia.html#cb103-2" tabindex="-1"></a>rechaza_H01 <span class="ot">&lt;-</span> chi_cuadrado1 <span class="sc">&gt;</span> valor_critico1</span>
+<span id="cb103-3"><a href="tablas-contingencia.html#cb103-3" tabindex="-1"></a>rechaza_H01</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="tablas-contingencia.html#cb105-1" tabindex="-1"></a><span class="do">###Conclusión----</span></span>
+<span id="cb105-2"><a href="tablas-contingencia.html#cb105-2" tabindex="-1"></a><span class="cf">if</span> (rechaza_H01) {</span>
+<span id="cb105-3"><a href="tablas-contingencia.html#cb105-3" tabindex="-1"></a>  conclusion1 <span class="ot">&lt;-</span> <span class="st">&quot;Se rechaza H0: existe evidencia estadísticamente significativa de que las dos variables analizadas no son independientes (hay asociación entre ellas).&quot;</span></span>
+<span id="cb105-4"><a href="tablas-contingencia.html#cb105-4" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb105-5"><a href="tablas-contingencia.html#cb105-5" tabindex="-1"></a>  conclusion1 <span class="ot">&lt;-</span> <span class="st">&quot;No se rechaza H0: no hay evidencia suficiente para afirmar que las dos variables estén asociadas; se asume independencia entre ellas.&quot;</span></span>
+<span id="cb105-6"><a href="tablas-contingencia.html#cb105-6" tabindex="-1"></a>}</span>
+<span id="cb105-7"><a href="tablas-contingencia.html#cb105-7" tabindex="-1"></a>conclusion1</span></code></pre></div>
+<pre><code>## [1] &quot;Se rechaza H0: existe evidencia estadísticamente significativa de que las dos variables analizadas no son independientes (hay asociación entre ellas).&quot;</code></pre>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="tablas-contingencia.html#cb107-1" tabindex="-1"></a><span class="do">##Con P-valor</span></span>
+<span id="cb107-2"><a href="tablas-contingencia.html#cb107-2" tabindex="-1"></a>valor_p1 <span class="ot">&lt;-</span> <span class="fu">pchisq</span>(chi_cuadrado1, gl1, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb107-3"><a href="tablas-contingencia.html#cb107-3" tabindex="-1"></a>valor_p1</span></code></pre></div>
+<pre><code>## [1] 4.228017e-131</code></pre>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="tablas-contingencia.html#cb109-1" tabindex="-1"></a><span class="do">##Con Función</span></span>
+<span id="cb109-2"><a href="tablas-contingencia.html#cb109-2" tabindex="-1"></a><span class="fu">chisq.test</span>(observados1)</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  observados1
+## X-squared = 621.98, df = 6, p-value &lt; 2.2e-16</code></pre>
+<p>En la prueba Chi-Cuadrado de independencia realizada manualmente se obtuvo un estadístico de X² = [ 621.9794] con [6] grados de libertad, un valor crítico al [5]% de significancia de [12.59159] y un p-valor de [ 4.228017e-131].Como el estadístico supera el valor crítico y el p-valor es menor que 0.05, se <strong>rechaza la hipótesis nula</strong>, lo que implica que existe una asociación estadísticamente significativa entre las variables Nobeyesdad y [family_history_with_overweight].De forma complementaria, al aplicar la función <code>chisq.test()</code> en R se obtuvieron los mismos resultados (estadístico, grados de libertad y p-valor), confirmando la decisión adoptada. En conclusión, tanto el cálculo manual como el realizado con R conducen a la misma interpretación estadística, lo que respalda la validez del procedimiento.</p>
+</div>
+<div id="nobeyesdad-vs-favcfrequent-consumption-of-high-caloric-food" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> NObeyesdad VS FAVC(Frequent consumption of high caloric food)<a href="tablas-contingencia.html#nobeyesdad-vs-favcfrequent-consumption-of-high-caloric-food" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="tablas-contingencia.html#cb111-1" tabindex="-1"></a><span class="co">#Tabla de contingencia</span></span>
+<span id="cb111-2"><a href="tablas-contingencia.html#cb111-2" tabindex="-1"></a>observados2 <span class="ot">&lt;-</span> <span class="fu">table</span>(datos<span class="sc">$</span>NObeyesdad, datos<span class="sc">$</span>FAVC)</span>
+<span id="cb111-3"><a href="tablas-contingencia.html#cb111-3" tabindex="-1"></a>observados2</span></code></pre></div>
+<pre><code>##                      
+##                        no yes
+##   Insufficient_Weight  51 221
+##   Normal_Weight        79 208
+##   Obesity_Type_I       11 340
+##   Obesity_Type_II       7 290
+##   Obesity_Type_III      1 323
+##   Overweight_Level_I   22 268
+##   Overweight_Level_II  74 216</code></pre>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="tablas-contingencia.html#cb113-1" tabindex="-1"></a><span class="co">#Prueba de independencia </span></span>
+<span id="cb113-2"><a href="tablas-contingencia.html#cb113-2" tabindex="-1"></a></span>
+<span id="cb113-3"><a href="tablas-contingencia.html#cb113-3" tabindex="-1"></a><span class="do">## A mano</span></span>
+<span id="cb113-4"><a href="tablas-contingencia.html#cb113-4" tabindex="-1"></a><span class="do">###Hallemos los totales----</span></span>
+<span id="cb113-5"><a href="tablas-contingencia.html#cb113-5" tabindex="-1"></a>fila_totales2 <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(observados2)</span>
+<span id="cb113-6"><a href="tablas-contingencia.html#cb113-6" tabindex="-1"></a>col_totales2  <span class="ot">&lt;-</span> <span class="fu">colSums</span>(observados2)</span>
+<span id="cb113-7"><a href="tablas-contingencia.html#cb113-7" tabindex="-1"></a>n2 <span class="ot">&lt;-</span> <span class="fu">sum</span>(observados2)</span>
+<span id="cb113-8"><a href="tablas-contingencia.html#cb113-8" tabindex="-1"></a>fila_totales2; col_totales2; n2</span></code></pre></div>
+<pre><code>## Insufficient_Weight       Normal_Weight      Obesity_Type_I 
+##                 272                 287                 351 
+##     Obesity_Type_II    Obesity_Type_III  Overweight_Level_I 
+##                 297                 324                 290 
+## Overweight_Level_II 
+##                 290</code></pre>
+<pre><code>##   no  yes 
+##  245 1866</code></pre>
+<pre><code>## [1] 2111</code></pre>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="tablas-contingencia.html#cb117-1" tabindex="-1"></a><span class="do">###Hallemos las frecuencias esperadas----</span></span>
+<span id="cb117-2"><a href="tablas-contingencia.html#cb117-2" tabindex="-1"></a>esperados2 <span class="ot">&lt;-</span> <span class="fu">outer</span>(fila_totales2, col_totales2) <span class="sc">/</span> n2</span>
+<span id="cb117-3"><a href="tablas-contingencia.html#cb117-3" tabindex="-1"></a>esperados2 <span class="co">#Como todos los esperados son &gt;=5 podemos usar el estadístico Chi-cuadrado</span></span></code></pre></div>
+<pre><code>##                           no      yes
+## Insufficient_Weight 31.56798 240.4320
+## Normal_Weight       33.30886 253.6911
+## Obesity_Type_I      40.73662 310.2634
+## Obesity_Type_II     34.46945 262.5306
+## Obesity_Type_III    37.60303 286.3970
+## Overweight_Level_I  33.65703 256.3430
+## Overweight_Level_II 33.65703 256.3430</code></pre>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="tablas-contingencia.html#cb119-1" tabindex="-1"></a><span class="do">###Calculemos el estadístico Chi-cuadrado----</span></span>
+<span id="cb119-2"><a href="tablas-contingencia.html#cb119-2" tabindex="-1"></a>chi_cuadrado2 <span class="ot">&lt;-</span> <span class="fu">sum</span>((observados2 <span class="sc">-</span> esperados2)<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> esperados2)</span>
+<span id="cb119-3"><a href="tablas-contingencia.html#cb119-3" tabindex="-1"></a>chi_cuadrado2</span></code></pre></div>
+<pre><code>## [1] 233.3413</code></pre>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="tablas-contingencia.html#cb121-1" tabindex="-1"></a><span class="do">###Determinemos los grados de libertad----</span></span>
+<span id="cb121-2"><a href="tablas-contingencia.html#cb121-2" tabindex="-1"></a>gl2 <span class="ot">&lt;-</span> (<span class="fu">nrow</span>(observados2) <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> (<span class="fu">ncol</span>(observados2) <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb121-3"><a href="tablas-contingencia.html#cb121-3" tabindex="-1"></a>gl2</span></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="tablas-contingencia.html#cb123-1" tabindex="-1"></a><span class="do">###Determinemos el valor crítico----</span></span>
+<span id="cb123-2"><a href="tablas-contingencia.html#cb123-2" tabindex="-1"></a>alfa <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb123-3"><a href="tablas-contingencia.html#cb123-3" tabindex="-1"></a>valor_critico2 <span class="ot">&lt;-</span> <span class="fu">qchisq</span>(<span class="dv">1</span> <span class="sc">-</span> alfa, gl2)</span>
+<span id="cb123-4"><a href="tablas-contingencia.html#cb123-4" tabindex="-1"></a>valor_critico2</span></code></pre></div>
+<pre><code>## [1] 12.59159</code></pre>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="tablas-contingencia.html#cb125-1" tabindex="-1"></a><span class="do">###Desición al 5%----</span></span>
+<span id="cb125-2"><a href="tablas-contingencia.html#cb125-2" tabindex="-1"></a>rechaza_H02 <span class="ot">&lt;-</span> chi_cuadrado2 <span class="sc">&gt;</span> valor_critico2</span>
+<span id="cb125-3"><a href="tablas-contingencia.html#cb125-3" tabindex="-1"></a>rechaza_H02</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="tablas-contingencia.html#cb127-1" tabindex="-1"></a><span class="do">###Conclusión----</span></span>
+<span id="cb127-2"><a href="tablas-contingencia.html#cb127-2" tabindex="-1"></a><span class="cf">if</span> (rechaza_H02) {</span>
+<span id="cb127-3"><a href="tablas-contingencia.html#cb127-3" tabindex="-1"></a>  conclusion2 <span class="ot">&lt;-</span> <span class="st">&quot;Se rechaza H0: existe evidencia estadísticamente significativa de que las dos variables analizadas no son independientes (hay asociación entre ellas).&quot;</span></span>
+<span id="cb127-4"><a href="tablas-contingencia.html#cb127-4" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb127-5"><a href="tablas-contingencia.html#cb127-5" tabindex="-1"></a>  conclusion2 <span class="ot">&lt;-</span> <span class="st">&quot;No se rechaza H0: no hay evidencia suficiente para afirmar que las dos variables estén asociadas; se asume independencia entre ellas.&quot;</span></span>
+<span id="cb127-6"><a href="tablas-contingencia.html#cb127-6" tabindex="-1"></a>}</span>
+<span id="cb127-7"><a href="tablas-contingencia.html#cb127-7" tabindex="-1"></a>conclusion2</span></code></pre></div>
+<pre><code>## [1] &quot;Se rechaza H0: existe evidencia estadísticamente significativa de que las dos variables analizadas no son independientes (hay asociación entre ellas).&quot;</code></pre>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="tablas-contingencia.html#cb129-1" tabindex="-1"></a><span class="do">##Con P-valor</span></span>
+<span id="cb129-2"><a href="tablas-contingencia.html#cb129-2" tabindex="-1"></a>valor_p2 <span class="ot">&lt;-</span> <span class="fu">pchisq</span>(chi_cuadrado2, gl2, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb129-3"><a href="tablas-contingencia.html#cb129-3" tabindex="-1"></a>valor_p2</span></code></pre></div>
+<pre><code>## [1] 1.482236e-47</code></pre>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="tablas-contingencia.html#cb131-1" tabindex="-1"></a><span class="do">##Con Función</span></span>
+<span id="cb131-2"><a href="tablas-contingencia.html#cb131-2" tabindex="-1"></a><span class="fu">chisq.test</span>(observados2)</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  observados2
+## X-squared = 233.34, df = 6, p-value &lt; 2.2e-16</code></pre>
+<p>En la prueba Chi-Cuadrado de independencia realizada manualmente se obtuvo un estadístico de X² = [ 233.3413] con [6] grados de libertad, un valor crítico al [5]% de significancia de [12.59159] y un p-valor de [1.482236e-47].Como el estadístico supera el valor crítico y el p-valor es menor que 0.05, se <strong>rechaza la hipótesis nula</strong>, lo que implica que existe una asociación estadísticamente significativa entre las variables Nobeyesdad y [FAVC(Frequent consumption of high caloric food)].De forma complementaria, al aplicar la función <code>chisq.test()</code> en R se obtuvieron los mismos resultados (estadístico, grados de libertad y p-valor), confirmando la decisión adoptada. En conclusión, tanto el cálculo manual como el realizado con R conducen a la misma interpretación estadística, lo que respalda la validez del procedimiento.</p>
+</div>
+<div id="nobeyesdad-vs-caecconsumption-of-food-between-meals" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> NObeyesdad VS CAEC(Consumption of food between meals)<a href="tablas-contingencia.html#nobeyesdad-vs-caecconsumption-of-food-between-meals" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="tablas-contingencia.html#cb133-1" tabindex="-1"></a><span class="co">#Tabla de contingencia</span></span>
+<span id="cb133-2"><a href="tablas-contingencia.html#cb133-2" tabindex="-1"></a>observados3 <span class="ot">&lt;-</span> <span class="fu">table</span>(datos<span class="sc">$</span>NObeyesdad, datos<span class="sc">$</span>CAEC)</span>
+<span id="cb133-3"><a href="tablas-contingencia.html#cb133-3" tabindex="-1"></a>observados3</span></code></pre></div>
+<pre><code>##                      
+##                       Always Frequently  no Sometimes
+##   Insufficient_Weight      2        121   3       146
+##   Normal_Weight           35         83  10       159
+##   Obesity_Type_I           6          6   1       338
+##   Obesity_Type_II          2          1   1       293
+##   Obesity_Type_III         0          1   0       323
+##   Overweight_Level_I       5         14  35       236
+##   Overweight_Level_II      3         16   1       270</code></pre>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="tablas-contingencia.html#cb135-1" tabindex="-1"></a><span class="co">#Prueba de independencia </span></span>
+<span id="cb135-2"><a href="tablas-contingencia.html#cb135-2" tabindex="-1"></a></span>
+<span id="cb135-3"><a href="tablas-contingencia.html#cb135-3" tabindex="-1"></a><span class="do">## A mano</span></span>
+<span id="cb135-4"><a href="tablas-contingencia.html#cb135-4" tabindex="-1"></a><span class="do">###Hallemos los totales----</span></span>
+<span id="cb135-5"><a href="tablas-contingencia.html#cb135-5" tabindex="-1"></a>fila_totales3 <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(observados3)</span>
+<span id="cb135-6"><a href="tablas-contingencia.html#cb135-6" tabindex="-1"></a>col_totales3  <span class="ot">&lt;-</span> <span class="fu">colSums</span>(observados3)</span>
+<span id="cb135-7"><a href="tablas-contingencia.html#cb135-7" tabindex="-1"></a>n3 <span class="ot">&lt;-</span> <span class="fu">sum</span>(observados3)</span>
+<span id="cb135-8"><a href="tablas-contingencia.html#cb135-8" tabindex="-1"></a>fila_totales3; col_totales3; n3</span></code></pre></div>
+<pre><code>## Insufficient_Weight       Normal_Weight      Obesity_Type_I 
+##                 272                 287                 351 
+##     Obesity_Type_II    Obesity_Type_III  Overweight_Level_I 
+##                 297                 324                 290 
+## Overweight_Level_II 
+##                 290</code></pre>
+<pre><code>##     Always Frequently         no  Sometimes 
+##         53        242         51       1765</code></pre>
+<pre><code>## [1] 2111</code></pre>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="tablas-contingencia.html#cb139-1" tabindex="-1"></a><span class="do">###Hallemos las frecuencias esperadas----</span></span>
+<span id="cb139-2"><a href="tablas-contingencia.html#cb139-2" tabindex="-1"></a>esperados3 <span class="ot">&lt;-</span> <span class="fu">outer</span>(fila_totales3, col_totales3) <span class="sc">/</span> n3</span>
+<span id="cb139-3"><a href="tablas-contingencia.html#cb139-3" tabindex="-1"></a>esperados3 <span class="co">#Como todos los esperados son &gt;=5 podemos usar el estadístico Chi-cuadrado</span></span></code></pre></div>
+<pre><code>##                       Always Frequently       no Sometimes
+## Insufficient_Weight 6.828991   31.18143 6.571293  227.4183
+## Normal_Weight       7.205590   32.90099 6.933681  239.9597
+## Obesity_Type_I      8.812411   40.23780 8.479867  293.4699
+## Obesity_Type_II     7.456656   34.04737 7.175272  248.3207
+## Obesity_Type_III    8.134533   37.14259 7.827570  270.8953
+## Overweight_Level_I  7.280910   33.24491 7.006158  242.4680
+## Overweight_Level_II 7.280910   33.24491 7.006158  242.4680</code></pre>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="tablas-contingencia.html#cb141-1" tabindex="-1"></a><span class="do">###Calculemos el estadístico Chi-cuadrado----</span></span>
+<span id="cb141-2"><a href="tablas-contingencia.html#cb141-2" tabindex="-1"></a>chi_cuadrado3 <span class="ot">&lt;-</span> <span class="fu">sum</span>((observados3 <span class="sc">-</span> esperados3)<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> esperados3)</span>
+<span id="cb141-3"><a href="tablas-contingencia.html#cb141-3" tabindex="-1"></a>chi_cuadrado3</span></code></pre></div>
+<pre><code>## [1] 802.9773</code></pre>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="tablas-contingencia.html#cb143-1" tabindex="-1"></a><span class="do">###Determinemos los grados de libertad----</span></span>
+<span id="cb143-2"><a href="tablas-contingencia.html#cb143-2" tabindex="-1"></a>gl3 <span class="ot">&lt;-</span> (<span class="fu">nrow</span>(observados3) <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> (<span class="fu">ncol</span>(observados3) <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb143-3"><a href="tablas-contingencia.html#cb143-3" tabindex="-1"></a>gl3</span></code></pre></div>
+<pre><code>## [1] 18</code></pre>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="tablas-contingencia.html#cb145-1" tabindex="-1"></a><span class="do">###Determinemos el valor crítico----</span></span>
+<span id="cb145-2"><a href="tablas-contingencia.html#cb145-2" tabindex="-1"></a>alfa <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb145-3"><a href="tablas-contingencia.html#cb145-3" tabindex="-1"></a>valor_critico3 <span class="ot">&lt;-</span> <span class="fu">qchisq</span>(<span class="dv">1</span> <span class="sc">-</span> alfa, gl3)</span>
+<span id="cb145-4"><a href="tablas-contingencia.html#cb145-4" tabindex="-1"></a>valor_critico3</span></code></pre></div>
+<pre><code>## [1] 28.8693</code></pre>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="tablas-contingencia.html#cb147-1" tabindex="-1"></a><span class="do">###Desición al 5%----</span></span>
+<span id="cb147-2"><a href="tablas-contingencia.html#cb147-2" tabindex="-1"></a>rechaza_H03 <span class="ot">&lt;-</span> chi_cuadrado3 <span class="sc">&gt;</span> valor_critico3</span>
+<span id="cb147-3"><a href="tablas-contingencia.html#cb147-3" tabindex="-1"></a>rechaza_H03</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="tablas-contingencia.html#cb149-1" tabindex="-1"></a><span class="do">###Conclusión----</span></span>
+<span id="cb149-2"><a href="tablas-contingencia.html#cb149-2" tabindex="-1"></a><span class="cf">if</span> (rechaza_H03) {</span>
+<span id="cb149-3"><a href="tablas-contingencia.html#cb149-3" tabindex="-1"></a>  conclusion3 <span class="ot">&lt;-</span> <span class="st">&quot;Se rechaza H0: existe evidencia estadísticamente significativa de que las dos variables analizadas no son independientes (hay asociación entre ellas).&quot;</span></span>
+<span id="cb149-4"><a href="tablas-contingencia.html#cb149-4" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb149-5"><a href="tablas-contingencia.html#cb149-5" tabindex="-1"></a>  conclusion3 <span class="ot">&lt;-</span> <span class="st">&quot;No se rechaza H0: no hay evidencia suficiente para afirmar que las dos variables estén asociadas; se asume independencia entre ellas.&quot;</span></span>
+<span id="cb149-6"><a href="tablas-contingencia.html#cb149-6" tabindex="-1"></a>}</span>
+<span id="cb149-7"><a href="tablas-contingencia.html#cb149-7" tabindex="-1"></a>conclusion3</span></code></pre></div>
+<pre><code>## [1] &quot;Se rechaza H0: existe evidencia estadísticamente significativa de que las dos variables analizadas no son independientes (hay asociación entre ellas).&quot;</code></pre>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="tablas-contingencia.html#cb151-1" tabindex="-1"></a><span class="do">##Con P-valor</span></span>
+<span id="cb151-2"><a href="tablas-contingencia.html#cb151-2" tabindex="-1"></a>valor_p3 <span class="ot">&lt;-</span> <span class="fu">pchisq</span>(chi_cuadrado3, gl3, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb151-3"><a href="tablas-contingencia.html#cb151-3" tabindex="-1"></a>valor_p3</span></code></pre></div>
+<pre><code>## [1] 7.383853e-159</code></pre>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="tablas-contingencia.html#cb153-1" tabindex="-1"></a><span class="do">##Con Función</span></span>
+<span id="cb153-2"><a href="tablas-contingencia.html#cb153-2" tabindex="-1"></a><span class="fu">chisq.test</span>(observados3)</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  observados3
+## X-squared = 802.98, df = 18, p-value &lt; 2.2e-16</code></pre>
+<p>En la prueba Chi-Cuadrado de independencia realizada manualmente se obtuvo un estadístico de X² = [802.9773] con [18] grados de libertad, un valor crítico al [5]% de significancia de [28.8693] y un p-valor de [7.383853e-159].Como el estadístico supera el valor crítico y el p-valor es menor que 0.05, se <strong>rechaza la hipótesis nula</strong>, lo que implica que existe una asociación estadísticamente significativa entre las variables Nobeyesdad y [CAEC(Consumption of food between meals)].De forma complementaria, al aplicar la función <code>chisq.test()</code> en R se obtuvieron los mismos resultados (estadístico, grados de libertad y p-valor), confirmando la decisión adoptada. En conclusión, tanto el cálculo manual como el realizado con R conducen a la misma interpretación estadística, lo que respalda la validez del procedimiento.</p>
+</div>
+<div id="nobeyesdad-vs-smoke" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> NObeyesdad VS SMOKE<a href="tablas-contingencia.html#nobeyesdad-vs-smoke" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="tablas-contingencia.html#cb155-1" tabindex="-1"></a><span class="co">#Tabla de contingencia</span></span>
+<span id="cb155-2"><a href="tablas-contingencia.html#cb155-2" tabindex="-1"></a>observados4 <span class="ot">&lt;-</span> <span class="fu">table</span>(datos<span class="sc">$</span>NObeyesdad, datos<span class="sc">$</span>SMOKE)</span>
+<span id="cb155-3"><a href="tablas-contingencia.html#cb155-3" tabindex="-1"></a>observados4</span></code></pre></div>
+<pre><code>##                      
+##                        no yes
+##   Insufficient_Weight 271   1
+##   Normal_Weight       274  13
+##   Obesity_Type_I      345   6
+##   Obesity_Type_II     282  15
+##   Obesity_Type_III    323   1
+##   Overweight_Level_I  287   3
+##   Overweight_Level_II 285   5</code></pre>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="tablas-contingencia.html#cb157-1" tabindex="-1"></a><span class="co">#Prueba de independencia </span></span>
+<span id="cb157-2"><a href="tablas-contingencia.html#cb157-2" tabindex="-1"></a></span>
+<span id="cb157-3"><a href="tablas-contingencia.html#cb157-3" tabindex="-1"></a><span class="do">## A mano</span></span>
+<span id="cb157-4"><a href="tablas-contingencia.html#cb157-4" tabindex="-1"></a><span class="do">###Hallemos los totales----</span></span>
+<span id="cb157-5"><a href="tablas-contingencia.html#cb157-5" tabindex="-1"></a>fila_totales4 <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(observados4)</span>
+<span id="cb157-6"><a href="tablas-contingencia.html#cb157-6" tabindex="-1"></a>col_totales4  <span class="ot">&lt;-</span> <span class="fu">colSums</span>(observados4)</span>
+<span id="cb157-7"><a href="tablas-contingencia.html#cb157-7" tabindex="-1"></a>n4 <span class="ot">&lt;-</span> <span class="fu">sum</span>(observados4)</span>
+<span id="cb157-8"><a href="tablas-contingencia.html#cb157-8" tabindex="-1"></a>fila_totales4; col_totales4; n4</span></code></pre></div>
+<pre><code>## Insufficient_Weight       Normal_Weight      Obesity_Type_I 
+##                 272                 287                 351 
+##     Obesity_Type_II    Obesity_Type_III  Overweight_Level_I 
+##                 297                 324                 290 
+## Overweight_Level_II 
+##                 290</code></pre>
+<pre><code>##   no  yes 
+## 2067   44</code></pre>
+<pre><code>## [1] 2111</code></pre>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="tablas-contingencia.html#cb161-1" tabindex="-1"></a><span class="do">###Hallemos las frecuencias esperadas----</span></span>
+<span id="cb161-2"><a href="tablas-contingencia.html#cb161-2" tabindex="-1"></a>esperados4 <span class="ot">&lt;-</span> <span class="fu">outer</span>(fila_totales4, col_totales4) <span class="sc">/</span> n4</span>
+<span id="cb161-3"><a href="tablas-contingencia.html#cb161-3" tabindex="-1"></a>esperados4 <span class="co">#Como todos los esperados son &gt;=5 podemos usar el estadístico Chi-cuadrado</span></span></code></pre></div>
+<pre><code>##                           no      yes
+## Insufficient_Weight 266.3306 5.669351
+## Normal_Weight       281.0180 5.981999
+## Obesity_Type_I      343.6840 7.315964
+## Obesity_Type_II     290.8096 6.190431
+## Obesity_Type_III    317.2468 6.753198
+## Overweight_Level_I  283.9555 6.044529
+## Overweight_Level_II 283.9555 6.044529</code></pre>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="tablas-contingencia.html#cb163-1" tabindex="-1"></a><span class="do">###Calculemos el estadístico Chi-cuadrado----</span></span>
+<span id="cb163-2"><a href="tablas-contingencia.html#cb163-2" tabindex="-1"></a>chi_cuadrado4 <span class="ot">&lt;-</span> <span class="fu">sum</span>((observados4 <span class="sc">-</span> esperados4)<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> esperados4)</span>
+<span id="cb163-3"><a href="tablas-contingencia.html#cb163-3" tabindex="-1"></a>chi_cuadrado4</span></code></pre></div>
+<pre><code>## [1] 32.13783</code></pre>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="tablas-contingencia.html#cb165-1" tabindex="-1"></a><span class="do">###Determinemos los grados de libertad----</span></span>
+<span id="cb165-2"><a href="tablas-contingencia.html#cb165-2" tabindex="-1"></a>gl4 <span class="ot">&lt;-</span> (<span class="fu">nrow</span>(observados4) <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> (<span class="fu">ncol</span>(observados4) <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb165-3"><a href="tablas-contingencia.html#cb165-3" tabindex="-1"></a>gl4</span></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="tablas-contingencia.html#cb167-1" tabindex="-1"></a><span class="do">###Determinemos el valor crítico----</span></span>
+<span id="cb167-2"><a href="tablas-contingencia.html#cb167-2" tabindex="-1"></a>alfa <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb167-3"><a href="tablas-contingencia.html#cb167-3" tabindex="-1"></a>valor_critico4 <span class="ot">&lt;-</span> <span class="fu">qchisq</span>(<span class="dv">1</span> <span class="sc">-</span> alfa, gl4)</span>
+<span id="cb167-4"><a href="tablas-contingencia.html#cb167-4" tabindex="-1"></a>valor_critico4</span></code></pre></div>
+<pre><code>## [1] 12.59159</code></pre>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="tablas-contingencia.html#cb169-1" tabindex="-1"></a><span class="do">###Desición al 5%----</span></span>
+<span id="cb169-2"><a href="tablas-contingencia.html#cb169-2" tabindex="-1"></a>rechaza_H04 <span class="ot">&lt;-</span> chi_cuadrado4 <span class="sc">&gt;</span> valor_critico4</span>
+<span id="cb169-3"><a href="tablas-contingencia.html#cb169-3" tabindex="-1"></a>rechaza_H04</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="tablas-contingencia.html#cb171-1" tabindex="-1"></a><span class="do">###Conclusión----</span></span>
+<span id="cb171-2"><a href="tablas-contingencia.html#cb171-2" tabindex="-1"></a><span class="cf">if</span> (rechaza_H04) {</span>
+<span id="cb171-3"><a href="tablas-contingencia.html#cb171-3" tabindex="-1"></a>  conclusion4 <span class="ot">&lt;-</span> <span class="st">&quot;Se rechaza H0: existe evidencia estadísticamente significativa de que las dos variables analizadas no son independientes (hay asociación entre ellas).&quot;</span></span>
+<span id="cb171-4"><a href="tablas-contingencia.html#cb171-4" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb171-5"><a href="tablas-contingencia.html#cb171-5" tabindex="-1"></a>  conclusion4 <span class="ot">&lt;-</span> <span class="st">&quot;No se rechaza H0: no hay evidencia suficiente para afirmar que las dos variables estén asociadas; se asume independencia entre ellas.&quot;</span></span>
+<span id="cb171-6"><a href="tablas-contingencia.html#cb171-6" tabindex="-1"></a>}</span>
+<span id="cb171-7"><a href="tablas-contingencia.html#cb171-7" tabindex="-1"></a>conclusion4</span></code></pre></div>
+<pre><code>## [1] &quot;Se rechaza H0: existe evidencia estadísticamente significativa de que las dos variables analizadas no son independientes (hay asociación entre ellas).&quot;</code></pre>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="tablas-contingencia.html#cb173-1" tabindex="-1"></a><span class="do">##Con P-valor</span></span>
+<span id="cb173-2"><a href="tablas-contingencia.html#cb173-2" tabindex="-1"></a>valor_p4 <span class="ot">&lt;-</span> <span class="fu">pchisq</span>(chi_cuadrado4, gl4, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb173-3"><a href="tablas-contingencia.html#cb173-3" tabindex="-1"></a>valor_p4</span></code></pre></div>
+<pre><code>## [1] 1.535424e-05</code></pre>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="tablas-contingencia.html#cb175-1" tabindex="-1"></a><span class="do">##Con Función</span></span>
+<span id="cb175-2"><a href="tablas-contingencia.html#cb175-2" tabindex="-1"></a><span class="fu">chisq.test</span>(observados4)</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  observados4
+## X-squared = 32.138, df = 6, p-value = 1.535e-05</code></pre>
+<p>En la prueba Chi-Cuadrado de independencia realizada manualmente se obtuvo un estadístico de X² = [ 32.13783] con [6] grados de libertad, un valor crítico al [5]% de significancia de [12.59159] y un p-valor de [ 1.535424e-05].Como el estadístico supera el valor crítico y el p-valor es menor que 0.05, se <strong>rechaza la hipótesis nula</strong>, lo que implica que existe una asociación estadísticamente significativa entre las variables Nobeyesdad y [SMOKE].De forma complementaria, al aplicar la función <code>chisq.test()</code> en R se obtuvieron los mismos resultados (estadístico, grados de libertad y p-valor), confirmando la decisión adoptada. En conclusión, tanto el cálculo manual como el realizado con R conducen a la misma interpretación estadística, lo que respalda la validez del procedimiento.</p>
+</div>
+<div id="nobeyesdad-vs-scccalories-consumption-monitoring" class="section level2 hasAnchor" number="4.6">
+<h2><span class="header-section-number">4.6</span> NObeyesdad VS SCC(Calories consumption monitoring)<a href="tablas-contingencia.html#nobeyesdad-vs-scccalories-consumption-monitoring" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="tablas-contingencia.html#cb177-1" tabindex="-1"></a><span class="co">#Tabla de contingencia</span></span>
+<span id="cb177-2"><a href="tablas-contingencia.html#cb177-2" tabindex="-1"></a>observados5 <span class="ot">&lt;-</span> <span class="fu">table</span>(datos<span class="sc">$</span>NObeyesdad, datos<span class="sc">$</span>SCC)</span>
+<span id="cb177-3"><a href="tablas-contingencia.html#cb177-3" tabindex="-1"></a>observados5</span></code></pre></div>
+<pre><code>##                      
+##                        no yes
+##   Insufficient_Weight 250  22
+##   Normal_Weight       257  30
+##   Obesity_Type_I      349   2
+##   Obesity_Type_II     296   1
+##   Obesity_Type_III    324   0
+##   Overweight_Level_I  253  37
+##   Overweight_Level_II 286   4</code></pre>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="tablas-contingencia.html#cb179-1" tabindex="-1"></a><span class="co">#Prueba de independencia </span></span>
+<span id="cb179-2"><a href="tablas-contingencia.html#cb179-2" tabindex="-1"></a></span>
+<span id="cb179-3"><a href="tablas-contingencia.html#cb179-3" tabindex="-1"></a><span class="do">## A mano</span></span>
+<span id="cb179-4"><a href="tablas-contingencia.html#cb179-4" tabindex="-1"></a><span class="do">###Hallemos los totales----</span></span>
+<span id="cb179-5"><a href="tablas-contingencia.html#cb179-5" tabindex="-1"></a>fila_totales5 <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(observados5)</span>
+<span id="cb179-6"><a href="tablas-contingencia.html#cb179-6" tabindex="-1"></a>col_totales5  <span class="ot">&lt;-</span> <span class="fu">colSums</span>(observados5)</span>
+<span id="cb179-7"><a href="tablas-contingencia.html#cb179-7" tabindex="-1"></a>n5 <span class="ot">&lt;-</span> <span class="fu">sum</span>(observados5)</span>
+<span id="cb179-8"><a href="tablas-contingencia.html#cb179-8" tabindex="-1"></a>fila_totales5; col_totales5; n5</span></code></pre></div>
+<pre><code>## Insufficient_Weight       Normal_Weight      Obesity_Type_I 
+##                 272                 287                 351 
+##     Obesity_Type_II    Obesity_Type_III  Overweight_Level_I 
+##                 297                 324                 290 
+## Overweight_Level_II 
+##                 290</code></pre>
+<pre><code>##   no  yes 
+## 2015   96</code></pre>
+<pre><code>## [1] 2111</code></pre>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="tablas-contingencia.html#cb183-1" tabindex="-1"></a><span class="do">###Hallemos las frecuencias esperadas----</span></span>
+<span id="cb183-2"><a href="tablas-contingencia.html#cb183-2" tabindex="-1"></a>esperados5 <span class="ot">&lt;-</span> <span class="fu">outer</span>(fila_totales5, col_totales5) <span class="sc">/</span> n5</span>
+<span id="cb183-3"><a href="tablas-contingencia.html#cb183-3" tabindex="-1"></a>esperados5 <span class="co">#Como todos los esperados son &gt;=5 podemos usar el estadístico Chi-cuadrado</span></span></code></pre></div>
+<pre><code>##                           no      yes
+## Insufficient_Weight 259.6305 12.36949
+## Normal_Weight       273.9484 13.05163
+## Obesity_Type_I      335.0379 15.96210
+## Obesity_Type_II     283.4936 13.50640
+## Obesity_Type_III    309.2658 14.73425
+## Overweight_Level_I  276.8119 13.18806
+## Overweight_Level_II 276.8119 13.18806</code></pre>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="tablas-contingencia.html#cb185-1" tabindex="-1"></a><span class="do">###Calculemos el estadístico Chi-cuadrado----</span></span>
+<span id="cb185-2"><a href="tablas-contingencia.html#cb185-2" tabindex="-1"></a>chi_cuadrado5 <span class="ot">&lt;-</span> <span class="fu">sum</span>((observados5 <span class="sc">-</span> esperados5)<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> esperados5)</span>
+<span id="cb185-3"><a href="tablas-contingencia.html#cb185-3" tabindex="-1"></a>chi_cuadrado5</span></code></pre></div>
+<pre><code>## [1] 123.0239</code></pre>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="tablas-contingencia.html#cb187-1" tabindex="-1"></a><span class="do">###Determinemos los grados de libertad----</span></span>
+<span id="cb187-2"><a href="tablas-contingencia.html#cb187-2" tabindex="-1"></a>gl5 <span class="ot">&lt;-</span> (<span class="fu">nrow</span>(observados5) <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> (<span class="fu">ncol</span>(observados5) <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb187-3"><a href="tablas-contingencia.html#cb187-3" tabindex="-1"></a>gl5</span></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="tablas-contingencia.html#cb189-1" tabindex="-1"></a><span class="do">###Determinemos el valor crítico----</span></span>
+<span id="cb189-2"><a href="tablas-contingencia.html#cb189-2" tabindex="-1"></a>alfa <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb189-3"><a href="tablas-contingencia.html#cb189-3" tabindex="-1"></a>valor_critico5 <span class="ot">&lt;-</span> <span class="fu">qchisq</span>(<span class="dv">1</span> <span class="sc">-</span> alfa, gl5)</span>
+<span id="cb189-4"><a href="tablas-contingencia.html#cb189-4" tabindex="-1"></a>valor_critico5</span></code></pre></div>
+<pre><code>## [1] 12.59159</code></pre>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="tablas-contingencia.html#cb191-1" tabindex="-1"></a><span class="do">###Desición al 5%----</span></span>
+<span id="cb191-2"><a href="tablas-contingencia.html#cb191-2" tabindex="-1"></a>rechaza_H05 <span class="ot">&lt;-</span> chi_cuadrado5 <span class="sc">&gt;</span> valor_critico5</span>
+<span id="cb191-3"><a href="tablas-contingencia.html#cb191-3" tabindex="-1"></a>rechaza_H05</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="tablas-contingencia.html#cb193-1" tabindex="-1"></a><span class="do">###Conclusión----</span></span>
+<span id="cb193-2"><a href="tablas-contingencia.html#cb193-2" tabindex="-1"></a><span class="cf">if</span> (rechaza_H05) {</span>
+<span id="cb193-3"><a href="tablas-contingencia.html#cb193-3" tabindex="-1"></a>  conclusion5 <span class="ot">&lt;-</span> <span class="st">&quot;Se rechaza H0: existe evidencia estadísticamente significativa de que las dos variables analizadas no son independientes (hay asociación entre ellas).&quot;</span></span>
+<span id="cb193-4"><a href="tablas-contingencia.html#cb193-4" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb193-5"><a href="tablas-contingencia.html#cb193-5" tabindex="-1"></a>  conclusion5 <span class="ot">&lt;-</span> <span class="st">&quot;No se rechaza H0: no hay evidencia suficiente para afirmar que las dos variables estén asociadas; se asume independencia entre ellas.&quot;</span></span>
+<span id="cb193-6"><a href="tablas-contingencia.html#cb193-6" tabindex="-1"></a>}</span>
+<span id="cb193-7"><a href="tablas-contingencia.html#cb193-7" tabindex="-1"></a>conclusion5</span></code></pre></div>
+<pre><code>## [1] &quot;Se rechaza H0: existe evidencia estadísticamente significativa de que las dos variables analizadas no son independientes (hay asociación entre ellas).&quot;</code></pre>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="tablas-contingencia.html#cb195-1" tabindex="-1"></a><span class="do">##Con P-valor</span></span>
+<span id="cb195-2"><a href="tablas-contingencia.html#cb195-2" tabindex="-1"></a>valor_p5 <span class="ot">&lt;-</span> <span class="fu">pchisq</span>(chi_cuadrado5, gl5, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb195-3"><a href="tablas-contingencia.html#cb195-3" tabindex="-1"></a>valor_p5</span></code></pre></div>
+<pre><code>## [1] 3.773176e-24</code></pre>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="tablas-contingencia.html#cb197-1" tabindex="-1"></a><span class="do">##Con Función</span></span>
+<span id="cb197-2"><a href="tablas-contingencia.html#cb197-2" tabindex="-1"></a><span class="fu">chisq.test</span>(observados5)</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  observados5
+## X-squared = 123.02, df = 6, p-value &lt; 2.2e-16</code></pre>
+<p>En la prueba Chi-Cuadrado de independencia realizada manualmente se obtuvo un estadístico de X² = [ 123.0239] con [6] grados de libertad, un valor crítico al [5]% de significancia de [12.59159] y un p-valor de [3.773176e-24].Como el estadístico supera el valor crítico y el p-valor es menor que 0.05, se <strong>rechaza la hipótesis nula</strong>, lo que implica que existe una asociación estadísticamente significativa entre las variables Nobeyesdad y [SMOKE].De forma complementaria, al aplicar la función <code>chisq.test()</code> en R se obtuvieron los mismos resultados (estadístico, grados de libertad y p-valor), confirmando la decisión adoptada. En conclusión, tanto el cálculo manual como el realizado con R conducen a la misma interpretación estadística, lo que respalda la validez del procedimiento.</p>
+</div>
+<div id="nobeyesdad-vs-calcalcohol-consumption" class="section level2 hasAnchor" number="4.7">
+<h2><span class="header-section-number">4.7</span> NObeyesdad VS CALC(Alcohol consumption)<a href="tablas-contingencia.html#nobeyesdad-vs-calcalcohol-consumption" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="tablas-contingencia.html#cb199-1" tabindex="-1"></a><span class="co">#Tabla de contingencia</span></span>
+<span id="cb199-2"><a href="tablas-contingencia.html#cb199-2" tabindex="-1"></a>observados6 <span class="ot">&lt;-</span> <span class="fu">table</span>(datos<span class="sc">$</span>NObeyesdad, datos<span class="sc">$</span>CALC)</span>
+<span id="cb199-3"><a href="tablas-contingencia.html#cb199-3" tabindex="-1"></a>observados6</span></code></pre></div>
+<pre><code>##                      
+##                       Always Frequently  no Sometimes
+##   Insufficient_Weight      0          1 117       154
+##   Normal_Weight            1         18 107       161
+##   Obesity_Type_I           0         14 165       172
+##   Obesity_Type_II          0          2  71       224
+##   Obesity_Type_III         0          0   1       323
+##   Overweight_Level_I       0         16  50       224
+##   Overweight_Level_II      0         19 128       143</code></pre>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="tablas-contingencia.html#cb201-1" tabindex="-1"></a><span class="co">#Prueba de independencia </span></span>
+<span id="cb201-2"><a href="tablas-contingencia.html#cb201-2" tabindex="-1"></a></span>
+<span id="cb201-3"><a href="tablas-contingencia.html#cb201-3" tabindex="-1"></a><span class="do">## A mano</span></span>
+<span id="cb201-4"><a href="tablas-contingencia.html#cb201-4" tabindex="-1"></a><span class="do">###Hallemos los totales----</span></span>
+<span id="cb201-5"><a href="tablas-contingencia.html#cb201-5" tabindex="-1"></a>fila_totales6 <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(observados6)</span>
+<span id="cb201-6"><a href="tablas-contingencia.html#cb201-6" tabindex="-1"></a>col_totales6  <span class="ot">&lt;-</span> <span class="fu">colSums</span>(observados6)</span>
+<span id="cb201-7"><a href="tablas-contingencia.html#cb201-7" tabindex="-1"></a>n6 <span class="ot">&lt;-</span> <span class="fu">sum</span>(observados6)</span>
+<span id="cb201-8"><a href="tablas-contingencia.html#cb201-8" tabindex="-1"></a>fila_totales6; col_totales6; n6</span></code></pre></div>
+<pre><code>## Insufficient_Weight       Normal_Weight      Obesity_Type_I 
+##                 272                 287                 351 
+##     Obesity_Type_II    Obesity_Type_III  Overweight_Level_I 
+##                 297                 324                 290 
+## Overweight_Level_II 
+##                 290</code></pre>
+<pre><code>##     Always Frequently         no  Sometimes 
+##          1         70        639       1401</code></pre>
+<pre><code>## [1] 2111</code></pre>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="tablas-contingencia.html#cb205-1" tabindex="-1"></a><span class="do">###Hallemos las frecuencias esperadas----</span></span>
+<span id="cb205-2"><a href="tablas-contingencia.html#cb205-2" tabindex="-1"></a>esperados6 <span class="ot">&lt;-</span> <span class="fu">outer</span>(fila_totales6, col_totales6) <span class="sc">/</span> n6</span>
+<span id="cb205-3"><a href="tablas-contingencia.html#cb205-3" tabindex="-1"></a>esperados6 <span class="co">#Como NO TODOS los esperados son &gt;=5 debemos agrupar las categorías de la variables para poder usar el estadístico Chi-cuadrado</span></span></code></pre></div>
+<pre><code>##                        Always Frequently        no Sometimes
+## Insufficient_Weight 0.1288489   9.019422  82.33444  180.5173
+## Normal_Weight       0.1359545   9.516817  86.87494  190.4723
+## Obesity_Type_I      0.1662719  11.639034 106.24775  232.9469
+## Obesity_Type_II     0.1406916   9.848413  89.90194  197.1090
+## Obesity_Type_III    0.1534818  10.743723  98.07485  215.0279
+## Overweight_Level_I  0.1373757   9.616296  87.78304  192.4633
+## Overweight_Level_II 0.1373757   9.616296  87.78304  192.4633</code></pre>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="tablas-contingencia.html#cb207-1" tabindex="-1"></a><span class="co">#agrupar porque hay frecuencias menores que 5----</span></span>
+<span id="cb207-2"><a href="tablas-contingencia.html#cb207-2" tabindex="-1"></a>matriz6 <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(observados6)</span>
+<span id="cb207-3"><a href="tablas-contingencia.html#cb207-3" tabindex="-1"></a>agrupados6 <span class="ot">&lt;-</span> <span class="fu">cbind</span>(</span>
+<span id="cb207-4"><a href="tablas-contingencia.html#cb207-4" tabindex="-1"></a>  <span class="st">`</span><span class="at">No/Sometimes</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">rowSums</span>(matriz6[, <span class="fu">c</span>(<span class="st">&quot;no&quot;</span>, <span class="st">&quot;Sometimes&quot;</span>)]),</span>
+<span id="cb207-5"><a href="tablas-contingencia.html#cb207-5" tabindex="-1"></a>  <span class="st">`</span><span class="at">Frequently/Always</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">rowSums</span>(matriz6[, <span class="fu">c</span>(<span class="st">&quot;Frequently&quot;</span>, <span class="st">&quot;Always&quot;</span>)])</span>
+<span id="cb207-6"><a href="tablas-contingencia.html#cb207-6" tabindex="-1"></a>)</span>
+<span id="cb207-7"><a href="tablas-contingencia.html#cb207-7" tabindex="-1"></a>agrupados6</span></code></pre></div>
+<pre><code>##                     No/Sometimes Frequently/Always
+## Insufficient_Weight          271                 1
+## Normal_Weight                268                19
+## Obesity_Type_I               337                14
+## Obesity_Type_II              295                 2
+## Obesity_Type_III             324                 0
+## Overweight_Level_I           274                16
+## Overweight_Level_II          271                19</code></pre>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="tablas-contingencia.html#cb209-1" tabindex="-1"></a><span class="co"># Totales por fila, columna y total general agrupado</span></span>
+<span id="cb209-2"><a href="tablas-contingencia.html#cb209-2" tabindex="-1"></a>filas6_agrupados_totales<span class="ot">&lt;-</span> <span class="fu">rowSums</span>(agrupados6)</span>
+<span id="cb209-3"><a href="tablas-contingencia.html#cb209-3" tabindex="-1"></a>columnas6_agrupados_totales<span class="ot">&lt;-</span> <span class="fu">colSums</span>(agrupados6)</span>
+<span id="cb209-4"><a href="tablas-contingencia.html#cb209-4" tabindex="-1"></a>n6_agrupados <span class="ot">&lt;-</span><span class="fu">sum</span>(agrupados6)</span>
+<span id="cb209-5"><a href="tablas-contingencia.html#cb209-5" tabindex="-1"></a></span>
+<span id="cb209-6"><a href="tablas-contingencia.html#cb209-6" tabindex="-1"></a>filas6_agrupados_totales; columnas6_agrupados_totales; n6_agrupados</span></code></pre></div>
+<pre><code>## Insufficient_Weight       Normal_Weight      Obesity_Type_I 
+##                 272                 287                 351 
+##     Obesity_Type_II    Obesity_Type_III  Overweight_Level_I 
+##                 297                 324                 290 
+## Overweight_Level_II 
+##                 290</code></pre>
+<pre><code>##      No/Sometimes Frequently/Always 
+##              2040                71</code></pre>
+<pre><code>## [1] 2111</code></pre>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="tablas-contingencia.html#cb213-1" tabindex="-1"></a><span class="co">#hallemos las frecuencias esperadas bajo  H0 agrupado</span></span>
+<span id="cb213-2"><a href="tablas-contingencia.html#cb213-2" tabindex="-1"></a>esperados6_agrupado <span class="ot">&lt;-</span> <span class="fu">outer</span>(filas6_agrupados_totales, columnas6_agrupados_totales, <span class="at">FUN =</span> <span class="cf">function</span>(f, c) f <span class="sc">*</span> c<span class="sc">/</span> n6_agrupados)</span>
+<span id="cb213-3"><a href="tablas-contingencia.html#cb213-3" tabindex="-1"></a><span class="fu">dimnames</span>(esperados6_agrupado) <span class="ot">&lt;-</span> <span class="fu">dimnames</span>(agrupados6)</span>
+<span id="cb213-4"><a href="tablas-contingencia.html#cb213-4" tabindex="-1"></a>esperados6_agrupado</span></code></pre></div>
+<pre><code>##                     No/Sometimes Frequently/Always
+## Insufficient_Weight     262.8517          9.148271
+## Normal_Weight           277.3472          9.652771
+## Obesity_Type_I          339.1947         11.805306
+## Obesity_Type_II         287.0109          9.989105
+## Obesity_Type_III        313.1028         10.897205
+## Overweight_Level_I      280.2463          9.753671
+## Overweight_Level_II     280.2463          9.753671</code></pre>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="tablas-contingencia.html#cb215-1" tabindex="-1"></a><span class="do">###Seguido calculemos del estadístico Chi-Cuadrado</span></span>
+<span id="cb215-2"><a href="tablas-contingencia.html#cb215-2" tabindex="-1"></a>chi6_cuadrado<span class="ot">&lt;-</span> <span class="fu">sum</span>((agrupados6 <span class="sc">-</span> esperados6_agrupado)<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> esperados6_agrupado)</span>
+<span id="cb215-3"><a href="tablas-contingencia.html#cb215-3" tabindex="-1"></a>chi6_cuadrado</span></code></pre></div>
+<pre><code>## [1] 48.39702</code></pre>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="tablas-contingencia.html#cb217-1" tabindex="-1"></a><span class="do">###Determinemos los grados de libertad</span></span>
+<span id="cb217-2"><a href="tablas-contingencia.html#cb217-2" tabindex="-1"></a>gl6 <span class="ot">&lt;-</span> (<span class="fu">nrow</span>(agrupados6) <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> (<span class="fu">ncol</span>(agrupados6) <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb217-3"><a href="tablas-contingencia.html#cb217-3" tabindex="-1"></a>gl6</span></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="tablas-contingencia.html#cb219-1" tabindex="-1"></a><span class="do">###valor crítico y decisión al  5%</span></span>
+<span id="cb219-2"><a href="tablas-contingencia.html#cb219-2" tabindex="-1"></a>alfa <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb219-3"><a href="tablas-contingencia.html#cb219-3" tabindex="-1"></a>valor6_critico <span class="ot">&lt;-</span> <span class="fu">qchisq</span>(<span class="dv">1</span> <span class="sc">-</span> alfa, gl6)</span>
+<span id="cb219-4"><a href="tablas-contingencia.html#cb219-4" tabindex="-1"></a>valor6_critico</span></code></pre></div>
+<pre><code>## [1] 12.59159</code></pre>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="tablas-contingencia.html#cb221-1" tabindex="-1"></a><span class="do">###Comparación</span></span>
+<span id="cb221-2"><a href="tablas-contingencia.html#cb221-2" tabindex="-1"></a>rechaza6_H0 <span class="ot">&lt;-</span> chi6_cuadrado <span class="sc">&gt;</span> valor6_critico</span>
+<span id="cb221-3"><a href="tablas-contingencia.html#cb221-3" tabindex="-1"></a>rechaza6_H0</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="tablas-contingencia.html#cb223-1" tabindex="-1"></a><span class="do">###Conclusión</span></span>
+<span id="cb223-2"><a href="tablas-contingencia.html#cb223-2" tabindex="-1"></a><span class="cf">if</span> (rechaza6_H0) {</span>
+<span id="cb223-3"><a href="tablas-contingencia.html#cb223-3" tabindex="-1"></a>  conclusion6 <span class="ot">&lt;-</span> <span class="st">&quot;Se rechaza H0: hay evidencia suficiente, al nivel de significancia 0.05, para afirmar que la proporción de estudiantes que se acuestan antes de las 10:00 p.m. difiere entre hombres y mujeres.&quot;</span></span>
+<span id="cb223-4"><a href="tablas-contingencia.html#cb223-4" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb223-5"><a href="tablas-contingencia.html#cb223-5" tabindex="-1"></a>  conclusion6 <span class="ot">&lt;-</span> <span class="st">&quot;No se rechaza H0: no hay evidencia suficiente, al nivel de significancia 0.05, para afirmar que la proporción de estudiantes que se acuestan antes de las 10:00 p.m. difiere entre hombres y mujeres.&quot;</span></span>
+<span id="cb223-6"><a href="tablas-contingencia.html#cb223-6" tabindex="-1"></a>}</span>
+<span id="cb223-7"><a href="tablas-contingencia.html#cb223-7" tabindex="-1"></a>conclusion6</span></code></pre></div>
+<pre><code>## [1] &quot;Se rechaza H0: hay evidencia suficiente, al nivel de significancia 0.05, para afirmar que la proporción de estudiantes que se acuestan antes de las 10:00 p.m. difiere entre hombres y mujeres.&quot;</code></pre>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="tablas-contingencia.html#cb225-1" tabindex="-1"></a><span class="do">##con p-valor</span></span>
+<span id="cb225-2"><a href="tablas-contingencia.html#cb225-2" tabindex="-1"></a>valor6_p <span class="ot">&lt;-</span> <span class="fu">pchisq</span>(chi6_cuadrado, gl6, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb225-3"><a href="tablas-contingencia.html#cb225-3" tabindex="-1"></a>valor6_p</span></code></pre></div>
+<pre><code>## [1] 9.842899e-09</code></pre>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="tablas-contingencia.html#cb227-1" tabindex="-1"></a><span class="do">##Con Función</span></span>
+<span id="cb227-2"><a href="tablas-contingencia.html#cb227-2" tabindex="-1"></a><span class="fu">chisq.test</span>(agrupados6)</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  agrupados6
+## X-squared = 48.397, df = 6, p-value = 9.843e-09</code></pre>
+<p>En la prueba Chi-Cuadrado de independencia realizada manualmente se obtuvo un estadístico de X² = [48.39702] con [6] grados de libertad, un valor crítico al [5]% de significancia de [12.59159] y un p-valor de [ 9.842899e-09].Como el estadístico supera el valor crítico y el p-valor es menor que 0.05, se <strong>rechaza la hipótesis nula</strong>, lo que implica que existe una asociación estadísticamente significativa entre las variables Nobeyesdad y [CALC(Alcohol consumption)].De forma complementaria, al aplicar la función <code>chisq.test()</code> en R se obtuvieron los mismos resultados (estadístico, grados de libertad y p-valor), confirmando la decisión adoptada. En conclusión, tanto el cálculo manual como el realizado con R conducen a la misma interpretación estadística, lo que respalda la validez del procedimiento.</p>
+</div>
+<div id="nobeyesdad-vs-mtrans-transportation-used" class="section level2 hasAnchor" number="4.8">
+<h2><span class="header-section-number">4.8</span> NObeyesdad VS MTRANS (Transportation used)<a href="tablas-contingencia.html#nobeyesdad-vs-mtrans-transportation-used" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="tablas-contingencia.html#cb229-1" tabindex="-1"></a><span class="co">#Tabla de contingencia</span></span>
+<span id="cb229-2"><a href="tablas-contingencia.html#cb229-2" tabindex="-1"></a>observados7 <span class="ot">&lt;-</span> <span class="fu">table</span>(datos<span class="sc">$</span>NObeyesdad, datos<span class="sc">$</span>MTRANS)</span>
+<span id="cb229-3"><a href="tablas-contingencia.html#cb229-3" tabindex="-1"></a>observados7</span></code></pre></div>
+<pre><code>##                      
+##                       Automobile Bike Motorbike Public_Transportation Walking
+##   Insufficient_Weight         46    0         0                   220       6
+##   Normal_Weight               45    4         6                   200      32
+##   Obesity_Type_I             110    0         3                   236       2
+##   Obesity_Type_II             95    1         0                   200       1
+##   Obesity_Type_III             1    0         0                   323       0
+##   Overweight_Level_I          66    2         1                   212       9
+##   Overweight_Level_II         94    0         1                   189       6</code></pre>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="tablas-contingencia.html#cb231-1" tabindex="-1"></a><span class="co">#Prueba de independencia </span></span>
+<span id="cb231-2"><a href="tablas-contingencia.html#cb231-2" tabindex="-1"></a></span>
+<span id="cb231-3"><a href="tablas-contingencia.html#cb231-3" tabindex="-1"></a><span class="do">## A mano</span></span>
+<span id="cb231-4"><a href="tablas-contingencia.html#cb231-4" tabindex="-1"></a><span class="do">###Hallemos los totales----</span></span>
+<span id="cb231-5"><a href="tablas-contingencia.html#cb231-5" tabindex="-1"></a>fila_totales7 <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(observados7)</span>
+<span id="cb231-6"><a href="tablas-contingencia.html#cb231-6" tabindex="-1"></a>col_totales7  <span class="ot">&lt;-</span> <span class="fu">colSums</span>(observados7)</span>
+<span id="cb231-7"><a href="tablas-contingencia.html#cb231-7" tabindex="-1"></a>n7 <span class="ot">&lt;-</span> <span class="fu">sum</span>(observados7)</span>
+<span id="cb231-8"><a href="tablas-contingencia.html#cb231-8" tabindex="-1"></a>fila_totales7; col_totales7; n7</span></code></pre></div>
+<pre><code>## Insufficient_Weight       Normal_Weight      Obesity_Type_I 
+##                 272                 287                 351 
+##     Obesity_Type_II    Obesity_Type_III  Overweight_Level_I 
+##                 297                 324                 290 
+## Overweight_Level_II 
+##                 290</code></pre>
+<pre><code>##            Automobile                  Bike             Motorbike 
+##                   457                     7                    11 
+## Public_Transportation               Walking 
+##                  1580                    56</code></pre>
+<pre><code>## [1] 2111</code></pre>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="tablas-contingencia.html#cb235-1" tabindex="-1"></a><span class="do">###Hallemos las frecuencias esperadas----</span></span>
+<span id="cb235-2"><a href="tablas-contingencia.html#cb235-2" tabindex="-1"></a>esperados7 <span class="ot">&lt;-</span> <span class="fu">outer</span>(fila_totales7, col_totales7) <span class="sc">/</span> n7</span>
+<span id="cb235-3"><a href="tablas-contingencia.html#cb235-3" tabindex="-1"></a>esperados7 <span class="co">#Como NO TODOS los esperados son &gt;=5 debemos agrupar las categorías de la variables para poder usar el estadístico Chi-cuadrado</span></span></code></pre></div>
+<pre><code>##                     Automobile      Bike Motorbike Public_Transportation
+## Insufficient_Weight   58.88394 0.9019422  1.417338              203.5812
+## Normal_Weight         62.13122 0.9516817  1.495500              214.8081
+## Obesity_Type_I        75.98626 1.1639034  1.828991              262.7096
+## Obesity_Type_II       64.29607 0.9848413  1.547608              222.2928
+## Obesity_Type_III      70.14117 1.0743723  1.688299              242.5012
+## Overweight_Level_I    62.78067 0.9616296  1.511132              217.0535
+## Overweight_Level_II   62.78067 0.9616296  1.511132              217.0535
+##                      Walking
+## Insufficient_Weight 7.215538
+## Normal_Weight       7.613453
+## Obesity_Type_I      9.311227
+## Obesity_Type_II     7.878730
+## Obesity_Type_III    8.594979
+## Overweight_Level_I  7.693036
+## Overweight_Level_II 7.693036</code></pre>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="tablas-contingencia.html#cb237-1" tabindex="-1"></a><span class="do">###agrupar porque hay frecuencias menores que 5----</span></span>
+<span id="cb237-2"><a href="tablas-contingencia.html#cb237-2" tabindex="-1"></a>matriz7 <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(observados7)</span>
+<span id="cb237-3"><a href="tablas-contingencia.html#cb237-3" tabindex="-1"></a>agrupados7 <span class="ot">&lt;-</span> <span class="fu">cbind</span>(</span>
+<span id="cb237-4"><a href="tablas-contingencia.html#cb237-4" tabindex="-1"></a>  <span class="st">`</span><span class="at">Motorizado</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">rowSums</span>(matriz7[, <span class="fu">c</span>(<span class="st">&quot;Automobile&quot;</span>, <span class="st">&quot;Motorbike&quot;</span>, <span class="st">&quot;Public_Transportation&quot;</span>)]),</span>
+<span id="cb237-5"><a href="tablas-contingencia.html#cb237-5" tabindex="-1"></a>  <span class="st">`</span><span class="at">No_Motorizado</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">rowSums</span>(matriz7[, <span class="fu">c</span>(<span class="st">&quot;Bike&quot;</span>, <span class="st">&quot;Walking&quot;</span>)])</span>
+<span id="cb237-6"><a href="tablas-contingencia.html#cb237-6" tabindex="-1"></a>)</span>
+<span id="cb237-7"><a href="tablas-contingencia.html#cb237-7" tabindex="-1"></a>agrupados7</span></code></pre></div>
+<pre><code>##                     Motorizado No_Motorizado
+## Insufficient_Weight        266             6
+## Normal_Weight              251            36
+## Obesity_Type_I             349             2
+## Obesity_Type_II            295             2
+## Obesity_Type_III           324             0
+## Overweight_Level_I         279            11
+## Overweight_Level_II        284             6</code></pre>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="tablas-contingencia.html#cb239-1" tabindex="-1"></a><span class="do">###Totales por fila, columna y total general agrupado</span></span>
+<span id="cb239-2"><a href="tablas-contingencia.html#cb239-2" tabindex="-1"></a>filas7_agrupados_totales<span class="ot">&lt;-</span> <span class="fu">rowSums</span>(agrupados7)</span>
+<span id="cb239-3"><a href="tablas-contingencia.html#cb239-3" tabindex="-1"></a>columnas7_agrupados_totales<span class="ot">&lt;-</span> <span class="fu">colSums</span>(agrupados7)</span>
+<span id="cb239-4"><a href="tablas-contingencia.html#cb239-4" tabindex="-1"></a>n7_agrupados <span class="ot">&lt;-</span><span class="fu">sum</span>(agrupados7)</span>
+<span id="cb239-5"><a href="tablas-contingencia.html#cb239-5" tabindex="-1"></a>filas7_agrupados_totales; columnas7_agrupados_totales; n7_agrupados</span></code></pre></div>
+<pre><code>## Insufficient_Weight       Normal_Weight      Obesity_Type_I 
+##                 272                 287                 351 
+##     Obesity_Type_II    Obesity_Type_III  Overweight_Level_I 
+##                 297                 324                 290 
+## Overweight_Level_II 
+##                 290</code></pre>
+<pre><code>##    Motorizado No_Motorizado 
+##          2048            63</code></pre>
+<pre><code>## [1] 2111</code></pre>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="tablas-contingencia.html#cb243-1" tabindex="-1"></a><span class="do">###hallemos las frecuencias esperadas bajo  H0 agrupado</span></span>
+<span id="cb243-2"><a href="tablas-contingencia.html#cb243-2" tabindex="-1"></a>esperados7_agrupado <span class="ot">&lt;-</span> <span class="fu">outer</span>(filas7_agrupados_totales, columnas7_agrupados_totales, <span class="at">FUN =</span> <span class="cf">function</span>(f, c) f <span class="sc">*</span> c<span class="sc">/</span> n7_agrupados)</span>
+<span id="cb243-3"><a href="tablas-contingencia.html#cb243-3" tabindex="-1"></a><span class="fu">dimnames</span>(esperados7_agrupado) <span class="ot">&lt;-</span> <span class="fu">dimnames</span>(agrupados7)</span>
+<span id="cb243-4"><a href="tablas-contingencia.html#cb243-4" tabindex="-1"></a>esperados7_agrupado</span></code></pre></div>
+<pre><code>##                     Motorizado No_Motorizado
+## Insufficient_Weight   263.8825      8.117480
+## Normal_Weight         278.4349      8.565135
+## Obesity_Type_I        340.5249     10.475130
+## Obesity_Type_II       288.1364      8.863572
+## Obesity_Type_III      314.3306      9.669351
+## Overweight_Level_I    281.3453      8.654666
+## Overweight_Level_II   281.3453      8.654666</code></pre>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="tablas-contingencia.html#cb245-1" tabindex="-1"></a><span class="do">###Seguido calculemos del estadístico Chi-Cuadrado</span></span>
+<span id="cb245-2"><a href="tablas-contingencia.html#cb245-2" tabindex="-1"></a>chi7_cuadrado<span class="ot">&lt;-</span> <span class="fu">sum</span>((agrupados7 <span class="sc">-</span> esperados7_agrupado)<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> esperados7_agrupado)</span>
+<span id="cb245-3"><a href="tablas-contingencia.html#cb245-3" tabindex="-1"></a>chi7_cuadrado</span></code></pre></div>
+<pre><code>## [1] 115.1563</code></pre>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="tablas-contingencia.html#cb247-1" tabindex="-1"></a><span class="do">###Determinemos los grados de libertad</span></span>
+<span id="cb247-2"><a href="tablas-contingencia.html#cb247-2" tabindex="-1"></a>gl7 <span class="ot">&lt;-</span> (<span class="fu">nrow</span>(agrupados7) <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> (<span class="fu">ncol</span>(agrupados7) <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb247-3"><a href="tablas-contingencia.html#cb247-3" tabindex="-1"></a>gl7</span></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="tablas-contingencia.html#cb249-1" tabindex="-1"></a><span class="do">###valor crítico y decisión al  5%</span></span>
+<span id="cb249-2"><a href="tablas-contingencia.html#cb249-2" tabindex="-1"></a>alfa <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb249-3"><a href="tablas-contingencia.html#cb249-3" tabindex="-1"></a>valor7_critico <span class="ot">&lt;-</span> <span class="fu">qchisq</span>(<span class="dv">1</span> <span class="sc">-</span> alfa, gl7)</span>
+<span id="cb249-4"><a href="tablas-contingencia.html#cb249-4" tabindex="-1"></a>valor7_critico</span></code></pre></div>
+<pre><code>## [1] 12.59159</code></pre>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="tablas-contingencia.html#cb251-1" tabindex="-1"></a><span class="do">###Comparación</span></span>
+<span id="cb251-2"><a href="tablas-contingencia.html#cb251-2" tabindex="-1"></a>rechaza7_H0 <span class="ot">&lt;-</span> chi7_cuadrado <span class="sc">&gt;</span> valor7_critico</span>
+<span id="cb251-3"><a href="tablas-contingencia.html#cb251-3" tabindex="-1"></a>rechaza7_H0</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="tablas-contingencia.html#cb253-1" tabindex="-1"></a><span class="do">###Conclusión</span></span>
+<span id="cb253-2"><a href="tablas-contingencia.html#cb253-2" tabindex="-1"></a><span class="cf">if</span> (rechaza7_H0) {</span>
+<span id="cb253-3"><a href="tablas-contingencia.html#cb253-3" tabindex="-1"></a>  conclusion7 <span class="ot">&lt;-</span> <span class="st">&quot;Se rechaza H0: hay evidencia suficiente, al nivel de significancia 0.05, para afirmar que la proporción de estudiantes que se acuestan antes de las 10:00 p.m. difiere entre hombres y mujeres.&quot;</span></span>
+<span id="cb253-4"><a href="tablas-contingencia.html#cb253-4" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb253-5"><a href="tablas-contingencia.html#cb253-5" tabindex="-1"></a>  conclusion7 <span class="ot">&lt;-</span> <span class="st">&quot;No se rechaza H0: no hay evidencia suficiente, al nivel de significancia 0.05, para afirmar que la proporción de estudiantes que se acuestan antes de las 10:00 p.m. difiere entre hombres y mujeres.&quot;</span></span>
+<span id="cb253-6"><a href="tablas-contingencia.html#cb253-6" tabindex="-1"></a>}</span>
+<span id="cb253-7"><a href="tablas-contingencia.html#cb253-7" tabindex="-1"></a>conclusion7</span></code></pre></div>
+<pre><code>## [1] &quot;Se rechaza H0: hay evidencia suficiente, al nivel de significancia 0.05, para afirmar que la proporción de estudiantes que se acuestan antes de las 10:00 p.m. difiere entre hombres y mujeres.&quot;</code></pre>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="tablas-contingencia.html#cb255-1" tabindex="-1"></a><span class="do">##con p-valor</span></span>
+<span id="cb255-2"><a href="tablas-contingencia.html#cb255-2" tabindex="-1"></a>valor7_p <span class="ot">&lt;-</span> <span class="fu">pchisq</span>(chi7_cuadrado, gl7, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb255-3"><a href="tablas-contingencia.html#cb255-3" tabindex="-1"></a>valor7_p</span></code></pre></div>
+<pre><code>## [1] 1.693143e-22</code></pre>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="tablas-contingencia.html#cb257-1" tabindex="-1"></a><span class="do">##Con Función</span></span>
+<span id="cb257-2"><a href="tablas-contingencia.html#cb257-2" tabindex="-1"></a><span class="fu">chisq.test</span>(agrupados7)</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  agrupados7
+## X-squared = 115.16, df = 6, p-value &lt; 2.2e-16</code></pre>
+<p>En la prueba Chi-Cuadrado de independencia realizada manualmente se obtuvo un estadístico de X² = [115.1563] con [6] grados de libertad, un valor crítico al [5]% de significancia de [12.59159] y un p-valor de [ 1.693143e-22].Como el estadístico supera el valor crítico y el p-valor es menor que 0.05, se <strong>rechaza la hipótesis nula</strong>, lo que implica que existe una asociación estadísticamente significativa entre las variables Nobeyesdad y [MTRANS (Transportation used)].De forma complementaria, al aplicar la función <code>chisq.test()</code> en R se obtuvieron los mismos resultados (estadístico, grados de libertad y p-valor), confirmando la decisión adoptada. En conclusión, tanto el cálculo manual como el realizado con R conducen a la misma interpretación estadística, lo que respalda la validez del procedimiento.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="EDA.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="kruskal-wallis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/rstudio/bookdown-demo/edit/master/04-tablas-contingencia.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+</body>
+
+</html>

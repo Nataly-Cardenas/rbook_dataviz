@@ -1,0 +1,10 @@
+# Introducción {#introduccion}
+
+La obesidad es un problema de salud pública con múltiples causas y consecuencias. Su estudio requiere analizar factores como la alimentación, la actividad física y otros hábitos de vida. Comprender cómo interactúan estas variables es fundamental para proponer estrategias de prevención y promover estilos de vida más saludables.
+
+En este libro se aplica un Análisis Exploratorio de Datos (EDA) a una base de datos sobre niveles de obesidad, con el propósito de examinar patrones y relaciones entre el índice de masa corporal (IMC) y variables relacionadas con el consumo de alimentos, la actividad física y la ingesta de agua. Este primer acercamiento descriptivo permite obtener una visión general del comportamiento de los datos y reconocer posibles asociaciones entre los distintos factores que inciden en la obesidad.
+
+Posteriormente, se incorpora un análisis inferencial que complementa la exploración inicial mediante la comparación estadística de la variable objetivo con las demás variables numéricas y características del conjunto de datos. A través de pruebas de hipótesis y contrastes estadísticos, se busca determinar si las diferencias observadas en el EDA son significativas o si pueden atribuirse al azar. De esta manera, el estudio combina dos enfoques exploratorio e inferencial que, en conjunto, facilitan una comprensión más sólida de los factores asociados a los niveles de obesidad y permiten interpretar los resultados con un mayor sustento estadístico.
+
+
+

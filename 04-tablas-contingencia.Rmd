@@ -1,0 +1,497 @@
+# Tablas de contingencia {#tablas-contingencia}
+En este estudio, la variable objetivo es NObeyesdad, la cual representa las diferentes categorías de nivel de obesidad en la población analizada. Dado que se trata de una variable categórica, su comparación con otras variables también categóricas del conjunto de datos como Gender, family_history_with_overweight, FAVC, CAEC, SMOKE, SCC, CALC y MTRANS requiere la aplicación de tablas de contingencia y pruebas de hipótesis de independencia.
+
+Este tipo de análisis permite examinar si existen asociaciones entre los niveles de obesidad y distintos factores de comportamiento o estilo de vida. Las tablas de contingencia permiten representar las frecuencias observadas en cada combinación de categorías en una tabla, mientras que las pruebas de independencia, como la prueba Chi-cuadrado, permiten determinar si las relaciones observadas son estadísticamente significativas. De esta forma, se logra identificar qué variables podrían tener una influencia relevante en la condición de obesidad y cuáles no presentan evidencia de asociación con la variable objetivo.
+
+```{r}
+library(readr)
+library(tidyverse)
+datos<- read_csv("C:/Users/natal/Downloads/ObesityDataSet_raw_and_data_sinthetic.csv")
+```
+
+## NObeyesdad VS Gender
+```{r}
+#Tabla de contingencia
+observados <- table(datos$NObeyesdad, datos$Gender)
+observados
+
+#Prueba de independencia 
+
+## A mano----
+###Hallemos los totales
+fila_totales <- rowSums(observados)
+col_totales  <- colSums(observados)
+n <- sum(observados)
+fila_totales; col_totales; n
+
+###Hallemos las frecuencias esperadas----
+esperados <- outer(fila_totales, col_totales) / n
+esperados #Como todos los esperados son >=5 podemos usar el estadístico Chi-cuadrado
+
+###Calculemos el estadístico Chi-cuadrado----
+chi_cuadrado <- sum((observados - esperados)^2 / esperados)
+chi_cuadrado
+
+###Determinemos los grados de libertad----
+gl <- (nrow(observados) - 1) * (ncol(observados) - 1)
+gl
+
+###Determinemos el valor crítico----
+alfa <- 0.05
+valor_critico <- qchisq(1 - alfa, gl)
+valor_critico
+
+###Desición al 5%----
+rechaza_H0 <- chi_cuadrado > valor_critico
+rechaza_H0
+
+###Conclusión----
+if (rechaza_H0) {
+  conclusion <- "Se rechaza H0: existe evidencia estadísticamente significativa de que las dos variables analizadas no son independientes (hay asociación entre ellas)."
+} else {
+  conclusion <- "No se rechaza H0: no hay evidencia suficiente para afirmar que las dos variables estén asociadas; se asume independencia entre ellas."
+}
+conclusion
+
+##Con P-valor
+valor_p <- pchisq(chi_cuadrado, gl, lower.tail = FALSE)
+valor_p
+
+##Con Función
+chisq.test(observados)
+
+```
+En la prueba Chi-Cuadrado de independencia realizada manualmente se obtuvo un estadístico de X² = [657.7462] con [6] grados de libertad, un valor crítico al [5]% de significancia de [12.59159] y un p-valor de [ 8.088897e-139].Como el estadístico supera el valor crítico y el p-valor es menor que 0.05, se **rechaza la hipótesis nula**, lo que implica que existe una asociación estadísticamente significativa entre las variables Nobeyesdad y [Gender].De forma complementaria, al aplicar la función `chisq.test()` en R se obtuvieron los mismos resultados (estadístico, grados de libertad y p-valor), confirmando la decisión adoptada. En conclusión, tanto el cálculo manual como el realizado con R conducen a la misma interpretación estadística, lo que respalda la validez del procedimiento.
+
+
+## NObeyesdad VS family_history_with_overweight
+
+```{r}
+#Tabla de contingencia
+observados1 <- table(datos$NObeyesdad, datos$family_history_with_overweight)
+observados1
+
+#Prueba de independencia 
+
+## A mano
+###Hallemos los totales----
+fila_totales1 <- rowSums(observados1)
+col_totales1  <- colSums(observados1)
+n1 <- sum(observados1)
+fila_totales1; col_totales1; n1
+
+###Hallemos las frecuencias esperadas----
+esperados1 <- outer(fila_totales1, col_totales1) / n1
+esperados1 #Como todos los esperados son >=5 podemos usar el estadístico Chi-cuadrado
+
+###Calculemos el estadístico Chi-cuadrado----
+chi_cuadrado1 <- sum((observados1 - esperados1)^2 / esperados1)
+chi_cuadrado1
+
+###Determinemos los grados de libertad----
+gl1 <- (nrow(observados1) - 1) * (ncol(observados1) - 1)
+gl1
+
+###Determinemos el valor crítico----
+alfa <- 0.05
+valor_critico1 <- qchisq(1 - alfa, gl1)
+valor_critico1
+
+###Desición al 5%----
+rechaza_H01 <- chi_cuadrado1 > valor_critico1
+rechaza_H01
+
+###Conclusión----
+if (rechaza_H01) {
+  conclusion1 <- "Se rechaza H0: existe evidencia estadísticamente significativa de que las dos variables analizadas no son independientes (hay asociación entre ellas)."
+} else {
+  conclusion1 <- "No se rechaza H0: no hay evidencia suficiente para afirmar que las dos variables estén asociadas; se asume independencia entre ellas."
+}
+conclusion1
+
+##Con P-valor
+valor_p1 <- pchisq(chi_cuadrado1, gl1, lower.tail = FALSE)
+valor_p1
+
+##Con Función
+chisq.test(observados1)
+
+```
+En la prueba Chi-Cuadrado de independencia realizada manualmente se obtuvo un estadístico de X² = [ 621.9794] con [6] grados de libertad, un valor crítico al [5]% de significancia de [12.59159] y un p-valor de [  4.228017e-131].Como el estadístico supera el valor crítico y el p-valor es menor que 0.05, se **rechaza la hipótesis nula**, lo que implica que existe una asociación estadísticamente significativa entre las variables Nobeyesdad y [family_history_with_overweight].De forma complementaria, al aplicar la función `chisq.test()` en R se obtuvieron los mismos resultados (estadístico, grados de libertad y p-valor), confirmando la decisión adoptada. En conclusión, tanto el cálculo manual como el realizado con R conducen a la misma interpretación estadística, lo que respalda la validez del procedimiento.
+
+## NObeyesdad VS FAVC(Frequent consumption of high caloric food)
+
+```{r}
+#Tabla de contingencia
+observados2 <- table(datos$NObeyesdad, datos$FAVC)
+observados2
+
+#Prueba de independencia 
+
+## A mano
+###Hallemos los totales----
+fila_totales2 <- rowSums(observados2)
+col_totales2  <- colSums(observados2)
+n2 <- sum(observados2)
+fila_totales2; col_totales2; n2
+
+###Hallemos las frecuencias esperadas----
+esperados2 <- outer(fila_totales2, col_totales2) / n2
+esperados2 #Como todos los esperados son >=5 podemos usar el estadístico Chi-cuadrado
+
+###Calculemos el estadístico Chi-cuadrado----
+chi_cuadrado2 <- sum((observados2 - esperados2)^2 / esperados2)
+chi_cuadrado2
+
+###Determinemos los grados de libertad----
+gl2 <- (nrow(observados2) - 1) * (ncol(observados2) - 1)
+gl2
+
+###Determinemos el valor crítico----
+alfa <- 0.05
+valor_critico2 <- qchisq(1 - alfa, gl2)
+valor_critico2
+
+###Desición al 5%----
+rechaza_H02 <- chi_cuadrado2 > valor_critico2
+rechaza_H02
+
+###Conclusión----
+if (rechaza_H02) {
+  conclusion2 <- "Se rechaza H0: existe evidencia estadísticamente significativa de que las dos variables analizadas no son independientes (hay asociación entre ellas)."
+} else {
+  conclusion2 <- "No se rechaza H0: no hay evidencia suficiente para afirmar que las dos variables estén asociadas; se asume independencia entre ellas."
+}
+conclusion2
+
+##Con P-valor
+valor_p2 <- pchisq(chi_cuadrado2, gl2, lower.tail = FALSE)
+valor_p2
+
+##Con Función
+chisq.test(observados2)
+
+```
+
+En la prueba Chi-Cuadrado de independencia realizada manualmente se obtuvo un estadístico de X² = [ 233.3413] con [6] grados de libertad, un valor crítico al [5]% de significancia de [12.59159] y un p-valor de [1.482236e-47].Como el estadístico supera el valor crítico y el p-valor es menor que 0.05, se **rechaza la hipótesis nula**, lo que implica que existe una asociación estadísticamente significativa entre las variables Nobeyesdad y [FAVC(Frequent consumption of high caloric food)].De forma complementaria, al aplicar la función `chisq.test()` en R se obtuvieron los mismos resultados (estadístico, grados de libertad y p-valor), confirmando la decisión adoptada. En conclusión, tanto el cálculo manual como el realizado con R conducen a la misma interpretación estadística, lo que respalda la validez del procedimiento.
+
+
+## NObeyesdad VS CAEC(Consumption of food between meals) 
+
+```{r}
+#Tabla de contingencia
+observados3 <- table(datos$NObeyesdad, datos$CAEC)
+observados3
+
+#Prueba de independencia 
+
+## A mano
+###Hallemos los totales----
+fila_totales3 <- rowSums(observados3)
+col_totales3  <- colSums(observados3)
+n3 <- sum(observados3)
+fila_totales3; col_totales3; n3
+
+###Hallemos las frecuencias esperadas----
+esperados3 <- outer(fila_totales3, col_totales3) / n3
+esperados3 #Como todos los esperados son >=5 podemos usar el estadístico Chi-cuadrado
+
+###Calculemos el estadístico Chi-cuadrado----
+chi_cuadrado3 <- sum((observados3 - esperados3)^2 / esperados3)
+chi_cuadrado3
+
+###Determinemos los grados de libertad----
+gl3 <- (nrow(observados3) - 1) * (ncol(observados3) - 1)
+gl3
+
+###Determinemos el valor crítico----
+alfa <- 0.05
+valor_critico3 <- qchisq(1 - alfa, gl3)
+valor_critico3
+
+###Desición al 5%----
+rechaza_H03 <- chi_cuadrado3 > valor_critico3
+rechaza_H03
+
+###Conclusión----
+if (rechaza_H03) {
+  conclusion3 <- "Se rechaza H0: existe evidencia estadísticamente significativa de que las dos variables analizadas no son independientes (hay asociación entre ellas)."
+} else {
+  conclusion3 <- "No se rechaza H0: no hay evidencia suficiente para afirmar que las dos variables estén asociadas; se asume independencia entre ellas."
+}
+conclusion3
+
+##Con P-valor
+valor_p3 <- pchisq(chi_cuadrado3, gl3, lower.tail = FALSE)
+valor_p3
+
+##Con Función
+chisq.test(observados3)
+
+```
+
+En la prueba Chi-Cuadrado de independencia realizada manualmente se obtuvo un estadístico de X² = [802.9773] con [18] grados de libertad, un valor crítico al [5]% de significancia de [28.8693] y un p-valor de [7.383853e-159].Como el estadístico supera el valor crítico y el p-valor es menor que 0.05, se **rechaza la hipótesis nula**, lo que implica que existe una asociación estadísticamente significativa entre las variables Nobeyesdad y [CAEC(Consumption of food between meals)].De forma complementaria, al aplicar la función `chisq.test()` en R se obtuvieron los mismos resultados (estadístico, grados de libertad y p-valor), confirmando la decisión adoptada. En conclusión, tanto el cálculo manual como el realizado con R conducen a la misma interpretación estadística, lo que respalda la validez del procedimiento.
+
+## NObeyesdad VS SMOKE
+
+```{r}
+#Tabla de contingencia
+observados4 <- table(datos$NObeyesdad, datos$SMOKE)
+observados4
+
+#Prueba de independencia 
+
+## A mano
+###Hallemos los totales----
+fila_totales4 <- rowSums(observados4)
+col_totales4  <- colSums(observados4)
+n4 <- sum(observados4)
+fila_totales4; col_totales4; n4
+
+###Hallemos las frecuencias esperadas----
+esperados4 <- outer(fila_totales4, col_totales4) / n4
+esperados4 #Como todos los esperados son >=5 podemos usar el estadístico Chi-cuadrado
+
+###Calculemos el estadístico Chi-cuadrado----
+chi_cuadrado4 <- sum((observados4 - esperados4)^2 / esperados4)
+chi_cuadrado4
+
+###Determinemos los grados de libertad----
+gl4 <- (nrow(observados4) - 1) * (ncol(observados4) - 1)
+gl4
+
+###Determinemos el valor crítico----
+alfa <- 0.05
+valor_critico4 <- qchisq(1 - alfa, gl4)
+valor_critico4
+
+###Desición al 5%----
+rechaza_H04 <- chi_cuadrado4 > valor_critico4
+rechaza_H04
+
+###Conclusión----
+if (rechaza_H04) {
+  conclusion4 <- "Se rechaza H0: existe evidencia estadísticamente significativa de que las dos variables analizadas no son independientes (hay asociación entre ellas)."
+} else {
+  conclusion4 <- "No se rechaza H0: no hay evidencia suficiente para afirmar que las dos variables estén asociadas; se asume independencia entre ellas."
+}
+conclusion4
+
+##Con P-valor
+valor_p4 <- pchisq(chi_cuadrado4, gl4, lower.tail = FALSE)
+valor_p4
+
+##Con Función
+chisq.test(observados4)
+
+```
+
+En la prueba Chi-Cuadrado de independencia realizada manualmente se obtuvo un estadístico de X² = [ 32.13783] con [6] grados de libertad, un valor crítico al [5]% de significancia de [12.59159] y un p-valor de [ 1.535424e-05].Como el estadístico supera el valor crítico y el p-valor es menor que 0.05, se **rechaza la hipótesis nula**, lo que implica que existe una asociación estadísticamente significativa entre las variables Nobeyesdad y [SMOKE].De forma complementaria, al aplicar la función `chisq.test()` en R se obtuvieron los mismos resultados (estadístico, grados de libertad y p-valor), confirmando la decisión adoptada. En conclusión, tanto el cálculo manual como el realizado con R conducen a la misma interpretación estadística, lo que respalda la validez del procedimiento.
+
+
+
+## NObeyesdad VS SCC(Calories consumption monitoring)
+
+```{r}
+#Tabla de contingencia
+observados5 <- table(datos$NObeyesdad, datos$SCC)
+observados5
+
+#Prueba de independencia 
+
+## A mano
+###Hallemos los totales----
+fila_totales5 <- rowSums(observados5)
+col_totales5  <- colSums(observados5)
+n5 <- sum(observados5)
+fila_totales5; col_totales5; n5
+
+###Hallemos las frecuencias esperadas----
+esperados5 <- outer(fila_totales5, col_totales5) / n5
+esperados5 #Como todos los esperados son >=5 podemos usar el estadístico Chi-cuadrado
+
+###Calculemos el estadístico Chi-cuadrado----
+chi_cuadrado5 <- sum((observados5 - esperados5)^2 / esperados5)
+chi_cuadrado5
+
+###Determinemos los grados de libertad----
+gl5 <- (nrow(observados5) - 1) * (ncol(observados5) - 1)
+gl5
+
+###Determinemos el valor crítico----
+alfa <- 0.05
+valor_critico5 <- qchisq(1 - alfa, gl5)
+valor_critico5
+
+###Desición al 5%----
+rechaza_H05 <- chi_cuadrado5 > valor_critico5
+rechaza_H05
+
+###Conclusión----
+if (rechaza_H05) {
+  conclusion5 <- "Se rechaza H0: existe evidencia estadísticamente significativa de que las dos variables analizadas no son independientes (hay asociación entre ellas)."
+} else {
+  conclusion5 <- "No se rechaza H0: no hay evidencia suficiente para afirmar que las dos variables estén asociadas; se asume independencia entre ellas."
+}
+conclusion5
+
+##Con P-valor
+valor_p5 <- pchisq(chi_cuadrado5, gl5, lower.tail = FALSE)
+valor_p5
+
+##Con Función
+chisq.test(observados5)
+
+```
+
+En la prueba Chi-Cuadrado de independencia realizada manualmente se obtuvo un estadístico de X² = [ 123.0239] con [6] grados de libertad, un valor crítico al [5]% de significancia de [12.59159] y un p-valor de [3.773176e-24].Como el estadístico supera el valor crítico y el p-valor es menor que 0.05, se **rechaza la hipótesis nula**, lo que implica que existe una asociación estadísticamente significativa entre las variables Nobeyesdad y [SMOKE].De forma complementaria, al aplicar la función `chisq.test()` en R se obtuvieron los mismos resultados (estadístico, grados de libertad y p-valor), confirmando la decisión adoptada. En conclusión, tanto el cálculo manual como el realizado con R conducen a la misma interpretación estadística, lo que respalda la validez del procedimiento.
+
+## NObeyesdad VS CALC(Alcohol consumption) 
+
+```{r}
+#Tabla de contingencia
+observados6 <- table(datos$NObeyesdad, datos$CALC)
+observados6
+
+#Prueba de independencia 
+
+## A mano
+###Hallemos los totales----
+fila_totales6 <- rowSums(observados6)
+col_totales6  <- colSums(observados6)
+n6 <- sum(observados6)
+fila_totales6; col_totales6; n6
+
+###Hallemos las frecuencias esperadas----
+esperados6 <- outer(fila_totales6, col_totales6) / n6
+esperados6 #Como NO TODOS los esperados son >=5 debemos agrupar las categorías de la variables para poder usar el estadístico Chi-cuadrado
+
+#agrupar porque hay frecuencias menores que 5----
+matriz6 <- as.matrix(observados6)
+agrupados6 <- cbind(
+  `No/Sometimes` = rowSums(matriz6[, c("no", "Sometimes")]),
+  `Frequently/Always` = rowSums(matriz6[, c("Frequently", "Always")])
+)
+agrupados6
+
+# Totales por fila, columna y total general agrupado
+filas6_agrupados_totales<- rowSums(agrupados6)
+columnas6_agrupados_totales<- colSums(agrupados6)
+n6_agrupados <-sum(agrupados6)
+
+filas6_agrupados_totales; columnas6_agrupados_totales; n6_agrupados
+
+#hallemos las frecuencias esperadas bajo  H0 agrupado
+esperados6_agrupado <- outer(filas6_agrupados_totales, columnas6_agrupados_totales, FUN = function(f, c) f * c/ n6_agrupados)
+dimnames(esperados6_agrupado) <- dimnames(agrupados6)
+esperados6_agrupado
+
+###Seguido calculemos del estadístico Chi-Cuadrado
+chi6_cuadrado<- sum((agrupados6 - esperados6_agrupado)^2 / esperados6_agrupado)
+chi6_cuadrado
+
+###Determinemos los grados de libertad
+gl6 <- (nrow(agrupados6) - 1) * (ncol(agrupados6) - 1)
+gl6
+
+###valor crítico y decisión al  5%
+alfa <- 0.05
+valor6_critico <- qchisq(1 - alfa, gl6)
+valor6_critico
+
+###Comparación
+rechaza6_H0 <- chi6_cuadrado > valor6_critico
+rechaza6_H0
+
+###Conclusión
+if (rechaza6_H0) {
+  conclusion6 <- "Se rechaza H0: hay evidencia suficiente, al nivel de significancia 0.05, para afirmar que la proporción de estudiantes que se acuestan antes de las 10:00 p.m. difiere entre hombres y mujeres."
+} else {
+  conclusion6 <- "No se rechaza H0: no hay evidencia suficiente, al nivel de significancia 0.05, para afirmar que la proporción de estudiantes que se acuestan antes de las 10:00 p.m. difiere entre hombres y mujeres."
+}
+conclusion6
+
+##con p-valor
+valor6_p <- pchisq(chi6_cuadrado, gl6, lower.tail = FALSE)
+valor6_p
+
+##Con Función
+chisq.test(agrupados6)
+
+```
+En la prueba Chi-Cuadrado de independencia realizada manualmente se obtuvo un estadístico de X² = [48.39702] con [6] grados de libertad, un valor crítico al [5]% de significancia de [12.59159] y un p-valor de [ 9.842899e-09].Como el estadístico supera el valor crítico y el p-valor es menor que 0.05, se **rechaza la hipótesis nula**, lo que implica que existe una asociación estadísticamente significativa entre las variables Nobeyesdad y [CALC(Alcohol consumption)].De forma complementaria, al aplicar la función `chisq.test()` en R se obtuvieron los mismos resultados (estadístico, grados de libertad y p-valor), confirmando la decisión adoptada. En conclusión, tanto el cálculo manual como el realizado con R conducen a la misma interpretación estadística, lo que respalda la validez del procedimiento.
+
+
+
+## NObeyesdad VS MTRANS (Transportation used) 
+```{r}
+#Tabla de contingencia
+observados7 <- table(datos$NObeyesdad, datos$MTRANS)
+observados7
+
+#Prueba de independencia 
+
+## A mano
+###Hallemos los totales----
+fila_totales7 <- rowSums(observados7)
+col_totales7  <- colSums(observados7)
+n7 <- sum(observados7)
+fila_totales7; col_totales7; n7
+
+###Hallemos las frecuencias esperadas----
+esperados7 <- outer(fila_totales7, col_totales7) / n7
+esperados7 #Como NO TODOS los esperados son >=5 debemos agrupar las categorías de la variables para poder usar el estadístico Chi-cuadrado
+
+###agrupar porque hay frecuencias menores que 5----
+matriz7 <- as.matrix(observados7)
+agrupados7 <- cbind(
+  `Motorizado` = rowSums(matriz7[, c("Automobile", "Motorbike", "Public_Transportation")]),
+  `No_Motorizado` = rowSums(matriz7[, c("Bike", "Walking")])
+)
+agrupados7
+
+###Totales por fila, columna y total general agrupado
+filas7_agrupados_totales<- rowSums(agrupados7)
+columnas7_agrupados_totales<- colSums(agrupados7)
+n7_agrupados <-sum(agrupados7)
+filas7_agrupados_totales; columnas7_agrupados_totales; n7_agrupados
+
+###hallemos las frecuencias esperadas bajo  H0 agrupado
+esperados7_agrupado <- outer(filas7_agrupados_totales, columnas7_agrupados_totales, FUN = function(f, c) f * c/ n7_agrupados)
+dimnames(esperados7_agrupado) <- dimnames(agrupados7)
+esperados7_agrupado
+
+###Seguido calculemos del estadístico Chi-Cuadrado
+chi7_cuadrado<- sum((agrupados7 - esperados7_agrupado)^2 / esperados7_agrupado)
+chi7_cuadrado
+
+###Determinemos los grados de libertad
+gl7 <- (nrow(agrupados7) - 1) * (ncol(agrupados7) - 1)
+gl7
+
+###valor crítico y decisión al  5%
+alfa <- 0.05
+valor7_critico <- qchisq(1 - alfa, gl7)
+valor7_critico
+
+###Comparación
+rechaza7_H0 <- chi7_cuadrado > valor7_critico
+rechaza7_H0
+
+###Conclusión
+if (rechaza7_H0) {
+  conclusion7 <- "Se rechaza H0: hay evidencia suficiente, al nivel de significancia 0.05, para afirmar que la proporción de estudiantes que se acuestan antes de las 10:00 p.m. difiere entre hombres y mujeres."
+} else {
+  conclusion7 <- "No se rechaza H0: no hay evidencia suficiente, al nivel de significancia 0.05, para afirmar que la proporción de estudiantes que se acuestan antes de las 10:00 p.m. difiere entre hombres y mujeres."
+}
+conclusion7
+
+##con p-valor
+valor7_p <- pchisq(chi7_cuadrado, gl7, lower.tail = FALSE)
+valor7_p
+
+##Con Función
+chisq.test(agrupados7)
+```
+
+En la prueba Chi-Cuadrado de independencia realizada manualmente se obtuvo un estadístico de X² = [115.1563] con [6] grados de libertad, un valor crítico al [5]% de significancia de [12.59159] y un p-valor de [ 1.693143e-22].Como el estadístico supera el valor crítico y el p-valor es menor que 0.05, se **rechaza la hipótesis nula**, lo que implica que existe una asociación estadísticamente significativa entre las variables Nobeyesdad y [MTRANS (Transportation used)].De forma complementaria, al aplicar la función `chisq.test()` en R se obtuvieron los mismos resultados (estadístico, grados de libertad y p-valor), confirmando la decisión adoptada. En conclusión, tanto el cálculo manual como el realizado con R conducen a la misma interpretación estadística, lo que respalda la validez del procedimiento.
